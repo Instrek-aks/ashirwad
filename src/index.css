@@ -2556,6 +2556,10 @@ body {
   .nav-hamburger {
     display: flex;
   }
+  .hero-centered-layout {
+    min-height: 85vh; /* Increased hero height for mobile */
+    padding: 180px 0 150px 0;
+  }
   .hero-left h1 {
     font-size: 32px;
   }
