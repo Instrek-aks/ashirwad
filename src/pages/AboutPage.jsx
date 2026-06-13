@@ -82,12 +82,12 @@ function WhoWeAre() {
   const [hoveredIdx, setHoveredIdx] = useState(null)
 
   const galleryImages = [
-    { src: '/p1.png', alt: 'Quality Inspection' },
-    { src: '/p2.jpg', alt: 'Ashirwad Team' },
-    { src: '/p3.jpg', alt: 'Cleanroom Machinery' },
-    { src: '/g2.jpg', alt: 'Production Assembly' },
-    { src: '/g3.jpg', alt: 'Facility Corridor' },
-    { src: '/g1.jpg', alt: 'Laboratory QC' }
+    { src: '/p1.webp', alt: 'Quality Inspection' },
+    { src: '/p2.webp', alt: 'Ashirwad Team' },
+    { src: '/p3.webp', alt: 'Cleanroom Machinery' },
+    { src: '/g2.webp', alt: 'Production Assembly' },
+    { src: '/g3.webp', alt: 'Facility Corridor' },
+    { src: '/g1.webp', alt: 'Laboratory QC' }
   ]
 
   return (
@@ -150,7 +150,7 @@ function WhoWeAre() {
             className="overview-video-container" 
           >
             <img 
-              src="/y.png" 
+              src="/y.webp" 
               alt="Ashirwad Plastics Solan Facility" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               onError={(e) => {
@@ -312,7 +312,7 @@ function ExperienceAndCareers() {
             }}
           >
             <img 
-              src="/t1.png" 
+              src="/t1.webp" 
               alt="Manul Jain, Founder & CEO" 
               style={{ width: '100%', aspectRatio: '1.33', borderRadius: '16px', objectFit: 'cover', marginBottom: '20px', display: 'block' }}
             />
@@ -373,7 +373,7 @@ function ExperienceAndCareers() {
 ───────────────────────────────────── */
 function WeAreCertifiedBy() {
   const [ref, v] = useFadeIn()
-  const certs = ['/c1.png', '/c2.png', '/c3.png', '/c4.png', '/c5.png']
+  const certs = ['/c1.webp', '/c2.webp', '/c3.webp', '/c4.webp', '/c5.webp']
 
   return (
     <section style={{ backgroundColor: '#fff', padding: '60px 0' }}>
@@ -406,18 +406,18 @@ function OurValuableClients() {
   const [failedImages, setFailedImages] = useState({})
 
   const clients = [
-    { name: 'Blue Cross', logo: '/v1.png' },
-    { name: 'Mankind', logo: '/v2.png' },
-    { name: 'Leeford', logo: '/v3.png' },
-    { name: 'Akums', logo: '/v4.png' },
-    { name: 'Add', logo: '/v5.png' },
-    { name: 'Tirupati', logo: '/v7.png' },
-    { name: 'Acme Generics', logo: '/v8.png' },
-    { name: 'Immacule', logo: '/v9.png' },
-    { name: 'Pure & Cure', logo: '/v10.png' },
-    { name: 'Synokem', logo: '/v11.png' },
-    { name: 'Macleods', logo: '/v12.png' },
-    { name: 'Pontika', logo: '/v6.png' } // fails and falls back to text 'Pontika'
+    { name: 'Blue Cross', logo: '/v1.webp' },
+    { name: 'Mankind', logo: '/v2.webp' },
+    { name: 'Leeford', logo: '/v3.webp' },
+    { name: 'Akums', logo: '/v4.webp' },
+    { name: 'Add', logo: '/v5.webp' },
+    { name: 'Tirupati', logo: '/v7.webp' },
+    { name: 'Acme Generics', logo: '/v8.webp' },
+    { name: 'Immacule', logo: '/v9.webp' },
+    { name: 'Pure & Cure', logo: '/v10.webp' },
+    { name: 'Synokem', logo: '/v11.webp' },
+    { name: 'Macleods', logo: '/v12.webp' },
+    { name: 'Pontika', logo: '/v6.webp' } // fails and falls back to text 'Pontika'
   ]
 
   const handleImageError = (name) => {

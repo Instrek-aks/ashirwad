@@ -2,11 +2,11 @@ import FadeIn from './FadeIn'
 
 export default function Factory() {
   const images = [
-    '/images/factory_interior1.png',
-    '/images/factory_interior2.png',
-    '/images/factory_interior3.png',
-    '/images/factory_success.png',
-    '/images/factory_interior1.png' // fallback for 5th item
+    '/images/factory_interior1.webp',
+    '/images/factory_interior2.webp',
+    '/images/factory_interior3.webp',
+    '/images/factory_success.webp',
+    '/images/factory_interior1.webp' // fallback for 5th item
   ]
 
   return (

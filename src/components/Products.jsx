@@ -6,64 +6,64 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/o1.jpg',
+    img: '/o1.webp',
     cover: true
   },
   {
     id: 'nasal',
     name: 'Nasal Delivery System',
     desc: 'Advanced nasal dispensing for consistent dosing, convenience, & product integrity.',
-    img: '/o2.jpg',
+    img: '/o2.webp',
     cover: true
   },
   {
     id: 'tablet',
     name: 'Tablet Containers & Closures',
     desc: 'Secure, durable packaging for safe storage & protection of solid-dose products.',
-    img: '/03.png',
+    img: '/03.webp',
     cover: true
   },
   {
     id: 'measuring',
     name: 'Measuring Caps & Oral Droppers',
     desc: 'Accurate, user-friendly dispensing for liquid pharmaceutical formulations.',
-    img: '/o4.png'
+    img: '/o4.webp'
   },
   {
     id: 'dropper',
     name: 'Glass Droppers',
     desc: 'Premium glass droppers for controlled dispensing and enhanced compatibility.',
-    img: '/o5.png'
+    img: '/o5.webp'
   },
   {
     id: 'dispenser',
     name: 'Dispenser Pumps',
     desc: 'Reliable pump systems for efficient, controlled liquid dispensing.',
-    img: '/o6.png'
+    img: '/o6.webp'
   },
   {
     id: 'trigger',
     name: 'Trigger Pumps',
     desc: 'Durable, ergonomic trigger pumps for personal care and industrial use.',
-    img: '/o7.png'
+    img: '/o7.webp'
   },
   {
     id: 'mist',
     name: 'Mist & Cream Pumps',
     desc: 'Precision-engineered mist and cream pumps for smooth, consistent dispensing.',
-    img: '/o8.png'
+    img: '/o8.webp'
   },
   {
     id: 'caps',
     name: 'Caps and Closures',
     desc: 'A wide range of closures for safety, protection, and product integrity.',
-    img: '/o9.png'
+    img: '/o9.webp'
   },
   {
     id: 'flipoff',
     name: 'Flip off Seals',
     desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
-    img: '/o10.png'
+    img: '/o10.webp'
   }
 ]
 

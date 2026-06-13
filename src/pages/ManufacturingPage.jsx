@@ -61,7 +61,7 @@ export default function ManufacturingPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/b2.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/b2.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -124,7 +124,7 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b1.png" 
+                  src="/b1.webp" 
                   alt="Manufacturing Process" 
                   onError={(e) => handleImageError(e, "Manufacturing Process")}
                 />
@@ -144,7 +144,7 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b.png" 
+                  src="/b.webp" 
                   alt="Ashirwad Plastics Manufacturing Cleanroom" 
                   onError={(e) => handleImageError(e, "Facility Cleanroom")}
                 />
@@ -179,7 +179,7 @@ export default function ManufacturingPage({ onNavigate }) {
             {/* Card 1: Production Line Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/b3.jpg" 
+                src="/b3.webp" 
                 alt="Plastic Containers Production Line" 
                 onError={(e) => handleImageError(e, "Plastic Containers Line")}
               />
@@ -276,7 +276,7 @@ export default function ManufacturingPage({ onNavigate }) {
             {/* Card 4: Factory Floor Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/s7.png" 
+                src="/s7.webp" 
                 alt="Production Factory Floor" 
                 onError={(e) => handleImageError(e, "Factory Floor")}
               />

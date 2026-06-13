@@ -62,7 +62,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
       <section 
         className="dev-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/a.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/a.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -128,7 +128,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a0.png" 
+                    src="/a0.webp" 
                     alt="Initial Expert Consultation" 
                     onError={(e) => handleImageError(e, "Consultation Team")}
                   />
@@ -154,7 +154,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a1.png" 
+                    src="/a1.webp" 
                     alt="Customized Design Development" 
                     onError={(e) => handleImageError(e, "Design & Development Team")}
                   />
@@ -179,7 +179,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a3.png" 
+                    src="/a3.webp" 
                     alt="Prototype Creation and Approval" 
                     onError={(e) => handleImageError(e, "Prototype Inspection")}
                   />
@@ -204,7 +204,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a4 (2).png" 
+                    src="/a4 (2).webp" 
                     alt="High-Quality Production" 
                     onError={(e) => handleImageError(e, "Automated Production")}
                   />
@@ -229,7 +229,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a5.png" 
+                    src="/a5.webp" 
                     alt="Comprehensive Quality Check" 
                     onError={(e) => handleImageError(e, "Quality Assurance")}
                   />

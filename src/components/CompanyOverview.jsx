@@ -32,7 +32,7 @@ export default function CompanyOverview({ onNavigate }) {
         <FadeIn>
           <div className="overview-video-container">
             <img 
-              src="/y.png" 
+              src="/y.webp" 
               alt="Ashirwad Plastics Solan Facility" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               onError={(e) => {

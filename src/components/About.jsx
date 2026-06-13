@@ -18,7 +18,7 @@ export default function About() {
           </div>
           <FadeIn>
             <div className="map-img-box">
-              <img src="/images/world_map_blue.png" alt="Global Presence Map" className="map-img" />
+              <img src="/images/world_map_blue.webp" alt="Global Presence Map" className="map-img" />
             </div>
           </FadeIn>
         </div>
@@ -44,7 +44,7 @@ export default function About() {
           </div>
           <FadeIn>
             <div className="factory-aerial-box">
-              <img src="/images/factory_aerial.png" alt="Factory Aerial View" className="factory-aerial-img" />
+              <img src="/images/factory_aerial.webp" alt="Factory Aerial View" className="factory-aerial-img" />
               {/* Optional small red indicator pin matching the visual in reference */}
               <div className="factory-pin"></div>
             </div>

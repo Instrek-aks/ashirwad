@@ -39,7 +39,7 @@ export default function GlobalPresence({ onNavigate }) {
         <FadeIn>
           <div className="global-map-wrapper" style={{ padding: '20px', background: 'transparent', border: 'none', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img 
-              src="/map.png" 
+              src="/map.webp" 
               alt="Global Presence Map" 
               style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }}
               onError={(e) => {

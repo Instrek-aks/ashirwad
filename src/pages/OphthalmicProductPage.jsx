@@ -31,19 +31,19 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/d1.png",
-    "/d1.png",
-    "/d1.png"
+    "/d1.webp",
+    "/d1.webp",
+    "/d1.webp"
   ]
 
   // Gallery images (futuristic blue renders)
   const galleryImages = [
-    { src: "/d2.png", label: "Cap assembly details" },
-    { src: "/d3.png", label: "Nozzle measurement details" },
-    { src: "/d4.png", label: "Wall thickness diagram" },
-    { src: "/d5.png", label: "Sterile container models" },
-    { src: "/d6.png", label: "Thread alignment layout" },
-    { src: "/d7.png", label: "Torque resistance details" }
+    { src: "/d2.webp", label: "Cap assembly details" },
+    { src: "/d3.webp", label: "Nozzle measurement details" },
+    { src: "/d4.webp", label: "Wall thickness diagram" },
+    { src: "/d5.webp", label: "Sterile container models" },
+    { src: "/d6.webp", label: "Thread alignment layout" },
+    { src: "/d7.webp", label: "Torque resistance details" }
   ]
 
   // Graceful fallback for missing local images
@@ -82,7 +82,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/d0.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/d0.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -429,7 +429,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.png" 
+                    src="/s7.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

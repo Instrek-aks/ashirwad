@@ -64,7 +64,7 @@ export default function Header({ page, onNavigate }) {
           style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
         >
           <img 
-            src="/logo.png" 
+            src="/logo.webp" 
             alt="Ashirwad Plastics Logo" 
             style={{ height: '44px', width: 'auto', objectFit: 'contain', display: 'block' }}
           />
@@ -80,7 +80,7 @@ export default function Header({ page, onNavigate }) {
           {/* Drawer Top Header for Mobile */}
           <div className="nav-drawer-header">
             <img 
-              src="/logo.png" 
+              src="/logo.webp" 
               alt="Ashirwad Plastics Logo" 
               style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
             />

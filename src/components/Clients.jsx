@@ -2,17 +2,17 @@ import { useState } from 'react'
 import FadeIn from './FadeIn'
 
 const clientBrands = [
-  { name: 'Mankind', logo: '/v1.png' },
-  { name: 'Alkem Healthcare', logo: '/v2.png' },
-  { name: 'Leeford', logo: '/v3.png' },
-  { name: 'Akums', logo: '/v4.png' },
-  { name: 'Add', logo: '/v5.png' },
-  { name: 'Tirupati', logo: '/v7.png' },
-  { name: 'Acme Generics', logo: '/v8.png' },
-  { name: 'Immacule', logo: '/v9.png' },
-  { name: 'Pure & Cure', logo: '/v10.png' },
-  { name: 'Synokem', logo: '/v11.png' },
-  { name: 'Macleods', logo: '/v12.png' }
+  { name: 'Mankind', logo: '/v1.webp' },
+  { name: 'Alkem Healthcare', logo: '/v2.webp' },
+  { name: 'Leeford', logo: '/v3.webp' },
+  { name: 'Akums', logo: '/v4.webp' },
+  { name: 'Add', logo: '/v5.webp' },
+  { name: 'Tirupati', logo: '/v7.webp' },
+  { name: 'Acme Generics', logo: '/v8.webp' },
+  { name: 'Immacule', logo: '/v9.webp' },
+  { name: 'Pure & Cure', logo: '/v10.webp' },
+  { name: 'Synokem', logo: '/v11.webp' },
+  { name: 'Macleods', logo: '/v12.webp' }
 ]
 
 function ClientLogoCard({ brand, width }) {

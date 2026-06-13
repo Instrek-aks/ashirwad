@@ -38,7 +38,7 @@ export default function Footer({ page, onNavigate }) {
                 style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
               >
                 <img 
-                  src="/logo.png" 
+                  src="/logo.webp" 
                   alt="Ashirwad Plastics Logo" 
                   style={{ height: '40px', width: 'auto', objectFit: 'contain', display: 'block', filter: 'brightness(0) invert(1)' }}
                 />

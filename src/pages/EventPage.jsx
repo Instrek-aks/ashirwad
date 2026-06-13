@@ -72,7 +72,7 @@ export default function EventPage({ onNavigate }) {
       <section 
         className="ep-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/l0.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/l0.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           color: 'var(--white)',
@@ -127,22 +127,22 @@ export default function EventPage({ onNavigate }) {
             <div className="ep-overview-right">
               <div className="ep-overview-gallery">
                 <div className="ep-ov-gallery-img">
-                  <img src="/f1.png" alt="Exhibition scene 1" onError={(e) => handleImageError(e, "Exhibition 1")} />
+                  <img src="/f1.webp" alt="Exhibition scene 1" onError={(e) => handleImageError(e, "Exhibition 1")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/f2.png" alt="Exhibition scene 2" onError={(e) => handleImageError(e, "Exhibition 2")} />
+                  <img src="/f2.webp" alt="Exhibition scene 2" onError={(e) => handleImageError(e, "Exhibition 2")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/g1.jpg" alt="Exhibition scene 3" onError={(e) => handleImageError(e, "Exhibition 3")} />
+                  <img src="/g1.webp" alt="Exhibition scene 3" onError={(e) => handleImageError(e, "Exhibition 3")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/g2.jpg" alt="Exhibition scene 4" onError={(e) => handleImageError(e, "Exhibition 4")} />
+                  <img src="/g2.webp" alt="Exhibition scene 4" onError={(e) => handleImageError(e, "Exhibition 4")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/g3.jpg" alt="Exhibition scene 5" onError={(e) => handleImageError(e, "Exhibition 5")} />
+                  <img src="/g3.webp" alt="Exhibition scene 5" onError={(e) => handleImageError(e, "Exhibition 5")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/s7.png" alt="Exhibition scene 6" onError={(e) => handleImageError(e, "Exhibition 6")} />
+                  <img src="/s7.webp" alt="Exhibition scene 6" onError={(e) => handleImageError(e, "Exhibition 6")} />
                 </div>
               </div>
             </div>
@@ -238,16 +238,16 @@ export default function EventPage({ onNavigate }) {
 
           <div className="ep-gallery-scroller">
             <div className="ep-gallery-item wide">
-              <img src="/l1.png" alt="Client Interaction" onError={(e) => handleImageError(e, "Exhibition Stand 1")} />
+              <img src="/l1.webp" alt="Client Interaction" onError={(e) => handleImageError(e, "Exhibition Stand 1")} />
             </div>
             <div className="ep-gallery-item tall">
-              <img src="/l2.png" alt="Audience Presentation" onError={(e) => handleImageError(e, "Exhibition Stand 2")} />
+              <img src="/l2.webp" alt="Audience Presentation" onError={(e) => handleImageError(e, "Exhibition Stand 2")} />
             </div>
             <div className="ep-gallery-item standard">
-              <img src="/l3.png" alt="Networking Discussion" onError={(e) => handleImageError(e, "Exhibition Stand 3")} />
+              <img src="/l3.webp" alt="Networking Discussion" onError={(e) => handleImageError(e, "Exhibition Stand 3")} />
             </div>
             <div className="ep-gallery-item wide">
-              <img src="/l4.png" alt="Exhibition Floor" onError={(e) => handleImageError(e, "Exhibition Stand 4")} />
+              <img src="/l4.webp" alt="Exhibition Floor" onError={(e) => handleImageError(e, "Exhibition Stand 4")} />
             </div>
           </div>
         </div>
@@ -276,7 +276,7 @@ export default function EventPage({ onNavigate }) {
               <div className="ep-future-right">
                 <div className="ep-future-img-box">
                   <img 
-                    src="/l5.png" 
+                    src="/l5.webp" 
                     alt="Ashirwad plastics at CPHI future"
                     onError={(e) => handleImageError(e, "Future Event 2026")}
                   />
@@ -293,7 +293,7 @@ export default function EventPage({ onNavigate }) {
         className="ep-meeting-section" 
         ref={meetingRef}
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(13, 28, 61, 0.7), rgba(13, 28, 61, 0.85)), url('/l6.jpg')"
+          backgroundImage: "linear-gradient(180deg, rgba(13, 28, 61, 0.7), rgba(13, 28, 61, 0.85)), url('/l6.webp')"
         }}
       >
         <div className="container ep-meeting-grid">

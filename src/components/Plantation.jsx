@@ -53,7 +53,7 @@ export default function Plantation() {
           {/* Right: Radial Factory Machine Image */}
           <FadeIn>
             <div className="plantation-img-box-ref">
-              <img src="/images/factory_interior3.png" alt="Sustainability Packaging" className="plantation-ref-img" />
+              <img src="/images/factory_interior3.webp" alt="Sustainability Packaging" className="plantation-ref-img" />
             </div>
           </FadeIn>
         </div>

@@ -15,7 +15,7 @@ export default function Success() {
           {/* Left: Image */}
           <FadeIn>
             <div className="success-img-box-ref">
-              <img src="/images/factory_success.png" alt="Future Business Plan" className="success-ref-img" />
+              <img src="/images/factory_success.webp" alt="Future Business Plan" className="success-ref-img" />
             </div>
           </FadeIn>
 

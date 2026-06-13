@@ -31,19 +31,19 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/n1.png",
-    "/n1.png",
-    "/n1.png"
+    "/n1.webp",
+    "/n1.webp",
+    "/n1.webp"
   ]
 
   // Gallery images (futuristic blue renders)
   const galleryImages = [
-    { src: "/n2.png", label: "Nasal nozzle design" },
-    { src: "/n3.png", label: "Pump mechanism detail" },
-    { src: "/n4.png", label: "Valving structure" },
-    { src: "/n5.png", label: "Sterility seal assembly" },
-    { src: "/n6.png", label: "Thread calibration" },
-    { src: "/n7.png", label: "Spray pattern testing" }
+    { src: "/n2.webp", label: "Nasal nozzle design" },
+    { src: "/n3.webp", label: "Pump mechanism detail" },
+    { src: "/n4.webp", label: "Valving structure" },
+    { src: "/n5.webp", label: "Sterility seal assembly" },
+    { src: "/n6.webp", label: "Thread calibration" },
+    { src: "/n7.webp", label: "Spray pattern testing" }
   ]
 
   // Graceful fallback for missing local images
@@ -82,7 +82,7 @@ export default function NasalProductPage({ onNavigate }) {
       <section 
         className="np-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/n0.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/n0.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -429,7 +429,7 @@ export default function NasalProductPage({ onNavigate }) {
               <div className="np-why-right">
                 <div className="np-why-img-box">
                   <img 
-                    src="/s7.png" 
+                    src="/s7.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

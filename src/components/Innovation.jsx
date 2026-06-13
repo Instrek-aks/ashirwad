@@ -59,7 +59,7 @@ export default function Innovation() {
           <FadeIn>
             <div className="innovation-img-box" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-xl)', border: '1px solid var(--border-gray)', aspectRatio: '1.15', backgroundColor: '#e2e8f0' }}>
               <img 
-                src="/f2.png" 
+                src="/f2.webp" 
                 alt="High-Precision Manufacturing Mold Assembly" 
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 onError={(e) => {

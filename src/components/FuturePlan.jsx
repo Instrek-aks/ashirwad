@@ -16,7 +16,7 @@ export default function FuturePlan() {
         <FadeIn>
           <div className="future-img-box" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-xl)', border: '1px solid var(--border-gray)', aspectRatio: '1.35', backgroundColor: '#f1f5f9' }}>
             <img 
-              src="/f1.png" 
+              src="/f1.webp" 
               alt="Advanced Baddi Facility Production" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               onError={(e) => {

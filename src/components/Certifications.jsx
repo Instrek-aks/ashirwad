@@ -15,23 +15,23 @@ export default function Certifications() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
           
           <FadeIn>
-            <img src="/c1.png" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c1.webp" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c2.png" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c3.png" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c3.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c4.png" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c4.webp" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c5.png" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c5.webp" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
         </div>
