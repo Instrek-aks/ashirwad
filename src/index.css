@@ -7232,9 +7232,32 @@ body {
   }
 }
 
-/* Hide scrollbars for the vision image scroller */
-.vision-image-scroller::-webkit-scrollbar {
-  display: none;
+/* Continuous Marquee for Vision Section */
+.vision-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  margin: 48px 0;
+  display: flex;
+}
+
+.vision-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+.vision-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 12px));
+  }
 }
 
 /* Custom Desktop Layout Styles (Preserving current desktop design) */

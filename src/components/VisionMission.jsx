@@ -29,48 +29,39 @@ export default function VisionMission() {
       </div>
 
       {/* 2. Full-bleed Image Row */}
-      <div 
-        className="vision-image-scroller" 
-        style={{ 
-          display: 'flex', 
-          gap: '24px', 
-          overflowX: 'auto', 
-          paddingLeft: 'max(24px, calc((100% - 1000px) / 2 + 24px))', 
-          paddingRight: 'max(24px, calc((100% - 1000px) / 2 + 24px))', 
-          margin: '48px 0', 
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none'
-        }}
-      >
-        {images.map((src, i) => (
-          <FadeIn key={i}>
-            <div 
-              className="vision-gallery-item" 
-              style={{ 
-                width: '260px',
-                height: '200px', 
-                borderRadius: '24px', 
-                overflow: 'hidden', 
-                border: '1px solid rgba(255, 255, 255, 0.15)', 
-                background: 'rgba(255, 255, 255, 0.05)', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                flexShrink: 0
-              }}
-            >
-              <img 
-                src={src} 
-                alt={`Factory Interior ${i + 1}`} 
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                onError={(e) => {
-                  e.target.style.display = 'none';
+      <FadeIn>
+        <div className="vision-marquee-container">
+          <div className="vision-marquee-track">
+            {[...images, ...images].map((src, i) => (
+              <div 
+                key={i}
+                className="vision-gallery-item" 
+                style={{ 
+                  width: '260px',
+                  height: '200px', 
+                  borderRadius: '24px', 
+                  overflow: 'hidden', 
+                  border: '1px solid rgba(255, 255, 255, 0.15)', 
+                  background: 'rgba(255, 255, 255, 0.05)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  flexShrink: 0
                 }}
-              />
-            </div>
-          </FadeIn>
-        ))}
-      </div>
+              >
+                <img 
+                  src={src} 
+                  alt={`Factory Interior ${i + 1}`} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeIn>
 
       {/* 3. Our Mission Row */}
       <div className="container" style={{ maxWidth: '1000px', padding: '0 24px' }}>
