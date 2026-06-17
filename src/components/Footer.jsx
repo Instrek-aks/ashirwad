@@ -28,7 +28,7 @@ export default function Footer({ page, onNavigate }) {
         {/* Five-Column Layout Grid */}
         <div className="footer-grid-ref">
           
-          {/* Column 1: Logo & Description */}
+          {/* Column 1: Logo & Description & Contact Info */}
           <div>
             <div className="footer-logo" style={{ marginBottom: '16px' }}>
               <a 
@@ -44,50 +44,14 @@ export default function Footer({ page, onNavigate }) {
                 />
               </a>
             </div>
-            <p className="footer-about-text" style={{ fontSize: '13px', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.7)', margin: 0, maxWidth: '280px' }}>
+            <p className="footer-about-text" style={{ fontSize: '13px', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '24px', maxWidth: '280px' }}>
               Ashirwad Plastics stands at the forefront of Innovation, offering nasal dispensing solutions and injection seals that uphold the integrity of life-saving medicines.
             </p>
-          </div>
-
-          {/* Column 2: Pages 1 */}
-          <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Pages</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => { e.preventDefault(); if(onNavigate) onNavigate('home'); else window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Home</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'event')}>Insights</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'contact')}>Contact Us</a></li>
-            </ul>
-          </div>
-
-          {/* Column 3: Pages 2 */}
-          <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Pages</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'about')}>About Us</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => scrollToSection(e, 'products')}>Services</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'career')}>Career</a></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Candidate Pages */}
-          <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Candidate Pages</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => e.preventDefault()}>Modern Slavery Act</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => e.preventDefault()}>Complaints</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => e.preventDefault()}>Manage Cookies</a></li>
-            </ul>
-          </div>
-
-          {/* Column 5: Contact Information */}
-          <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Contact Us</h4>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '20px' }}>
               {/* Phone */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" style={{ flexShrink: 0 }}>
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
                 <a href="tel:+919569461234" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>+91-9569461234</a>
@@ -95,7 +59,7 @@ export default function Footer({ page, onNavigate }) {
 
               {/* Email */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" style={{ flexShrink: 0 }}>
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
@@ -113,16 +77,69 @@ export default function Footer({ page, onNavigate }) {
 
               {/* Website */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" style={{ flexShrink: 0 }}>
                   <circle cx="12" cy="12" r="10" />
                   <line x1="2" y1="12" x2="22" y2="12" />
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                 </svg>
                 <a href="https://www.ashirwadplastics.com" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>www.ashirwadplastics.com</a>
               </div>
-
             </div>
           </div>
+
+          {/* Column 2: Products */}
+          <div className="footer-column-ref">
+            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Products</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery Systems</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery Systems</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-measuring')}>Measuring Caps &amp; Oral Droppers</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-glass-dropper')}>Glass Droppers</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-caps-closures')}>Caps &amp; Closures</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Market Sectors */}
+          <div className="footer-column-ref">
+            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Market Sectors</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-pharma')}>Pharma Market</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic Market</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-homecare')}>Home Care Industry</a></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Our Expertise */}
+          <div className="footer-column-ref">
+            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Our Expertise</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-manufacturing')}>Manufacturing</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-sustainability')}>Sustainability</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-quality')}>Quality Assurance</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-innovation')}>Innovation</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-rd')}>Research &amp; Development</a></li>
+            </ul>
+          </div>
+
+          {/* Column 5: Quick Links */}
+          <div className="footer-column-ref">
+            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Quick Links</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => { e.preventDefault(); onNavigate('home'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Home</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'about')}>About Us</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'presence')}>Global Presence</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'career')}>Career</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise')}>New Product Development</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'event')}>CPHI-PMEC Event</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => scrollToSection(e, 'contact')}>Contact Us</a></li>
+            </ul>
+          </div>
+
         </div>
 
         {/* Footer Bottom Copyright & Social Links */}

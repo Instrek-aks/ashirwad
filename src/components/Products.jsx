@@ -79,6 +79,22 @@ function ProductCard({ product, onNavigate }) {
           if (onNavigate) onNavigate('product-ophthalmic');
         } else if (product.id === 'nasal') {
           if (onNavigate) onNavigate('product-nasal');
+        } else if (product.id === 'tablet') {
+          if (onNavigate) onNavigate('product-tablet');
+        } else if (product.id === 'flipoff') {
+          if (onNavigate) onNavigate('product-flipoff');
+        } else if (product.id === 'measuring') {
+          if (onNavigate) onNavigate('product-measuring');
+        } else if (product.id === 'dropper') {
+          if (onNavigate) onNavigate('product-glass-dropper');
+        } else if (product.id === 'dispenser') {
+          if (onNavigate) onNavigate('product-dispenser');
+        } else if (product.id === 'trigger') {
+          if (onNavigate) onNavigate('product-trigger');
+        } else if (product.id === 'mist') {
+          if (onNavigate) onNavigate('product-mist-cream');
+        } else if (product.id === 'caps') {
+          if (onNavigate) onNavigate('product-caps-closures');
         } else {
           if (onNavigate) onNavigate('contact');
         }

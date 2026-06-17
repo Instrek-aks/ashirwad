@@ -31,19 +31,19 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/d1.webp",
-    "/d1.webp",
-    "/d1.webp"
+    "/ophthalmic_user.png",
+    "/ophthalmic_user.png",
+    "/ophthalmic_user.png"
   ]
 
-  // Gallery images (futuristic blue renders)
+  // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/d2.webp", label: "Cap assembly details" },
-    { src: "/d3.webp", label: "Nozzle measurement details" },
-    { src: "/d4.webp", label: "Wall thickness diagram" },
-    { src: "/d5.webp", label: "Sterile container models" },
-    { src: "/d6.webp", label: "Thread alignment layout" },
-    { src: "/d7.webp", label: "Torque resistance details" }
+    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 5ml" },
+    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 7ml" },
+    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 10ml" },
+    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 15ml" },
+    { src: "/ophthalmic_user.png", label: "CRC Closure Detail" },
+    { src: "/ophthalmic_user.png", label: "Tamper-Evident Closure" }
   ]
 
   // Graceful fallback for missing local images
@@ -148,16 +148,6 @@ export default function OphthalmicProductPage({ onNavigate }) {
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
-                {/* Pagination Dots */}
-                <div className="op-carousel-dots">
-                  {carouselImages.map((_, i) => (
-                    <span 
-                      key={i} 
-                      className={`op-dot ${activeSlide === i ? 'active' : ''}`}
-                      onClick={() => setActiveSlide(i)}
-                    />
-                  ))}
-                </div>
               </div>
 
               {/* Product Description */}
@@ -213,12 +203,6 @@ export default function OphthalmicProductPage({ onNavigate }) {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div style={{ textAlign: 'center', marginTop: '48px' }}>
-              <button className="op-download-btn" onClick={() => onNavigate('contact')}>
-                Download Brochure →
-              </button>
             </div>
 
           </div>

@@ -16,14 +16,13 @@ function useFadeIn() {
   return [ref, visible]
 }
 
-export default function ManufacturingPage({ onNavigate }) {
+export default function SustainabilityPage({ onNavigate }) {
   const [heroRef, heroVisible] = useFadeIn()
   const [overviewRef, overviewVisible] = useFadeIn()
-  const [facilityRef, facilityVisible] = useFadeIn()
+  const [journeyRef, journeyVisible] = useFadeIn()
   const [gridRef, gridVisible] = useFadeIn()
-  const [peopleRef, peopleVisible] = useFadeIn()
+  const [commitmentRef, commitmentVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
-  const [footerCtaRef, footerCtaVisible] = useFadeIn()
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
@@ -61,7 +60,7 @@ export default function ManufacturingPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/b2.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/sustanibility.png')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -87,46 +86,44 @@ export default function ManufacturingPage({ onNavigate }) {
           <nav className="mfg-breadcrumb" style={{ margin: 0 }}>
             <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
             <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">MANUFACTURING</span>
+            <span className="breadcrumb-active">SUSTAINABILITY</span>
           </nav>
-          <h1 className="mfg-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Manufacturing</h1>
+          <h1 className="mfg-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Sustainability</h1>
           <p className="mfg-hero-desc" style={{ margin: 0, maxWidth: '640px' }}>
-            Manufacturing practices that make the world a better place with the help of automation.
+            A core value that shapes every decision we make. We recognise that our choices today have a lasting impact on the world.
           </p>
         </div>
       </section>
 
-      {/* 2. MANUFACTURING OVERVIEW SECTION */}
+      {/* 2. OVERVIEW SECTION */}
       <section className="mfg-overview-section">
         <div className="container">
           <div ref={overviewRef} className={`mfg-overview-grid fade-section ${overviewVisible ? 'visible' : ''}`}>
             
-            {/* Left Column: Copy */}
             <div className="mfg-overview-left">
               <div className="mfg-accent-line" />
-              <h2 className="mfg-section-title">Manufacturing</h2>
+              <h2 className="mfg-section-title">Environmental Responsibility</h2>
               <p className="mfg-overview-paragraph">
-                At Ashirwad Plastics, our production system is built on precision engineering, state-of-the-art automation, and cleanroom molding capabilities. We serve the pharmaceutical packaging sector under strict international guidelines to ensure absolute dimensional accuracy, thickness tolerance, and secure closure functionality.
+                Sustainability is not an afterthought at Ashirwad Plastics - it is a core value that shapes every decision we make. We recognise that our choices today have a lasting impact on the world we leave for future generations.
               </p>
               <p className="mfg-overview-paragraph">
-                By integrating advanced materials, automated testing devices, and rigorous quality check protocols, we deliver robust solutions that prevent leakage, maintain sterile containment, and uphold product integrity throughout transit and usage.
+                From responsible material sourcing to energy-efficient manufacturing, we are committed to minimising our environmental footprint and contributing to a cleaner, more sustainable future.
               </p>
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
                 className="mfg-cta-link"
               >
-                Consult with Experts <span className="mfg-cta-arrow">→</span>
+                Learn More About Our Efforts <span className="mfg-cta-arrow">→</span>
               </a>
             </div>
 
-            {/* Right Column: Manufacturing Image */}
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
                   src="/b1.webp" 
-                  alt="Manufacturing Process" 
-                  onError={(e) => handleImageError(e, "Manufacturing Process")}
+                  alt="Sustainable Practices" 
+                  onError={(e) => handleImageError(e, "Sustainable Practices")}
                 />
               </div>
             </div>
@@ -135,59 +132,21 @@ export default function ManufacturingPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 3. FACILITY SECTION */}
-      <section className="mfg-facility-section">
-        <div className="container">
-          <div ref={facilityRef} className={`mfg-facility-grid fade-section ${facilityVisible ? 'visible' : ''}`}>
-            
-            {/* Left: Large Image */}
-            <div className="mfg-facility-left">
-              <div className="mfg-facility-img-box">
-                <img 
-                  src="/b.webp" 
-                  alt="Ashirwad Plastics Manufacturing Cleanroom" 
-                  onError={(e) => handleImageError(e, "Facility Cleanroom")}
-                />
-              </div>
-            </div>
-
-            {/* Right: Copy */}
-            <div className="mfg-facility-right">
-              <h2 className="mfg-section-title">Our Facility</h2>
-              <div className="mfg-facility-desc">
-                <p>
-                  Established in 2018, our GMP-compliant manufacturing operations located in Himachal Pradesh operate with high-speed automated systems. Our cleanrooms are designed to maintain sterile environments and zero-contamination thresholds, meeting strict global regulatory criteria for pharmaceutical and cosmetic primary packaging production.
-                </p>
-                <p>
-                  By focusing on <strong>Hygiene</strong>, <strong>Precision</strong>, <strong>Durability</strong>, and <strong>Automation</strong>, we ensure that every batch of ophthalmic droppers, measuring cups, and nasal sprays provides maximum chemical compatibility, neck sealing security, and dosage accuracy.
-                </p>
-                <p>
-                  Our continuous integration of high-grade raw medical materials, robotic molding equipment, and multi-stage leak checks ensures that Ashirwad Plastics remains a trusted, premium manufacturing partner for B2B enterprises worldwide.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 4. MANUFACTURING CAPABILITIES GRID (2x2) */}
+      {/* 3. SUSTAINABILITY PRACTICES GRID (2x2) */}
       <section className="mfg-capabilities-section">
         <div className="container">
           <div ref={gridRef} className={`mfg-capabilities-grid fade-section ${gridVisible ? 'visible' : ''}`}>
             
-            {/* Card 1: Production Line Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
                 src="/b3.webp" 
-                alt="Plastic Containers Production Line" 
-                onError={(e) => handleImageError(e, "Plastic Containers Line")}
+                alt="Recycled Materials Line" 
+                onError={(e) => handleImageError(e, "Recycled Materials")}
               />
             </div>
 
-            {/* Card 2: Dark Navy Content Card */}
             <div className="mfg-grid-card mfg-card-dark">
-              <h3 className="mfg-card-heading">What Makes Ashirwad Better?</h3>
+              <h3 className="mfg-card-heading">What We Do for a Sustainable Future</h3>
               <div className="mfg-benefits-list">
                 
                 <div className="mfg-benefit-item">
@@ -197,8 +156,8 @@ export default function ManufacturingPage({ onNavigate }) {
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <h4>Advanced Infrastructure</h4>
-                    <p>State-of-the-art cleanroom molding facilities and automated high-speed machinery.</p>
+                    <h4>Recycled Materials</h4>
+                    <p>We prioritise the use of recycled and recyclable plastics across our manufacturing processes wherever possible reducing waste, conserving natural resources, and contributing to a circular economy.</p>
                   </div>
                 </div>
 
@@ -209,30 +168,16 @@ export default function ManufacturingPage({ onNavigate }) {
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <h4>Customisation</h4>
-                    <p>Tailored dimension molding, custom color matching, and design branding parameters.</p>
-                  </div>
-                </div>
-
-                <div className="mfg-benefit-item">
-                  <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <div className="mfg-benefit-content">
-                    <h4>Quality Control</h4>
-                    <p>Rigorous leak testing, pressure checks, torque calibrations, and absolute traceability.</p>
+                    <h4>Energy Efficiency</h4>
+                    <p>Our manufacturing facilities are designed with energy efficiency at the forefront. We continuously work to optimise our processes and reduce energy consumption across all operations.</p>
                   </div>
                 </div>
 
               </div>
             </div>
 
-            {/* Card 3: Light Background Card */}
             <div className="mfg-grid-card mfg-card-light">
-              <h3 className="mfg-card-heading" style={{ color: '#1F2937' }}>Our Manufacturing Philosophy</h3>
-              <div className="mfg-benefits-list">
+              <div className="mfg-benefits-list" style={{ marginTop: 0 }}>
 
                 <div className="mfg-benefit-item">
                   <span className="mfg-check-icon">
@@ -241,8 +186,8 @@ export default function ManufacturingPage({ onNavigate }) {
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <h4 style={{ color: '#1F2937' }}>Safety & Environment</h4>
-                    <p style={{ color: '#6B7280' }}>Adhering to strict occupational safety standards and eco-friendly waste management processes.</p>
+                    <h4 style={{ color: '#1F2937' }}>Waste Reduction</h4>
+                    <p style={{ color: '#6B7280' }}>Through efficient resource management and proactive recycling initiatives, we minimise waste generation during production reducing landfill contributions and improving overall resource utilisation.</p>
                   </div>
                 </div>
 
@@ -253,32 +198,19 @@ export default function ManufacturingPage({ onNavigate }) {
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <h4 style={{ color: '#1F2937' }}>Quality</h4>
-                    <p style={{ color: '#6B7280' }}>Continuous R&D inspections and mold enhancements to guarantee defect-free product delivery.</p>
-                  </div>
-                </div>
-
-                <div className="mfg-benefit-item">
-                  <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <div className="mfg-benefit-content">
-                    <h4 style={{ color: '#1F2937' }}>On-Time Delivery</h4>
-                    <p style={{ color: '#6B7280' }}>Optimized inventory pipelines and logistics channels ensuring prompt shipment schedules.</p>
+                    <h4 style={{ color: '#1F2937' }}>Sustainable Practices</h4>
+                    <p style={{ color: '#6B7280' }}>From the responsible sourcing of raw materials to eco-friendly packaging solutions, sustainability is embedded into our day-to-day operations at every level.</p>
                   </div>
                 </div>
 
               </div>
             </div>
 
-            {/* Card 4: Factory Floor Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/man.jpg" 
-                alt="Production Factory Floor" 
-                onError={(e) => handleImageError(e, "Factory Floor")}
+                src="/s7.webp" 
+                alt="Eco-friendly Packaging Production" 
+                onError={(e) => handleImageError(e, "Packaging Production")}
               />
             </div>
 
@@ -286,31 +218,60 @@ export default function ManufacturingPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 5. OUR PEOPLE SECTION */}
-      <section className="mfg-people-section">
+      {/* 4. COMMITMENT BEYOND THE ENVIRONMENT */}
+      <section className="mfg-facility-section">
         <div className="container">
-          <div ref={peopleRef} className={`mfg-people-grid fade-section ${peopleVisible ? 'visible' : ''}`}>
+          <div ref={commitmentRef} className={`mfg-facility-grid fade-section ${commitmentVisible ? 'visible' : ''}`}>
             
-            {/* Left Column: Copy */}
-            <div className="mfg-people-left">
-              <h2 className="mfg-section-title">Our People</h2>
-              <div className="mfg-people-desc">
+            <div className="mfg-facility-left">
+              <div className="mfg-facility-img-box">
+                <img 
+                  src="/b.webp" 
+                  alt="Sustainable Workplace" 
+                  onError={(e) => handleImageError(e, "Sustainable Workplace")}
+                />
+              </div>
+            </div>
+
+            <div className="mfg-facility-right">
+              <h2 className="mfg-section-title">Beyond the Environment</h2>
+              <div className="mfg-facility-desc">
                 <p>
-                  At Ashirwad Plastics, our workforce is our primary driving force. We cultivate a strong organizational culture rooted in teamwork, safety, and continuous professional training. Every team member undergoes exhaustive training on cleanroom GMP protocols and automated device controls to guarantee zero-defect operational excellence.
+                  Sustainability at Ashirwad Plastics extends beyond environmental responsibility. We are equally committed to social responsibility and ethical business conduct ensuring safe working conditions, fair treatment of employees, and meaningful contributions to the communities we operate in.
                 </p>
                 <p>
-                  We foster a collaborative work environment that encourages employee development, technological innovation, and compliance adherence. It is this shared dedication to excellence that enables us to deliver industry-leading pharmaceutical packaging products day in and day out.
+                  We believe that a truly sustainable business is one that creates positive impact across people, planet, and performance.
                 </p>
               </div>
             </div>
 
-            {/* Right Column: Team Image */}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. JOURNEY FORWARD */}
+      <section className="mfg-people-section" style={{ borderTop: '1px solid var(--border-gray)' }}>
+        <div className="container">
+          <div ref={journeyRef} className={`mfg-people-grid fade-section ${journeyVisible ? 'visible' : ''}`}>
+            
+            <div className="mfg-people-left">
+              <h2 className="mfg-section-title">Our Journey Forward</h2>
+              <div className="mfg-people-desc">
+                <p>
+                  Sustainability is not a destination - it is a continuous journey of improvement and accountability. We hold ourselves to high standards, lead by example within our industry, and are committed to driving meaningful, lasting change.
+                </p>
+                <p>
+                  Together with our customers, partners, and communities, we are working towards a more sustainable world.
+                </p>
+              </div>
+            </div>
+
             <div className="mfg-people-right">
               <div className="mfg-people-img-box">
                 <img 
-                  src="/s7.webp" 
-                  alt="Ashirwad Plastics Workforce Team" 
-                  onError={(e) => handleImageError(e, "Workforce Team")}
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
+                  alt="Green Earth Landscape" 
+                  onError={(e) => handleImageError(e, "Green Earth")}
                 />
               </div>
             </div>
@@ -324,10 +285,10 @@ export default function ManufacturingPage({ onNavigate }) {
         <div className="cta-dot-map-bg" />
         <div className="container">
           <div ref={ctaRef} className={`cta-banner-grid fade-section ${ctaVisible ? 'visible' : ''}`}>
-            <h2 className="cta-banner-heading">Want to Know More About Our Manufacturing Capabilities?</h2>
+            <h2 className="cta-banner-heading">Want to Learn More About Our Sustainability Efforts?</h2>
             <div className="cta-banner-right">
               <p className="cta-banner-desc">
-                Get in touch with our team to learn how our advanced manufacturing infrastructure can support your packaging requirements.
+                Connect with our team to understand how our sustainable practices can align with your business values.
               </p>
               <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} className="cta-banner-contact-link">
                 Contact Us <span className="underline-arrow">→</span>
@@ -337,7 +298,6 @@ export default function ManufacturingPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 7. REACH OUT TODAY */}
       <ReachOut />
 
     </div>

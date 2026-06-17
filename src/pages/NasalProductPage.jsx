@@ -31,19 +31,19 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/n1.webp",
-    "/n1.webp",
-    "/n1.webp"
+    "/nasal_user.png",
+    "/nasal_user.png",
+    "/nasal_user.png"
   ]
 
-  // Gallery images (futuristic blue renders)
+  // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/n2.webp", label: "Nasal nozzle design" },
-    { src: "/n3.webp", label: "Pump mechanism detail" },
-    { src: "/n4.webp", label: "Valving structure" },
-    { src: "/n5.webp", label: "Sterility seal assembly" },
-    { src: "/n6.webp", label: "Thread calibration" },
-    { src: "/n7.webp", label: "Spray pattern testing" }
+    { src: "/nasal_user.png", label: "Nasal Bottle 5ml" },
+    { src: "/nasal_user.png", label: "Nasal Bottle 7ml" },
+    { src: "/nasal_user.png", label: "Nasal Bottle 10ml" },
+    { src: "/nasal_user.png", label: "Nasal Bottle 15ml" },
+    { src: "/nasal_user.png", label: "Pump Mechanism Detail" },
+    { src: "/nasal_user.png", label: "Spray Nozzle Detail" }
   ]
 
   // Graceful fallback for missing local images
@@ -148,16 +148,6 @@ export default function NasalProductPage({ onNavigate }) {
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
-                {/* Pagination Dots */}
-                <div className="np-carousel-dots">
-                  {carouselImages.map((_, i) => (
-                    <span 
-                      key={i} 
-                      className={`np-dot ${activeSlide === i ? 'active' : ''}`}
-                      onClick={() => setActiveSlide(i)}
-                    />
-                  ))}
-                </div>
               </div>
 
               {/* Product Description */}
@@ -213,12 +203,6 @@ export default function NasalProductPage({ onNavigate }) {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div style={{ textAlign: 'center', marginTop: '48px' }}>
-              <button className="np-download-btn" onClick={() => onNavigate('contact')}>
-                Download Brochure →
-              </button>
             </div>
 
           </div>

@@ -1,12 +1,48 @@
+import { useState, useEffect } from 'react'
 import FadeIn from './FadeIn'
-import ProductBottleSvg from './svg/ProductBottleSvg'
+
+const heroImages = [
+  '/hero.webp',
+  '/hero2.png',
+  '/hro3.png'
+]
 
 export default function Hero({ onNavigate }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex(prevIndex => (prevIndex + 1) % heroImages.length)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <section className="hero-centered-layout" id="home">
+    <section className="hero-centered-layout" id="home" style={{ backgroundImage: 'none' }}>
+      
+      {/* Background Slideshow Containers with Ken Burns effect */}
+      <div className="hero-slideshow-container">
+        {heroImages.map((img, index) => (
+          <div
+            key={index}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center top',
+              opacity: index === activeIndex ? 1 : 0,
+              transition: 'opacity 1.5s ease-in-out',
+              transform: 'scale(1)',
+              animation: index === activeIndex ? 'kenBurns 6.5s linear forwards' : 'none',
+              zIndex: 1
+            }}
+          />
+        ))}
+      </div>
 
       {/* Main Centered Hero Copy */}
-      <div className="container hero-centered-container">
+      <div className="container hero-centered-container" style={{ position: 'relative', zIndex: 10 }}>
         <FadeIn>
           <h1 className="hero-centered-title">
             Innovative, World-Class<br />Packaging Solutions
@@ -38,7 +74,7 @@ export default function Hero({ onNavigate }) {
       </div>
 
       {/* Careers Ticker with cream-beige background exactly matching the screenshot */}
-      <div className="hero-careers-ticker-centered">
+      <div className="hero-careers-ticker-centered" style={{ zIndex: 10 }}>
         <div className="container">
           <span>
             Join our team – We are looking for talented &amp; driven people to come work with us.{' '}
