@@ -3,8 +3,8 @@ import FadeIn from './FadeIn'
 
 const heroImages = [
   '/hero.webp',
-  '/hero2.png',
-  '/hro3.png'
+  '/hero2.webp',
+  '/hro3.webp'
 ]
 
 export default function Hero({ onNavigate }) {

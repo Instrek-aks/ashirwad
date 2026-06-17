@@ -31,19 +31,19 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/nasal_user.png",
-    "/nasal_user.png",
-    "/nasal_user.png"
+    "/nasal_user.webp",
+    "/nasal_user.webp",
+    "/nasal_user.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/nasal_user.png", label: "Nasal Bottle 5ml" },
-    { src: "/nasal_user.png", label: "Nasal Bottle 7ml" },
-    { src: "/nasal_user.png", label: "Nasal Bottle 10ml" },
-    { src: "/nasal_user.png", label: "Nasal Bottle 15ml" },
-    { src: "/nasal_user.png", label: "Pump Mechanism Detail" },
-    { src: "/nasal_user.png", label: "Spray Nozzle Detail" }
+    { src: "/nasal_user.webp", label: "Nasal Bottle 5ml" },
+    { src: "/nasal_user.webp", label: "Nasal Bottle 7ml" },
+    { src: "/nasal_user.webp", label: "Nasal Bottle 10ml" },
+    { src: "/nasal_user.webp", label: "Nasal Bottle 15ml" },
+    { src: "/nasal_user.webp", label: "Pump Mechanism Detail" },
+    { src: "/nasal_user.webp", label: "Spray Nozzle Detail" }
   ]
 
   // Graceful fallback for missing local images

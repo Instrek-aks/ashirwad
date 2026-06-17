@@ -60,7 +60,7 @@ export default function QualityPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/quality.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/quality.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

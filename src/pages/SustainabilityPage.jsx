@@ -60,7 +60,7 @@ export default function SustainabilityPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/sustanibility.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/sustanibility.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

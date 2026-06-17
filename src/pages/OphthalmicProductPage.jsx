@@ -31,19 +31,19 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/ophthalmic_user.png",
-    "/ophthalmic_user.png",
-    "/ophthalmic_user.png"
+    "/ophthalmic_user.webp",
+    "/ophthalmic_user.webp",
+    "/ophthalmic_user.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 5ml" },
-    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 7ml" },
-    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 10ml" },
-    { src: "/ophthalmic_user.png", label: "Ophthalmic Bottle 15ml" },
-    { src: "/ophthalmic_user.png", label: "CRC Closure Detail" },
-    { src: "/ophthalmic_user.png", label: "Tamper-Evident Closure" }
+    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 5ml" },
+    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 7ml" },
+    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 10ml" },
+    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 15ml" },
+    { src: "/ophthalmic_user.webp", label: "CRC Closure Detail" },
+    { src: "/ophthalmic_user.webp", label: "Tamper-Evident Closure" }
   ]
 
   // Graceful fallback for missing local images

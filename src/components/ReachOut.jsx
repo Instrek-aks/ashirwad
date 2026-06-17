@@ -129,7 +129,7 @@ export default function ReachOut() {
           </div>
 
           {/* Right Column: Glassmorphic Tabbed Form */}
-          <div className="contact-form-col" style={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', padding: '40px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+          <div className="contact-form-col reach-form-card">
             {isSubmitted ? (
               <div className="form-success-message">
                 <div className="success-icon-box" style={{ background: 'rgba(245, 158, 11, 0.1)' }}>

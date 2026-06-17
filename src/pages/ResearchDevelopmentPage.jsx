@@ -59,7 +59,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/reseach.png')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/reseach.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

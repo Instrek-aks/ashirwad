@@ -2833,8 +2833,17 @@ body {
   padding: 0;
 }
 
+.reach-form-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .form-tabs-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   background: transparent;
   padding: 0;
@@ -3215,8 +3224,21 @@ body {
   .contact-form-col {
     padding: 30px 20px;
   }
+  .reach-form-card {
+    padding: 30px 20px;
+  }
   .form-fields-grid {
     grid-template-columns: 1fr;
+  }
+  .form-tabs-container {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .form-tab-btn {
+    padding: 8px 16px;
+    font-size: 13.5px;
+    flex: 1 1 auto;
+    text-align: center;
   }
   .location-large-title {
     font-size: 30px;
@@ -3229,6 +3251,13 @@ body {
 @media (max-width: 480px) {
   .contact-hero-title {
     font-size: 32px;
+  }
+  .reach-form-card {
+    padding: 24px 16px;
+  }
+  .form-tab-btn {
+    padding: 8px 12px;
+    font-size: 13px;
   }
   .facility-gallery-grid {
     grid-template-columns: 1fr;

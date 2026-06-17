@@ -276,7 +276,7 @@ export default function ManufacturingPage({ onNavigate }) {
             {/* Card 4: Factory Floor Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/man.jpg" 
+                src="/man.webp" 
                 alt="Production Factory Floor" 
                 onError={(e) => handleImageError(e, "Factory Floor")}
               />
