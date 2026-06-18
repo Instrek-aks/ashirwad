@@ -6,7 +6,7 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/Product_Images/Ophthalmic Delivery System (1).webp',
+    img: '/np.jpeg',
     cover: true
   },
   {
@@ -123,7 +123,7 @@ function ProductCard({ product, onNavigate }) {
           width: '100%', 
           aspectRatio: '1.45', 
           borderRadius: '16px', 
-          background: 'transparent',
+          background: (product.id === 'ophthalmic' || product.id === 'nasal') ? '#000000' : 'transparent',
           border: 'none',
           display: 'flex', 
           alignItems: 'center', 
@@ -140,7 +140,7 @@ function ProductCard({ product, onNavigate }) {
             style={{ 
               width: '100%', 
               height: '100%', 
-              objectFit: 'cover', 
+              objectFit: (product.id === 'ophthalmic' || product.id === 'nasal') ? 'contain' : 'cover', 
               display: 'block',
               transform: hovered ? 'scale(1.05)' : 'scale(1)',
               transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'

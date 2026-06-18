@@ -29,19 +29,19 @@ export default function DispenserProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o6.webp",
-    "/o6.webp",
-    "/o6.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/o6.webp", label: "Dispenser Pump 24mm" },
-    { src: "/o6.webp", label: "Dispenser Pump 28mm" },
-    { src: "/o6.webp", label: "Lotion Pump Assembly" },
-    { src: "/o6.webp", label: "Hygienic Snap Cap" },
-    { src: "/o6.webp", label: "Nozzle Spray Detail" },
-    { src: "/o6.webp", label: "Pump Spring Calibration" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Dispenser Pump 24mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Dispenser Pump 28mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Lotion Pump Assembly" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Hygienic Snap Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Nozzle Spray Detail" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Pump Spring Calibration" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function DispenserProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/o6.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

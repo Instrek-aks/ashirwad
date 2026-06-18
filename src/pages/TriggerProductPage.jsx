@@ -29,19 +29,19 @@ export default function TriggerProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o7.webp",
-    "/o7.webp",
-    "/o7.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/o7.webp", label: "Trigger Pump Red Variant" },
-    { src: "/o7.webp", label: "Trigger Pump Blue Variant" },
-    { src: "/o7.webp", label: "Trigger Pump Green Variant" },
-    { src: "/o7.webp", label: "Adjustable Nozzle Cap" },
-    { src: "/o7.webp", label: "Dip Tube Connection" },
-    { src: "/o7.webp", label: "Ergonomic Handle Grip" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Trigger Pump Red Variant" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Trigger Pump Blue Variant" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Trigger Pump Green Variant" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Adjustable Nozzle Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Dip Tube Connection" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Ergonomic Handle Grip" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function TriggerProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/o7.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

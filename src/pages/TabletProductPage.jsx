@@ -29,19 +29,19 @@ export default function TabletProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/03.webp",
-    "/03.webp",
-    "/03.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/03.webp", label: "Tablet Container 30cc" },
-    { src: "/03.webp", label: "Tablet Container 100cc" },
-    { src: "/03.webp", label: "Tablet Container 200cc" },
-    { src: "/03.webp", label: "Tablet Container 300cc" },
-    { src: "/03.webp", label: "Screw Closure Detail" },
-    { src: "/03.webp", label: "CRC Closure Detail" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 30cc" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 100cc" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 200cc" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 300cc" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Screw Closure Detail" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "CRC Closure Detail" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function TabletProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/03.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

@@ -29,19 +29,19 @@ export default function MistCreamProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o8.webp",
-    "/o8.webp",
-    "/o8.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/o8.webp", label: "Fine Mist Pump 20mm" },
-    { src: "/o8.webp", label: "Cream Pump 24mm" },
-    { src: "/o8.webp", label: "Skincare Bottle Setup" },
-    { src: "/o8.webp", label: "Ribbed Cap Finish" },
-    { src: "/o8.webp", label: "Smooth Cap Finish" },
-    { src: "/o8.webp", label: "Double Wall Protection" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Fine Mist Pump 20mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Cream Pump 24mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Skincare Bottle Setup" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Ribbed Cap Finish" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Smooth Cap Finish" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Double Wall Protection" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function MistCreamProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/o8.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

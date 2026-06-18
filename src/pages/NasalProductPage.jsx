@@ -30,19 +30,19 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/nasal_user.webp",
-    "/nasal_user.webp",
-    "/nasal_user.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/nasal_user.webp", label: "Nasal Bottle 5ml" },
-    { src: "/nasal_user.webp", label: "Nasal Bottle 7ml" },
-    { src: "/nasal_user.webp", label: "Nasal Bottle 10ml" },
-    { src: "/nasal_user.webp", label: "Nasal Bottle 15ml" },
-    { src: "/nasal_user.webp", label: "Pump Mechanism Detail" },
-    { src: "/nasal_user.webp", label: "Spray Nozzle Detail" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 5ml" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 7ml" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 10ml" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 15ml" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Pump Mechanism Detail" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Spray Nozzle Detail" }
   ]
 
   // Graceful fallback for missing local images
@@ -81,7 +81,7 @@ export default function NasalProductPage({ onNavigate }) {
       <section 
         className="np-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/n0.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -140,10 +140,11 @@ export default function NasalProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="np-carousel-wrapper">
-                <div className="np-carousel-slide">
+                <div className="np-carousel-slide" style={{ backgroundColor: '#000000', borderRadius: '20px' }}>
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Nasal Product Render ${activeSlide + 1}`}
+                    style={{ objectFit: 'contain' }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>

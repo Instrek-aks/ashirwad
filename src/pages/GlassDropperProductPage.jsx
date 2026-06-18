@@ -29,19 +29,19 @@ export default function GlassDropperProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o5.webp",
-    "/o5.webp",
-    "/o5.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/o5.webp", label: "Glass Dropper White Cap" },
-    { src: "/o5.webp", label: "Glass Dropper Silver Cap" },
-    { src: "/o5.webp", label: "Glass Dropper Gold Cap" },
-    { src: "/o5.webp", label: "Glass Dropper Black Cap" },
-    { src: "/o5.webp", label: "Pipette Precision Tip" },
-    { src: "/o5.webp", label: "Amber Bottle Combination" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper White Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper Silver Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper Gold Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper Black Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Pipette Precision Tip" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Amber Bottle Combination" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function GlassDropperProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/o5.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

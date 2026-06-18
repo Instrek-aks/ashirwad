@@ -29,19 +29,19 @@ export default function FlipOffProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o10.webp",
-    "/o10.webp",
-    "/o10.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/o10.webp", label: "Flip-Off Seal 13mm" },
-    { src: "/o10.webp", label: "Flip-Off Seal 20mm" },
-    { src: "/o10.webp", label: "Flip-Off Seal 28mm" },
-    { src: "/o10.webp", label: "Aluminium Collar Detail" },
-    { src: "/o10.webp", label: "Various Colors Selection" },
-    { src: "/o10.webp", label: "Tamper-Evident Feature" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Flip-Off Seal 13mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Flip-Off Seal 20mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Flip-Off Seal 28mm" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Aluminium Collar Detail" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Various Colors Selection" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Tamper-Evident Feature" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function FlipOffProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/o10.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

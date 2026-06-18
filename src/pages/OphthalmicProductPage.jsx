@@ -30,19 +30,19 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/ophthalmic_user.webp",
-    "/ophthalmic_user.webp",
-    "/ophthalmic_user.webp"
+    "/np.jpeg",
+    "/np.jpeg",
+    "/np.jpeg"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 5ml" },
-    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 7ml" },
-    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 10ml" },
-    { src: "/ophthalmic_user.webp", label: "Ophthalmic Bottle 15ml" },
-    { src: "/ophthalmic_user.webp", label: "CRC Closure Detail" },
-    { src: "/ophthalmic_user.webp", label: "Tamper-Evident Closure" }
+    { src: "/np.jpeg", label: "Ophthalmic Bottle 5ml" },
+    { src: "/np.jpeg", label: "Ophthalmic Bottle 7ml" },
+    { src: "/np.jpeg", label: "Ophthalmic Bottle 10ml" },
+    { src: "/np.jpeg", label: "Ophthalmic Bottle 15ml" },
+    { src: "/np.jpeg", label: "CRC Closure Detail" },
+    { src: "/np.jpeg", label: "Tamper-Evident Closure" }
   ]
 
   // Graceful fallback for missing local images
@@ -81,7 +81,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/d0.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/np.jpeg')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -140,10 +140,11 @@ export default function OphthalmicProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="op-carousel-wrapper">
-                <div className="op-carousel-slide">
+                <div className="op-carousel-slide" style={{ backgroundColor: '#000000', borderRadius: '20px' }}>
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Ophthalmic Product Render ${activeSlide + 1}`}
+                    style={{ objectFit: 'contain' }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
@@ -193,10 +194,11 @@ export default function OphthalmicProductPage({ onNavigate }) {
             <div className="op-gallery-grid">
               {galleryImages.map((item, i) => (
                 <div key={i} className="op-gallery-card">
-                  <div className="op-gallery-img-box">
+                  <div className="op-gallery-img-box" style={{ backgroundColor: '#000000' }}>
                     <img 
                       src={item.src} 
                       alt={item.label} 
+                      style={{ objectFit: 'contain' }}
                       onError={(e) => handleImageError(e, item.label)}
                     />
                   </div>

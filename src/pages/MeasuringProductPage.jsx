@@ -29,19 +29,19 @@ export default function MeasuringProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o4.webp",
-    "/o4.webp",
-    "/o4.webp"
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp",
+    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/o4.webp", label: "Graduated Measuring Cap" },
-    { src: "/o4.webp", label: "Pediatric Oral Dropper" },
-    { src: "/o4.webp", label: "Syrup Bottle Assembly" },
-    { src: "/o4.webp", label: "Cap Inner Lining Thread" },
-    { src: "/o4.webp", label: "Cleanroom Inspection" },
-    { src: "/o4.webp", label: "Volume Calibration" }
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Graduated Measuring Cap" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Pediatric Oral Dropper" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Syrup Bottle Assembly" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Cap Inner Lining Thread" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Cleanroom Inspection" },
+    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Volume Calibration" }
   ]
 
   // Graceful fallback for missing local images
@@ -93,7 +93,7 @@ export default function MeasuringProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/o4.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
