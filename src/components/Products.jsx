@@ -142,7 +142,9 @@ function ProductCard({ product, onNavigate }) {
               height: '100%', 
               objectFit: (product.id === 'ophthalmic' || product.id === 'nasal') ? 'contain' : 'cover', 
               display: 'block',
-              transform: hovered ? 'scale(1.05)' : 'scale(1)',
+              transform: product.id === 'nasal' 
+                ? (hovered ? 'translateY(-8px) scale(1.65)' : 'translateY(-8px) scale(1.55)') 
+                : (hovered ? 'scale(1.05)' : 'scale(1)'),
               transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
             onError={() => setImgFailed(true)}
