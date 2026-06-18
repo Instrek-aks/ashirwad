@@ -126,22 +126,22 @@ export default function EventPage({ onNavigate }) {
             <div className="ep-overview-right">
               <div className="ep-overview-gallery">
                 <div className="ep-ov-gallery-img">
-                  <img src="/cp1.jpg" alt="Exhibition scene 1" onError={(e) => handleImageError(e, "Exhibition 1")} />
+                  <img src="/cp1.webp" alt="Exhibition scene 1" onError={(e) => handleImageError(e, "Exhibition 1")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/cp2.png" alt="Exhibition scene 2" onError={(e) => handleImageError(e, "Exhibition 2")} />
+                  <img src="/cp2.webp" alt="Exhibition scene 2" onError={(e) => handleImageError(e, "Exhibition 2")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/cp3.png" alt="Exhibition scene 3" onError={(e) => handleImageError(e, "Exhibition 3")} />
+                  <img src="/cp3.webp" alt="Exhibition scene 3" onError={(e) => handleImageError(e, "Exhibition 3")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/cp4.png" alt="Exhibition scene 4" onError={(e) => handleImageError(e, "Exhibition 4")} />
+                  <img src="/cp4.webp" alt="Exhibition scene 4" onError={(e) => handleImageError(e, "Exhibition 4")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/cp5.png" alt="Exhibition scene 5" onError={(e) => handleImageError(e, "Exhibition 5")} />
+                  <img src="/cp5.webp" alt="Exhibition scene 5" onError={(e) => handleImageError(e, "Exhibition 5")} />
                 </div>
                 <div className="ep-ov-gallery-img">
-                  <img src="/cp6.png" alt="Exhibition scene 6" onError={(e) => handleImageError(e, "Exhibition 6")} />
+                  <img src="/cp6.webp" alt="Exhibition scene 6" onError={(e) => handleImageError(e, "Exhibition 6")} />
                 </div>
               </div>
             </div>
@@ -237,22 +237,22 @@ export default function EventPage({ onNavigate }) {
 
           <div className="ep-gallery-scroller">
             <div className="ep-gallery-item">
-              <img src="/cp1.jpg" alt="Client Interaction" onError={(e) => handleImageError(e, "Exhibition Stand 1")} />
+              <img src="/cp1.webp" alt="Client Interaction" onError={(e) => handleImageError(e, "Exhibition Stand 1")} />
             </div>
             <div className="ep-gallery-item">
-              <img src="/cp2.png" alt="Audience Presentation" onError={(e) => handleImageError(e, "Exhibition Stand 2")} />
+              <img src="/cp2.webp" alt="Audience Presentation" onError={(e) => handleImageError(e, "Exhibition Stand 2")} />
             </div>
             <div className="ep-gallery-item">
-              <img src="/cp3.png" alt="Networking Discussion" onError={(e) => handleImageError(e, "Exhibition Stand 3")} />
+              <img src="/cp3.webp" alt="Networking Discussion" onError={(e) => handleImageError(e, "Exhibition Stand 3")} />
             </div>
             <div className="ep-gallery-item">
-              <img src="/cp4.png" alt="Exhibition Floor" onError={(e) => handleImageError(e, "Exhibition Stand 4")} />
+              <img src="/cp4.webp" alt="Exhibition Floor" onError={(e) => handleImageError(e, "Exhibition Stand 4")} />
             </div>
             <div className="ep-gallery-item">
-              <img src="/cp5.png" alt="Exhibition Showcase" onError={(e) => handleImageError(e, "Exhibition Stand 5")} />
+              <img src="/cp5.webp" alt="Exhibition Showcase" onError={(e) => handleImageError(e, "Exhibition Stand 5")} />
             </div>
             <div className="ep-gallery-item">
-              <img src="/cp6.png" alt="Product Presentation" onError={(e) => handleImageError(e, "Exhibition Stand 6")} />
+              <img src="/cp6.webp" alt="Product Presentation" onError={(e) => handleImageError(e, "Exhibition Stand 6")} />
             </div>
           </div>
         </div>

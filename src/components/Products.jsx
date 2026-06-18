@@ -6,64 +6,64 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/Product_Images/Ophthalmic Delivery System (1).png',
+    img: '/Product_Images/Ophthalmic Delivery System (1).webp',
     cover: true
   },
   {
     id: 'nasal',
     name: 'Nasal Delivery System',
     desc: 'Advanced nasal dispensing for consistent dosing, convenience, & product integrity.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.png',
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp',
     cover: true
   },
   {
     id: 'tablet',
     name: 'Tablet Containers & Closures',
     desc: 'Secure, durable packaging for safe storage & protection of solid-dose products.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.png',
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp',
     cover: true
   },
   {
     id: 'measuring',
     name: 'Measuring Caps & Oral Droppers',
     desc: 'Accurate, user-friendly dispensing for liquid pharmaceutical formulations.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp'
   },
   {
     id: 'dropper',
     name: 'Glass Droppers',
     desc: 'Premium glass droppers for controlled dispensing and enhanced compatibility.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp'
   },
   {
     id: 'dispenser',
     name: 'Dispenser Pumps',
     desc: 'Reliable pump systems for efficient, controlled liquid dispensing.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp'
   },
   {
     id: 'trigger',
     name: 'Trigger Pumps',
     desc: 'Durable, ergonomic trigger pumps for personal care and industrial use.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp'
   },
   {
     id: 'mist',
     name: 'Mist & Cream Pumps',
     desc: 'Precision-engineered mist and cream pumps for smooth, consistent dispensing.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp'
   },
   {
     id: 'caps',
     name: 'Caps and Closures',
     desc: 'A wide range of closures for safety, protection, and product integrity.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp'
   },
   {
     id: 'flipoff',
     name: 'Flip off Seals',
     desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.png'
+    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp'
   }
 ]
 
