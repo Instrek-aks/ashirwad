@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import ReachOut from '../components/ReachOut'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -391,9 +390,6 @@ export default function GlassDropperProductPage({ onNavigate }) {
           </div>
         </div>
       </section>
-
-      {/* 9. REACH OUT TODAY */}
-      <ReachOut />
 
     </div>
   )

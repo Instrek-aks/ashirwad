@@ -5441,9 +5441,9 @@ body {
 }
 
 .op-carousel-slide img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .op-carousel-dots {
@@ -6855,6 +6855,7 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.03);
   border: 1px solid var(--border-gray);
   height: 320px;
+  width: 320px;
   transition: all 0.3s ease;
 }
 
@@ -6870,16 +6871,18 @@ body {
   transform: scale(1.05);
 }
 
-.ep-gallery-item.wide {
-  width: 480px;
-}
-
-.ep-gallery-item.tall {
-  width: 280px;
-}
-
-.ep-gallery-item.standard {
-  width: 360px;
+@media (min-width: 1025px) {
+  .ep-gallery-scroller {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+  .ep-gallery-item {
+    width: 100%;
+    height: 180px;
+  }
 }
 
 /* 5. FUTURE EVENT CTA SECTION */
@@ -7181,14 +7184,6 @@ body {
   }
   .ep-gallery-item {
     height: 240px;
-  }
-  .ep-gallery-item.wide {
-    width: 320px;
-  }
-  .ep-gallery-item.tall {
-    width: 180px;
-  }
-  .ep-gallery-item.standard {
     width: 240px;
   }
   .ep-future-container {

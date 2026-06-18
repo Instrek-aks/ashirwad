@@ -9,36 +9,36 @@ const __dirname = path.dirname(__filename);
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const SRC_DIR = path.join(__dirname, 'src');
 
-async function convertImages() {
-  console.log('Finding images in public directory...');
-  
-  const files = await fs.readdir(PUBLIC_DIR);
-  const images = files.filter(f => /\.(png|jpe?g)$/i.test(f));
-  
-  if (images.length === 0) {
-    console.log('No PNG/JPG images found in public/ folder.');
-  } else {
-    console.log(`Found ${images.length} images. Starting conversion...`);
-  }
-
-  for (const img of images) {
-    const oldPath = path.join(PUBLIC_DIR, img);
-    const newFileName = img.replace(/\.(png|jpe?g)$/i, '.webp');
-    const newPath = path.join(PUBLIC_DIR, newFileName);
-    
-    console.log(`Converting ${img} -> ${newFileName}`);
-    try {
-      await sharp(oldPath)
-        .webp({ quality: 80 })
-        .toFile(newPath);
+async function findAndConvertImages(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      await findAndConvertImages(fullPath);
+    } else if (/\.(png|jpe?g)$/i.test(entry.name)) {
+      const oldPath = fullPath;
+      const newFileName = entry.name.replace(/\.(png|jpe?g)$/i, '.webp');
+      const newPath = path.join(dir, newFileName);
       
-      // Delete old file
-      await fs.unlink(oldPath);
-      console.log(`✓ Deleted original ${img}`);
-    } catch (err) {
-      console.error(`✗ Failed to convert ${img}:`, err.message);
+      console.log(`Converting ${path.relative(PUBLIC_DIR, oldPath).replace(/\\/g, '/')} -> ${newFileName}`);
+      try {
+        await sharp(oldPath)
+          .webp({ quality: 80 })
+          .toFile(newPath);
+        
+        // Delete old file
+        await fs.unlink(oldPath);
+        console.log(`✓ Deleted original ${entry.name}`);
+      } catch (err) {
+        console.error(`✗ Failed to convert ${entry.name}:`, err.message);
+      }
     }
   }
+}
+
+async function convertImages() {
+  console.log('Finding and converting images in public/ directory recursively...');
+  await findAndConvertImages(PUBLIC_DIR);
 
   console.log('\n--- Updating codebase references in src/ ---');
   await updateReferences(SRC_DIR);

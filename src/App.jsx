@@ -10,9 +10,9 @@ import Products from './components/Products'
 import Clients from './components/Clients'
 import FuturePlan from './components/FuturePlan'
 import Innovation from './components/Innovation'
-import ReachOut from './components/ReachOut'
 import Footer from './components/Footer'
 import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
 import PharmaMarketPage from './pages/PharmaMarketPage'
 import CosmeticMarketPage from './pages/CosmeticMarketPage'
 import HomeCarePage from './pages/HomeCarePage'
@@ -59,11 +59,13 @@ function App() {
           <Clients />
           <FuturePlan />
           <Innovation />
-          <ReachOut />
         </>
       )}
       {page === 'about' && (
         <AboutPage onNavigate={navigate} />
+      )}
+      {page === 'contact' && (
+        <ContactPage onNavigate={navigate} />
       )}
       {page === 'market-pharma' && (
         <PharmaMarketPage onNavigate={navigate} />

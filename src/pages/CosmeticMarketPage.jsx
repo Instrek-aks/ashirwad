@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import ReachOut from '../components/ReachOut'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -305,8 +304,6 @@ export default function CosmeticMarketPage({ onNavigate }) {
           </div>
         </div>
       </section>
-
-      <ReachOut />
 
     </div>
   )

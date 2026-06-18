@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import ReachOut from '../components/ReachOut'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -419,24 +418,15 @@ export default function ContactPage({ onNavigate }) {
             </div>
 
             <div className="facility-image-card">
-              <div 
-                className="facility-img-wrapper" 
-                style={{ 
-                  background: 'linear-gradient(135deg, #2456D3 0%, #163A9B 100%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#FFFFFF',
-                  padding: '20px',
-                  textAlign: 'center'
-                }}
-              >
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ marginBottom: '8px', opacity: 0.85 }}>
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                <span style={{ fontSize: '14px', fontWeight: 600, letterSpacing: '0.5px' }}>Laboratory</span>
+              <div className="facility-img-wrapper">
+                <img 
+                  src="/reseach.webp" 
+                  alt="Laboratory" 
+                  onError={(e) => handleImageError(e, "Laboratory")}
+                />
+                <div className="facility-img-overlay">
+                  <span>Laboratory</span>
+                </div>
               </div>
             </div>
 
@@ -467,24 +457,15 @@ export default function ContactPage({ onNavigate }) {
             </div>
 
             <div className="facility-image-card">
-              <div 
-                className="facility-img-wrapper" 
-                style={{ 
-                  background: 'linear-gradient(135deg, #2456D3 0%, #163A9B 100%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#FFFFFF',
-                  padding: '20px',
-                  textAlign: 'center'
-                }}
-              >
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ marginBottom: '8px', opacity: 0.85 }}>
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                <span style={{ fontSize: '14px', fontWeight: 600, letterSpacing: '0.5px' }}>Quality Testing</span>
+              <div className="facility-img-wrapper">
+                <img 
+                  src="/quality.webp" 
+                  alt="Quality Testing" 
+                  onError={(e) => handleImageError(e, "Quality Testing")}
+                />
+                <div className="facility-img-overlay">
+                  <span>Quality Testing</span>
+                </div>
               </div>
             </div>
 
@@ -525,9 +506,6 @@ export default function ContactPage({ onNavigate }) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
       </section>
-
-      {/* 6. REACH OUT TODAY */}
-      <ReachOut />
 
     </div>
   )

@@ -275,11 +275,11 @@ export default function Header({ page, onNavigate }) {
               </div>
             </div>
 
-            {/* CTA Button scrolls to the ReachOut contact form at the bottom of the page */}
+            {/* CTA Button navigates to the dedicated Contact page */}
             <a
               href="#"
               className="btn-header-cta"
-              onClick={e => scrollToSection(e, 'contact')}
+              onClick={e => goTo(e, 'contact')}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', borderRadius: '30px', padding: '12px 24px', background: '#2456D3', color: '#FFFFFF', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(36, 86, 211, 0.15)', marginTop: '12px' }}
             >
               Inquiry / Contact

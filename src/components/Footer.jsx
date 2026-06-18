@@ -136,7 +136,7 @@ export default function Footer({ page, onNavigate }) {
               <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'career')}>Career</a></li>
               <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise')}>New Product Development</a></li>
               <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'event')}>CPHI-PMEC Event</a></li>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => scrollToSection(e, 'contact')}>Contact Us</a></li>
+              <li><a href="#" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'contact')}>Contact Us</a></li>
             </ul>
           </div>
 

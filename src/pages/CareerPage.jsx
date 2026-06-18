@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import ReachOut from '../components/ReachOut'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -651,7 +650,7 @@ export default function CareerPage({ onNavigate }) {
               <div className="gp-cert-badge">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="#E11D48">
-                    <path d="M12 2L13.5 7.5L18.5 6L17 11L22 12.5L16.5 14L18 19L13.5 17.5L12 22L10.5 17.5L6 19L7.5 14L2 12.5L7 11L5.5 6L10.5 7.5L12 2Z" />
+                     <path d="M12 2L13.5 7.5L18.5 6L17 11L22 12.5L16.5 14L18 19L13.5 17.5L12 22L10.5 17.5L6 19L7.5 14L2 12.5L7 11L5.5 6L10.5 7.5L12 2Z" />
                   </svg>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.1 }}>
                     <span style={{ fontSize: '15px', fontWeight: 800, color: '#1F2937', fontFamily: 'system-ui' }}>Health</span>
@@ -673,9 +672,6 @@ export default function CareerPage({ onNavigate }) {
           </div>
         </div>
       </section>
-
-      {/* 6. REACH OUT TODAY */}
-      <ReachOut />
 
     </div>
   )
