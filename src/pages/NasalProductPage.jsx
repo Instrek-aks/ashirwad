@@ -16,7 +16,7 @@ function useFadeIn() {
 }
 
 export default function NasalProductPage({ onNavigate }) {
-  const [activeSlide, setActiveSlide] = useState(1)
+  const [activeSlide, setActiveSlide] = useState(0)
   
   const [heroRef, heroVisible] = useFadeIn()
   const [tabsRef, tabsVisible] = useFadeIn()
@@ -30,19 +30,17 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp"
+    "/Nasal Delivery System/banner.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 5ml" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 7ml" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 10ml" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Nasal Bottle 15ml" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Pump Mechanism Detail" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp", label: "Spray Nozzle Detail" }
+    { src: "/Nasal Delivery System/Products/1.webp", label: "Nasal Spray System" },
+    { src: "/Nasal Delivery System/Products/2.webp", label: "Nasal Bottle Detail" },
+    { src: "/Nasal Delivery System/Products/3.webp", label: "Dosing Pump Assembly" },
+    { src: "/Nasal Delivery System/Products/4.webp", label: "Protective Cap" },
+    { src: "/Nasal Delivery System/Products/5.webp", label: "Spray Nozzle" },
+    { src: "/Nasal Delivery System/Products/6.webp", label: "Nasal Delivery Components" }
   ]
 
   // Graceful fallback for missing local images
@@ -75,54 +73,67 @@ export default function NasalProductPage({ onNavigate }) {
     }
   }
 
+  const productsList = [
+    { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
+    { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Flip off Seals ↗', path: 'product-flipoff' },
+    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+  ]
+
   return (
     <div className="np-page-wrapper">
 
       <section 
         className="np-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp')",
+          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
           position: 'relative',
-          minHeight: '480px'
+          minHeight: '280px',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '40px 0'
         }}
       >
-        <div 
-          ref={heroRef} 
-          className={`np-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
-          style={{ 
-            position: 'absolute',
-            top: 'clamp(100px, 9.2vw, 132px)',
-            left: 'clamp(24px, 8.3vw, 120px)',
-            maxWidth: '852px',
-            width: 'calc(100% - 48px)',
-            minHeight: '238.729736328125px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            transform: 'rotate(0deg)',
-            opacity: 1,
-            textAlign: 'left'
-          }}
-        >
-          <nav className="np-breadcrumb" style={{ margin: 0 }}>
-            <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span onClick={() => onNavigate('contact')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">NASAL DELIVERY SYSTEM</span>
-          </nav>
-          <h1 className="np-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Nasal<br />Delivery System</h1>
+        <div className="container">
+          <div 
+            ref={heroRef} 
+            className={`np-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
+            style={{ 
+              position: 'relative',
+              maxWidth: '852px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              textAlign: 'left'
+            }}
+          >
+            <nav className="np-breadcrumb" style={{ margin: 0 }}>
+              <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span onClick={() => onNavigate('contact')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span className="breadcrumb-active">NASAL DELIVERY SYSTEM</span>
+            </nav>
+            <h1 className="np-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Nasal Delivery System</h1>
+          </div>
         </div>
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
       <div className="np-tabs-bar" ref={tabsRef}>
         <div className="container np-tabs-container">
-          <button className="np-tab-btn" onClick={() => onNavigate('product-ophthalmic')}>Ophthalmic Delivery System ↗</button>
-          <button className="np-tab-btn active">Nasal Delivery System ↗</button>
-          <button className="np-tab-btn" onClick={() => onNavigate('contact')}>Flip off Seals ↗</button>
-          <button className="np-tab-btn" onClick={() => onNavigate('contact')}>Measuring Caps &amp; Oral Droppers ↗</button>
-          <button className="np-tab-btn" onClick={() => onNavigate('contact')}>Glass Droppers ↗</button>
+          {productsList.map((prod, idx) => (
+            <button 
+              key={idx}
+              className={`np-tab-btn ${prod.path === 'product-nasal' ? 'active' : ''}`} 
+              onClick={() => onNavigate(prod.path)}
+            >
+              {prod.name}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -140,7 +151,7 @@ export default function NasalProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="np-carousel-wrapper">
-                <div className="np-carousel-slide" style={{ backgroundColor: '#000000', borderRadius: '20px' }}>
+                <div className="np-carousel-slide" style={{ backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #E5E7EB' }}>
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Nasal Product Render ${activeSlide + 1}`}

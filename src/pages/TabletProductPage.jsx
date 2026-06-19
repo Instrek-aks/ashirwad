@@ -29,19 +29,17 @@ export default function TabletProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp"
+    "/Tablet Containers & Closures/banner.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 30cc" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 100cc" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 200cc" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Tablet Container 300cc" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "Screw Closure Detail" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp", label: "CRC Closure Detail" }
+    { src: "/Tablet Containers & Closures/Products/1.webp", label: "Tablet Container 30cc" },
+    { src: "/Tablet Containers & Closures/Products/2.webp", label: "Tablet Container 100cc" },
+    { src: "/Tablet Containers & Closures/Products/3.webp", label: "Tablet Container 200cc" },
+    { src: "/Tablet Containers & Closures/Products/4.webp", label: "Tablet Container 300cc" },
+    { src: "/Tablet Containers & Closures/Products/5.webp", label: "Screw Closure Detail" },
+    { src: "/Tablet Containers & Closures/Products/6.webp", label: "CRC Closure Detail" }
   ]
 
   // Graceful fallback for missing local images
@@ -75,16 +73,11 @@ export default function TabletProductPage({ onNavigate }) {
   }
 
   const productsList = [
-    { name: 'Ophthalmic', path: 'product-ophthalmic' },
-    { name: 'Nasal', path: 'product-nasal' },
-    { name: 'Tablet Containers', path: 'product-tablet' },
-    { name: 'Flip-Off Seals', path: 'product-flipoff' },
-    { name: 'Measuring Caps', path: 'product-measuring' },
-    { name: 'Glass Droppers', path: 'product-glass-dropper' },
-    { name: 'Dispenser Pumps', path: 'product-dispenser' },
-    { name: 'Trigger Pumps', path: 'product-trigger' },
-    { name: 'Mist & Cream', path: 'product-mist-cream' },
-    { name: 'Caps & Closures', path: 'product-caps-closures' }
+    { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
+    { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Flip off Seals ↗', path: 'product-flipoff' },
+    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
   ]
 
   return (
@@ -93,49 +86,49 @@ export default function TabletProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp')",
+          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
           position: 'relative',
-          minHeight: '480px'
+          minHeight: '280px',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '40px 0'
         }}
       >
-        <div 
-          ref={heroRef} 
-          className={`op-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
-          style={{ 
-            position: 'absolute',
-            top: 'clamp(100px, 9.2vw, 132px)',
-            left: 'clamp(24px, 8.3vw, 120px)',
-            maxWidth: '852px',
-            width: 'calc(100% - 48px)',
-            minHeight: '238.729736328125px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            transform: 'rotate(0deg)',
-            opacity: 1,
-            textAlign: 'left'
-          }}
-        >
-          <nav className="op-breadcrumb" style={{ margin: 0 }}>
-            <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">TABLET CONTAINERS &amp; CLOSURES</span>
-          </nav>
-          <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Tablet Containers<br />&amp; Closures</h1>
+        <div className="container">
+          <div 
+            ref={heroRef} 
+            className={`op-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
+            style={{ 
+              position: 'relative',
+              maxWidth: '852px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              textAlign: 'left'
+            }}
+          >
+            <nav className="op-breadcrumb" style={{ margin: 0 }}>
+              <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span className="breadcrumb-active">TABLET CONTAINERS &amp; CLOSURES</span>
+            </nav>
+            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Tablet Containers &amp; Closures</h1>
+          </div>
         </div>
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
       <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container" style={{ gap: '16px', padding: '10px 24px' }}>
+        <div className="container op-tabs-container">
           {productsList.map((prod, idx) => (
             <button 
               key={idx}
               className={`op-tab-btn ${prod.path === 'product-tablet' ? 'active' : ''}`} 
               onClick={() => onNavigate(prod.path)}
-              style={{ padding: '12px 8px', fontSize: '13px' }}
             >
               {prod.name}
             </button>
@@ -157,10 +150,11 @@ export default function TabletProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="op-carousel-wrapper">
-                <div className="op-carousel-slide">
+                <div className="op-carousel-slide" style={{ backgroundColor: 'transparent', height: 'auto', aspectRatio: 'unset', borderRadius: '20px' }}>
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Tablet Container Render ${activeSlide + 1}`}
+                    style={{ width: '100%', height: 'auto', objectFit: 'contain', borderRadius: '20px' }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>

@@ -112,16 +112,18 @@ export default function Header({ page, onNavigate }) {
               style={{ fontWeight: '450', color: '#1F2937' }}
             >Home</a>
 
-            <div className={`nav-dropdown-wrapper ${productsOpen ? 'accordion-open' : ''}`}>
+            <div 
+              className={`nav-dropdown-wrapper ${productsOpen ? 'open accordion-open' : ''}`}
+              onMouseEnter={() => { if (window.innerWidth > 768) setProductsOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 768) setProductsOpen(false); }}
+            >
               <a
                 href="#"
                 className={page.startsWith('product-') ? 'active' : ''}
                 onClick={e => {
+                  e.preventDefault();
                   if (window.innerWidth <= 768) {
-                    e.preventDefault();
                     setProductsOpen(!productsOpen);
-                  } else {
-                    scrollToSection(e, 'products');
                   }
                 }}
                 style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
@@ -161,16 +163,18 @@ export default function Header({ page, onNavigate }) {
               style={{ fontWeight: '450', color: '#1F2937' }}
             >About Us</a>
 
-            <div className={`nav-dropdown-wrapper ${marketOpen ? 'accordion-open' : ''}`}>
+            <div 
+              className={`nav-dropdown-wrapper ${marketOpen ? 'open accordion-open' : ''}`}
+              onMouseEnter={() => { if (window.innerWidth > 768) setMarketOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 768) setMarketOpen(false); }}
+            >
               <a
                 href="#"
                 className={page.startsWith('market-') ? 'active' : ''}
                 onClick={e => {
+                  e.preventDefault();
                   if (window.innerWidth <= 768) {
-                    e.preventDefault();
                     setMarketOpen(!marketOpen);
-                  } else {
-                    goTo(e, 'market-pharma');
                   }
                 }}
                 style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
@@ -196,16 +200,18 @@ export default function Header({ page, onNavigate }) {
               </div>
             </div>
 
-            <div className={`nav-dropdown-wrapper ${expertiseOpen ? 'accordion-open' : ''}`}>
+            <div 
+              className={`nav-dropdown-wrapper ${expertiseOpen ? 'open accordion-open' : ''}`}
+              onMouseEnter={() => { if (window.innerWidth > 768) setExpertiseOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 768) setExpertiseOpen(false); }}
+            >
               <a
                 href="#"
                 className={page.startsWith('expertise-') ? 'active' : ''}
                 onClick={e => {
+                  e.preventDefault();
                   if (window.innerWidth <= 768) {
-                    e.preventDefault();
                     setExpertiseOpen(!expertiseOpen);
-                  } else {
-                    goTo(e, 'expertise-manufacturing');
                   }
                 }}
                 style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
@@ -240,16 +246,18 @@ export default function Header({ page, onNavigate }) {
               style={{ fontWeight: '450', color: '#1F2937' }}
             >Global Presence</a>
 
-            <div className={`nav-dropdown-wrapper dropdown-right ${moreOpen ? 'accordion-open' : ''}`}>
+            <div 
+              className={`nav-dropdown-wrapper dropdown-right ${moreOpen ? 'open accordion-open' : ''}`}
+              onMouseEnter={() => { if (window.innerWidth > 768) setMoreOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 768) setMoreOpen(false); }}
+            >
               <a
                 href="#"
                 className={page === 'career' || page === 'expertise' || page === 'event' ? 'active' : ''}
                 onClick={e => {
+                  e.preventDefault();
                   if (window.innerWidth <= 768) {
-                    e.preventDefault();
                     setMoreOpen(!moreOpen);
-                  } else {
-                    goTo(e, 'career');
                   }
                 }}
                 style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
@@ -269,7 +277,7 @@ export default function Header({ page, onNavigate }) {
                 </svg>
               </a>
               <div className={`nav-dropdown-menu ${moreOpen ? 'mobile-expanded' : ''}`}>
-                <a href="#" onClick={e => goTo(e, 'career')}>Career</a>
+                <a href="#" onClick={e => goTo(e, 'career')}>Careers</a>
                 <a href="#" onClick={e => goTo(e, 'expertise')}>New Product Development</a>
                 <a href="#" onClick={e => goTo(e, 'event')}>CPHI-PMEC Event</a>
               </div>
@@ -280,9 +288,9 @@ export default function Header({ page, onNavigate }) {
               href="#"
               className="btn-header-cta"
               onClick={e => goTo(e, 'contact')}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', borderRadius: '30px', padding: '12px 24px', background: '#2456D3', color: '#FFFFFF', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(36, 86, 211, 0.15)', marginTop: '12px' }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', borderRadius: '30px', padding: '12px 24px', background: '#2456D3', color: '#FFFFFF', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(36, 86, 211, 0.15)' }}
             >
-              Inquiry / Contact
+              Contact Us
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '4px' }}>
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />

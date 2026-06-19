@@ -75,16 +75,11 @@ export default function GlassDropperProductPage({ onNavigate }) {
   }
 
   const productsList = [
-    { name: 'Ophthalmic', path: 'product-ophthalmic' },
-    { name: 'Nasal', path: 'product-nasal' },
-    { name: 'Tablet Containers', path: 'product-tablet' },
-    { name: 'Flip-Off Seals', path: 'product-flipoff' },
-    { name: 'Measuring Caps', path: 'product-measuring' },
-    { name: 'Glass Droppers', path: 'product-glass-dropper' },
-    { name: 'Dispenser Pumps', path: 'product-dispenser' },
-    { name: 'Trigger Pumps', path: 'product-trigger' },
-    { name: 'Mist & Cream', path: 'product-mist-cream' },
-    { name: 'Caps & Closures', path: 'product-caps-closures' }
+    { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
+    { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Flip off Seals ↗', path: 'product-flipoff' },
+    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
   ]
 
   return (
@@ -93,49 +88,49 @@ export default function GlassDropperProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp')",
+          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
           position: 'relative',
-          minHeight: '480px'
+          minHeight: '280px',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '40px 0'
         }}
       >
-        <div 
-          ref={heroRef} 
-          className={`op-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
-          style={{ 
-            position: 'absolute',
-            top: 'clamp(100px, 9.2vw, 132px)',
-            left: 'clamp(24px, 8.3vw, 120px)',
-            maxWidth: '852px',
-            width: 'calc(100% - 48px)',
-            minHeight: '238.729736328125px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            transform: 'rotate(0deg)',
-            opacity: 1,
-            textAlign: 'left'
-          }}
-        >
-          <nav className="op-breadcrumb" style={{ margin: 0 }}>
-            <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">GLASS DROPPERS</span>
-          </nav>
-          <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Glass Droppers</h1>
+        <div className="container">
+          <div 
+            ref={heroRef} 
+            className={`op-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
+            style={{ 
+              position: 'relative',
+              maxWidth: '852px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              textAlign: 'left'
+            }}
+          >
+            <nav className="op-breadcrumb" style={{ margin: 0 }}>
+              <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span className="breadcrumb-active">GLASS DROPPERS</span>
+            </nav>
+            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Glass Droppers</h1>
+          </div>
         </div>
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
       <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container" style={{ gap: '16px', padding: '10px 24px' }}>
+        <div className="container op-tabs-container">
           {productsList.map((prod, idx) => (
             <button 
               key={idx}
               className={`op-tab-btn ${prod.path === 'product-glass-dropper' ? 'active' : ''}`} 
               onClick={() => onNavigate(prod.path)}
-              style={{ padding: '12px 8px', fontSize: '13px' }}
             >
               {prod.name}
             </button>
@@ -199,30 +194,7 @@ export default function GlassDropperProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 4. PRODUCT IMAGES GALLERY */}
-      <section className="op-gallery-section" ref={galleryRef}>
-        <div className="container">
-          <div className={`fade-section ${galleryVisible ? 'visible' : ''}`}>
-            
-            <h2 className="op-gallery-title">Glass Droppers Gallery</h2>
-            
-            <div className="op-gallery-grid">
-              {galleryImages.map((item, i) => (
-                <div key={i} className="op-gallery-card">
-                  <div className="op-gallery-img-box">
-                    <img 
-                      src={item.src} 
-                      alt={item.label} 
-                      onError={(e) => handleImageError(e, item.label)}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
 
-          </div>
-        </div>
-      </section>
 
       {/* 5. FEATURES & APPLICATIONS SECTION */}
       <section className="op-features-section" ref={featureRef}>

@@ -4,10 +4,8 @@ export default function VisionMission() {
   const images = [
     '/g3.webp',
     '/g1.webp',
-    '/y.webp',
-    '/g2.webp',
-    '/y.webp',
-    '/g3.webp'
+    '/p.webp',
+    '/g2.webp'
   ]
 
   return (
@@ -32,7 +30,7 @@ export default function VisionMission() {
       <FadeIn>
         <div className="vision-marquee-container">
           <div className="vision-marquee-track">
-            {[...images, ...images].map((src, i) => (
+            {[...images, ...images, ...images, ...images, ...images, ...images].map((src, i) => (
               <div 
                 key={i}
                 className="vision-gallery-item" 

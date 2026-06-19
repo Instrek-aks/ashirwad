@@ -311,7 +311,7 @@ export default function ContactPage({ onNavigate }) {
                   {/* Conditional Careers Section */}
                   {activeTab === 'careers' && (
                     <div className="form-conditional-section">
-                      <span className="form-section-title">Career Preferences</span>
+                      <span className="form-section-title">Careers Preferences</span>
                       <div className="form-field-group">
                         <select
                           name="careerDept"

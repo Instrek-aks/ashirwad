@@ -243,66 +243,21 @@ export default function GlobalPresencePage({ onNavigate }) {
       </section>
 
       {/* 4. CERTIFICATIONS SECTION */}
-      <section className="gp-cert-section">
+      <section className="cert-section section-padding" style={{ backgroundColor: '#fff', borderTop: '1px solid var(--border-gray)', borderBottom: '1px solid var(--border-gray)', padding: '60px 0' }}>
         <div className="container">
           <div ref={certRef} className={`gp-cert-content fade-section ${certVisible ? 'visible' : ''}`}>
-            
-            <h2 className="gp-cert-title">We are Certified By</h2>
-            
-            <div className="gp-cert-row">
-              
-              {/* Badge 1: ISO 9001:2015 */}
-              <div className="gp-cert-badge">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="30" cy="30" r="28" stroke="#2F67F6" strokeWidth="2.5" fill="none" />
-                  <circle cx="30" cy="30" r="24" stroke="#2F67F6" strokeWidth="1" strokeDasharray="3,3" fill="none" />
-                  <text x="50%" y="42%" dominantBaseline="central" textAnchor="middle" fill="#2F67F6" fontFamily="-apple-system, BlinkMacSystemFont, system-ui, sans-serif" fontSize="9" fontWeight="800">ISO</text>
-                  <text x="50%" y="58%" dominantBaseline="central" textAnchor="middle" fill="#2F67F6" fontFamily="-apple-system, BlinkMacSystemFont, system-ui, sans-serif" fontSize="7" fontWeight="600">9001:2015</text>
-                </svg>
-              </div>
-
-              {/* Badge 2: ISO Certified */}
-              <div className="gp-cert-badge">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="30" cy="30" r="28" stroke="#122A5C" strokeWidth="2.5" fill="none" />
-                  <path d="M20 30L27 37L40 22" stroke="#122A5C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                  <text x="50%" y="78%" dominantBaseline="central" textAnchor="middle" fill="#122A5C" fontFamily="-apple-system, BlinkMacSystemFont, system-ui, sans-serif" fontSize="6.5" fontWeight="700">ISO CERTIFIED</text>
-                </svg>
-              </div>
-
-              {/* Badge 3: FDA */}
-              <div className="gp-cert-badge">
-                <svg width="80" height="40" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle" fill="#1F2937" fontFamily="Georgia, serif" fontSize="26" fontWeight="900" letterSpacing="2">FDA</text>
-                </svg>
-              </div>
-
-              {/* Badge 4: Health Canada */}
-              <div className="gp-cert-badge">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  {/* Red Maple Leaf SVG */}
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#E11D48">
-                    <path d="M12 2L13.5 7.5L18.5 6L17 11L22 12.5L16.5 14L18 19L13.5 17.5L12 22L10.5 17.5L6 19L7.5 14L2 12.5L7 11L5.5 6L10.5 7.5L12 2Z" />
-                  </svg>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.1 }}>
-                    <span style={{ fontSize: '15px', fontWeight: 800, color: '#1F2937', fontFamily: 'system-ui' }}>Health</span>
-                    <span style={{ fontSize: '13px', fontWeight: 700, color: '#6B7280', fontFamily: 'system-ui' }}>Canada</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Badge 5: GMP */}
-              <div className="gp-cert-badge">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="30" cy="30" r="28" stroke="#22C55E" strokeWidth="2.5" fill="none" />
-                  <rect x="16" y="22" width="28" height="16" rx="3" fill="#22C55E" />
-                  <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle" fill="#FFFFFF" fontFamily="-apple-system, BlinkMacSystemFont, system-ui, sans-serif" fontSize="9" fontWeight="800">GMP</text>
-                  <text x="50%" y="78%" dominantBaseline="central" textAnchor="middle" fill="#22C55E" fontFamily="-apple-system, BlinkMacSystemFont, system-ui, sans-serif" fontSize="6.5" fontWeight="700">CERTIFIED</text>
-                </svg>
-              </div>
-
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <h2 className="section-title" style={{ fontSize: '28px', fontWeight: 700, color: 'var(--text-dark)', margin: 0 }}>
+                We are Certified By
+              </h2>
             </div>
-
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
+              <img src="/c1.webp" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/c2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/c3.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/c4.webp" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/c5.webp" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            </div>
           </div>
         </div>
       </section>

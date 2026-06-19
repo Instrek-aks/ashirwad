@@ -267,7 +267,7 @@ export default function ReachOut() {
                 {/* Conditional Careers Section */}
                 {activeTab === 'careers' && (
                   <div className="form-conditional-section">
-                    <span className="form-section-title" style={{ color: '#F59E0B' }}>Career Preferences</span>
+                    <span className="form-section-title" style={{ color: '#F59E0B' }}>Careers Preferences</span>
                     <div className="form-field-group">
                       <select
                         name="careerDept"

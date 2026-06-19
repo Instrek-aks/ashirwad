@@ -6,7 +6,7 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/np.jpeg',
+    img: '/np.webp',
     cover: true
   },
   {

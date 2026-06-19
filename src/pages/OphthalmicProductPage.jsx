@@ -16,7 +16,7 @@ function useFadeIn() {
 }
 
 export default function OphthalmicProductPage({ onNavigate }) {
-  const [activeSlide, setActiveSlide] = useState(1)
+  const [activeSlide, setActiveSlide] = useState(0)
   
   const [heroRef, heroVisible] = useFadeIn()
   const [tabsRef, tabsVisible] = useFadeIn()
@@ -30,19 +30,17 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/np.jpeg",
-    "/np.jpeg",
-    "/np.jpeg"
+    "/d1.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/np.jpeg", label: "Ophthalmic Bottle 5ml" },
-    { src: "/np.jpeg", label: "Ophthalmic Bottle 7ml" },
-    { src: "/np.jpeg", label: "Ophthalmic Bottle 10ml" },
-    { src: "/np.jpeg", label: "Ophthalmic Bottle 15ml" },
-    { src: "/np.jpeg", label: "CRC Closure Detail" },
-    { src: "/np.jpeg", label: "Tamper-Evident Closure" }
+    { src: "/d2.webp", label: "Ophthalmic Bottle 5ml" },
+    { src: "/d3.webp", label: "Ophthalmic Bottle 7ml" },
+    { src: "/d4.webp", label: "Ophthalmic Bottle 10ml" },
+    { src: "/d5.webp", label: "Ophthalmic Bottle 15ml" },
+    { src: "/d6.webp", label: "CRC Closure Detail" },
+    { src: "/d7.webp", label: "Tamper-Evident Closure" }
   ]
 
   // Graceful fallback for missing local images
@@ -75,54 +73,67 @@ export default function OphthalmicProductPage({ onNavigate }) {
     }
   }
 
+  const productsList = [
+    { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
+    { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Flip off Seals ↗', path: 'product-flipoff' },
+    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+  ]
+
   return (
     <div className="op-page-wrapper">
 
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(245, 245, 245, 0.45), rgba(245, 245, 245, 0.55)), url('/np.jpeg')",
+          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
           position: 'relative',
-          minHeight: '480px'
+          minHeight: '280px',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '40px 0'
         }}
       >
-        <div 
-          ref={heroRef} 
-          className={`op-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
-          style={{ 
-            position: 'absolute',
-            top: 'clamp(100px, 9.2vw, 132px)',
-            left: 'clamp(24px, 8.3vw, 120px)',
-            maxWidth: '852px',
-            width: 'calc(100% - 48px)',
-            minHeight: '238.729736328125px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            transform: 'rotate(0deg)',
-            opacity: 1,
-            textAlign: 'left'
-          }}
-        >
-          <nav className="op-breadcrumb" style={{ margin: 0 }}>
-            <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span onClick={() => onNavigate('contact')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
-            <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">OPHTHALMIC DELIVERY SYSTEM</span>
-          </nav>
-          <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Ophthalmic<br />Delivery System</h1>
+        <div className="container">
+          <div 
+            ref={heroRef} 
+            className={`op-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
+            style={{ 
+              position: 'relative',
+              maxWidth: '852px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              textAlign: 'left'
+            }}
+          >
+            <nav className="op-breadcrumb" style={{ margin: 0 }}>
+              <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span onClick={() => onNavigate('contact')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
+              <span className="breadcrumb-separator">&gt;</span>
+              <span className="breadcrumb-active">OPHTHALMIC DELIVERY SYSTEM</span>
+            </nav>
+            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Ophthalmic Delivery System</h1>
+          </div>
         </div>
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
       <div className="op-tabs-bar" ref={tabsRef}>
         <div className="container op-tabs-container">
-          <button className="op-tab-btn active">Ophthalmic Delivery System ↗</button>
-          <button className="op-tab-btn" onClick={() => onNavigate('product-nasal')}>Nasal Delivery System ↗</button>
-          <button className="op-tab-btn" onClick={() => onNavigate('contact')}>Flip off Seals ↗</button>
-          <button className="op-tab-btn" onClick={() => onNavigate('contact')}>Measuring Caps &amp; Oral Droppers ↗</button>
-          <button className="op-tab-btn" onClick={() => onNavigate('contact')}>Glass Droppers ↗</button>
+          {productsList.map((prod, idx) => (
+            <button 
+              key={idx}
+              className={`op-tab-btn ${prod.path === 'product-ophthalmic' ? 'active' : ''}`} 
+              onClick={() => onNavigate(prod.path)}
+            >
+              {prod.name}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -140,7 +151,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="op-carousel-wrapper">
-                <div className="op-carousel-slide" style={{ backgroundColor: '#000000', borderRadius: '20px' }}>
+                <div className="op-carousel-slide" style={{ backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #E5E7EB' }}>
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Ophthalmic Product Render ${activeSlide + 1}`}
@@ -194,11 +205,10 @@ export default function OphthalmicProductPage({ onNavigate }) {
             <div className="op-gallery-grid">
               {galleryImages.map((item, i) => (
                 <div key={i} className="op-gallery-card">
-                  <div className="op-gallery-img-box" style={{ backgroundColor: '#000000' }}>
+                  <div className="op-gallery-img-box">
                     <img 
                       src={item.src} 
                       alt={item.label} 
-                      style={{ objectFit: 'contain' }}
                       onError={(e) => handleImageError(e, item.label)}
                     />
                   </div>

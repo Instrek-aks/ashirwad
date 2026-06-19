@@ -5,8 +5,7 @@ export default function Factory() {
     '/images/factory_interior1.webp',
     '/images/factory_interior2.webp',
     '/images/factory_interior3.webp',
-    '/images/factory_success.webp',
-    '/images/factory_interior1.webp' // fallback for 5th item
+    '/images/factory_success.webp'
   ]
 
   return (

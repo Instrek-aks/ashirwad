@@ -30,7 +30,13 @@ export default function CompanyOverview({ onNavigate }) {
 
         {/* Video / Image Showcase Container */}
         <FadeIn>
-          <div className="overview-video-container">
+          <a 
+            href="https://www.youtube.com/watch?v=qPzBxETkMng&t=2s" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="overview-video-container"
+            style={{ display: 'block' }}
+          >
             <img 
               src="/y.webp" 
               alt="Ashirwad Plastics Solan Facility" 
@@ -53,7 +59,7 @@ export default function CompanyOverview({ onNavigate }) {
             <div className="video-fallback-label" style={{ position: 'absolute', bottom: '20px', left: '20px', color: '#fff', fontSize: '13px', fontWeight: 600, background: 'rgba(0,0,0,0.4)', padding: '4px 10px', borderRadius: '4px' }}>
               Solan Facility Video Walkthrough
             </div>
-          </div>
+          </a>
         </FadeIn>
 
         {/* Read More Button */}
