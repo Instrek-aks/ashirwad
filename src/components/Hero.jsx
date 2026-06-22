@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import FadeIn from './FadeIn'
 
 const heroImages = [
-  '/hero.webp',
-  '/hero2.webp',
-  '/hro3.webp'
+  '/cosmetic.gif',
+  '/pharm.gif',
+  '/pharmaa.gif',
+  '/Sustainbility.gif'
 ]
 
 export default function Hero({ onNavigate }) {
@@ -39,6 +40,8 @@ export default function Hero({ onNavigate }) {
             }}
           />
         ))}
+        {/* Light Blue Gradient Overlay */}
+        <div className="hero-gradient-overlay" />
       </div>
 
       {/* Main Centered Hero Copy */}
