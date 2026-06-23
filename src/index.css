@@ -223,6 +223,7 @@ body {
   font-size: 15.5px;
   font-weight: 500;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .nav a:hover, .nav a.active {
@@ -282,6 +283,7 @@ body {
   font-size: 15px !important;
   font-weight: 600 !important;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .btn-header-cta:hover {
@@ -2357,7 +2359,7 @@ body {
 }
 
 /* Tablet Navbar Adjustments */
-@media (min-width: 769px) and (max-width: 1199px) {
+@media (min-width: 1025px) and (max-width: 1199px) {
   .header-inner {
     height: 70px;
   }
@@ -2411,6 +2413,9 @@ body {
   .header-inner {
     height: 70px;
   }
+}
+
+@media (max-width: 1024px) {
   /* Mobile drawer and navigation elements */
   .desktop-cta-only,
   .desktop-chevron-only {
@@ -2584,6 +2589,9 @@ body {
   .nav-hamburger {
     display: flex;
   }
+}
+
+@media (max-width: 768px) {
   .hero-centered-layout {
     min-height: 85vh; /* Increased hero height for mobile */
     padding: 180px 0 150px 0;
@@ -7382,7 +7390,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   /* Navigation dropdowns rendered inline in mobile menu drawer */
   .nav-dropdown-wrapper {
     width: 100%;
@@ -7411,7 +7419,9 @@ body {
     color: var(--blue) !important;
     background: transparent;
   }
+}
 
+@media (max-width: 768px) {
   /* Grid collapsing to single column on mobile */
   .about-who-gallery-grid {
     grid-template-columns: repeat(2, 1fr);

@@ -114,15 +114,15 @@ export default function Header({ page, onNavigate }) {
 
             <div 
               className={`nav-dropdown-wrapper ${productsOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 768) setProductsOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 768) setProductsOpen(false); }}
+              onMouseEnter={() => { if (window.innerWidth > 1024) setProductsOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1024) setProductsOpen(false); }}
             >
               <a
                 href="#"
                 className={page.startsWith('product-') ? 'active' : ''}
                 onClick={e => {
                   e.preventDefault();
-                  if (window.innerWidth <= 768) {
+                  if (window.innerWidth <= 1024) {
                     setProductsOpen(!productsOpen);
                   }
                 }}
@@ -165,15 +165,15 @@ export default function Header({ page, onNavigate }) {
 
             <div 
               className={`nav-dropdown-wrapper ${marketOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 768) setMarketOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 768) setMarketOpen(false); }}
+              onMouseEnter={() => { if (window.innerWidth > 1024) setMarketOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1024) setMarketOpen(false); }}
             >
               <a
                 href="#"
                 className={page.startsWith('market-') ? 'active' : ''}
                 onClick={e => {
                   e.preventDefault();
-                  if (window.innerWidth <= 768) {
+                  if (window.innerWidth <= 1024) {
                     setMarketOpen(!marketOpen);
                   }
                 }}
@@ -202,15 +202,15 @@ export default function Header({ page, onNavigate }) {
 
             <div 
               className={`nav-dropdown-wrapper ${expertiseOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 768) setExpertiseOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 768) setExpertiseOpen(false); }}
+              onMouseEnter={() => { if (window.innerWidth > 1024) setExpertiseOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1024) setExpertiseOpen(false); }}
             >
               <a
                 href="#"
                 className={page.startsWith('expertise-') ? 'active' : ''}
                 onClick={e => {
                   e.preventDefault();
-                  if (window.innerWidth <= 768) {
+                  if (window.innerWidth <= 1024) {
                     setExpertiseOpen(!expertiseOpen);
                   }
                 }}
@@ -248,15 +248,15 @@ export default function Header({ page, onNavigate }) {
 
             <div 
               className={`nav-dropdown-wrapper dropdown-right ${moreOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 768) setMoreOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 768) setMoreOpen(false); }}
+              onMouseEnter={() => { if (window.innerWidth > 1024) setMoreOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1024) setMoreOpen(false); }}
             >
               <a
                 href="#"
                 className={page === 'career' || page === 'expertise' || page === 'event' ? 'active' : ''}
                 onClick={e => {
                   e.preventDefault();
-                  if (window.innerWidth <= 768) {
+                  if (window.innerWidth <= 1024) {
                     setMoreOpen(!moreOpen);
                   }
                 }}
