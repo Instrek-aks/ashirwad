@@ -35,12 +35,12 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Nasal Delivery System/Products/1.webp", label: "Nasal Spray System" },
-    { src: "/Nasal Delivery System/Products/2.webp", label: "Nasal Bottle Detail" },
-    { src: "/Nasal Delivery System/Products/3.webp", label: "Dosing Pump Assembly" },
-    { src: "/Nasal Delivery System/Products/4.webp", label: "Protective Cap" },
-    { src: "/Nasal Delivery System/Products/5.webp", label: "Spray Nozzle" },
-    { src: "/Nasal Delivery System/Products/6.webp", label: "Nasal Delivery Components" }
+    { src: "/Nasal Delivery System/Products/1.webp", label: "Built for Every Drop - Nasal Spray System" },
+    { src: "/Nasal Delivery System/Products/2.webp", label: "Engineered for Precision & Protection" },
+    { src: "/Nasal Delivery System/Products/3.webp", label: "Precision in Every Drop, Safety in Every Use" },
+    { src: "/Nasal Delivery System/Products/4.webp", label: "Lightweight & Easy to Clean Assembly" },
+    { src: "/Nasal Delivery System/Products/5.webp", label: "Better Design, Smarter Care - Exploded View" },
+    { src: "/Nasal Delivery System/Products/6.webp", label: "Premium Nasal Delivery System" }
   ]
 
   // Graceful fallback for missing local images
@@ -87,7 +87,7 @@ export default function NasalProductPage({ onNavigate }) {
       <section 
         className="np-hero"
         style={{
-          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Nasal Delivery System/banner.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',

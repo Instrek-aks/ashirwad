@@ -59,7 +59,7 @@ export default function SustainabilityPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/sustanibility.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/sustainibility/1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -120,9 +120,9 @@ export default function SustainabilityPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b1.webp" 
-                  alt="Sustainable Practices" 
-                  onError={(e) => handleImageError(e, "Sustainable Practices")}
+                  src="/sustainibility/7.webp" 
+                  alt="Environmental Responsibility" 
+                  onError={(e) => handleImageError(e, "Environmental Responsibility")}
                 />
               </div>
             </div>
@@ -131,19 +131,21 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 3. SUSTAINABILITY PRACTICES GRID (2x2) */}
+      {/* 3. SUSTAINABILITY PRACTICES GRID (3x2) */}
       <section className="mfg-capabilities-section">
         <div className="container">
           <div ref={gridRef} className={`mfg-capabilities-grid fade-section ${gridVisible ? 'visible' : ''}`}>
             
+            {/* Card 1: What We Do (Image) */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/b3.webp" 
+                src="/sustainibility/3.webp" 
                 alt="Recycled Materials Line" 
                 onError={(e) => handleImageError(e, "Recycled Materials")}
               />
             </div>
 
+            {/* Card 2: What We Do (Text) */}
             <div className="mfg-grid-card mfg-card-dark">
               <h3 className="mfg-card-heading">What We Do for a Sustainable Future</h3>
               <div className="mfg-benefits-list">
@@ -175,9 +177,10 @@ export default function SustainabilityPage({ onNavigate }) {
               </div>
             </div>
 
+            {/* Card 3: Waste Reduction (Text) */}
             <div className="mfg-grid-card mfg-card-light">
-              <div className="mfg-benefits-list" style={{ marginTop: 0 }}>
-
+              <h3 className="mfg-card-heading" style={{ color: '#1F2937' }}>Waste Reduction</h3>
+              <div className="mfg-benefits-list">
                 <div className="mfg-benefit-item">
                   <span className="mfg-check-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
@@ -185,32 +188,45 @@ export default function SustainabilityPage({ onNavigate }) {
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <h4 style={{ color: '#1F2937' }}>Waste Reduction</h4>
-                    <p style={{ color: '#6B7280' }}>Through efficient resource management and proactive recycling initiatives, we minimise waste generation during production reducing landfill contributions and improving overall resource utilisation.</p>
+                    <p style={{ color: '#6B7280', fontSize: '15px', lineHeight: '1.6' }}>Through efficient resource management and proactive recycling initiatives, we minimise waste generation during production reducing landfill contributions and improving overall resource utilisation.</p>
                   </div>
                 </div>
-
-                <div className="mfg-benefit-item">
-                  <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <div className="mfg-benefit-content">
-                    <h4 style={{ color: '#1F2937' }}>Sustainable Practices</h4>
-                    <p style={{ color: '#6B7280' }}>From the responsible sourcing of raw materials to eco-friendly packaging solutions, sustainability is embedded into our day-to-day operations at every level.</p>
-                  </div>
-                </div>
-
               </div>
             </div>
 
+            {/* Card 4: Waste Reduction (Image) */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/s7.webp" 
-                alt="Eco-friendly Packaging Production" 
-                onError={(e) => handleImageError(e, "Packaging Production")}
+                src="/sustainibility/4.webp" 
+                alt="Waste Reduction" 
+                onError={(e) => handleImageError(e, "Waste Reduction")}
               />
+            </div>
+
+            {/* Card 5: Sustainable Practices (Image) */}
+            <div className="mfg-grid-card mfg-img-card">
+              <img 
+                src="/sustainibility/5.webp" 
+                alt="Sustainable Practices" 
+                onError={(e) => handleImageError(e, "Sustainable Practices")}
+              />
+            </div>
+
+            {/* Card 6: Sustainable Practices (Text) */}
+            <div className="mfg-grid-card mfg-card-light">
+              <h3 className="mfg-card-heading" style={{ color: '#1F2937' }}>Sustainable Practices</h3>
+              <div className="mfg-benefits-list">
+                <div className="mfg-benefit-item">
+                  <span className="mfg-check-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <div className="mfg-benefit-content">
+                    <p style={{ color: '#6B7280', fontSize: '15px', lineHeight: '1.6' }}>From the responsible sourcing of raw materials to eco-friendly packaging solutions, sustainability is embedded into our day-to-day operations at every level.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -225,7 +241,7 @@ export default function SustainabilityPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b.webp" 
+                  src="/sustainibility/2.webp" 
                   alt="Sustainable Workplace" 
                   onError={(e) => handleImageError(e, "Sustainable Workplace")}
                 />
@@ -268,9 +284,9 @@ export default function SustainabilityPage({ onNavigate }) {
             <div className="mfg-people-right">
               <div className="mfg-people-img-box">
                 <img 
-                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
-                  alt="Green Earth Landscape" 
-                  onError={(e) => handleImageError(e, "Green Earth")}
+                  src="/sustainibility/6.webp" 
+                  alt="Our Journey Forward" 
+                  onError={(e) => handleImageError(e, "Journey Forward")}
                 />
               </div>
             </div>

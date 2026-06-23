@@ -78,16 +78,6 @@ function AboutHero({ onNavigate }) {
 function WhoWeAre() {
   const [ref1, v1] = useFadeIn()
   const [ref2, v2] = useFadeIn()
-  const [hoveredIdx, setHoveredIdx] = useState(null)
-
-  const galleryImages = [
-    { src: '/p1.webp', alt: 'Quality Inspection' },
-    { src: '/p2.webp', alt: 'Ashirwad Team' },
-    { src: '/p3.webp', alt: 'Cleanroom Machinery' },
-    { src: '/g2.webp', alt: 'Production Assembly' },
-    { src: '/g3.webp', alt: 'Facility Corridor' },
-    { src: '/g1.webp', alt: 'Laboratory QC' }
-  ]
 
   return (
     <section style={{ backgroundColor: '#fff', padding: '80px 0 40px 0' }}>
@@ -114,32 +104,18 @@ function WhoWeAre() {
             </p>
           </div>
 
-          {/* Right Column: 3x2 Image Grid */}
-          <div className="about-who-gallery-grid">
-            {galleryImages.map((img, i) => (
-              <div 
-                key={i} 
-                onMouseEnter={() => setHoveredIdx(i)}
-                onMouseLeave={() => setHoveredIdx(null)}
-                style={{ 
-                  borderRadius: '12px', 
-                  overflow: 'hidden', 
-                  aspectRatio: '1', 
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                  transform: hoveredIdx === i ? 'scale(1.03)' : 'scale(1)',
-                  transition: 'transform 0.3s ease'
+          {/* Right Column: Single Image instead of 3x2 grid */}
+          <div className="about-who-img-col">
+            <div className="about-who-img-wrapper">
+              <img 
+                src="/s7.webp" 
+                alt="Ashirwad Plastics Workforce & Team" 
+                className="about-who-img"
+                onError={e => {
+                  e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&h=450&q=80'
                 }}
-              >
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-                  onError={e => {
-                    e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&h=300&q=80'
-                  }}
-                />
-              </div>
-            ))}
+              />
+            </div>
           </div>
         </div>
 
@@ -372,7 +348,7 @@ function ExperienceAndCareers() {
 ───────────────────────────────────── */
 function WeAreCertifiedBy() {
   const [ref, v] = useFadeIn()
-  const certs = ['/c1.webp', '/c2.webp', '/c3.webp', '/c4.webp', '/c5.webp']
+  const certs = ['/c1.webp', '/nl2.webp', '/nl.webp', '/c4.webp', '/c5.webp']
 
   return (
     <section style={{ backgroundColor: '#fff', padding: '60px 0' }}>

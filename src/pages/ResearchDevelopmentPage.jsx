@@ -58,7 +58,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/reseach.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/r&d/1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -119,7 +119,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b1.webp" 
+                  src="/r&d/2.webp" 
                   alt="Research and Design Lab" 
                   onError={(e) => handleImageError(e, "Research and Design Lab")}
                 />
@@ -224,7 +224,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b.webp" 
+                  src="/r&d/3.webp" 
                   alt="Multidisciplinary Team" 
                   onError={(e) => handleImageError(e, "Multidisciplinary Team")}
                 />

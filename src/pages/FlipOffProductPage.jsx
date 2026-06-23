@@ -29,9 +29,7 @@ export default function FlipOffProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp"
+    "/Flip off Seals.webp"
   ]
 
   // Gallery images (simulated product variants)
@@ -88,7 +86,7 @@ export default function FlipOffProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Flip off Seals.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',

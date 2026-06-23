@@ -58,7 +58,7 @@ export default function GlobalPresencePage({ onNavigate }) {
       <section 
         className="gp-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/b4.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/global/1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -138,7 +138,7 @@ export default function GlobalPresencePage({ onNavigate }) {
             {/* Card 1: Hologram Globe Card */}
             <div className="gp-grid-card gp-img-card">
               <img 
-                src="/b5.webp" 
+                src="/global/2.webp" 
                 alt="Global Business Hologram" 
                 onError={(e) => handleImageError(e, "Global Hologram")}
               />
@@ -253,8 +253,8 @@ export default function GlobalPresencePage({ onNavigate }) {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
               <img src="/c1.webp" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/c2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/c3.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/nl2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
               <img src="/c4.webp" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
               <img src="/c5.webp" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
             </div>

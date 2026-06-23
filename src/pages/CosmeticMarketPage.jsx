@@ -139,14 +139,16 @@ export default function CosmeticMarketPage({ onNavigate }) {
         <div className="container">
           <div ref={gridRef} className={`feature-grid-layout fade-section ${gridVisible ? 'visible' : ''}`}>
             
+            {/* Card 1: Closures Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/s1.webp" 
+                src="/c2.webp" 
                 alt="Cosmetic Bottles" 
                 onError={(e) => handleImageError(e, "Cosmetic Bottles")}
               />
             </div>
 
+            {/* Card 2: Dark Content Card */}
             <div className="feature-card feature-card-dark">
               <div>
                 <h3 className="feature-card-title">Tailored Solutions for Every Cosmetic Need</h3>
@@ -165,6 +167,7 @@ export default function CosmeticMarketPage({ onNavigate }) {
               </a>
             </div>
 
+            {/* Card 3: Light Content Card */}
             <div className="feature-card feature-card-light">
               <div>
                 <h3 className="feature-card-title">Where Design Meets Quality</h3>
@@ -183,9 +186,10 @@ export default function CosmeticMarketPage({ onNavigate }) {
               </a>
             </div>
 
+            {/* Card 4: Product Showcase Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/s2.webp" 
+                src="/c3.webp" 
                 alt="Premium Cosmetic Renders" 
                 onError={(e) => handleImageError(e, "Premium Renders")}
               />

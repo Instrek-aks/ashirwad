@@ -59,7 +59,7 @@ export default function PharmaMarketPage({ onNavigate }) {
       <section 
         className="pharma-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/s4.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/p1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

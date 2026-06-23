@@ -104,7 +104,7 @@ export default function ContactPage({ onNavigate }) {
         className="contact-hero" 
         id="contact-top"
         style={{
-          backgroundImage: "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 100%), url('/m.webp')",
+          backgroundImage: "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 100%), url('/contact/1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

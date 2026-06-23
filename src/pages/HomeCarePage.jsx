@@ -58,7 +58,7 @@ export default function HomeCarePage({ onNavigate }) {
       <section 
         className="pharma-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/homeindustry care.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/h1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -139,14 +139,16 @@ export default function HomeCarePage({ onNavigate }) {
         <div className="container">
           <div ref={gridRef} className={`feature-grid-layout fade-section ${gridVisible ? 'visible' : ''}`}>
             
+            {/* Card 1: Closures Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/s1.webp" 
+                src="/h2.webp" 
                 alt="Home Care Bottles" 
                 onError={(e) => handleImageError(e, "Home Care Bottles")}
               />
             </div>
 
+            {/* Card 2: Dark Content Card */}
             <div className="feature-card feature-card-dark">
               <div>
                 <h3 className="feature-card-title">Functional Solutions for Everyday Use</h3>
@@ -165,6 +167,7 @@ export default function HomeCarePage({ onNavigate }) {
               </a>
             </div>
 
+            {/* Card 3: Light Content Card */}
             <div className="feature-card feature-card-light">
               <div>
                 <h3 className="feature-card-title">Packaging That Reflects Your Brand</h3>
@@ -183,9 +186,10 @@ export default function HomeCarePage({ onNavigate }) {
               </a>
             </div>
 
+            {/* Card 4: Product Showcase Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/s2.webp" 
+                src="/h3.webp" 
                 alt="Product Displays" 
                 onError={(e) => handleImageError(e, "Product Displays")}
               />

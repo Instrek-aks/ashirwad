@@ -30,17 +30,17 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/d1.webp"
+    "/o.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
+    { src: "/d1.webp", label: "Ophthalmic Delivery System" },
     { src: "/d2.webp", label: "Ophthalmic Bottle 5ml" },
     { src: "/d3.webp", label: "Ophthalmic Bottle 7ml" },
     { src: "/d4.webp", label: "Ophthalmic Bottle 10ml" },
     { src: "/d5.webp", label: "Ophthalmic Bottle 15ml" },
-    { src: "/d6.webp", label: "CRC Closure Detail" },
-    { src: "/d7.webp", label: "Tamper-Evident Closure" }
+    { src: "/d6.webp", label: "CRC Closure Detail" }
   ]
 
   // Graceful fallback for missing local images
@@ -87,7 +87,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/o.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -151,11 +151,27 @@ export default function OphthalmicProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="op-carousel-wrapper">
-                <div className="op-carousel-slide" style={{ backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #E5E7EB' }}>
+                <div 
+                  className="op-carousel-slide" 
+                  style={{ 
+                    backgroundColor: '#ffffff', 
+                    borderRadius: '20px', 
+                    border: '1px solid #E5E7EB',
+                    height: 'auto',
+                    aspectRatio: 'unset',
+                    overflow: 'hidden'
+                  }}
+                >
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Ophthalmic Product Render ${activeSlide + 1}`}
-                    style={{ objectFit: 'contain' }}
+                    style={{ 
+                      width: '100%', 
+                      height: 'auto', 
+                      display: 'block', 
+                      objectFit: 'contain',
+                      borderRadius: '20px'
+                    }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
@@ -214,6 +230,18 @@ export default function OphthalmicProductPage({ onNavigate }) {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+              <a 
+                href="/Ashirwad Plastics - website content.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="op-download-btn"
+                style={{ textDecoration: 'none' }}
+              >
+                Download brochure ↗
+              </a>
             </div>
 
           </div>

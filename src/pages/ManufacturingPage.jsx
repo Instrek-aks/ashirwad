@@ -143,7 +143,7 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b.webp" 
+                  src="/2.webp" 
                   alt="Ashirwad Plastics Manufacturing Cleanroom" 
                   onError={(e) => handleImageError(e, "Facility Cleanroom")}
                 />
@@ -275,7 +275,7 @@ export default function ManufacturingPage({ onNavigate }) {
             {/* Card 4: Factory Floor Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/man.webp" 
+                src="/3.webp" 
                 alt="Production Factory Floor" 
                 onError={(e) => handleImageError(e, "Factory Floor")}
               />

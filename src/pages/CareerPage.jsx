@@ -107,7 +107,7 @@ export default function CareerPage({ onNavigate }) {
       <section 
         className="career-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/c0.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/career/banner.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -275,7 +275,7 @@ export default function CareerPage({ onNavigate }) {
             <div className="promise-right">
               <div className="promise-img-box">
                 <img 
-                  src="/c.webp" 
+                  src="/career/1.webp" 
                   alt="Ashirwad laboratory testing" 
                   onError={(e) => handleImageError(e, "Laboratory Testing")}
                 />
@@ -625,8 +625,8 @@ export default function CareerPage({ onNavigate }) {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
               <img src="/c1.webp" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/c2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/c3.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/nl2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+              <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
               <img src="/c4.webp" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
               <img src="/c5.webp" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
             </div>

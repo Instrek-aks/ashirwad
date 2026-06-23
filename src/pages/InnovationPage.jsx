@@ -58,7 +58,7 @@ export default function InnovationPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/innovation.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/innovation/1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -119,7 +119,7 @@ export default function InnovationPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b1.webp" 
+                  src="/innovation/2.webp" 
                   alt="Innovation Lab" 
                   onError={(e) => handleImageError(e, "Innovation Lab")}
                 />
@@ -224,7 +224,7 @@ export default function InnovationPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b.webp" 
+                  src="/innovation/3.webp" 
                   alt="Collaborative Innovation Teams" 
                   onError={(e) => handleImageError(e, "Collaborative Teams")}
                 />

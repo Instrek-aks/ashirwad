@@ -29,9 +29,7 @@ export default function MeasuringProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp",
-    "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp"
+    "/Measuring Caps & Oral Droppers.webp"
   ]
 
   // Gallery images (simulated product variants)
@@ -88,7 +86,7 @@ export default function MeasuringProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Measuring Caps & Oral Droppers.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',

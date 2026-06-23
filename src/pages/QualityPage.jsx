@@ -59,7 +59,7 @@ export default function QualityPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/quality.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/quality/1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -175,7 +175,7 @@ export default function QualityPage({ onNavigate }) {
             
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/b3.webp" 
+                src="/quality/3.webp" 
                 alt="Product Testing Lab" 
                 onError={(e) => handleImageError(e, "Product Testing")}
               />
@@ -262,7 +262,7 @@ export default function QualityPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b.webp" 
+                  src="/quality/2.webp" 
                   alt="Raw Material Sourcing Quality" 
                   onError={(e) => handleImageError(e, "Raw Material Quality")}
                 />

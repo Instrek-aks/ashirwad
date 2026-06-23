@@ -19,11 +19,11 @@ export default function Certifications() {
           </FadeIn>
 
           <FadeIn>
-            <img src="/c2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/nl2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c3.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>

@@ -34,12 +34,12 @@ export default function TabletProductPage({ onNavigate }) {
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Tablet Containers & Closures/Products/1.webp", label: "Tablet Container 30cc" },
-    { src: "/Tablet Containers & Closures/Products/2.webp", label: "Tablet Container 100cc" },
-    { src: "/Tablet Containers & Closures/Products/3.webp", label: "Tablet Container 200cc" },
-    { src: "/Tablet Containers & Closures/Products/4.webp", label: "Tablet Container 300cc" },
-    { src: "/Tablet Containers & Closures/Products/5.webp", label: "Screw Closure Detail" },
-    { src: "/Tablet Containers & Closures/Products/6.webp", label: "CRC Closure Detail" }
+    { src: "/Tablet Containers & Closures/Products/1.webp", label: "Pure Form. Trusted Protection. - Tablet Container" },
+    { src: "/Tablet Containers & Closures/Products/2.webp", label: "Precision You Can Trust - Dosing & Storage" },
+    { src: "/Tablet Containers & Closures/Products/3.webp", label: "Precision in Every Drop, Safety in Every Use" },
+    { src: "/Tablet Containers & Closures/Products/4.webp", label: "Better Design, Smarter Care - Bottle Assembly" },
+    { src: "/Tablet Containers & Closures/Products/5.webp", label: "Safe, Secure, Reliable - Exploded Cap View" },
+    { src: "/Tablet Containers & Closures/Products/6.webp", label: "Protecting What Matters - Multi-Size Range" }
   ]
 
   // Graceful fallback for missing local images
@@ -86,7 +86,7 @@ export default function TabletProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          background: 'linear-gradient(135deg, #163A9B 0%, #2456D3 100%)',
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Tablet Containers & Closures/banner.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
