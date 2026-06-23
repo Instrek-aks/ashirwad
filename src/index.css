@@ -7465,8 +7465,10 @@ body {
     font-size: 38px !important;
   }
   .hero-centered-layout {
-    padding: 100px 0 0 0 !important;
-    min-height: auto !important;
+    padding: 120px 0 0 0 !important;
+    min-height: 580px !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
   .hero-centered-desc {
     margin-bottom: 24px;
@@ -7474,7 +7476,7 @@ body {
   .hero-careers-ticker-centered {
     position: relative !important;
     bottom: auto !important;
-    margin-top: 40px;
+    margin-top: auto !important;
     width: 100% !important;
   }
 }
@@ -7493,11 +7495,13 @@ body {
     font-size: 32px !important;
   }
   .hero-centered-layout {
-    padding: 80px 0 0 0 !important;
-    min-height: auto !important;
+    padding: 100px 0 0 0 !important;
+    min-height: 500px !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
   .hero-careers-ticker-centered {
-    margin-top: 32px;
+    margin-top: auto !important;
   }
 }
 
