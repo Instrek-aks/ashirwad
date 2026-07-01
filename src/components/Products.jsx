@@ -6,64 +6,64 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/np.webp',
+    img: '/https_/home prod/Ophthalmic Delivery System.webp',
     cover: true
   },
   {
     id: 'nasal',
     name: 'Nasal Delivery System',
     desc: 'Advanced nasal dispensing for consistent dosing, convenience, & product integrity.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_07_58 AM.webp',
+    img: '/https_/home prod/Nasal Delivery System.webp',
     cover: true
   },
   {
     id: 'tablet',
     name: 'Tablet Containers & Closures',
     desc: 'Secure, durable packaging for safe storage & protection of solid-dose products.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_13_07 AM.webp',
+    img: '/https_/home prod/Tablet Containers & Closures.webp',
     cover: true
   },
   {
     id: 'measuring',
     name: 'Measuring Caps & Oral Droppers',
     desc: 'Accurate, user-friendly dispensing for liquid pharmaceutical formulations.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp'
+    img: '/https_/home prod/Measuring Caps & Oral Droppers.webp'
   },
   {
     id: 'dropper',
     name: 'Glass Droppers',
     desc: 'Premium glass droppers for controlled dispensing and enhanced compatibility.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp'
+    img: '/https_/home prod/Glass Droppers.webp'
   },
   {
     id: 'dispenser',
     name: 'Dispenser Pumps',
     desc: 'Reliable pump systems for efficient, controlled liquid dispensing.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp'
+    img: '/https_/home prod/Dispenser Pumps.webp'
   },
   {
     id: 'trigger',
     name: 'Trigger Pumps',
     desc: 'Durable, ergonomic trigger pumps for personal care and industrial use.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp'
+    img: '/https_/home prod/Trigger Pumps.webp'
   },
   {
     id: 'mist',
     name: 'Mist & Cream Pumps',
     desc: 'Precision-engineered mist and cream pumps for smooth, consistent dispensing.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp'
+    img: '/https_/home prod/Mist & Cream Pumps.webp'
   },
   {
     id: 'caps',
     name: 'Caps and Closures',
     desc: 'A wide range of closures for safety, protection, and product integrity.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp'
+    img: '/https_/home prod/Caps and Closures.webp'
   },
   {
     id: 'flipoff',
     name: 'Flip off Seals',
     desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
-    img: '/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp'
+    img: '/https_/home prod/Flip off Seals.webp'
   }
 ]
 
@@ -121,9 +121,9 @@ function ProductCard({ product, onNavigate }) {
         className="product-card-img-box" 
         style={{ 
           width: '100%', 
-          aspectRatio: '1.45', 
+          aspectRatio: '1', 
           borderRadius: '16px', 
-          background: (product.id === 'ophthalmic' || product.id === 'nasal') ? '#000000' : 'transparent',
+          background: 'transparent',
           border: 'none',
           display: 'flex', 
           alignItems: 'center', 
@@ -140,11 +140,9 @@ function ProductCard({ product, onNavigate }) {
             style={{ 
               width: '100%', 
               height: '100%', 
-              objectFit: (product.id === 'ophthalmic' || product.id === 'nasal') ? 'contain' : 'cover', 
+              objectFit: 'cover', 
               display: 'block',
-              transform: product.id === 'nasal' 
-                ? (hovered ? 'translateY(-8px) scale(1.65)' : 'translateY(-8px) scale(1.55)') 
-                : (hovered ? 'scale(1.05)' : 'scale(1)'),
+              transform: hovered ? 'scale(1.05)' : 'scale(1)',
               transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
             onError={() => setImgFailed(true)}
