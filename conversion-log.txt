@@ -1,0 +1,29 @@
+Image Conversion Log
+====================
+Finding and converting images in public/ directory recursively...
+Converting contact/2.jpg -> 2.webp
+✗ Failed to convert 2.jpg: Input file contains unsupported image format
+Converting https_/home prod/Caps and Closures.png -> Caps and Closures.webp
+✓ Deleted original Caps and Closures.png
+Converting https_/home prod/Dispenser Pumps.png -> Dispenser Pumps.webp
+✓ Deleted original Dispenser Pumps.png
+Converting https_/home prod/Flip off Seals.png -> Flip off Seals.webp
+✓ Deleted original Flip off Seals.png
+Converting https_/home prod/Glass Droppers.png -> Glass Droppers.webp
+✓ Deleted original Glass Droppers.png
+Converting https_/home prod/Measuring Caps & Oral Droppers.png -> Measuring Caps & Oral Droppers.webp
+✓ Deleted original Measuring Caps & Oral Droppers.png
+Converting https_/home prod/Mist & Cream Pumps.png -> Mist & Cream Pumps.webp
+✓ Deleted original Mist & Cream Pumps.png
+Converting https_/home prod/Nasal Delivery System.png -> Nasal Delivery System.webp
+✓ Deleted original Nasal Delivery System.png
+Converting https_/home prod/Ophthalmic Delivery System.png -> Ophthalmic Delivery System.webp
+✓ Deleted original Ophthalmic Delivery System.png
+Converting https_/home prod/Tablet Containers & Closures.png -> Tablet Containers & Closures.webp
+✓ Deleted original Tablet Containers & Closures.png
+Converting https_/home prod/Trigger Pumps.png -> Trigger Pumps.webp
+✓ Deleted original Trigger Pumps.png
+
+--- Updating codebase references in src/ ---
+
+✅ Process complete! All images converted and code updated.

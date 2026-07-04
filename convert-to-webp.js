@@ -69,3 +69,4 @@ async function updateReferences(dir) {
 
 // Ensure the process starts
 convertImages().catch(console.error);
+
