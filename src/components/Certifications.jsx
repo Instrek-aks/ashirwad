@@ -23,7 +23,7 @@ export default function Certifications() {
           </FadeIn>
 
           <FadeIn>
-            <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '42px', maxWidth: '140px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>

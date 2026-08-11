@@ -3,7 +3,6 @@ import FadeIn from './FadeIn'
 
 const heroImages = [
   '/cosmetic.gif',
-  '/pharm.gif',
   '/pharmaa.gif',
   '/Sustainbility.gif'
 ]

@@ -15,8 +15,12 @@ const clientBrands = [
   { name: 'Macleods', logo: '/v12.webp' }
 ]
 
+const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp']
+
 function ClientLogoCard({ brand, width }) {
   const [imgFailed, setImgFailed] = useState(false)
+  const isLarge = largeLogos.includes(brand.logo)
+  const isV2 = brand.logo === '/v2.webp'
 
   return (
     <div 
@@ -25,12 +29,12 @@ function ClientLogoCard({ brand, width }) {
         background: '#fff', 
         borderRadius: '12px', 
         border: '1px solid rgba(0,0,0,0.06)', 
-        padding: '20px 16px', 
+        padding: isV2 ? '0px' : (isLarge ? '6px 16px' : '20px 16px'), 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center', 
         minHeight: '85px', 
-        width: width || 'auto',
+        width: isV2 ? '220px' : (width || 'auto'), 
         boxShadow: 'var(--shadow-sm)', 
         transition: 'all 0.3s ease' 
       }}
@@ -39,7 +43,7 @@ function ClientLogoCard({ brand, width }) {
         <img 
           src={brand.logo} 
           alt={brand.name} 
-          style={{ maxHeight: '45px', maxWidth: '100%', objectFit: 'contain', display: 'block' }}
+          style={{ height: isV2 ? '85px' : 'auto', maxHeight: isV2 ? 'none' : (isLarge ? '72px' : '45px'), maxWidth: isV2 ? '165px' : '100%', objectFit: 'contain', display: 'block' }}
           onError={() => setImgFailed(true)}
         />
       ) : (

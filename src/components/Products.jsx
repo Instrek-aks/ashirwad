@@ -42,10 +42,10 @@ const productsList = [
     img: '/https_/home prod/Dispenser Pumps.webp'
   },
   {
-    id: 'trigger',
-    name: 'Trigger Pumps',
-    desc: 'Durable, ergonomic trigger pumps for personal care and industrial use.',
-    img: '/https_/home prod/Trigger Pumps.webp'
+    id: 'flipoff',
+    name: 'Flip off Seals',
+    desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
+    img: '/https_/home prod/Flip off Seals.webp'
   },
   {
     id: 'mist',
@@ -58,12 +58,6 @@ const productsList = [
     name: 'Caps and Closures',
     desc: 'A wide range of closures for safety, protection, and product integrity.',
     img: '/https_/home prod/Caps and Closures.webp'
-  },
-  {
-    id: 'flipoff',
-    name: 'Flip off Seals',
-    desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
-    img: '/https_/home prod/Flip off Seals.webp'
   }
 ]
 

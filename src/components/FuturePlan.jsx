@@ -32,7 +32,7 @@ export default function FuturePlan() {
         {/* Right Side: Checklist Content */}
         <div>
           <h2 className="section-title" style={{ fontSize: '32px', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '18px' }}>
-            Future Business Plan
+            Future Outlook &amp; Expansion
           </h2>
           <p className="section-desc" style={{ fontSize: '14.5px', color: 'var(--text-gray)', lineHeight: '1.75', marginBottom: '28px' }}>
             At Ashirwad Plastics, we are entering a new phase of growth from our advanced Baddi facility, driven by innovation and customer-centric solutions. With a strong export focus, we aim to be a global partner in pharmaceutical packaging, ensuring top standards of quality, security, and service.

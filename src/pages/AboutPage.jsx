@@ -363,7 +363,7 @@ function WeAreCertifiedBy() {
                 key={i} 
                 src={src} 
                 alt={`Certification ${i + 1}`} 
-                style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }}
+                style={{ height: src === '/nl.webp' ? '42px' : '60px', maxWidth: '140px', objectFit: 'contain' }}
               />
             ))}
           </div>
@@ -401,6 +401,9 @@ function OurValuableClients() {
 
   const renderClientCard = (client, width) => {
     const isFailed = failedImages[client.name]
+    const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp']
+    const isLarge = largeLogos.includes(client.logo)
+    const isV2 = client.logo === '/v2.webp'
 
     return (
       <div 
@@ -409,12 +412,12 @@ function OurValuableClients() {
           background: '#fff', 
           borderRadius: '12px', 
           border: '1px solid rgba(0,0,0,0.06)', 
-          padding: '20px 16px', 
+          padding: isV2 ? '0px' : (isLarge ? '6px 16px' : '20px 16px'), 
           display: 'flex', 
           alignItems: 'center', 
           justifyContent: 'center', 
           minHeight: '80px', 
-          width: width || 'auto',
+          width: isV2 ? '220px' : (width || 'auto'), 
           boxShadow: 'var(--shadow-sm)', 
           transition: 'all 0.3s ease' 
         }}
@@ -423,7 +426,7 @@ function OurValuableClients() {
           <img 
             src={client.logo} 
             alt={client.name} 
-            style={{ maxHeight: '42px', maxWidth: '100%', objectFit: 'contain', display: 'block' }}
+            style={{ height: isV2 ? '80px' : 'auto', maxHeight: isV2 ? 'none' : (isLarge ? '72px' : '42px'), maxWidth: isV2 ? '165px' : '100%', objectFit: 'contain', display: 'block' }}
             onError={() => handleImageError(client.name)}
           />
         ) : (
