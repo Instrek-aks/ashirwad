@@ -7,6 +7,7 @@ import VisionMission from './components/VisionMission'
 import Excellence from './components/Excellence'
 import Certifications from './components/Certifications'
 import Products from './components/Products'
+import Commitment from './components/Commitment'
 import Clients from './components/Clients'
 import FuturePlan from './components/FuturePlan'
 import Innovation from './components/Innovation'
@@ -56,6 +57,7 @@ function App() {
           <Excellence />
           <Certifications />
           <Products onNavigate={navigate} />
+          <Commitment />
           <Clients />
           <FuturePlan />
           <Innovation />

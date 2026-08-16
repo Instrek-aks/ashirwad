@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import Commitment from '../components/Commitment'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -17,42 +18,8 @@ function useFadeIn() {
 
 export default function ProductDevelopmentPage({ onNavigate }) {
   const [heroRef, heroVisible] = useFadeIn()
-  const [overviewRef, overviewVisible] = useFadeIn()
-  const [processRef, processVisible] = useFadeIn()
   const [bannerRef, bannerVisible] = useFadeIn()
   const [footerCtaRef, footerCtaVisible] = useFadeIn()
-
-  // Graceful fallback for missing local images
-  const handleImageError = (e, label) => {
-    e.target.style.display = 'none'
-    const parent = e.target.parentElement
-    if (parent && !parent.querySelector('.dev-img-fallback-badge')) {
-      const badge = document.createElement('div')
-      badge.className = 'dev-img-fallback-badge'
-      badge.style.width = '100%'
-      badge.style.height = '100%'
-      badge.style.display = 'flex'
-      badge.style.flexDirection = 'column'
-      badge.style.alignItems = 'center'
-      badge.style.justifyContent = 'center'
-      badge.style.background = 'rgba(255, 255, 255, 0.15)'
-      badge.style.color = '#FFFFFF'
-      badge.style.padding = '20px'
-      badge.style.textAlign = 'center'
-      badge.style.borderRadius = '20px'
-      badge.style.backdropFilter = 'blur(10px)'
-      badge.style.border = '1px solid rgba(255, 255, 255, 0.2)'
-      
-      badge.innerHTML = `
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 8px; opacity: 0.85;">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 8v8M8 12h8" />
-        </svg>
-        <span style="font-size: 13px; font-weight: 500; letter-spacing: 0.5px;">${label}</span>
-      `
-      parent.appendChild(badge)
-    }
-  }
 
   return (
     <div className="dev-page-wrapper">
@@ -96,149 +63,9 @@ export default function ProductDevelopmentPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 2. PROCESS OVERVIEW SECTION */}
-      <section className="dev-overview-section">
-        <div className="container">
-          <div ref={overviewRef} className={`dev-overview-content fade-section ${overviewVisible ? 'visible' : ''}`}>
-            <h2 className="dev-overview-title">Our Commitment to Precision and Excellence!</h2>
-            <p className="dev-overview-subtitle">Check out our videos for straightforward guidance.</p>
-          </div>
-        </div>
-      </section>
+      {/* Reusable Commitment & 5-Step Process Section */}
+      <Commitment />
 
-      {/* 3. FIVE-STEP DEVELOPMENT PROCESS CONTAINER */}
-      <section className="dev-process-section">
-        <div className="container">
-          <div ref={processRef} className={`dev-process-gradient-box fade-section ${processVisible ? 'visible' : ''}`}>
-            
-            {/* Step 1 */}
-            <div className="dev-step-row">
-              <div className="dev-step-left">
-                <div className="dev-step-number">Step1</div>
-                <h3 className="dev-step-heading">Initial Expert Consultation</h3>
-                <div className="dev-step-desc">
-                  <p>Initial packaging consultation process.</p>
-                  <p>Requirement gathering.</p>
-                  <p>Industry recommendations.</p>
-                  <p>Transportation considerations.</p>
-                  <p>Project assessment.</p>
-                </div>
-              </div>
-              <div className="dev-step-right">
-                <div className="dev-step-img-box">
-                  <img 
-                    src="/a0.webp" 
-                    alt="Initial Expert Consultation" 
-                    onError={(e) => handleImageError(e, "Consultation Team")}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="dev-step-divider" />
-
-            {/* Step 2 */}
-            <div className="dev-step-row">
-              <div className="dev-step-left">
-                <div className="dev-step-number">Step 2</div>
-                <h3 className="dev-step-heading">Customized Design Development</h3>
-                <div className="dev-step-desc">
-                  <p>Custom packaging development.</p>
-                  <p>Design strategy.</p>
-                  <p>Software-assisted planning.</p>
-                  <p>Precision engineering.</p>
-                  <p>Client collaboration.</p>
-                </div>
-              </div>
-              <div className="dev-step-right">
-                <div className="dev-step-img-box">
-                  <img 
-                    src="/a1.webp" 
-                    alt="Customized Design Development" 
-                    onError={(e) => handleImageError(e, "Design & Development Team")}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="dev-step-divider" />
-
-            {/* Step 3 */}
-            <div className="dev-step-row">
-              <div className="dev-step-left">
-                <div className="dev-step-number">Step 3</div>
-                <h3 className="dev-step-heading">Prototype Creation and Approval</h3>
-                <div className="dev-step-desc">
-                  <p>Prototype development.</p>
-                  <p>Client review.</p>
-                  <p>Testing and validation.</p>
-                  <p>Final design approval.</p>
-                </div>
-              </div>
-              <div className="dev-step-right">
-                <div className="dev-step-img-box">
-                  <img 
-                    src="/a3.webp" 
-                    alt="Prototype Creation and Approval" 
-                    onError={(e) => handleImageError(e, "Prototype Inspection")}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="dev-step-divider" />
-
-            {/* Step 4 */}
-            <div className="dev-step-row">
-              <div className="dev-step-left">
-                <div className="dev-step-number">Step 4</div>
-                <h3 className="dev-step-heading">High-Quality Production</h3>
-                <div className="dev-step-desc">
-                  <p>Automated manufacturing.</p>
-                  <p>Quality-controlled production.</p>
-                  <p>Precision processes.</p>
-                  <p>Industrial-grade packaging systems.</p>
-                </div>
-              </div>
-              <div className="dev-step-right">
-                <div className="dev-step-img-box">
-                  <img 
-                    src="/a4 (2).webp" 
-                    alt="High-Quality Production" 
-                    onError={(e) => handleImageError(e, "Automated Production")}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="dev-step-divider" />
-
-            {/* Step 5 */}
-            <div className="dev-step-row">
-              <div className="dev-step-left">
-                <div className="dev-step-number">Step5</div>
-                <h3 className="dev-step-heading">Comprehensive Quality Check</h3>
-                <div className="dev-step-desc">
-                  <p>Inspection process.</p>
-                  <p>Quality verification.</p>
-                  <p>Compliance review.</p>
-                  <p>Final approval before delivery.</p>
-                </div>
-              </div>
-              <div className="dev-step-right">
-                <div className="dev-step-img-box">
-                  <img 
-                    src="/a5.webp" 
-                    alt="Comprehensive Quality Check" 
-                    onError={(e) => handleImageError(e, "Quality Assurance")}
-                  />
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* 4. CTA BANNER SECTION */}
       <section className="cta-banner-section">
