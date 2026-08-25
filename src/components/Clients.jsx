@@ -86,7 +86,7 @@ export default function Clients() {
         </div>
 
         {/* Centered remaining clients on 3rd row */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
+        <div className="clients-bottom-row">
           {clientBrands.slice(10).map((brand, i) => (
             <FadeIn key={i}>
               <ClientLogoCard brand={brand} width="184px" />

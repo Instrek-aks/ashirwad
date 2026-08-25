@@ -942,6 +942,14 @@ body {
   letter-spacing: 0.5px;
 }
 
+.clients-bottom-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
 /* ========== 10. FUTURE PLAN ========== */
 .future-section {
   background: var(--white);
@@ -7439,8 +7447,17 @@ body {
   }
   
   .clients-grid-ref,
-  .about-clients-grid {
+  .about-clients-grid,
+  .clients-bottom-row {
     grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .clients-bottom-row {
+    display: grid;
+  }
+  
+  .client-logo-card {
+    width: 100% !important;
   }
   
   .vision-mission-row {
@@ -7497,8 +7514,13 @@ body {
   }
   
   .clients-grid-ref,
-  .about-clients-grid {
+  .about-clients-grid,
+  .clients-bottom-row {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .clients-bottom-row {
+    display: grid;
   }
 
   .hero-centered-title {
