@@ -7514,9 +7514,20 @@ body {
   }
   .hero-centered-layout {
     padding: 100px 0 0 0 !important;
-    min-height: 500px !important;
+    min-height: auto !important;
     display: flex !important;
     flex-direction: column !important;
+  }
+  .hero-centered-container {
+    padding-bottom: 50px !important;
+  }
+  .hero-centered-desc {
+    margin-bottom: 20px !important;
+    font-size: 15px !important;
+  }
+  .btn-primary-centered {
+    padding: 10px 24px !important;
+    font-size: 14px !important;
   }
   .hero-careers-ticker-centered {
     margin-top: auto !important;
