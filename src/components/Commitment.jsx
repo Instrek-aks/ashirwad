@@ -71,7 +71,7 @@ export default function Commitment() {
             {/* Step 1 */}
             <div className="dev-step-row">
               <div className="dev-step-left">
-                <div className="dev-step-number">Step1</div>
+                <div className="dev-step-number">Step 1</div>
                 <h3 className="dev-step-heading">Initial Expert Consultation</h3>
                 <div className="dev-step-desc">
                   <p>
@@ -167,7 +167,7 @@ export default function Commitment() {
             {/* Step 5 */}
             <div className="dev-step-row">
               <div className="dev-step-left">
-                <div className="dev-step-number">Step5</div>
+                <div className="dev-step-number">Step 5</div>
                 <h3 className="dev-step-heading">Comprehensive Quality Check</h3>
                 <div className="dev-step-desc">
                   <p>
