@@ -396,7 +396,9 @@ function OurValuableClients() {
     { name: 'Client 13', logo: '/nl.png' },
     { name: 'Client 14', logo: '/lc1.png' },
     { name: 'Client 15', logo: '/lc2.png' },
-    { name: 'Client 16', logo: '/lc3.png' }
+    { name: 'Client 16', logo: '/lc3.png' },
+    { name: 'Client 17', logo: '/lc4.png' },
+    { name: 'Client 18', logo: '/lc5.png' }
   ]
 
   const handleImageError = (name) => {
