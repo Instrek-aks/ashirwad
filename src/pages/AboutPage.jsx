@@ -392,7 +392,11 @@ function OurValuableClients() {
     { name: 'Pure & Cure', logo: '/v10.webp' },
     { name: 'Synokem', logo: '/v11.webp' },
     { name: 'Macleods', logo: '/v12.webp' },
-    { name: 'Pontika', logo: '/v6.webp' } // fails and falls back to text 'Pontika'
+    { name: 'Pontika', logo: '/v6.webp' }, // fails and falls back to text 'Pontika'
+    { name: 'Client 13', logo: '/nl.png' },
+    { name: 'Client 14', logo: '/lc1.png' },
+    { name: 'Client 15', logo: '/lc2.png' },
+    { name: 'Client 16', logo: '/lc3.png' }
   ]
 
   const handleImageError = (name) => {
@@ -401,7 +405,7 @@ function OurValuableClients() {
 
   const renderClientCard = (client, width) => {
     const isFailed = failedImages[client.name]
-    const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp']
+    const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp', '/lc1.png']
     const isLarge = largeLogos.includes(client.logo)
     const isV2 = client.logo === '/v2.webp'
 

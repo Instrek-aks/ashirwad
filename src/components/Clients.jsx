@@ -12,10 +12,14 @@ const clientBrands = [
   { name: 'Immacule', logo: '/v9.webp' },
   { name: 'Pure & Cure', logo: '/v10.webp' },
   { name: 'Synokem', logo: '/v11.webp' },
-  { name: 'Macleods', logo: '/v12.webp' }
+  { name: 'Macleods', logo: '/v12.webp' },
+  { name: 'Client 12', logo: '/nl.png' },
+  { name: 'Client 13', logo: '/lc1.png' },
+  { name: 'Client 14', logo: '/lc2.png' },
+  { name: 'Client 15', logo: '/lc3.png' }
 ]
 
-const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp']
+const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp', '/lc1.png']
 
 function ClientLogoCard({ brand, width }) {
   const [imgFailed, setImgFailed] = useState(false)
@@ -79,8 +83,8 @@ export default function Clients() {
           ))}
         </div>
 
-        {/* Centered remaining 1 client on 3rd row */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
+        {/* Centered remaining clients on 3rd row */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
           {clientBrands.slice(10).map((brand, i) => (
             <FadeIn key={i}>
               <ClientLogoCard brand={brand} width="184px" />
