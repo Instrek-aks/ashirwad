@@ -908,11 +908,18 @@ body {
   background-color: var(--bg-gray);
 }
 
-.clients-grid-ref {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+.clients-grid-ref,
+.about-clients-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  margin-top: 40px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+.clients-grid-ref > *,
+.about-clients-grid > * {
+  width: calc(20% - 16px);
 }
 
 .client-logo-card {
@@ -7351,14 +7358,7 @@ body {
   align-items: start;
 }
 
-.clients-grid-ref,
-.about-clients-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+/* Consolidating about-clients-grid and clients-grid-ref */
 
 .vision-mission-row {
   display: grid;
@@ -7392,9 +7392,9 @@ body {
     gap: 40px;
   }
   
-  .clients-grid-ref,
-  .about-clients-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .clients-grid-ref > *,
+  .about-clients-grid > * {
+    width: calc(25% - 15px);
   }
 }
 
@@ -7446,18 +7446,9 @@ body {
     gap: 40px;
   }
   
-  .clients-grid-ref,
-  .about-clients-grid,
-  .clients-bottom-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .clients-bottom-row {
-    display: grid;
-  }
-  
-  .client-logo-card {
-    width: 100% !important;
+  .clients-grid-ref > *,
+  .about-clients-grid > * {
+    width: calc(33.333% - 13.33px);
   }
   
   .vision-mission-row {
@@ -7513,14 +7504,9 @@ body {
     grid-template-columns: 1fr;
   }
   
-  .clients-grid-ref,
-  .about-clients-grid,
-  .clients-bottom-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .clients-bottom-row {
-    display: grid;
+  .clients-grid-ref > *,
+  .about-clients-grid > * {
+    width: calc(50% - 10px);
   }
 
   .hero-centered-title {

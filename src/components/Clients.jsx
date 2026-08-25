@@ -35,12 +35,12 @@ function ClientLogoCard({ brand, width }) {
         background: '#fff', 
         borderRadius: '12px', 
         border: '1px solid rgba(0,0,0,0.06)', 
-        padding: isV2 ? '0px' : (isLarge ? '6px 16px' : '20px 16px'), 
+        padding: '24px 20px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center', 
-        minHeight: '85px', 
-        width: isV2 ? '220px' : (width || 'auto'), 
+        minHeight: '130px', 
+        width: '100%',
         boxShadow: 'var(--shadow-sm)', 
         transition: 'all 0.3s ease' 
       }}
@@ -49,7 +49,14 @@ function ClientLogoCard({ brand, width }) {
         <img 
           src={brand.logo} 
           alt={brand.name} 
-          style={{ height: isV2 ? '85px' : 'auto', maxHeight: isV2 ? 'none' : (isLarge ? '72px' : '45px'), maxWidth: isV2 ? '165px' : '100%', objectFit: 'contain', display: 'block' }}
+          style={{ 
+            width: '85%', 
+            height: '85%', 
+            maxHeight: '90px', 
+            objectFit: 'contain', 
+            display: 'block',
+            transform: brand.logo === '/v2.webp' ? 'scale(1.25)' : 'none'
+          }}
           onError={() => setImgFailed(true)}
         />
       ) : (
@@ -77,19 +84,9 @@ export default function Clients() {
 
         {/* Clients Grid Layout */}
         <div className="clients-grid-ref">
-          {/* Main 10 clients on first two rows */}
-          {clientBrands.slice(0, 10).map((brand, i) => (
+          {clientBrands.map((brand, i) => (
             <FadeIn key={i}>
               <ClientLogoCard brand={brand} />
-            </FadeIn>
-          ))}
-        </div>
-
-        {/* Centered remaining clients on 3rd row */}
-        <div className="clients-bottom-row">
-          {clientBrands.slice(10).map((brand, i) => (
-            <FadeIn key={i}>
-              <ClientLogoCard brand={brand} width="184px" />
             </FadeIn>
           ))}
         </div>

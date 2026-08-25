@@ -418,12 +418,12 @@ function OurValuableClients() {
           background: '#fff', 
           borderRadius: '12px', 
           border: '1px solid rgba(0,0,0,0.06)', 
-          padding: isV2 ? '0px' : (isLarge ? '6px 16px' : '20px 16px'), 
+          padding: '24px 20px', 
           display: 'flex', 
           alignItems: 'center', 
           justifyContent: 'center', 
-          minHeight: '80px', 
-          width: isV2 ? '220px' : (width || 'auto'), 
+          minHeight: '130px', 
+          width: '100%',
           boxShadow: 'var(--shadow-sm)', 
           transition: 'all 0.3s ease' 
         }}
@@ -432,7 +432,14 @@ function OurValuableClients() {
           <img 
             src={client.logo} 
             alt={client.name} 
-            style={{ height: isV2 ? '80px' : 'auto', maxHeight: isV2 ? 'none' : (isLarge ? '72px' : '42px'), maxWidth: isV2 ? '165px' : '100%', objectFit: 'contain', display: 'block' }}
+            style={{ 
+              width: '85%', 
+              height: '85%', 
+              maxHeight: '90px', 
+              objectFit: 'contain', 
+              display: 'block',
+              transform: client.logo === '/v2.webp' ? 'scale(1.25)' : 'none'
+            }}
             onError={() => handleImageError(client.name)}
           />
         ) : (
@@ -458,20 +465,10 @@ function OurValuableClients() {
           </p>
         </div>
 
-        {/* 5-Column Grid for main 10 clients */}
         <div className="about-clients-grid">
-          {clients.slice(0, 10).map((client, i) => (
+          {clients.map((client, i) => (
             <div key={i}>
               {renderClientCard(client)}
-            </div>
-          ))}
-        </div>
-
-        {/* Centered remaining 2 clients on bottom row */}
-        <div className="clients-bottom-row">
-          {clients.slice(10).map((client, i) => (
-            <div key={i}>
-              {renderClientCard(client, '184px')}
             </div>
           ))}
         </div>
