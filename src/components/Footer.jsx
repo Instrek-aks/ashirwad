@@ -144,10 +144,28 @@ export default function Footer({ page, onNavigate }) {
 
         {/* Footer Bottom Copyright & Social Links */}
         <div className="footer-bottom-ref" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-          <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', flexGrow: 1 }}>
-            © 2024 ashirwadplastics.com | Designed &amp; Managed by{' '}
-            Instrek Technology.
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', flexGrow: 1 }}>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)' }}>
+              © 2024 ashirwadplastics.com | Designed &amp; Managed by{' '}
+              Instrek Technology.
+            </span>
+            <a
+              href="#admin"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate('admin');
+              }}
+              style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#93c5fd'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <span>Admin Portal</span>
+            </a>
+          </div>
           <div className="footer-socials" style={{ display: 'flex', gap: '10px' }}>
             
             {/* LinkedIn */}

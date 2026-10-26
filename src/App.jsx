@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import GlobalPresence from './components/GlobalPresence'
@@ -36,13 +36,40 @@ import DispenserProductPage from './pages/DispenserProductPage'
 import TriggerProductPage from './pages/TriggerProductPage'
 import MistCreamProductPage from './pages/MistCreamProductPage'
 import CapsClosuresProductPage from './pages/CapsClosuresProductPage'
+import AdminPage from './pages/AdminPage'
 
 function App() {
-  const [page, setPage] = useState('home')
+  const [page, setPage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '').toLowerCase()
+      if (hash === 'admin' || hash === '/admin') return 'admin'
+    }
+    return 'home'
+  })
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '').toLowerCase()
+      if (hash === 'admin' || hash === '/admin') {
+        setPage('admin')
+      }
+    }
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [])
 
   const navigate = (target) => {
     setPage(target)
+    if (target === 'admin') {
+      window.location.hash = 'admin'
+    } else if (window.location.hash.includes('admin')) {
+      history.pushState('', document.title, window.location.pathname + window.location.search)
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  if (page === 'admin') {
+    return <AdminPage onNavigate={navigate} />
   }
 
   return (
