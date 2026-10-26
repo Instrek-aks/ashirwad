@@ -30,16 +30,14 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/o.webp"
+    "/Product_Images/image7.jpeg"
   ]
 
-  // Gallery images (simulated product variants)
+  // Gallery images (removed 3rd and 5th items as per Change Request)
   const galleryImages = [
     { src: "/d1.webp", label: "Ophthalmic Delivery System" },
     { src: "/d2.webp", label: "Ophthalmic Bottle 5ml" },
-    { src: "/d3.webp", label: "Ophthalmic Bottle 7ml" },
     { src: "/d4.webp", label: "Ophthalmic Bottle 10ml" },
-    { src: "/d5.webp", label: "Ophthalmic Bottle 15ml" },
     { src: "/d6.webp", label: "CRC Closure Detail" }
   ]
 
@@ -76,9 +74,14 @@ export default function OphthalmicProductPage({ onNavigate }) {
   const productsList = [
     { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
     { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
+    { name: 'Trigger Pumps ↗', path: 'product-trigger' },
+    { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+    { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
   ]
 
   return (
@@ -87,7 +90,9 @@ export default function OphthalmicProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/o.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Product_Images/image7.jpeg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -143,7 +148,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
           <div className={`op-overview-content fade-section ${overviewVisible ? 'visible' : ''}`}>
             <h2 className="op-overview-title">Precision Packaging for Ophthalmic Applications</h2>
             <p className="op-overview-subtitle">
-              Ashirwad Plastics offers advanced ophthalmic delivery systems engineered to ensure sterility, dosage accuracy, and product safety. Designed for pharmaceutical-grade applications, our solutions meet stringent quality and regulatory standards for reliable eye-care packaging
+              Ashirwad Plastics offers advanced ophthalmic delivery systems engineered to ensure sterility, dosage accuracy, and product safety. Designed for pharmaceutical-grade applications, our solutions meet stringent quality and regulatory standards for reliable eye-care packaging.
             </p>
 
             {/* Product Showcase Card */}
@@ -179,7 +184,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our ophthalmic packaging range is manufactured using high-quality pharmaceutical-grade materials within controlled manufacturing environments. Engineered for precision and patient safety, these solutions are ideal for ophthalmic formulations requiring contamination-free dispensing and secure closures.
+                Our ophthalmic delivery systems are designed to support precise dispensing, product integrity and reliable performance. Manufactured in a GMP-compliant facility, our eye dropper bottles offer quality-driven packaging solutions for pharmaceutical applications, supported by US DMF and Health Canada DMF documentation.
               </p>
 
               {/* Product Specifications Badges */}
@@ -187,20 +192,19 @@ export default function OphthalmicProductPage({ onNavigate }) {
                 <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
                   <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Sizes</span>
                   <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>5 ml ↗</span>
-                    <span className="op-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>7 ml ↗</span>
-                    <span className="op-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>10 ml ↙</span>
-                    <span className="op-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>15 ml ↗</span>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>5 ml</span>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>7 ml</span>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>10 ml</span>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>15 ml</span>
                   </div>
                 </div>
 
                 <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Components</span>
+                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Closure Options</span>
                   <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">Dropper Bottles</span>
-                    <span className="op-pill">CRC Closures</span>
-                    <span className="op-pill">Tamper-Evident Closures</span>
-                    <span className="op-pill">Tear-Off TE Closures</span>
+                    <span className="op-pill">CRC (Child-Resistant Closures)</span>
+                    <span className="op-pill">Tamper-Evident Systems</span>
+                    <span className="op-pill">Tear-Off Tamper-Evident</span>
                   </div>
                 </div>
               </div>
@@ -259,88 +263,43 @@ export default function OphthalmicProductPage({ onNavigate }) {
               <div className="op-feature-card op-card-light">
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>High-precision dispensing performance</span>
-                  </div>
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Tamper-evident safety systems</span>
-                  </div>
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Leak-resistant packaging design</span>
-                  </div>
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Pharmaceutical-grade raw materials</span>
-                  </div>
+                  {[
+                    "Cleanroom Manufacturing: Class 100,000 cleanroom production with automated processes.",
+                    "Formulation Compatibility: Suitable for ophthalmic solutions and suspensions.",
+                    "Closure Options: CRC, tamper-evident and tear-off tamper-evident systems.",
+                    "Preservative-Free Options: Configurations available for compatible applications.",
+                    "Flexible Packaging: Polybags, Tyvek bags and beta bags.",
+                    "Sterilisation Options: ETO and gamma sterilisation, subject to validation.",
+                    "Regulatory Support: US DMF and Health Canada DMF documentation."
+                  ].map((feat, idx) => (
+                    <div key={idx} className="op-feature-item" style={{ alignItems: 'flex-start' }}>
+                      <span className="op-check-icon" style={{ marginTop: '2px' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                      <span style={{ fontSize: '14px', lineHeight: '1.5' }}>{feat}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Right Card: Applications */}
+              {/* Right Card: Designed for Pharmaceutical Needs */}
               <div className="op-feature-card op-card-navy">
-                <h3>Applications Suitable for:</h3>
-                <div className="op-feature-list">
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Eye Drops</span>
+                <h3>Designed for Pharmaceutical Needs</h3>
+                <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '15px', lineHeight: '1.8', marginBottom: '24px' }}>
+                  Combining dependable quality with flexible configurations, our ophthalmic delivery systems meet diverse pharmaceutical packaging requirements with a focus on safety, functionality and reliability.
+                </p>
+                <div style={{ padding: '18px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#93C5FD', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Regulatory &amp; Cleanroom Quality
                   </div>
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Ophthalmic Solutions</span>
-                  </div>
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Sterile Pharmaceutical Formulations</span>
-                  </div>
-                  <div className="op-feature-item">
-                    <span className="op-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Prescription &amp; OTC Eye Care Products</span>
+                  <div style={{ fontSize: '13.5px', color: 'rgba(255, 255, 255, 0.88)', lineHeight: '1.6' }}>
+                    Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
                   </div>
                 </div>
               </div>
 
-            </div>
-
-            {/* Manufacturing Text Below Cards */}
-            <div className="op-manufacturing-standards">
-              <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
-              <div className="op-mfg-desc">
-                Our ophthalmic products are manufactured under strict GMP compliance protocols. We implement high-speed automated assembly lines and multi-stage optoelectronic dimensional checks to guarantee absolute defect-free packaging safety for global pharmaceutical clients.
-              </div>
             </div>
 
           </div>
@@ -369,7 +328,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
                   </tr>
                   <tr>
                     <td>Sizes Available</td>
-                    <td>5 ml, 6 ml, 10 ml, 15 ml</td>
+                    <td>5 ml, 7 ml, 10 ml, 15 ml</td>
                   </tr>
                   <tr>
                     <td>Material</td>

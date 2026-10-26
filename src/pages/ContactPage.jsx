@@ -165,8 +165,6 @@ export default function ContactPage({ onNavigate }) {
                   <span className="contact-info-label">PHONE NUMBER</span>
                   <div className="contact-info-phones">
                     <a href="tel:01725014551" className="contact-info-link">0172 5014551</a>
-                    <a href="tel:7888697033" className="contact-info-link">7888697033</a>
-                    <a href="tel:7888697034" className="contact-info-link">7888697034</a>
                   </div>
                 </div>
 

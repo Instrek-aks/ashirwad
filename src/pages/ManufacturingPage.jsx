@@ -123,9 +123,15 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b1.webp" 
-                  alt="Manufacturing Process" 
-                  onError={(e) => handleImageError(e, "Manufacturing Process")}
+                  src="/Product_Images/manufacturing_quality.webp" 
+                  alt="Manufacturing Quality Control Process" 
+                  onError={(e) => {
+                    if (e.target.src !== window.location.origin + '/b1.webp') {
+                      e.target.src = '/b1.webp'
+                    } else {
+                      handleImageError(e, "Manufacturing Quality Control Process")
+                    }
+                  }}
                 />
               </div>
             </div>

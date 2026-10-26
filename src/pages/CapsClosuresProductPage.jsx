@@ -32,18 +32,22 @@ export default function CapsClosuresProductPage({ onNavigate }) {
     "/Caps and Closures.webp"
   ]
 
-  // Gallery images (simulated product variants)
+  // Gallery images (simulated product variants + Item 26 filter proof caps)
   const galleryImages = [
+    { src: "/Product_Images/filter_proof_caps.webp", fallback: "/Caps and Closures.webp", label: "Filter Proof Caps" },
     { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Flip-Top Cap Model" },
     { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Standard Screw Cap" },
     { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Child-Resistant CRC Cap" },
     { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Tamper-Evident Closure" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Sealing Liner Detail" },
     { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Multiple Sizes Display" }
   ]
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
+    if (e.target.src.includes('filter_proof_caps.webp')) {
+      e.target.src = '/Caps and Closures.webp'
+      return
+    }
     e.target.style.display = 'none'
     const parent = e.target.parentElement
     if (parent && !parent.querySelector('.op-img-fallback-badge')) {
@@ -75,9 +79,14 @@ export default function CapsClosuresProductPage({ onNavigate }) {
   const productsList = [
     { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
     { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
+    { name: 'Trigger Pumps ↗', path: 'product-trigger' },
+    { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+    { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
   ]
 
   return (

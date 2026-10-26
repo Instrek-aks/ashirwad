@@ -75,9 +75,14 @@ export default function FlipOffProductPage({ onNavigate }) {
   const productsList = [
     { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
     { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
+    { name: 'Trigger Pumps ↗', path: 'product-trigger' },
+    { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+    { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
   ]
 
   return (
@@ -166,6 +171,14 @@ export default function FlipOffProductPage({ onNavigate }) {
 
               {/* Product Specifications Badges */}
               <div className="op-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
+                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
+                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Sizes</span>
+                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>13 mm</span>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>20 mm</span>
+                  </div>
+                </div>
+
                 <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
                   <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Color Options</span>
                   <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>

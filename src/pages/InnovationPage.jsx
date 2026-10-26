@@ -84,11 +84,11 @@ export default function InnovationPage({ onNavigate }) {
           <nav className="mfg-breadcrumb" style={{ margin: 0 }}>
             <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
             <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">INNOVATION</span>
+            <span className="breadcrumb-active">R&amp;D AND INNOVATION</span>
           </nav>
-          <h1 className="mfg-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Innovation</h1>
+          <h1 className="mfg-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>R&amp;D and Innovation</h1>
           <p className="mfg-hero-desc" style={{ margin: 0, maxWidth: '640px' }}>
-            Redefining what is possible in pharmaceutical packaging. Innovation is the lifeblood of Ashirwad Plastics.
+            Redefining what is possible in pharmaceutical packaging. Innovation and R&amp;D are the lifeblood of Ashirwad Plastics.
           </p>
         </div>
       </section>
@@ -100,28 +100,34 @@ export default function InnovationPage({ onNavigate }) {
             
             <div className="mfg-overview-left">
               <div className="mfg-accent-line" />
-              <h2 className="mfg-section-title">Fostering a Culture of Innovation</h2>
+              <h2 className="mfg-section-title">Fostering a Culture of R&amp;D and Innovation</h2>
               <p className="mfg-overview-paragraph">
-                Innovation is the lifeblood of Ashirwad Plastics. We believe that true innovation goes beyond creating new products - it is about solving real problems, meeting evolving challenges, and delivering solutions that make a meaningful difference.
+                Innovation drives our business forward. Through continuous R&amp;D investments, we develop innovative, customer-focused product lines that meet evolving industry needs and enhance our clients' product portfolios and brand value.
               </p>
               <p className="mfg-overview-paragraph">
-                From advanced materials to smarter processes, innovation shapes the way we work, the products we create, and the future we are building.
+                From advanced materials to smarter cleanroom processes, our R&amp;D and engineering teams explore new frontiers to solve real problems, meeting strict pharmaceutical tolerances and delivering solutions that make a meaningful difference.
               </p>
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
                 className="mfg-cta-link"
               >
-                Learn More About Innovation <span className="mfg-cta-arrow">→</span>
+                Learn More About Our R&amp;D <span className="mfg-cta-arrow">→</span>
               </a>
             </div>
 
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/innovation/2.webp" 
-                  alt="Innovation Lab" 
-                  onError={(e) => handleImageError(e, "Innovation Lab")}
+                  src="/Product_Images/36.png" 
+                  alt="R&D and Innovation Lab" 
+                  onError={(e) => {
+                    if (e.target.src !== window.location.origin + '/innovation/2.webp') {
+                      e.target.src = '/innovation/2.webp'
+                    } else {
+                      handleImageError(e, "R&D and Innovation Lab")
+                    }
+                  }}
                 />
               </div>
             </div>

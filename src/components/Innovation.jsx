@@ -59,11 +59,11 @@ export default function Innovation() {
           <FadeIn>
             <div className="innovation-img-box" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-xl)', border: '1px solid rgba(255, 255, 255, 0.15)', aspectRatio: '1.15', backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
               <img 
-                src="/f2.webp" 
+                src="/Product_Images/innovating_pharma_packaging.webp" 
                 alt="High-Precision Manufacturing Mold Assembly" 
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 onError={(e) => {
-                  e.target.style.display = 'none';
+                  e.target.src = "/f2.webp";
                 }}
               />
               <div className="img-fallback-label" style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '13px', fontWeight: 600, textAlign: 'center', padding: '40px 20px' }}>

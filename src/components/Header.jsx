@@ -196,7 +196,7 @@ export default function Header({ page, onNavigate }) {
               <div className={`nav-dropdown-menu ${marketOpen ? 'mobile-expanded' : ''}`}>
                 <a href="#" onClick={e => goTo(e, 'market-pharma')}>Pharma Market</a>
                 <a href="#" onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic Market</a>
-                <a href="#" onClick={e => goTo(e, 'market-homecare')}>Home Care Industry</a>
+                <a href="#" onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical Market</a>
               </div>
             </div>
 
@@ -234,17 +234,16 @@ export default function Header({ page, onNavigate }) {
                 <a href="#" onClick={e => goTo(e, 'expertise-manufacturing')}>Manufacturing</a>
                 <a href="#" onClick={e => goTo(e, 'expertise-sustainability')}>Sustainability</a>
                 <a href="#" onClick={e => goTo(e, 'expertise-quality')}>Quality Assurance</a>
-                <a href="#" onClick={e => goTo(e, 'expertise-innovation')}>Innovation</a>
-                <a href="#" onClick={e => goTo(e, 'expertise-rd')}>Research &amp; Development</a>
+                <a href="#" onClick={e => goTo(e, 'expertise-rd-innovation')}>R&amp;D and Innovation</a>
               </div>
             </div>
 
             <a
               href="#"
-              className={page === 'presence' ? 'active' : ''}
-              onClick={e => goTo(e, 'presence')}
+              className={page === 'expertise' || page === 'presence' ? 'active' : ''}
+              onClick={e => goTo(e, 'expertise')}
               style={{ fontWeight: '450', color: '#1F2937' }}
-            >Global Presence</a>
+            >New Product Development</a>
 
             <div 
               className={`nav-dropdown-wrapper dropdown-right ${moreOpen ? 'open accordion-open' : ''}`}
@@ -253,7 +252,7 @@ export default function Header({ page, onNavigate }) {
             >
               <a
                 href="#"
-                className={page === 'career' || page === 'expertise' || page === 'event' ? 'active' : ''}
+                className={page === 'career' || page === 'event' || page === 'presence' ? 'active' : ''}
                 onClick={e => {
                   e.preventDefault();
                   if (window.innerWidth <= 1024) {
@@ -278,8 +277,8 @@ export default function Header({ page, onNavigate }) {
               </a>
               <div className={`nav-dropdown-menu ${moreOpen ? 'mobile-expanded' : ''}`}>
                 <a href="#" onClick={e => goTo(e, 'career')}>Careers</a>
-                <a href="#" onClick={e => goTo(e, 'expertise')}>New Product Development</a>
                 <a href="#" onClick={e => goTo(e, 'event')}>CPHI-PMEC Event</a>
+                <a href="#" onClick={e => goTo(e, 'presence')}>Global Presence</a>
               </div>
             </div>
 

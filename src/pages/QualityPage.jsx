@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import BottomCertifications from '../components/BottomCertifications'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -120,9 +121,15 @@ export default function QualityPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/b1.webp" 
+                  src="/Product_Images/32.png" 
                   alt="Quality Lab Testing" 
-                  onError={(e) => handleImageError(e, "Quality Lab Testing")}
+                  onError={(e) => {
+                    if (e.target.src !== window.location.origin + '/quality/1.webp') {
+                      e.target.src = '/quality/1.webp'
+                    } else {
+                      handleImageError(e, "Quality Lab Testing")
+                    }
+                  }}
                 />
               </div>
             </div>
@@ -132,41 +139,7 @@ export default function QualityPage({ onNavigate }) {
       </section>
 
       {/* 3. CERTIFICATIONS SECTION */}
-      <section className="gp-cert-section" style={{ backgroundColor: '#fff', padding: '60px 0', borderTop: '1px solid var(--border-gray)', borderBottom: '1px solid var(--border-gray)' }}>
-        <div className="container">
-          <div ref={certRef} className={`gp-cert-content fade-section ${certVisible ? 'visible' : ''}`}>
-            <h2 className="gp-cert-title" style={{ textAlign: 'center', fontSize: '24px', marginBottom: '32px' }}>Our Certifications</h2>
-            <div className="gp-cert-row" style={{ display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap' }}>
-              
-              <div className="gp-cert-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '14px', fontWeight: 'bold' }}>ISO 15378:2017</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>Primary Packaging Materials for Medicinal Products</span>
-              </div>
-
-              <div className="gp-cert-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '14px', fontWeight: 'bold' }}>ISO 9001:2015</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>Quality Management Systems</span>
-              </div>
-
-              <div className="gp-cert-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '14px', fontWeight: 'bold' }}>US DMF</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>Drug Master File Registration</span>
-              </div>
-
-              <div className="gp-cert-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '14px', fontWeight: 'bold' }}>Canada DMF</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>Drug Master File Registration</span>
-              </div>
-
-              <div className="gp-cert-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '14px', fontWeight: 'bold' }}>CGMP</span>
-                <span style={{ fontSize: '11px', color: '#666' }}>Current Good Manufacturing Practice</span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
+      <BottomCertifications />
 
       {/* 4. RETAINING QUALITY GRID (2x2) */}
       <section className="mfg-capabilities-section">

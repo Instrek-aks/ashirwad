@@ -22,6 +22,34 @@ export default function SustainabilityPage({ onNavigate }) {
   const [gridRef, gridVisible] = useFadeIn()
   const [commitmentRef, commitmentVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
+  const [galleryRef, galleryVisible] = useFadeIn()
+
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const galleryItems = [
+    { img: '/sustainibility/1.webp' },
+    { img: '/sustainibility/2.webp' },
+    { img: '/sustainibility/3.webp' },
+    { img: '/sustainibility/4.webp' },
+    { img: '/sustainibility/5.webp' },
+    { img: '/sustainibility/6.webp' },
+    { img: '/sustainibility/7.webp' },
+    { img: '/sustainibility/8.webp' }
+  ]
+
+  const maxSlide = Math.max(0, galleryItems.length - 3)
+
+  useEffect(() => {
+    if (isPaused) return
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [isPaused, maxSlide])
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
+  const prevSlide = () => setCurrentSlide((prev) => (prev <= 0 ? maxSlide : prev - 1))
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
@@ -117,11 +145,22 @@ export default function SustainabilityPage({ onNavigate }) {
               </a>
             </div>
 
+            {/* Right Column: Single Prominent Image */}
             <div className="mfg-overview-right">
-              <div className="mfg-facility-img-box">
+              <div 
+                className="mfg-facility-img-box" 
+                style={{ 
+                  borderRadius: '20px', 
+                  overflow: 'hidden', 
+                  height: '100%', 
+                  minHeight: '380px',
+                  boxShadow: '0 12px 32px rgba(0, 0, 0, 0.08)'
+                }}
+              >
                 <img 
                   src="/sustainibility/7.webp" 
                   alt="Environmental Responsibility" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   onError={(e) => handleImageError(e, "Environmental Responsibility")}
                 />
               </div>
@@ -233,7 +272,227 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 4. COMMITMENT BEYOND THE ENVIRONMENT */}
+      {/* 4. SUSTAINABILITY IN ACTION: COMPACT MULTI-CARD CAROUSEL GALLERY */}
+      <section 
+        className="sustainability-gallery-section" 
+        ref={galleryRef}
+        style={{ 
+          backgroundColor: '#F8FAFC', 
+          padding: '40px 0', 
+          borderTop: '1px solid #E2E8F0',
+          borderBottom: '1px solid #E2E8F0'
+        }}
+      >
+        <div className="container">
+          <div className={`fade-section ${galleryVisible ? 'visible' : ''}`}>
+            
+            {/* Header with Title on Left, Controls on Right */}
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'flex-end', 
+              marginBottom: '20px',
+              flexWrap: 'wrap',
+              gap: '12px'
+            }}>
+              <div>
+                <div style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '6px', 
+                  background: 'rgba(34, 197, 94, 0.1)', 
+                  color: '#16A34A', 
+                  borderRadius: '20px', 
+                  padding: '3px 12px', 
+                  fontSize: '11.5px', 
+                  fontWeight: 600, 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.8px',
+                  marginBottom: '6px'
+                }}>
+                  Sustainability In Action
+                </div>
+                <h2 style={{ fontSize: '26px', fontWeight: 700, color: '#0F172A', margin: 0, letterSpacing: '-0.5px' }}>
+                  Eco-Initiatives &amp; Facility Gallery
+                </h2>
+              </div>
+
+              {/* Prev / Next Controls */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '12.5px', fontWeight: 600, color: '#64748B', marginRight: '6px' }}>
+                  {currentSlide + 1} - {Math.min(currentSlide + 3, galleryItems.length)} of {galleryItems.length}
+                </span>
+                <button 
+                  onClick={prevSlide}
+                  aria-label="Previous Slide"
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    background: '#FFFFFF',
+                    border: '1px solid #CBD5E1',
+                    color: '#0F172A',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#22C55E'
+                    e.currentTarget.style.borderColor = '#22C55E'
+                    e.currentTarget.style.color = '#FFFFFF'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#FFFFFF'
+                    e.currentTarget.style.borderColor = '#CBD5E1'
+                    e.currentTarget.style.color = '#0F172A'
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={nextSlide}
+                  aria-label="Next Slide"
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    background: '#FFFFFF',
+                    border: '1px solid #CBD5E1',
+                    color: '#0F172A',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#22C55E'
+                    e.currentTarget.style.borderColor = '#22C55E'
+                    e.currentTarget.style.color = '#FFFFFF'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#FFFFFF'
+                    e.currentTarget.style.borderColor = '#CBD5E1'
+                    e.currentTarget.style.color = '#0F172A'
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Multi-Card Carousel Viewport */}
+            <div 
+              style={{
+                position: 'relative',
+                overflow: 'hidden',
+                borderRadius: '16px',
+                padding: '4px 2px'
+              }}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div 
+                className="sustainability-carousel-track"
+                style={{
+                  display: 'flex',
+                  gap: '16px',
+                  transform: `translateX(calc(-${currentSlide} * (33.3333% + 5.33px)))`,
+                  transition: 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                }}
+              >
+                {galleryItems.map((item, idx) => (
+                  <div 
+                    key={idx}
+                    className="sustainability-card-item"
+                    style={{
+                      flex: '0 0 calc((100% - 32px) / 3)',
+                      background: '#FFFFFF',
+                      borderRadius: '14px',
+                      border: '1px solid #E2E8F0',
+                      padding: '8px',
+                      boxShadow: '0 2px 10px rgba(15, 23, 42, 0.04)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      boxSizing: 'border-box',
+                      transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-3px)'
+                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(15, 23, 42, 0.08)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = '0 2px 10px rgba(15, 23, 42, 0.04)'
+                    }}
+                  >
+                    {/* Uncropped Image Box: contain ensures 100% complete visibility */}
+                    <div 
+                      style={{
+                        width: '100%',
+                        height: '190px',
+                        backgroundColor: '#F8FAFC',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '6px',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      <img 
+                        src={item.img} 
+                        alt="Sustainability Initiative"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                        onError={(e) => handleImageError(e, "Sustainability Initiative")}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Pagination Dots */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '16px' }}>
+              {Array.from({ length: maxSlide + 1 }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  aria-label={`Go to slide page ${idx + 1}`}
+                  style={{
+                    width: currentSlide === idx ? '22px' : '7px',
+                    height: '7px',
+                    borderRadius: '4px',
+                    background: currentSlide === idx ? '#22C55E' : '#CBD5E1',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: 0,
+                    transition: 'all 0.25s ease'
+                  }}
+                />
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 5. COMMITMENT BEYOND THE ENVIRONMENT */}
       <section className="mfg-facility-section">
         <div className="container">
           <div ref={commitmentRef} className={`mfg-facility-grid fade-section ${commitmentVisible ? 'visible' : ''}`}>
@@ -264,7 +523,7 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 5. JOURNEY FORWARD */}
+      {/* 6. JOURNEY FORWARD */}
       <section className="mfg-people-section" style={{ borderTop: '1px solid var(--border-gray)' }}>
         <div className="container">
           <div ref={journeyRef} className={`mfg-people-grid fade-section ${journeyVisible ? 'visible' : ''}`}>
@@ -295,7 +554,7 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. CTA BANNER SECTION */}
+      {/* 7. CTA BANNER SECTION */}
       <section className="cta-banner-section">
         <div className="cta-dot-map-bg" />
         <div className="container">

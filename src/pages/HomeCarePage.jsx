@@ -86,11 +86,11 @@ export default function HomeCarePage({ onNavigate }) {
             <span className="breadcrumb-separator">&gt;</span>
             <span onClick={() => onNavigate('market-pharma')} style={{ cursor: 'pointer' }}>MARKET SECTORS</span>
             <span className="breadcrumb-separator">&gt;</span>
-            <span className="breadcrumb-active">HOME CARE INDUSTRY</span>
+            <span className="breadcrumb-active">NUTRACEUTICAL MARKET</span>
           </nav>
-          <h1 className="pharma-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Home Care Industry</h1>
+          <h1 className="pharma-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Nutraceutical Market</h1>
           <p className="pharma-hero-desc" style={{ margin: 0, maxWidth: '640px' }}>
-            Delivering home care packaging solutions that are engineered to resist leakage, prevent tampering, and perform reliably in daily use.
+            Delivering advanced nutraceutical packaging solutions engineered for moisture barrier protection, active ingredient stability, and child-resistant safety.
           </p>
         </div>
       </section>
@@ -103,19 +103,19 @@ export default function HomeCarePage({ onNavigate }) {
             {/* Left Side: Copy */}
             <div className="overview-left-col">
               <div className="accent-blue-line" />
-              <h2 className="overview-heading">Home Care Industry Solutions</h2>
+              <h2 className="overview-heading">Nutraceutical Industry Packaging Solutions</h2>
               <p className="overview-paragraph">
-                The home care industry demands packaging that is safe, functional, and built to perform. At Ashirwad Plastics, we specialise in delivering home care packaging solutions that are engineered to resist leakage, prevent tampering, and align with the latest market trends.
+                The nutraceutical industry demands specialized packaging that preserves potency, prevents moisture degradation, and ensures tamper-evident safety. At Ashirwad Plastics, we specialize in high-barrier bottles, desiccant closures, child-resistant caps, and calibrated dispensing droppers tailored for vitamins, dietary supplements, herbal extracts, and functional wellness formulations.
               </p>
               <p className="overview-paragraph">
-                We give brands the confidence that their products reach consumers in perfect condition every time. Our home care product range includes trigger pumps, dispenser pumps, caps, and closures all designed for smooth handling, consistent dispensing, and reliable performance in daily use.
+                Our GMP-compliant manufacturing in controlled cleanrooms guarantees that your capsules, tablets, powders, and nutritional liquids maintain complete efficacy throughout their shelf life. From bulk container lines to precision dispensing droppers, we support leading nutraceutical brands worldwide.
               </p>
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
                 className="overview-cta-link"
               >
-                Explore Home Care Packaging <span className="cta-arrow">→</span>
+                Explore Nutraceutical Packaging <span className="cta-arrow">→</span>
               </a>
             </div>
 
@@ -204,15 +204,15 @@ export default function HomeCarePage({ onNavigate }) {
         <div className="container">
           <div ref={productsRef} className={`fade-section ${productsVisible ? 'visible' : ''}`}>
             
-            <h2 className="pharma-products-section-title">Our Products for Home Care</h2>
+            <h2 className="pharma-products-section-title">Our Products for Nutraceuticals</h2>
             
             <div className="pharma-products-grid">
                
               {[
-                { name: "Trigger Pumps", desc: "Durable and ergonomically designed trigger pumps suitable for personal care and industrial applications.", img: "/o7.webp", path: "product-trigger" },
-                { name: "Dispenser Pumps", desc: "Reliable dispenser pump systems designed for efficient and controlled liquid dispensing applications.", img: "/o6.webp", path: "product-dispenser" },
-                { name: "Caps & Closures", desc: "A comprehensive range of closures engineered for safety, protection, and product integrity.", img: "/o9.webp", path: "product-caps-closures" },
-                { name: "Mist Pumps", desc: "Fine mist pumps delivering a consistent, uniform spray for cleaning and freshening formulations.", img: "/o8.webp", path: "product-mist-cream" }
+                { name: "Tablet Containers & Closures", desc: "Secure, moisture-barrier packaging for vitamins, dietary supplements, and solid dose formulations.", img: "/https_/home prod/Tablet Containers & Closures.webp", path: "product-tablet" },
+                { name: "Measuring Caps & Oral Droppers", desc: "Accurate, user-friendly dosing systems for liquid nutraceutical and dietary formulations.", img: "/https_/home prod/Measuring Caps & Oral Droppers.webp", path: "product-measuring" },
+                { name: "Glass Droppers", desc: "Premium glass dropper bottles for controlled dispensing of herbal extracts, tinctures, and oils.", img: "/https_/home prod/Glass Droppers.webp", path: "product-glass-dropper" },
+                { name: "Caps & Closures", desc: "Child-resistant (CRC) and tamper-evident closures ensuring complete safety and seal integrity.", img: "/https_/home prod/Caps and Closures.webp", path: "product-caps-closures" }
               ].map((prod, idx) => (
                 <div key={idx} className="pharma-product-card">
                   <div className="product-img-box">

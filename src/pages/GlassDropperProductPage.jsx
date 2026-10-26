@@ -75,9 +75,14 @@ export default function GlassDropperProductPage({ onNavigate }) {
   const productsList = [
     { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
     { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
+    { name: 'Trigger Pumps ↗', path: 'product-trigger' },
+    { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+    { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
   ]
 
   return (

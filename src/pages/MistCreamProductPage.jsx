@@ -27,8 +27,9 @@ export default function MistCreamProductPage({ onNavigate }) {
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
 
-  // Carousel images
+  // Carousel images (Item 8: Replace first image with Rohit's image)
   const carouselImages = [
+    "/Product_Images/mist_cream_pump.jpg",
     "/Mist & Cream Pumps.webp"
   ]
 
@@ -44,6 +45,10 @@ export default function MistCreamProductPage({ onNavigate }) {
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
+    if (e.target.src.includes('mist_cream_pump_main.webp')) {
+      e.target.src = '/Mist & Cream Pumps.webp'
+      return
+    }
     e.target.style.display = 'none'
     const parent = e.target.parentElement
     if (parent && !parent.querySelector('.op-img-fallback-badge')) {
@@ -75,9 +80,14 @@ export default function MistCreamProductPage({ onNavigate }) {
   const productsList = [
     { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
     { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
+    { name: 'Trigger Pumps ↗', path: 'product-trigger' },
+    { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+    { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
   ]
 
   return (
@@ -86,7 +96,9 @@ export default function MistCreamProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Mist & Cream Pumps.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Product_Images/mist_cream_pump.jpg'), url('/Mist & Cream Pumps.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           position: 'relative',
           minHeight: '280px',
           height: 'auto',

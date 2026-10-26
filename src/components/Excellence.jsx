@@ -36,7 +36,7 @@ export default function Excellence() {
     },
     {
       title: 'Research & Development',
-      desc: 'Our R&D team continuously develops innovative packaging solutions aligned with evolving industry needs.',
+      desc: 'Innovation drives our business forward. Through continuous R&D investments, we develop innovative, customer-focused product lines that meet evolving industry needs and enhance our clients\' product portfolios and brand value.',
       icon: (
         <svg viewBox="0 0 24 24" className="excellence-icon" fill="none" stroke="#2456D3" strokeWidth="2">
           <path d="M12 2L2 7l10 5 10-5-10-5z" />

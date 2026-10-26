@@ -30,21 +30,25 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/Nasal Delivery System/banner.webp"
+    "/Nasal Delivery System/Products/17.png",
   ]
 
-  // Gallery images (simulated product variants)
+  // Gallery images (Item 19: 6 Nasal Delivery System product images)
   const galleryImages = [
-    { src: "/Nasal Delivery System/Products/1.webp", label: "Built for Every Drop - Nasal Spray System" },
-    { src: "/Nasal Delivery System/Products/2.webp", label: "Engineered for Precision & Protection" },
-    { src: "/Nasal Delivery System/Products/3.webp", label: "Precision in Every Drop, Safety in Every Use" },
-    { src: "/Nasal Delivery System/Products/4.webp", label: "Lightweight & Easy to Clean Assembly" },
-    { src: "/Nasal Delivery System/Products/5.webp", label: "Better Design, Smarter Care - Exploded View" },
-    { src: "/Nasal Delivery System/Products/6.webp", label: "Premium Nasal Delivery System" }
+    { src: "/Nasal Delivery System/Products/19 (1).png", label: "Nasal Delivery System 19 (1)" },
+    { src: "/Nasal Delivery System/Products/19 (2).png", label: "Nasal Delivery System 19 (2)" },
+    { src: "/Nasal Delivery System/Products/19 (3).png", label: "Nasal Delivery System 19 (3)" },
+    { src: "/Nasal Delivery System/Products/19 (4).png", label: "Nasal Delivery System 19 (4)" },
+    { src: "/Nasal Delivery System/Products/19 (5).png", label: "Nasal Delivery System 19 (5)" },
+    { src: "/Nasal Delivery System/Products/19 (6).png", label: "Nasal Delivery System 19 (6)" }
   ]
 
   // Graceful fallback for missing local images
-  const handleImageError = (e, label) => {
+  const handleImageError = (e, label, fallbackSrc) => {
+    if (fallbackSrc && e.target.src !== window.location.origin + fallbackSrc) {
+      e.target.src = fallbackSrc
+      return
+    }
     e.target.style.display = 'none'
     const parent = e.target.parentElement
     if (parent && !parent.querySelector('.np-img-fallback-badge')) {
@@ -76,9 +80,14 @@ export default function NasalProductPage({ onNavigate }) {
   const productsList = [
     { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+    { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
     { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' }
+    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
+    { name: 'Trigger Pumps ↗', path: 'product-trigger' },
+    { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+    { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
   ]
 
   return (
@@ -143,7 +152,7 @@ export default function NasalProductPage({ onNavigate }) {
           <div className={`np-overview-content fade-section ${overviewVisible ? 'visible' : ''}`}>
             <h2 className="np-overview-title">Precision Packaging for Nasal Applications</h2>
             <p className="np-overview-subtitle">
-              Our Nasal Delivery System is designed to meet strict pharmaceutical regulations. Manufactured in ISO-certified cleanrooms, our spray bottles, child-resistant closures (CRC), and tamper-evident solutions ensure drug sterility, accurate dose-dispensing performance, and safe containment for advanced nasal-care products.
+              Ashirwad Plastics offers innovative nasal delivery systems designed to support enhanced drug absorption, smooth actuation, and consistent spray pattern delivery for liquid intranasal formulations. Our range includes multidose nasal spray devices and squeeze-bottle spray systems engineered for reliable performance, accurate dose delivery, and ease of use.
             </p>
 
             {/* Product Showcase Card */}
@@ -163,7 +172,7 @@ export default function NasalProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="np-showcase-desc">
-                Our nasal spray containers are manufactured under cleanroom conditions, using pharmaceutical-grade raw materials. They are engineered to provide maximum contamination protection and secure container closures, ensuring product integrity throughout its shelf life.
+                Manufactured under controlled cleanroom conditions using pharmaceutical-grade raw materials, our nasal delivery solutions are designed to minimize contamination risks and help maintain product integrity throughout shelf life. We also offer customized development solutions with tailored spray characteristics to meet specific formulation requirements, enhance patient experience, and support faster market readiness with short development lead times.
               </p>
 
               {/* Product Specifications Badges */}
@@ -171,20 +180,18 @@ export default function NasalProductPage({ onNavigate }) {
                 <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
                   <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Sizes</span>
                   <div className="np-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="np-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>5 ml ↗</span>
-                    <span className="np-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>7 ml ↗</span>
-                    <span className="np-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>10 ml ↙</span>
-                    <span className="np-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>15 ml ↗</span>
+                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>30 ml</span>
                   </div>
                 </div>
 
                 <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
                   <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Components</span>
                   <div className="np-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="np-pill">Dropper Bottles</span>
-                    <span className="np-pill">CRC Closures</span>
+                    <span className="np-pill">Snap-on, Screw-type &amp; Crimp-on Nasal Spray Pumps</span>
+                    <span className="np-pill">Child-Resistant Closures (CRC)</span>
                     <span className="np-pill">Tamper-Evident Closures</span>
-                    <span className="np-pill">Tear-Off TE Closures</span>
+                    <span className="np-pill">Tear-Off Tamper-Evident (TE) Closures</span>
+                    <span className="np-pill">Squeeze-Bottle Spray Containers</span>
                   </div>
                 </div>
               </div>
@@ -209,7 +216,7 @@ export default function NasalProductPage({ onNavigate }) {
                     <img 
                       src={item.src} 
                       alt={item.label} 
-                      onError={(e) => handleImageError(e, item.label)}
+                      onError={(e) => handleImageError(e, item.label, item.fallback)}
                     />
                   </div>
                 </div>
@@ -231,77 +238,52 @@ export default function NasalProductPage({ onNavigate }) {
               <div className="np-feature-card np-card-light">
                 <h3>Key Features</h3>
                 <div className="np-feature-list">
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>High-precision dispensing performance</span>
-                  </div>
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Tamper-evident safety systems</span>
-                  </div>
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Leak-resistant packaging design</span>
-                  </div>
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Pharmaceutical-grade raw materials</span>
-                  </div>
+                  {[
+                    "Controlled Cleanroom Manufacturing: Class 100,000 cleanroom production with automated processes to help minimize contamination risks.",
+                    "Consistent Spray Performance: Designed to deliver uniform spray patterns and reliable dose delivery.",
+                    "Smooth Actuation: Engineered for comfortable, easy, and consistent operation.",
+                    "Customized Spray Characteristics: Development options tailored to formulation and application requirements.",
+                    "Enhanced Drug Delivery: Designed to support effective intranasal drug delivery and absorption.",
+                    "Secure Packaging: Multiple pump and closure configurations to support product integrity and safe containment.",
+                    "Pharmaceutical-Grade Materials: Manufactured using materials selected for pharmaceutical packaging applications."
+                  ].map((feat, idx) => (
+                    <div key={idx} className="np-feature-item" style={{ alignItems: 'flex-start' }}>
+                      <span className="np-check-icon" style={{ marginTop: '2px' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                      <span style={{ fontSize: '13.5px', lineHeight: '1.5' }}>{feat}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Right Card: Applications */}
+              {/* Right Card: Regulatory Compliance & Customized Solutions */}
               <div className="np-feature-card np-card-navy">
-                <h3>Applications Suitable for:</h3>
+                <h3>Regulatory Compliance &amp; Quality</h3>
+                <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
+                  Ashirwad Plastics supports pharmaceutical packaging requirements through controlled manufacturing processes and regulatory documentation, including US Drug Master File (US DMF) and Health Canada Drug Master File (HC DMF).
+                </p>
+                <h4 style={{ color: '#60A5FA', fontSize: '16px', fontWeight: 600, marginBottom: '8px', marginTop: '16px' }}>Customized Nasal Delivery Solutions</h4>
+                <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
+                  From metered-dose pumps to squeeze-bottle spray systems, we provide flexible nasal delivery solutions designed around your product requirements. Our customization capabilities and streamlined development approach help support dependable performance and efficient product development.
+                </p>
                 <div className="np-feature-list">
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Nasal Sprays</span>
-                  </div>
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Nasal Drug Delivery Solutions</span>
-                  </div>
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Sterile Pharmaceutical Formulations</span>
-                  </div>
-                  <div className="np-feature-item">
-                    <span className="np-check-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </span>
-                    <span>Prescription &amp; OTC Nasal Products</span>
-                  </div>
+                  {[
+                    "Metered-Dose Nasal Spray Devices",
+                    "Squeeze-Bottle Spray Systems (20 ml & 30 ml)",
+                    "US DMF & Health Canada DMF Documented"
+                  ].map((app, idx) => (
+                    <div key={idx} className="np-feature-item">
+                      <span className="np-check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                      <span>{app}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -309,9 +291,9 @@ export default function NasalProductPage({ onNavigate }) {
 
             {/* Manufacturing Text Below Cards */}
             <div className="np-manufacturing-standards">
-              <div className="np-mfg-title">Manufacturing &amp; Quality Standards</div>
+              <div className="np-mfg-title">Controlled Cleanroom Manufacturing &amp; Quality</div>
               <div className="np-mfg-desc">
-                Our nasal spray products are manufactured under strict GMP compliance protocols. We implement high-speed automated assembly lines and multi-stage optoelectronic dimensional checks to guarantee absolute defect-free packaging safety for global pharmaceutical clients.
+                Our nasal delivery systems are developed with a focus on quality, product integrity, and applicable pharmaceutical packaging requirements in Class 100,000 cleanrooms under ISO 15378 and ISO 9001 certified operations.
               </div>
             </div>
 

@@ -57,8 +57,8 @@ export default function Commitment() {
       <section className="dev-overview-section">
         <div className="container">
           <div ref={overviewRef} className={`dev-overview-content fade-section ${overviewVisible ? 'visible' : ''}`}>
-            <h2 className="dev-overview-title">Our Commitment to Precision and Excellence!</h2>
-            <p className="dev-overview-subtitle">Check out our videos for straightforward guidance.</p>
+            <h2 className="dev-overview-title">Inside Our Process: Step by Step – New Product Development</h2>
+            <p className="dev-overview-subtitle">Check out our process for straightforward guidance.</p>
           </div>
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a0.webp" 
+                    src="/Product_Images/image17.png" 
                     alt="Initial Expert Consultation" 
                     onError={(e) => handleImageError(e, "Consultation Team")}
                   />
@@ -106,7 +106,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a1.webp" 
+                    src="/Product_Images/image18.png" 
                     alt="Customized Design Development" 
                     onError={(e) => handleImageError(e, "Design & Development Team")}
                   />
@@ -130,7 +130,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a3.webp" 
+                    src="/Product_Images/image19.png" 
                     alt="Prototype Creation and Approval" 
                     onError={(e) => handleImageError(e, "Prototype Inspection")}
                   />
@@ -154,7 +154,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a4 (2).webp" 
+                    src="/Product_Images/image20.png" 
                     alt="High-Quality Production" 
                     onError={(e) => handleImageError(e, "Automated Production")}
                   />
@@ -178,7 +178,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/a5.webp" 
+                    src="/Product_Images/image21.png" 
                     alt="Comprehensive Quality Check" 
                     onError={(e) => handleImageError(e, "Quality Assurance")}
                   />

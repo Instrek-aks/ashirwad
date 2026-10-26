@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import BottomCertifications from '../components/BottomCertifications'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -243,24 +244,7 @@ export default function GlobalPresencePage({ onNavigate }) {
       </section>
 
       {/* 4. CERTIFICATIONS SECTION */}
-      <section className="cert-section section-padding" style={{ backgroundColor: '#fff', borderTop: '1px solid var(--border-gray)', borderBottom: '1px solid var(--border-gray)', padding: '60px 0' }}>
-        <div className="container">
-          <div ref={certRef} className={`gp-cert-content fade-section ${certVisible ? 'visible' : ''}`}>
-            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-              <h2 className="section-title" style={{ fontSize: '28px', fontWeight: 700, color: 'var(--text-dark)', margin: 0 }}>
-                We are Certified By
-              </h2>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
-              <img src="/c1.webp" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/nl2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '42px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/c4.webp" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-              <img src="/c5.webp" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
-            </div>
-          </div>
-        </div>
-      </section>
+      <BottomCertifications />
 
       {/* 5. CTA BANNER SECTION */}
       <section className="cta-banner-section">

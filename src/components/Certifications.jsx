@@ -15,25 +15,32 @@ export default function Certifications() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
           
           <FadeIn>
-            <img src="/c1.webp" alt="Certification Logo 1" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/Product_Images/image3.jpeg" alt="ISO 15378 SGS Certification" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/nl2.webp" alt="Certification Logo 2" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/Product_Images/image4.jpeg" alt="ISO 9001 SGS Certification" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/nl.webp" alt="Certification Logo 3" style={{ height: '42px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/nl.webp" alt="US FDA Registration" style={{ height: '55px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c4.webp" alt="Certification Logo 4" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c4.webp" alt="Health Canada Registered" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c5.webp" alt="Certification Logo 5" style={{ height: '60px', maxWidth: '140px', objectFit: 'contain' }} />
+            <img src="/c5.webp" alt="GMP Compliant" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
+        </div>
+
+        {/* FDA & Health Canada DMF Registration Info */}
+        <div style={{ textAlign: 'center', marginTop: '24px' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 20px', borderRadius: '30px', background: '#F0F5FF', border: '1px solid #D6E4FF', fontSize: '13.5px', color: '#1D39C4', fontWeight: 600 }}>
+            US FDA Drug Master File (DMF) &amp; Health Canada DMF Registered Facility
+          </span>
         </div>
       </div>
     </section>

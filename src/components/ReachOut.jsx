@@ -107,8 +107,6 @@ export default function ReachOut() {
                 <span className="contact-info-label" style={{ color: '#F59E0B' }}>PHONE NUMBER</span>
                 <div className="contact-info-phones">
                   <a href="tel:01725014551" className="contact-info-link" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>0172 5014551</a>
-                  <a href="tel:7888697033" className="contact-info-link" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>+91-7888697033</a>
-                  <a href="tel:7888697034" className="contact-info-link" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>+91-7888697034</a>
                 </div>
               </div>
 

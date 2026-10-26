@@ -5,12 +5,12 @@ import GlobalPresence from './components/GlobalPresence'
 import CompanyOverview from './components/CompanyOverview'
 import VisionMission from './components/VisionMission'
 import Excellence from './components/Excellence'
-import Certifications from './components/Certifications'
 import Products from './components/Products'
 import Commitment from './components/Commitment'
 import Clients from './components/Clients'
 import FuturePlan from './components/FuturePlan'
 import Innovation from './components/Innovation'
+import BottomCertifications from './components/BottomCertifications'
 import Footer from './components/Footer'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
@@ -55,12 +55,12 @@ function App() {
           <CompanyOverview onNavigate={navigate} />
           <VisionMission />
           <Excellence />
-          <Certifications />
           <Products onNavigate={navigate} />
           <Commitment />
           <Clients />
           <FuturePlan />
           <Innovation />
+          <BottomCertifications />
         </>
       )}
       {page === 'about' && (
@@ -75,7 +75,7 @@ function App() {
       {page === 'market-cosmetic' && (
         <CosmeticMarketPage onNavigate={navigate} />
       )}
-      {page === 'market-homecare' && (
+      {(page === 'market-homecare' || page === 'market-nutraceutical') && (
         <HomeCarePage onNavigate={navigate} />
       )}
       {page === 'expertise' && (
@@ -90,11 +90,8 @@ function App() {
       {page === 'expertise-quality' && (
         <QualityPage onNavigate={navigate} />
       )}
-      {page === 'expertise-innovation' && (
+      {(page === 'expertise-innovation' || page === 'expertise-rd' || page === 'expertise-rd-innovation') && (
         <InnovationPage onNavigate={navigate} />
-      )}
-      {page === 'expertise-rd' && (
-        <ResearchDevelopmentPage onNavigate={navigate} />
       )}
       {page === 'presence' && (
         <GlobalPresencePage onNavigate={navigate} />

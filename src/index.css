@@ -7544,5 +7544,35 @@ body {
   }
 }
 
+/* ==========================================================================
+   SUSTAINABILITY COMPACT MULTI-CARD CAROUSEL STYLES
+   ========================================================================= */
+.sustainability-gallery-section {
+  position: relative;
+}
+
+.sustainability-carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sustainability-card-item {
+  flex: 0 0 calc((100% - 32px) / 3);
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .sustainability-card-item {
+    flex: 0 0 calc((100% - 16px) / 2) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .sustainability-card-item {
+    flex: 0 0 100% !important;
+  }
+}
+
 
 

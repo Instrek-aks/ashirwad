@@ -191,9 +191,11 @@ export default function PharmaMarketPage({ onNavigate }) {
             {/* Card 4: Product showcase image card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/s2.webp" 
-                alt="Product Showcase" 
-                onError={(e) => handleImageError(e, "Product Showcase")}
+                src="/Product_Images/image7.jpeg" 
+                alt="Ophthalmic & Pharma Packaging Lineup" 
+                onError={(e) => {
+                  e.target.src = "/s2.webp";
+                }}
               />
             </div>
 
@@ -214,9 +216,11 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/s3.webp" 
+                    src="/Product_Images/image10.jpeg" 
                     alt="Ophthalmic Delivery System" 
-                    onError={(e) => handleImageError(e, "Ophthalmic Delivery System")}
+                    onError={(e) => {
+                      e.target.src = "/s3.webp";
+                    }}
                   />
                 </div>
                 <div className="product-info-box">
@@ -235,9 +239,11 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/s5.webp" 
+                    src="/Product_Images/image26.jpeg" 
                     alt="Nasal Delivery System" 
-                    onError={(e) => handleImageError(e, "Nasal Delivery System")}
+                    onError={(e) => {
+                      e.target.src = "/s5.webp";
+                    }}
                   />
                 </div>
                 <div className="product-info-box">

@@ -6,7 +6,7 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/or.png',
+    img: '/Product_Images/image10.jpeg',
     cover: true
   },
   {
@@ -42,6 +42,12 @@ const productsList = [
     img: '/https_/home prod/Dispenser Pumps.webp'
   },
   {
+    id: 'trigger',
+    name: 'Trigger Pumps',
+    desc: 'Durable and ergonomically designed trigger pumps for industrial and healthcare liquids.',
+    img: '/Trigger Pumps.webp'
+  },
+  {
     id: 'flipoff',
     name: 'Flip off Seals',
     desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
@@ -51,7 +57,8 @@ const productsList = [
     id: 'mist',
     name: 'Mist & Cream Pumps',
     desc: 'Precision-engineered mist and cream pumps for smooth, consistent dispensing.',
-    img: '/https_/home prod/Mist & Cream Pumps.webp'
+    img: '/Product_Images/mist_cream_pump.jpg',
+    fallbackImg: '/Mist & Cream Pumps.webp'
   },
   {
     id: 'caps',
@@ -139,7 +146,13 @@ function ProductCard({ product, onNavigate }) {
               transform: hovered ? 'scale(1.05)' : 'scale(1)',
               transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
-            onError={() => setImgFailed(true)}
+            onError={(e) => {
+              if (product.fallbackImg && e.target.src !== window.location.origin + product.fallbackImg) {
+                e.target.src = product.fallbackImg
+              } else {
+                setImgFailed(true)
+              }
+            }}
           />
         ) : (
           <div className="product-card-placeholder-text" style={{ fontSize: '12px', color: 'var(--text-gray)', opacity: 0.65, fontWeight: 500, textAlign: 'center', padding: '16px' }}>

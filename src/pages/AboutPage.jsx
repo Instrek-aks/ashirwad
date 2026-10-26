@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import BottomCertifications from '../components/BottomCertifications'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -104,15 +105,19 @@ function WhoWeAre() {
             </p>
           </div>
 
-          {/* Right Column: Single Image instead of 3x2 grid */}
+          {/* Right Column: Workforce & Team Image */}
           <div className="about-who-img-col">
             <div className="about-who-img-wrapper">
               <img 
-                src="/s7.webp" 
-                alt="Ashirwad Plastics Workforce & Team" 
+                src="/Product_Images/38.png" 
+                alt="Ashirwad Plastics Workforce &amp; Team" 
                 className="about-who-img"
                 onError={e => {
-                  e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&h=450&q=80'
+                  if (e.target.src !== window.location.origin + '/s7.webp') {
+                    e.target.src = '/s7.webp'
+                  } else {
+                    e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&h=450&q=80'
+                  }
                 }}
               />
             </div>
@@ -343,35 +348,7 @@ function ExperienceAndCareers() {
   )
 }
 
-/* ─────────────────────────────────────
-   6. WE ARE CERTIFIED BY
-───────────────────────────────────── */
-function WeAreCertifiedBy() {
-  const [ref, v] = useFadeIn()
-  const certs = ['/c1.webp', '/nl2.webp', '/nl.webp', '/c4.webp', '/c5.webp']
 
-  return (
-    <section style={{ backgroundColor: '#fff', padding: '60px 0' }}>
-      <div className="container">
-        <div ref={ref} className={`fade-section ${v ? 'visible' : ''}`}>
-          <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#64748B', textAlign: 'center', marginBottom: '32px' }}>
-            We are Certified By
-          </h2>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '40px', flexWrap: 'wrap' }}>
-            {certs.map((src, i) => (
-              <img 
-                key={i} 
-                src={src} 
-                alt={`Certification ${i + 1}`} 
-                style={{ height: src === '/nl.webp' ? '42px' : '60px', maxWidth: '140px', objectFit: 'contain' }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
 /* ─────────────────────────────────────
    7. OUR VALUABLE CLIENTS
@@ -493,8 +470,8 @@ export default function AboutPage({ onNavigate }) {
       <AboutStats />
       <FounderMessage />
       <ExperienceAndCareers />
-      <WeAreCertifiedBy />
       <OurValuableClients />
+      <BottomCertifications />
     </>
   )
 }
