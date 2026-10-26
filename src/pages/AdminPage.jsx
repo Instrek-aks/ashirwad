@@ -1180,11 +1180,15 @@ export default function AdminPage({ onNavigate }) {
     return (
       <div style={{ minHeight: '100vh', backgroundColor: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
         <div style={{ width: '100%', maxWidth: '420px', backgroundColor: '#FFFFFF', borderRadius: '16px', boxShadow: '0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.8)', padding: '40px 36px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#EFF6FF', border: '1px solid #DBEAFE', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#2563EB', marginBottom: '16px' }}>
-              <IconShield size={24} color="#2563EB" />
+          <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+              <img
+                src="/logo.webp"
+                alt="Ashirwad Plastics Logo"
+                style={{ height: '48px', width: 'auto', objectFit: 'contain', display: 'block' }}
+              />
             </div>
-            <h1 style={{ fontSize: '22px', fontWeight: '700', color: '#0F172A', margin: '0 0 6px 0', letterSpacing: '-0.3px' }}>
+            <h1 style={{ fontSize: '20px', fontWeight: '700', color: '#0F172A', margin: '0 0 6px 0', letterSpacing: '-0.3px' }}>
               Ashirwad Plastics
             </h1>
             <p style={{ fontSize: '13px', color: '#64748B', margin: 0 }}>
@@ -1247,13 +1251,6 @@ export default function AdminPage({ onNavigate }) {
             </button>
           </form>
 
-          <div style={{ marginTop: '26px', padding: '12px 14px', backgroundColor: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0', fontSize: '12px', color: '#64748B' }}>
-            <span style={{ fontWeight: '600', color: '#334155', display: 'block', marginBottom: '3px' }}>Default Credentials:</span>
-            <span style={{ fontFamily: 'ui-monospace, monospace', color: '#2563EB' }}>
-              admin@ashirwad.com / Admin@12345
-            </span>
-          </div>
-
           <div style={{ textAlign: 'center', marginTop: '24px' }}>
             <button
               onClick={() => onNavigate && onNavigate('home')}
@@ -1285,8 +1282,14 @@ export default function AdminPage({ onNavigate }) {
       }}>
         <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 28px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '16px', fontWeight: '700', color: '#0F172A', letterSpacing: '-0.3px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img
+              src="/logo.webp"
+              alt="Ashirwad Plastics Logo"
+              style={{ height: '32px', width: 'auto', objectFit: 'contain', display: 'block' }}
+            />
+            <div style={{ width: '1px', height: '20px', backgroundColor: '#CBD5E1' }} />
+            <span style={{ fontSize: '15.5px', fontWeight: '700', color: '#0F172A', letterSpacing: '-0.3px' }}>
               Campaigns & Leads CRM
             </span>
           </div>
