@@ -150,7 +150,7 @@ export default function NasalProductPage({ onNavigate }) {
       <section className="np-overview-section" ref={overviewRef}>
         <div className="container">
           <div className={`np-overview-content fade-section ${overviewVisible ? 'visible' : ''}`}>
-            <h2 className="np-overview-title">Precision Packaging for Nasal Applications</h2>
+            <h2 className="np-overview-title">Nasal Delivery System</h2>
             <p className="np-overview-subtitle">
               Ashirwad Plastics offers innovative nasal delivery systems designed to support enhanced drug absorption, smooth actuation, and consistent spray pattern delivery for liquid intranasal formulations. Our range includes multidose nasal spray devices and squeeze-bottle spray systems engineered for reliable performance, accurate dose delivery, and ease of use.
             </p>
@@ -176,22 +176,42 @@ export default function NasalProductPage({ onNavigate }) {
               </p>
 
               {/* Product Specifications Badges */}
-              <div className="np-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
-                <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Sizes</span>
-                  <div className="np-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>30 ml</span>
+              <div className="np-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', borderTop: '1px solid var(--border-gray)', paddingTop: '32px', alignItems: 'flex-start' }}>
+                <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', textAlign: 'left', width: '100%' }}>
+                  <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937' }}>Available Sizes and Dosage Options</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingLeft: '2px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '13.5px', fontWeight: '600', color: '#374151', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ color: '#2456D3', fontWeight: '700', fontSize: '15px' }}>•</span>
+                        Metered-Dose Nasal Pumps (per actuation):
+                      </span>
+                      <div className="np-tag-pills" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>60 µL</span>
+                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>100 µL</span>
+                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>120 µL</span>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '13.5px', fontWeight: '600', color: '#374151', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ color: '#2456D3', fontWeight: '700', fontSize: '15px' }}>•</span>
+                        Squeeze-Bottle Spray Systems:
+                      </span>
+                      <div className="np-tag-pills" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>20 ml</span>
+                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>30 ml</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Components</span>
+                <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', textAlign: 'left', width: '100%' }}>
+                  <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937' }}>Available Components</span>
                   <div className="np-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="np-pill">Snap-on, Screw-type &amp; Crimp-on Nasal Spray Pumps</span>
-                    <span className="np-pill">Child-Resistant Closures (CRC)</span>
-                    <span className="np-pill">Tamper-Evident Closures</span>
-                    <span className="np-pill">Tear-Off Tamper-Evident (TE) Closures</span>
-                    <span className="np-pill">Squeeze-Bottle Spray Containers</span>
+                    <span className="np-pill">Snap-on, screw-type, and crimp-on nasal spray pumps</span>
+                    <span className="np-pill">Child-resistant closures (CRC)</span>
+                    <span className="np-pill">Tamper-evident closures</span>
+                    <span className="np-pill">Tear-off tamper-evident (TE) closures</span>
+                    <span className="np-pill">Squeeze-bottle spray containers</span>
                   </div>
                 </div>
               </div>
@@ -319,27 +339,44 @@ export default function NasalProductPage({ onNavigate }) {
                 <tbody>
                   <tr>
                     <td>Product Type</td>
-                    <td>Nasal Delivery System</td>
+                    <td>Nasal Delivery System (Multidose Metered-Dose Pumps &amp; Squeeze-Bottle Spray Systems)</td>
                   </tr>
                   <tr>
-                    <td>Sizes Available</td>
-                    <td>5 ml, 7 ml, 10 ml, 15 ml</td>
+                    <td>Available Sizes and Dosage Options</td>
+                    <td>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <div>• <strong>Metered-Dose Nasal Pumps:</strong> 60 µL, 100 µL, and 120 µL per actuation</div>
+                        <div>• <strong>Squeeze-Bottle Spray Systems:</strong> 20 ml and 30 ml</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Available Components</td>
+                    <td>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <div>• Snap-on, screw-type, and crimp-on nasal spray pumps</div>
+                        <div>• Child-resistant closures (CRC)</div>
+                        <div>• Tamper-evident closures</div>
+                        <div>• Tear-off tamper-evident (TE) closures</div>
+                        <div>• Squeeze-bottle spray containers</div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td>Material</td>
-                    <td>Pharmaceutical Grade Plastic</td>
+                    <td>Pharmaceutical Grade Polymers (USP Class VI Compliant HDPE / LDPE / PP)</td>
                   </tr>
                   <tr>
-                    <td>Closure Options</td>
-                    <td>CRC / Tamper Evident / Tear-Off</td>
+                    <td>Pump Fitment Types</td>
+                    <td>Snap-on, Screw-type, and Crimp-on</td>
                   </tr>
                   <tr>
                     <td>Application</td>
-                    <td>Nasal Drug Delivery</td>
+                    <td>Intranasal Drug Delivery, Decongestants, Saline Sprays &amp; Specialized Formulations</td>
                   </tr>
                   <tr>
-                    <td>Compliance</td>
-                    <td>GMP / ISO Standards</td>
+                    <td>Compliance &amp; Quality</td>
+                    <td>Class 100,000 Cleanroom, ISO 15378, ISO 9001, GMP, US DMF &amp; Health Canada DMF Documented</td>
                   </tr>
                 </tbody>
               </table>

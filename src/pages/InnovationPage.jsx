@@ -119,7 +119,7 @@ export default function InnovationPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/Product_Images/36.png" 
+                  src="/innovation/2.webp" 
                   alt="R&D and Innovation Lab" 
                   onError={(e) => {
                     if (e.target.src !== window.location.origin + '/innovation/2.webp') {
@@ -143,7 +143,7 @@ export default function InnovationPage({ onNavigate }) {
             
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/b3.webp" 
+                src="/Product_Images/36.png" 
                 alt="Product Enhancement Research" 
                 onError={(e) => handleImageError(e, "Product Enhancement")}
               />

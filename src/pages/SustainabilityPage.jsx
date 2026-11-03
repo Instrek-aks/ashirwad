@@ -26,22 +26,39 @@ export default function SustainabilityPage({ onNavigate }) {
 
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [itemsPerView, setItemsPerView] = useState(3)
+  const [lightboxImg, setLightboxImg] = useState(null)
 
-  const galleryItems = [
-    { img: '/sustainibility/1.webp' },
-    { img: '/sustainibility/2.webp' },
-    { img: '/sustainibility/3.webp' },
-    { img: '/sustainibility/4.webp' },
-    { img: '/sustainibility/5.webp' },
-    { img: '/sustainibility/6.webp' },
-    { img: '/sustainibility/7.webp' },
-    { img: '/sustainibility/8.webp' }
+  const galleryImages = [
+    '/sustainibility/4.webp',
+    '/sustainibility/5.webp',
+    '/sustainibility/1.webp',
+    '/sustainibility/3.webp',
+    '/sustainibility/7.webp',
+    '/sustainibility/8.webp',
+    '/sustainibility/6.webp'
   ]
 
-  const maxSlide = Math.max(0, galleryItems.length - 3)
+  // Responsive itemsPerView
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth <= 640) {
+        setItemsPerView(1)
+      } else if (window.innerWidth <= 1024) {
+        setItemsPerView(2)
+      } else {
+        setItemsPerView(3)
+      }
+    }
+    updateItemsPerView()
+    window.addEventListener('resize', updateItemsPerView)
+    return () => window.removeEventListener('resize', updateItemsPerView)
+  }, [])
+
+  const maxSlide = Math.max(0, galleryImages.length - itemsPerView)
 
   useEffect(() => {
-    if (isPaused) return
+    if (isPaused || maxSlide === 0) return
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
     }, 4000)
@@ -50,6 +67,15 @@ export default function SustainabilityPage({ onNavigate }) {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
   const prevSlide = () => setCurrentSlide((prev) => (prev <= 0 ? maxSlide : prev - 1))
+
+  useEffect(() => {
+    if (!lightboxImg) return
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setLightboxImg(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxImg])
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
@@ -272,62 +298,42 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 4. SUSTAINABILITY IN ACTION: COMPACT MULTI-CARD CAROUSEL GALLERY */}
+      {/* 4. INITIATIVES GALLERY */}
       <section 
-        className="sustainability-gallery-section" 
+        className="mfg-facility-section" 
         ref={galleryRef}
         style={{ 
           backgroundColor: '#F8FAFC', 
-          padding: '40px 0', 
-          borderTop: '1px solid #E2E8F0',
-          borderBottom: '1px solid #E2E8F0'
+          padding: '80px 0', 
+          borderTop: '1px solid var(--border-gray)',
+          borderBottom: '1px solid var(--border-gray)'
         }}
       >
         <div className="container">
           <div className={`fade-section ${galleryVisible ? 'visible' : ''}`}>
             
-            {/* Header with Title on Left, Controls on Right */}
+            {/* Header: Exact match to website styling (mfg-accent-line + mfg-section-title + clean circular controls) */}
             <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
               alignItems: 'flex-end', 
-              marginBottom: '20px',
+              marginBottom: '36px',
               flexWrap: 'wrap',
-              gap: '12px'
+              gap: '20px'
             }}>
               <div>
-                <div style={{ 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '6px', 
-                  background: 'rgba(34, 197, 94, 0.1)', 
-                  color: '#16A34A', 
-                  borderRadius: '20px', 
-                  padding: '3px 12px', 
-                  fontSize: '11.5px', 
-                  fontWeight: 600, 
-                  textTransform: 'uppercase', 
-                  letterSpacing: '0.8px',
-                  marginBottom: '6px'
-                }}>
-                  Sustainability In Action
-                </div>
-                <h2 style={{ fontSize: '26px', fontWeight: 700, color: '#0F172A', margin: 0, letterSpacing: '-0.5px' }}>
-                  Eco-Initiatives &amp; Facility Gallery
-                </h2>
+                <div className="mfg-accent-line" style={{ marginBottom: '14px' }} />
+                <h2 className="mfg-section-title" style={{ margin: 0 }}>Initiatives Gallery</h2>
               </div>
 
-              {/* Prev / Next Controls */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '12.5px', fontWeight: 600, color: '#64748B', marginRight: '6px' }}>
-                  {currentSlide + 1} - {Math.min(currentSlide + 3, galleryItems.length)} of {galleryItems.length}
-                </span>
+              {/* Prev / Next circular buttons matching website minimalism */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <button 
                   onClick={prevSlide}
                   aria-label="Previous Slide"
                   style={{
-                    width: '38px',
-                    height: '38px',
+                    width: '42px',
+                    height: '42px',
                     borderRadius: '50%',
                     background: '#FFFFFF',
                     border: '1px solid #CBD5E1',
@@ -336,21 +342,21 @@ export default function SustainabilityPage({ onNavigate }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#22C55E'
-                    e.currentTarget.style.borderColor = '#22C55E'
-                    e.currentTarget.style.color = '#FFFFFF'
+                    e.currentTarget.style.borderColor = '#2F67F6'
+                    e.currentTarget.style.color = '#2F67F6'
+                    e.currentTarget.style.transform = 'translateX(-2px)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#FFFFFF'
                     e.currentTarget.style.borderColor = '#CBD5E1'
                     e.currentTarget.style.color = '#0F172A'
+                    e.currentTarget.style.transform = 'none'
                   }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="15 18 9 12 15 6" />
                   </svg>
                 </button>
@@ -358,8 +364,8 @@ export default function SustainabilityPage({ onNavigate }) {
                   onClick={nextSlide}
                   aria-label="Next Slide"
                   style={{
-                    width: '38px',
-                    height: '38px',
+                    width: '42px',
+                    height: '42px',
                     borderRadius: '50%',
                     background: '#FFFFFF',
                     border: '1px solid #CBD5E1',
@@ -368,98 +374,79 @@ export default function SustainabilityPage({ onNavigate }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#22C55E'
-                    e.currentTarget.style.borderColor = '#22C55E'
-                    e.currentTarget.style.color = '#FFFFFF'
+                    e.currentTarget.style.borderColor = '#2F67F6'
+                    e.currentTarget.style.color = '#2F67F6'
+                    e.currentTarget.style.transform = 'translateX(2px)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#FFFFFF'
                     e.currentTarget.style.borderColor = '#CBD5E1'
                     e.currentTarget.style.color = '#0F172A'
+                    e.currentTarget.style.transform = 'none'
                   }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </button>
               </div>
             </div>
 
-            {/* Multi-Card Carousel Viewport */}
+            {/* Pure image carousel using website's native .mfg-facility-img-box style */}
             <div 
-              style={{
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '16px',
-                padding: '4px 2px'
-              }}
+              style={{ overflow: 'hidden', borderRadius: '20px' }}
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
               <div 
-                className="sustainability-carousel-track"
                 style={{
                   display: 'flex',
-                  gap: '16px',
-                  transform: `translateX(calc(-${currentSlide} * (33.3333% + 5.33px)))`,
+                  gap: '24px',
+                  transform: `translateX(calc(-${currentSlide} * (100% / ${itemsPerView} + ${24 / itemsPerView}px)))`,
                   transition: 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1)'
                 }}
               >
-                {galleryItems.map((item, idx) => (
+                {galleryImages.map((src, idx) => (
                   <div 
                     key={idx}
-                    className="sustainability-card-item"
                     style={{
-                      flex: '0 0 calc((100% - 32px) / 3)',
-                      background: '#FFFFFF',
-                      borderRadius: '14px',
-                      border: '1px solid #E2E8F0',
-                      padding: '8px',
-                      boxShadow: '0 2px 10px rgba(15, 23, 42, 0.04)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      boxSizing: 'border-box',
-                      transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-3px)'
-                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(15, 23, 42, 0.08)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = '0 2px 10px rgba(15, 23, 42, 0.04)'
+                      flex: `0 0 calc((100% - ${(itemsPerView - 1) * 24}px) / ${itemsPerView})`,
+                      boxSizing: 'border-box'
                     }}
                   >
-                    {/* Uncropped Image Box: contain ensures 100% complete visibility */}
                     <div 
+                      className="mfg-facility-img-box"
                       style={{
-                        width: '100%',
-                        height: '190px',
-                        backgroundColor: '#F8FAFC',
-                        borderRadius: '10px',
+                        borderRadius: '20px',
                         overflow: 'hidden',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '6px',
-                        boxSizing: 'border-box'
+                        aspectRatio: '1.45',
+                        width: '100%',
+                        backgroundColor: '#E2E8F0',
+                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+                        cursor: 'pointer'
                       }}
+                      onClick={() => setLightboxImg(src)}
                     >
                       <img 
-                        src={item.img} 
-                        alt="Sustainability Initiative"
+                        src={src} 
+                        alt={`Sustainability Gallery ${idx + 1}`}
                         style={{
                           width: '100%',
                           height: '100%',
-                          objectFit: 'contain',
-                          display: 'block'
+                          objectFit: 'cover',
+                          display: 'block',
+                          transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
                         }}
-                        onError={(e) => handleImageError(e, "Sustainability Initiative")}
+                        onError={(e) => handleImageError(e, `Initiative ${idx + 1}`)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'scale(1.04)'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'scale(1)'
+                        }}
                       />
                     </div>
                   </div>
@@ -467,30 +454,88 @@ export default function SustainabilityPage({ onNavigate }) {
               </div>
             </div>
 
-            {/* Pagination Dots */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '16px' }}>
-              {Array.from({ length: maxSlide + 1 }).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  aria-label={`Go to slide page ${idx + 1}`}
-                  style={{
-                    width: currentSlide === idx ? '22px' : '7px',
-                    height: '7px',
-                    borderRadius: '4px',
-                    background: currentSlide === idx ? '#22C55E' : '#CBD5E1',
-                    border: 'none',
-                    cursor: 'pointer',
-                    padding: 0,
-                    transition: 'all 0.25s ease'
-                  }}
-                />
-              ))}
-            </div>
+            {/* Minimalist Pagination Dots */}
+            {maxSlide > 0 && (
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '28px' }}>
+                {Array.from({ length: maxSlide + 1 }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    aria-label={`Slide ${idx + 1}`}
+                    style={{
+                      width: currentSlide === idx ? '26px' : '8px',
+                      height: '8px',
+                      borderRadius: '4px',
+                      background: currentSlide === idx ? '#2F67F6' : '#CBD5E1',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: 0,
+                      transition: 'all 0.25s ease'
+                    }}
+                  />
+                ))}
+              </div>
+            )}
 
           </div>
         </div>
       </section>
+
+      {/* Simple Clean Full-Screen Image Lightbox */}
+      {lightboxImg && (
+        <div 
+          onClick={() => setLightboxImg(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            backgroundColor: 'rgba(15, 23, 42, 0.88)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px',
+            cursor: 'zoom-out'
+          }}
+        >
+          <button 
+            onClick={() => setLightboxImg(null)}
+            aria-label="Close"
+            style={{
+              position: 'absolute',
+              top: '24px',
+              right: '24px',
+              width: '42px',
+              height: '42px',
+              borderRadius: '50%',
+              background: 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              color: '#FFFFFF',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <img 
+            src={lightboxImg} 
+            alt="Full Preview" 
+            style={{
+              maxWidth: '90vw',
+              maxHeight: '85vh',
+              objectFit: 'contain',
+              borderRadius: '16px',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5)'
+            }} 
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       {/* 5. COMMITMENT BEYOND THE ENVIRONMENT */}
       <section className="mfg-facility-section">
