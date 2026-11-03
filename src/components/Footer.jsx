@@ -37,11 +37,7 @@ export default function Footer({ page, onNavigate }) {
                 onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
               >
-                <img 
-                  src="/logo.webp" 
-                  alt="Ashirwad Plastics Logo" 
-                  style={{ height: '40px', width: 'auto', objectFit: 'contain', display: 'block', filter: 'brightness(0) invert(1)' }}
-                />
+                <img src="/logo-white.webp" alt="Ashirwad Plastics Logo" style={{ height: "42px", width: "auto", objectFit: "contain", display: "block" }} />
               </a>
             </div>
             <p className="footer-about-text" style={{ fontSize: '13px', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '24px', maxWidth: '280px' }}>
