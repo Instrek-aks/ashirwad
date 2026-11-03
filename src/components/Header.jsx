@@ -64,20 +64,7 @@ export default function Header({ page, onNavigate }) {
   }
 
   return (
-    <>
-      <header
-        className={`header ${scrolled ? 'scrolled-active' : ''}`}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
-          zIndex: 1000,
-          backgroundColor: '#FFFFFF',
-          transition: 'all 0.3s ease'
-        }}
-      >
+    <header className={`header ${scrolled ? 'scrolled-active' : ''}`}>
       <div
         className="container header-inner"
         style={{
@@ -389,8 +376,5 @@ export default function Header({ page, onNavigate }) {
         </button>
       </div>
     </header>
-    {/* Fixed header placeholder spacer to maintain perfect page flow */}
-    <div style={{ height: '74px', width: '100%', flexShrink: 0 }} aria-hidden="true" />
-  </>
   )
 }

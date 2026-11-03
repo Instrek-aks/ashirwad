@@ -337,7 +337,18 @@ export default function AdminPage({ onNavigate }) {
   const [editingBlog, setEditingBlog] = useState(null);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1024 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const sidebarWidth = sidebarCollapsed ? 64 : 230;
+  const effectiveSidebarWidth = isMobile ? 0 : sidebarWidth;
 
   // System Status
   const [systemStatus, setSystemStatus] = useState({ database: 'UNKNOWN', smtp: { configured: false } });
@@ -1673,36 +1684,48 @@ export default function AdminPage({ onNavigate }) {
             <div
               style={{
                 flex: 1,
-                marginLeft: `${sidebarWidth}px`,
+                marginLeft: `${effectiveSidebarWidth}px`,
                 minHeight: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
-                width: `calc(100% - ${sidebarWidth}px)`,
+                width: `calc(100% - ${effectiveSidebarWidth}px)`,
                 backgroundColor: '#F9FAFB',
                 transition: 'margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             >
               
-              {/* Top Navbar */}
+              {/* Top Navbar: Fixed Header */}
               <header
                 style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: `${effectiveSidebarWidth}px`,
+                  right: 0,
                   height: '56px',
                   backgroundColor: '#FFFFFF',
                   borderBottom: '1px solid #E5E7EB',
-                  position: 'sticky',
-                  top: 0,
-                  zIndex: 100,
+                  zIndex: 1000,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '0 24px'
+                  padding: '0 24px',
+                  boxSizing: 'border-box',
+                  transition: 'left 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}
               >
                 {/* Breadcrumb / Title */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <button
                     onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-                    style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
+                    style={{
+                      display: isMobile ? 'flex' : 'none',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '4px'
+                    }}
                     className="admin-mobile-toggle"
                   >
                     <IconMenu size={18} color="#0F172A" />
@@ -1726,8 +1749,8 @@ export default function AdminPage({ onNavigate }) {
                 </div>
               </header>
 
-        {/* Main Content Body */}
-        <main style={{ padding: '24px', flex: 1, maxWidth: '1440px', width: '100%', boxSizing: 'border-box' }}>
+        {/* Main Content Body (with marginTop for fixed 56px header) */}
+        <main style={{ marginTop: '56px', padding: '24px', flex: 1, maxWidth: '1440px', width: '100%', boxSizing: 'border-box' }}>
           
           {/* TAB: BLOG ARTICLES */}
           {activeTab === 'blogs' && (
