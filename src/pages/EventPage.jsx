@@ -281,7 +281,7 @@ export default function EventPage({ onNavigate }) {
               <div className="ep-future-right">
                 <div className="ep-future-img-box">
                   <img 
-                    src="/l5.webp" 
+                    src="/l5.png" 
                     alt="Ashirwad plastics at CPHI future"
                     onError={(e) => handleImageError(e, "Future Event 2026")}
                   />

@@ -1,15 +1,22 @@
 import app from './app.js';
+import mongoose from 'mongoose';
 import { connectDB } from './config/database.js';
 import { env } from './config/env.js';
 import { ensureDefaultAdmin } from './services/auth.service.js';
+import { ensureDefaultBlogs } from './services/blogSeed.service.js';
 
 const startServer = async () => {
   try {
     // Connect to MongoDB
     await connectDB();
 
-    // Ensure default admin user is initialized
-    await ensureDefaultAdmin();
+    // Run initial seed tasks only if database connection is active
+    if (mongoose.connection.readyState === 1) {
+      await ensureDefaultAdmin();
+      await ensureDefaultBlogs();
+    } else {
+      console.warn('[Server Warning] Database not connected. Skipping initial seeding until MongoDB is available.');
+    }
 
     const server = app.listen(env.PORT, () => {
       console.log('==================================================');

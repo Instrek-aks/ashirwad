@@ -41,3 +41,6 @@ export const protectAdmin = async (req, res, next) => {
     });
   }
 };
+
+
+export const verifyToken = protectAdmin;

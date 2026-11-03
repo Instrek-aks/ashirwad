@@ -41,7 +41,7 @@ export default function Header({ page, onNavigate }) {
       const offsetPosition = el.getBoundingClientRect().top + window.pageYOffset - 80
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
     } else if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }
     setMenuOpen(false)
     setProductsOpen(false)
@@ -52,6 +52,9 @@ export default function Header({ page, onNavigate }) {
 
   const goTo = (e, target) => {
     e.preventDefault()
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    if (document.documentElement) document.documentElement.scrollTop = 0
+    if (document.body) document.body.scrollTop = 0
     onNavigate(target)
     setMenuOpen(false)
     setProductsOpen(false)
@@ -61,236 +64,311 @@ export default function Header({ page, onNavigate }) {
   }
 
   return (
-    <header className={`header ${scrolled ? 'scrolled-active' : ''}`}>
-      <div className="container header-inner" style={{ maxWidth: '100%', padding: '0 max(24px, 4%)' }}>
+    <>
+      <header
+        className={`header ${scrolled ? 'scrolled-active' : ''}`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 1000,
+          backgroundColor: '#FFFFFF',
+          transition: 'all 0.3s ease'
+        }}
+      >
+      <div
+        className="container header-inner"
+        style={{
+          maxWidth: '1440px',
+          margin: '0 auto',
+          padding: '0 clamp(16px, 3vw, 44px)',
+          width: '100%',
+          height: '74px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          boxSizing: 'border-box'
+        }}
+      >
+        {/* Brand Logo */}
         <a
-          href="#"
+          href="/"
           className="logo"
-          onClick={e => { e.preventDefault(); page === 'home' ? window.scrollTo({ top: 0, behavior: 'smooth' }) : onNavigate('home') }}
+          onClick={e => {
+            e.preventDefault()
+            page === 'home'
+              ? window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+              : onNavigate('home')
+          }}
           style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
         >
-          <img 
-            src="/logo.webp" 
-            alt="Ashirwad Plastics Logo" 
-            style={{ height: '44px', width: 'auto', objectFit: 'contain', display: 'block' }}
+          <img
+            src="/logo.webp"
+            alt="Ashirwad Plastics Logo"
+            style={{ height: '38px', width: 'auto', objectFit: 'contain', display: 'block' }}
           />
         </a>
 
         {/* Mobile menu backdrop blur overlay */}
-        <div 
-          className={`nav-backdrop ${menuOpen ? 'visible' : ''}`} 
-          onClick={() => { setMenuOpen(false); setProductsOpen(false); setMarketOpen(false); setExpertiseOpen(false); setMoreOpen(false); }} 
+        <div
+          className={`nav-backdrop ${menuOpen ? 'visible' : ''}`}
+          onClick={() => {
+            setMenuOpen(false)
+            setProductsOpen(false)
+            setMarketOpen(false)
+            setExpertiseOpen(false)
+            setMoreOpen(false)
+          }}
         />
 
         <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
           {/* Drawer Top Header for Mobile */}
           <div className="nav-drawer-header">
-            <img 
-              src="/logo.webp" 
-              alt="Ashirwad Plastics Logo" 
-              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+            <img
+              src="/logo.webp"
+              alt="Ashirwad Plastics Logo"
+              style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
             />
             <button
               className="nav-drawer-close"
-              onClick={() => { setMenuOpen(false); setProductsOpen(false); setMarketOpen(false); setExpertiseOpen(false); setMoreOpen(false); }}
+              onClick={() => {
+                setMenuOpen(false)
+                setProductsOpen(false)
+                setMarketOpen(false)
+                setExpertiseOpen(false)
+                setMoreOpen(false)
+              }}
               aria-label="Close menu"
               type="button"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
           </div>
 
-          {/* Scrollable links content */}
+          {/* Nav Links: Matching Exact Reference Screenshot */}
           <div className="nav-drawer-content">
+            {/* Mobile-only Home Link */}
             <a
-              href="#"
-              className={page === 'home' ? 'active' : ''}
+              href="/"
+              className={`mobile-only-link ${page === 'home' ? 'active' : ''}`}
               onClick={e => goTo(e, 'home')}
-              style={{ fontWeight: '450', color: '#1F2937' }}
-            >Home</a>
-
-            <div 
-              className={`nav-dropdown-wrapper ${productsOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 1024) setProductsOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 1024) setProductsOpen(false); }}
+              style={{ fontWeight: '550', fontSize: '15px', color: '#1F2937' }}
             >
-              <a
-                href="#"
-                className={page.startsWith('product-') ? 'active' : ''}
-                onClick={e => {
-                  e.preventDefault();
-                  if (window.innerWidth <= 1024) {
-                    setProductsOpen(!productsOpen);
-                  }
-                }}
-                style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
-              >
-                <span>Products</span>
-                <svg 
-                  className={`nav-chevron ${productsOpen ? 'chevron-rotated' : ''}`}
-                  width="18" 
-                  height="18" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  style={{ opacity: 0.8, flexShrink: 0 }}
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </a>
-              <div className={`nav-dropdown-menu ${productsOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '280px', maxHeight: '420px', overflowY: 'auto' }}>
-                <a href="#" onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery System</a>
-                <a href="#" onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery System</a>
-                <a href="#" onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a>
-                <a href="#" onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a>
-                <a href="#" onClick={e => goTo(e, 'product-measuring')}>Measuring Caps &amp; Oral Droppers</a>
-                <a href="#" onClick={e => goTo(e, 'product-glass-dropper')}>Glass Droppers</a>
-                <a href="#" onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a>
-                <a href="#" onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a>
-                <a href="#" onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a>
-                <a href="#" onClick={e => goTo(e, 'product-caps-closures')}>Caps &amp; Closures</a>
-              </div>
-            </div>
+              Home
+            </a>
 
+            {/* 1. About Us */}
             <a
-              href="#"
+              href="/about"
               className={page === 'about' ? 'active' : ''}
               onClick={e => goTo(e, 'about')}
-              style={{ fontWeight: '450', color: '#1F2937' }}
-            >About Us</a>
+              style={{ fontWeight: '550', fontSize: '15px', color: '#1F2937' }}
+            >
+              About Us
+            </a>
 
-            <div 
+            {/* 2. Market Sectors > */}
+            <div
               className={`nav-dropdown-wrapper ${marketOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 1024) setMarketOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 1024) setMarketOpen(false); }}
+              onMouseEnter={() => { if (window.innerWidth > 1080) setMarketOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1080) setMarketOpen(false); }}
             >
               <a
                 href="#"
                 className={page.startsWith('market-') ? 'active' : ''}
                 onClick={e => {
-                  e.preventDefault();
-                  if (window.innerWidth <= 1024) {
-                    setMarketOpen(!marketOpen);
+                  e.preventDefault()
+                  if (window.innerWidth <= 1080) {
+                    setMarketOpen(!marketOpen)
                   }
                 }}
-                style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
+                style={{ display: 'inline-flex', alignItems: 'center', fontWeight: '550', fontSize: '15px', color: '#1F2937', gap: '5px' }}
               >
                 <span>Market Sectors</span>
-                <svg 
+                <svg
                   className={`nav-chevron ${marketOpen ? 'chevron-rotated' : ''}`}
-                  width="18" 
-                  height="18" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  style={{ opacity: 0.8, flexShrink: 0 }}
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ opacity: 0.75, flexShrink: 0, marginLeft: '2px' }}
                 >
-                  <polyline points="6 9 12 15 18 9" />
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </a>
-              <div className={`nav-dropdown-menu ${marketOpen ? 'mobile-expanded' : ''}`}>
-                <a href="#" onClick={e => goTo(e, 'market-pharma')}>Pharma Market</a>
-                <a href="#" onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic Market</a>
-                <a href="#" onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical Market</a>
+              <div className={`nav-dropdown-menu ${marketOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '220px' }}>
+                <a href="/market/pharma" onClick={e => goTo(e, 'market-pharma')}>Pharma Market</a>
+                <a href="/market/cosmetic" onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic Market</a>
+                <a href="/market/nutraceutical" onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical Market</a>
               </div>
             </div>
 
-            <div 
-              className={`nav-dropdown-wrapper ${expertiseOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 1024) setExpertiseOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 1024) setExpertiseOpen(false); }}
+            {/* 3. Our Products > */}
+            <div
+              className={`nav-dropdown-wrapper ${productsOpen ? 'open accordion-open' : ''}`}
+              onMouseEnter={() => { if (window.innerWidth > 1080) setProductsOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1080) setProductsOpen(false); }}
             >
               <a
                 href="#"
-                className={page.startsWith('expertise-') ? 'active' : ''}
+                className={page.startsWith('product-') ? 'active' : ''}
                 onClick={e => {
-                  e.preventDefault();
-                  if (window.innerWidth <= 1024) {
-                    setExpertiseOpen(!expertiseOpen);
+                  e.preventDefault()
+                  if (window.innerWidth <= 1080) {
+                    setProductsOpen(!productsOpen)
                   }
                 }}
-                style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
+                style={{ display: 'inline-flex', alignItems: 'center', fontWeight: '550', fontSize: '15px', color: '#1F2937', gap: '5px' }}
+              >
+                <span>Our Products</span>
+                <svg
+                  className={`nav-chevron ${productsOpen ? 'chevron-rotated' : ''}`}
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ opacity: 0.75, flexShrink: 0, marginLeft: '2px' }}
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </a>
+              <div className={`nav-dropdown-menu ${productsOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '280px', maxHeight: '420px', overflowY: 'auto' }}>
+                <a href="/products/ophthalmic" onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery System</a>
+                <a href="/products/nasal" onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery System</a>
+                <a href="/products/tablet" onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a>
+                <a href="/products/flip-off" onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a>
+                <a href="/products/measuring" onClick={e => goTo(e, 'product-measuring')}>Measuring Caps &amp; Oral Droppers</a>
+                <a href="/products/glass-dropper" onClick={e => goTo(e, 'product-glass-dropper')}>Glass Droppers</a>
+                <a href="/products/dispenser" onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a>
+                <a href="/products/trigger" onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a>
+                <a href="/products/mist-cream" onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a>
+                <a href="/products/caps-closures" onClick={e => goTo(e, 'product-caps-closures')}>Caps &amp; Closures</a>
+              </div>
+            </div>
+
+            {/* 4. Our Expertise > */}
+            <div
+              className={`nav-dropdown-wrapper ${expertiseOpen ? 'open accordion-open' : ''}`}
+              onMouseEnter={() => { if (window.innerWidth > 1080) setExpertiseOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1080) setExpertiseOpen(false); }}
+            >
+              <a
+                href="#"
+                className={page.startsWith('expertise') ? 'active' : ''}
+                onClick={e => {
+                  e.preventDefault()
+                  if (window.innerWidth <= 1080) {
+                    setExpertiseOpen(!expertiseOpen)
+                  }
+                }}
+                style={{ display: 'inline-flex', alignItems: 'center', fontWeight: '550', fontSize: '15px', color: '#1F2937', gap: '5px' }}
               >
                 <span>Our Expertise</span>
-                <svg 
+                <svg
                   className={`nav-chevron ${expertiseOpen ? 'chevron-rotated' : ''}`}
-                  width="18" 
-                  height="18" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  style={{ opacity: 0.8, flexShrink: 0 }}
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ opacity: 0.75, flexShrink: 0, marginLeft: '2px' }}
                 >
-                  <polyline points="6 9 12 15 18 9" />
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </a>
-              <div className={`nav-dropdown-menu ${expertiseOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '220px' }}>
-                <a href="#" onClick={e => goTo(e, 'expertise-manufacturing')}>Manufacturing</a>
-                <a href="#" onClick={e => goTo(e, 'expertise-sustainability')}>Sustainability</a>
-                <a href="#" onClick={e => goTo(e, 'expertise-quality')}>Quality Assurance</a>
-                <a href="#" onClick={e => goTo(e, 'expertise-rd-innovation')}>R&amp;D and Innovation</a>
+              <div className={`nav-dropdown-menu ${expertiseOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '230px' }}>
+                <a href="/product-development" onClick={e => goTo(e, 'expertise')}>New Product Development</a>
+                <a href="/expertise/manufacturing" onClick={e => goTo(e, 'expertise-manufacturing')}>Manufacturing</a>
+                <a href="/expertise/sustainability" onClick={e => goTo(e, 'expertise-sustainability')}>Sustainability</a>
+                <a href="/expertise/quality" onClick={e => goTo(e, 'expertise-quality')}>Quality Assurance</a>
+                <a href="/expertise/rd-innovation" onClick={e => goTo(e, 'expertise-rd-innovation')}>R&amp;D and Innovation</a>
               </div>
             </div>
 
-            <a
-              href="#"
-              className={page === 'expertise' || page === 'presence' ? 'active' : ''}
-              onClick={e => goTo(e, 'expertise')}
-              style={{ fontWeight: '450', color: '#1F2937' }}
-            >New Product Development</a>
-
-            <div 
+            {/* 5. More > */}
+            <div
               className={`nav-dropdown-wrapper dropdown-right ${moreOpen ? 'open accordion-open' : ''}`}
-              onMouseEnter={() => { if (window.innerWidth > 1024) setMoreOpen(true); }}
-              onMouseLeave={() => { if (window.innerWidth > 1024) setMoreOpen(false); }}
+              onMouseEnter={() => { if (window.innerWidth > 1080) setMoreOpen(true); }}
+              onMouseLeave={() => { if (window.innerWidth > 1080) setMoreOpen(false); }}
             >
               <a
                 href="#"
-                className={page === 'career' || page === 'event' || page === 'presence' ? 'active' : ''}
+                className={page === 'career' || page === 'event' || page === 'presence' || page === 'blogs' ? 'active' : ''}
                 onClick={e => {
-                  e.preventDefault();
-                  if (window.innerWidth <= 1024) {
-                    setMoreOpen(!moreOpen);
+                  e.preventDefault()
+                  if (window.innerWidth <= 1080) {
+                    setMoreOpen(!moreOpen)
                   }
                 }}
-                style={{ display: 'flex', alignItems: 'center', fontWeight: '450', color: '#1F2937', gap: '4px' }}
+                style={{ display: 'inline-flex', alignItems: 'center', fontWeight: '550', fontSize: '15px', color: '#1F2937', gap: '5px' }}
               >
                 <span>More</span>
-                <svg 
+                <svg
                   className={`nav-chevron ${moreOpen ? 'chevron-rotated' : ''}`}
-                  width="18" 
-                  height="18" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  style={{ opacity: 0.8, flexShrink: 0 }}
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ opacity: 0.75, flexShrink: 0, marginLeft: '2px' }}
                 >
-                  <polyline points="6 9 12 15 18 9" />
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </a>
               <div className={`nav-dropdown-menu ${moreOpen ? 'mobile-expanded' : ''}`}>
-                <a href="#" onClick={e => goTo(e, 'career')}>Careers</a>
-                <a href="#" onClick={e => goTo(e, 'event')}>CPHI-PMEC Event</a>
-                <a href="#" onClick={e => goTo(e, 'presence')}>Global Presence</a>
+                <a href="/blogs" onClick={e => goTo(e, 'blogs')}>Blogs &amp; Insights</a>
+                <a href="/careers" onClick={e => goTo(e, 'career')}>Careers</a>
+                <a href="/events" onClick={e => goTo(e, 'event')}>CPHI-PMEC Event</a>
+                <a href="/global-presence" onClick={e => goTo(e, 'presence')}>Global Presence</a>
               </div>
             </div>
 
-            {/* CTA Button navigates to the dedicated Contact page */}
+            {/* 6. CTA Button: Contact Us ↗ */}
             <a
-              href="#"
-              className="btn-header-cta"
+              href="/contact"
               onClick={e => goTo(e, 'contact')}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', borderRadius: '30px', padding: '12px 24px', background: '#2456D3', color: '#FFFFFF', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(36, 86, 211, 0.15)' }}
+              className="btn-header-cta"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                borderRadius: '30px',
+                padding: '9.5px 24px',
+                background: '#2F65E3',
+                color: '#FFFFFF',
+                fontWeight: '600',
+                fontSize: '14px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                boxShadow: '0 4px 14px rgba(47, 101, 227, 0.28)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#1D4ED8'; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#2F65E3'; }}
             >
-              Contact Us
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '4px' }}>
+              <span>Contact Us</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />
               </svg>
@@ -303,6 +381,7 @@ export default function Header({ page, onNavigate }) {
           className="nav-hamburger"
           aria-label="Toggle menu"
           onClick={() => setMenuOpen(m => !m)}
+          type="button"
         >
           <span className={`hamburger-line ${menuOpen ? 'open' : ''}`} />
           <span className={`hamburger-line ${menuOpen ? 'open' : ''}`} />
@@ -310,6 +389,8 @@ export default function Header({ page, onNavigate }) {
         </button>
       </div>
     </header>
+    {/* Fixed header placeholder spacer to maintain perfect page flow */}
+    <div style={{ height: '74px', width: '100%', flexShrink: 0 }} aria-hidden="true" />
+  </>
   )
 }
-

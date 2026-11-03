@@ -37,36 +37,83 @@ import TriggerProductPage from './pages/TriggerProductPage'
 import MistCreamProductPage from './pages/MistCreamProductPage'
 import CapsClosuresProductPage from './pages/CapsClosuresProductPage'
 import AdminPage from './pages/AdminPage'
+import BlogPage from './pages/BlogPage'
+import BlogDetailPage from './pages/BlogDetailPage'
+import { parseCurrentLocation, getPathForTarget, getDocumentTitle } from './utils/routes'
 
 function App() {
-  const [page, setPage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash.replace('#', '').toLowerCase()
-      if (hash === 'admin' || hash === '/admin') return 'admin'
-    }
-    return 'home'
-  })
+  // Disable automatic scroll restoration so user always lands at the top of the new page
+  if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
 
+  // Parse initial route on load or refresh
+  const initialRoute = parseCurrentLocation();
+  const [page, setPage] = useState(initialRoute.page);
+  const [currentBlogSlug, setCurrentBlogSlug] = useState(
+    initialRoute.slug || 'advancing-ophthalmic-nasal-delivery-precision-cleanroom-molding'
+  );
+
+  // Instant scroll-to-top and document title update whenever route changes
   useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.replace('#', '').toLowerCase()
-      if (hash === 'admin' || hash === '/admin') {
-        setPage('admin')
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+    document.title = getDocumentTitle(page);
+
+    // Timeout backup for async-rendered or image-loaded content
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    }, 40);
+
+    return () => clearTimeout(timer);
+  }, [page, currentBlogSlug]);
+
+  // Handle browser Back / Forward buttons and URL hash changes
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const route = parseCurrentLocation();
+      setPage(route.page);
+      if (route.slug) {
+        setCurrentBlogSlug(route.slug);
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, []);
+
+  // Central Navigation Handler (Updates browser URL, updates state, scrolls to top)
+  const navigate = (target, data = null) => {
+    const canonicalPath = getPathForTarget(target, data);
+
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname !== canonicalPath) {
+        window.history.pushState({ target, data }, '', canonicalPath);
       }
     }
-    window.addEventListener('hashchange', handleHash)
-    return () => window.removeEventListener('hashchange', handleHash)
-  }, [])
 
-  const navigate = (target) => {
-    setPage(target)
-    if (target === 'admin') {
-      window.location.hash = 'admin'
-    } else if (window.location.hash.includes('admin')) {
-      history.pushState('', document.title, window.location.pathname + window.location.search)
+    if (target === 'blog-detail' && data) {
+      setCurrentBlogSlug(data);
+      setPage('blog-detail');
+    } else {
+      setPage(target);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+
+    // Immediate instant scroll to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+  };
 
   if (page === 'admin') {
     return <AdminPage onNavigate={navigate} />
@@ -128,6 +175,12 @@ function App() {
       )}
       {page === 'event' && (
         <EventPage onNavigate={navigate} />
+      )}
+      {page === 'blogs' && (
+        <BlogPage onNavigate={navigate} />
+      )}
+      {page === 'blog-detail' && (
+        <BlogDetailPage slug={currentBlogSlug} onNavigate={navigate} />
       )}
       {page === 'product-ophthalmic' && (
         <OphthalmicProductPage onNavigate={navigate} />
