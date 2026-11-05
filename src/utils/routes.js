@@ -181,7 +181,7 @@ export function getDocumentTitle(page, blogTitle = '') {
     return `${blogTitle} | Ashirwad Plastics`;
   }
   const titles = {
-    home: 'Ashirwad Plastics | Pharmaceutical & Healthcare Packaging Solutions',
+    home: 'Ashirwad Plastics | Engineered for Precision. Designed for Care.',
     about: 'About Us | Ashirwad Plastics',
     contact: 'Contact Us | Ashirwad Plastics',
     blogs: 'Insights & Knowledge Center | Ashirwad Plastics',

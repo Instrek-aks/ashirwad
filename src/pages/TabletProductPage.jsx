@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ProductRibbon from '../components/ProductRibbon'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -23,7 +24,6 @@ export default function TabletProductPage({ onNavigate }) {
   const [overviewRef, overviewVisible] = useFadeIn()
   const [galleryRef, galleryVisible] = useFadeIn()
   const [featureRef, featureVisible] = useFadeIn()
-  const [specsRef, specsVisible] = useFadeIn()
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
 
@@ -127,19 +127,7 @@ export default function TabletProductPage({ onNavigate }) {
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
-      <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container">
-          {productsList.map((prod, idx) => (
-            <button 
-              key={idx}
-              className={`op-tab-btn ${prod.path === 'product-tablet' ? 'active' : ''}`} 
-              onClick={() => onNavigate(prod.path)}
-            >
-              {prod.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductRibbon activePath="product-tablet" onNavigate={onNavigate} />
 
       {/* 3. PRODUCT OVERVIEW SECTION */}
       <section className="op-overview-section" ref={overviewRef}>
@@ -169,38 +157,7 @@ export default function TabletProductPage({ onNavigate }) {
               <p className="op-showcase-desc">
                 Our tablet packaging solutions are engineered for moisture protection, durability, and secure storage. Available in multiple sizes and closure configurations, these containers are ideal for a wide range of solid-dose applications.
               </p>
-
-              {/* Product Specifications Badges */}
-              <div className="op-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Sizes</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">30 cc</span>
-                    <span className="op-pill">40 cc</span>
-                    <span className="op-pill">60 cc</span>
-                    <span className="op-pill">75 cc</span>
-                    <span className="op-pill">100 cc</span>
-                    <span className="op-pill">120 cc</span>
-                    <span className="op-pill">150 cc</span>
-                    <span className="op-pill">200 cc</span>
-                    <span className="op-pill">250 cc</span>
-                    <span className="op-pill">300 cc</span>
-                  </div>
-                </div>
-
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Closure Options</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">28 mm CRC</span>
-                    <span className="op-pill">33 mm CRC</span>
-                    <span className="op-pill">33 CT</span>
-                    <span className="op-pill">38 CT</span>
-                    <span className="op-pill">53 CT</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+</div>
 
           </div>
         </div>
@@ -299,44 +256,7 @@ export default function TabletProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. TECHNICAL SPECIFICATIONS SECTION */}
-      <section className="op-specs-section" ref={specsRef}>
-        <div className="container">
-          <div className={`fade-section ${specsVisible ? 'visible' : ''}`}>
-            
-            <h2 className="op-specs-title">Technical Specifications</h2>
-            
-            <div className="op-table-wrapper">
-              <table className="op-specs-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { spec: "Product Type", detail: "Tablet Containers & Closures" },
-                    { spec: "Sizes Available", detail: "30 cc – 300 cc" },
-                    { spec: "Closure Types", detail: "CRC / CT Closures" },
-                    { spec: "Material", detail: "Pharmaceutical Grade Plastic" },
-                    { spec: "Application", detail: "Solid-Dose Packaging" },
-                    { spec: "Compliance", detail: "GMP / ISO Standards" }
-                  ].map((row, idx) => (
-                    <tr key={idx}>
-                      <td>{row.spec}</td>
-                      <td>{row.detail}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY CHOOSE ASHIRWAD SECTION */}
+{/* 7. WHY CHOOSE ASHIRWAD SECTION */}
       <section className="op-why-section" ref={whyRef}>
         <div className="container">
           <div className={`op-why-container fade-section ${whyVisible ? 'visible' : ''}`}>

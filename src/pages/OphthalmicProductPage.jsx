@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ProductRibbon from '../components/ProductRibbon'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -23,7 +24,6 @@ export default function OphthalmicProductPage({ onNavigate }) {
   const [overviewRef, overviewVisible] = useFadeIn()
   const [galleryRef, galleryVisible] = useFadeIn()
   const [featureRef, featureVisible] = useFadeIn()
-  const [specsRef, specsVisible] = useFadeIn()
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
   const [footerCtaRef, footerCtaVisible] = useFadeIn()
@@ -128,19 +128,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
-      <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container">
-          {productsList.map((prod, idx) => (
-            <button 
-              key={idx}
-              className={`op-tab-btn ${prod.path === 'product-ophthalmic' ? 'active' : ''}`} 
-              onClick={() => onNavigate(prod.path)}
-            >
-              {prod.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductRibbon activePath="product-ophthalmic" onNavigate={onNavigate} />
 
       {/* 3. PRODUCT OVERVIEW SECTION */}
       <section className="op-overview-section" ref={overviewRef}>
@@ -186,30 +174,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
               <p className="op-showcase-desc">
                 Our ophthalmic delivery systems are designed to support precise dispensing, product integrity and reliable performance. Manufactured in a GMP-compliant facility, our eye dropper bottles offer quality-driven packaging solutions for pharmaceutical applications, supported by US DMF and Health Canada DMF documentation.
               </p>
-
-              {/* Product Specifications Badges */}
-              <div className="op-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Available Sizes</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>5 ml</span>
-                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>7 ml</span>
-                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>10 ml</span>
-                    <span className="op-pill" style={{ background: '#2456D3', color: '#fff', fontWeight: 600 }}>15 ml</span>
-                  </div>
-                </div>
-
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Closure Options</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">CRC (Child-Resistant Closures)</span>
-                    <span className="op-pill">Tamper-Evident Systems</span>
-                    <span className="op-pill">Tear-Off Tamper-Evident</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+</div>
 
           </div>
         </div>
@@ -306,55 +271,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. TECHNICAL SPECIFICATIONS SECTION */}
-      <section className="op-specs-section" ref={specsRef}>
-        <div className="container">
-          <div className={`fade-section ${specsVisible ? 'visible' : ''}`}>
-            
-            <h2 className="op-specs-title">Technical Specifications</h2>
-            
-            <div className="op-table-wrapper">
-              <table className="op-specs-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Product Type</td>
-                    <td>Ophthalmic Delivery System</td>
-                  </tr>
-                  <tr>
-                    <td>Sizes Available</td>
-                    <td>5 ml, 7 ml, 10 ml, 15 ml</td>
-                  </tr>
-                  <tr>
-                    <td>Material</td>
-                    <td>Pharmaceutical Grade Plastic</td>
-                  </tr>
-                  <tr>
-                    <td>Closure Options</td>
-                    <td>CRC / Tamper Evident / Tear-Off</td>
-                  </tr>
-                  <tr>
-                    <td>Application</td>
-                    <td>Ophthalmic Formulations</td>
-                  </tr>
-                  <tr>
-                    <td>Compliance</td>
-                    <td>GMP / ISO Standards</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY CHOOSE ASHIRWAD SECTION */}
+{/* 7. WHY CHOOSE ASHIRWAD SECTION */}
       <section className="op-why-section" ref={whyRef}>
         <div className="container">
           <div className={`op-why-container fade-section ${whyVisible ? 'visible' : ''}`}>

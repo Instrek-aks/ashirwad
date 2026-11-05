@@ -153,11 +153,11 @@ export default function Footer({ page, onNavigate }) {
 
           {/* Column 3: Market Sectors */}
           <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Market Sectors</h4>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Our Segments</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li><a href="/market/pharma" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-pharma')}>Pharma Market</a></li>
-              <li><a href="/market/cosmetic" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic Market</a></li>
-              <li><a href="/market/nutraceutical" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-nutraceutical')}>Home Care Industry</a></li>
+              <li><a href="/market/pharma" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-pharma')}>Pharmaceutical</a></li>
+              <li><a href="/market/nutraceutical" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical</a></li>
+              <li><a href="/market/cosmetic" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic</a></li>
             </ul>
           </div>
 

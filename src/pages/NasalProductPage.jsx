@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ProductRibbon from '../components/ProductRibbon'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -23,7 +24,6 @@ export default function NasalProductPage({ onNavigate }) {
   const [overviewRef, overviewVisible] = useFadeIn()
   const [galleryRef, galleryVisible] = useFadeIn()
   const [featureRef, featureVisible] = useFadeIn()
-  const [specsRef, specsVisible] = useFadeIn()
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
   const [footerCtaRef, footerCtaVisible] = useFadeIn()
@@ -132,19 +132,7 @@ export default function NasalProductPage({ onNavigate }) {
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
-      <div className="np-tabs-bar" ref={tabsRef}>
-        <div className="container np-tabs-container">
-          {productsList.map((prod, idx) => (
-            <button 
-              key={idx}
-              className={`np-tab-btn ${prod.path === 'product-nasal' ? 'active' : ''}`} 
-              onClick={() => onNavigate(prod.path)}
-            >
-              {prod.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductRibbon activePath="product-nasal" onNavigate={onNavigate} />
 
       {/* 3. PRODUCT OVERVIEW SECTION */}
       <section className="np-overview-section" ref={overviewRef}>
@@ -174,49 +162,7 @@ export default function NasalProductPage({ onNavigate }) {
               <p className="np-showcase-desc">
                 Manufactured under controlled cleanroom conditions using pharmaceutical-grade raw materials, our nasal delivery solutions are designed to minimize contamination risks and help maintain product integrity throughout shelf life. We also offer customized development solutions with tailored spray characteristics to meet specific formulation requirements, enhance patient experience, and support faster market readiness with short development lead times.
               </p>
-
-              {/* Product Specifications Badges */}
-              <div className="np-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', borderTop: '1px solid var(--border-gray)', paddingTop: '32px', alignItems: 'flex-start' }}>
-                <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', textAlign: 'left', width: '100%' }}>
-                  <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937' }}>Available Sizes and Dosage Options</span>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingLeft: '2px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: '13.5px', fontWeight: '600', color: '#374151', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ color: '#2456D3', fontWeight: '700', fontSize: '15px' }}>•</span>
-                        Metered-Dose Nasal Pumps (per actuation):
-                      </span>
-                      <div className="np-tag-pills" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>60 µL</span>
-                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>100 µL</span>
-                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>120 µL</span>
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: '13.5px', fontWeight: '600', color: '#374151', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ color: '#2456D3', fontWeight: '700', fontSize: '15px' }}>•</span>
-                        Squeeze-Bottle Spray Systems:
-                      </span>
-                      <div className="np-tag-pills" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>20 ml</span>
-                        <span className="np-pill" style={{ background: '#2456D3', color: '#ffffff', fontWeight: 600 }}>30 ml</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="np-tag-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', textAlign: 'left', width: '100%' }}>
-                  <span className="np-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937' }}>Available Components</span>
-                  <div className="np-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="np-pill">Snap-on, screw-type, and crimp-on nasal spray pumps</span>
-                    <span className="np-pill">Child-resistant closures (CRC)</span>
-                    <span className="np-pill">Tamper-evident closures</span>
-                    <span className="np-pill">Tear-off tamper-evident (TE) closures</span>
-                    <span className="np-pill">Squeeze-bottle spray containers</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+</div>
 
           </div>
         </div>
@@ -321,72 +267,7 @@ export default function NasalProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. TECHNICAL SPECIFICATIONS SECTION */}
-      <section className="np-specs-section" ref={specsRef}>
-        <div className="container">
-          <div className={`fade-section ${specsVisible ? 'visible' : ''}`}>
-            
-            <h2 className="np-specs-title">Technical Specifications</h2>
-            
-            <div className="np-table-wrapper">
-              <table className="np-specs-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Product Type</td>
-                    <td>Nasal Delivery System (Multidose Metered-Dose Pumps &amp; Squeeze-Bottle Spray Systems)</td>
-                  </tr>
-                  <tr>
-                    <td>Available Sizes and Dosage Options</td>
-                    <td>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                        <div>• <strong>Metered-Dose Nasal Pumps:</strong> 60 µL, 100 µL, and 120 µL per actuation</div>
-                        <div>• <strong>Squeeze-Bottle Spray Systems:</strong> 20 ml and 30 ml</div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Available Components</td>
-                    <td>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                        <div>• Snap-on, screw-type, and crimp-on nasal spray pumps</div>
-                        <div>• Child-resistant closures (CRC)</div>
-                        <div>• Tamper-evident closures</div>
-                        <div>• Tear-off tamper-evident (TE) closures</div>
-                        <div>• Squeeze-bottle spray containers</div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Material</td>
-                    <td>Pharmaceutical Grade Polymers (USP Class VI Compliant HDPE / LDPE / PP)</td>
-                  </tr>
-                  <tr>
-                    <td>Pump Fitment Types</td>
-                    <td>Snap-on, Screw-type, and Crimp-on</td>
-                  </tr>
-                  <tr>
-                    <td>Application</td>
-                    <td>Intranasal Drug Delivery, Decongestants, Saline Sprays &amp; Specialized Formulations</td>
-                  </tr>
-                  <tr>
-                    <td>Compliance &amp; Quality</td>
-                    <td>Class 100,000 Cleanroom, ISO 15378, ISO 9001, GMP, US DMF &amp; Health Canada DMF Documented</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY CHOOSE ASHIRWAD SECTION */}
+{/* 7. WHY CHOOSE ASHIRWAD SECTION */}
       <section className="np-why-section" ref={whyRef}>
         <div className="container">
           <div className={`np-why-container fade-section ${whyVisible ? 'visible' : ''}`}>

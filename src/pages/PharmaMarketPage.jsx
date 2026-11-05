@@ -85,7 +85,7 @@ export default function PharmaMarketPage({ onNavigate }) {
           <nav className="pharma-breadcrumb" style={{ margin: 0 }}>
             <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>HOME</span>
             <span className="breadcrumb-separator">&gt;</span>
-            <span onClick={() => onNavigate('market')} style={{ cursor: 'pointer' }}>MARKET SECTORS</span>
+            <span onClick={() => onNavigate('market')} style={{ cursor: 'pointer' }}>OUR SEGMENTS</span>
             <span className="breadcrumb-separator">&gt;</span>
             <span className="breadcrumb-active">PHARMA MARKET</span>
           </nav>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ProductRibbon from '../components/ProductRibbon'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -23,7 +24,6 @@ export default function MistCreamProductPage({ onNavigate }) {
   const [overviewRef, overviewVisible] = useFadeIn()
   const [galleryRef, galleryVisible] = useFadeIn()
   const [featureRef, featureVisible] = useFadeIn()
-  const [specsRef, specsVisible] = useFadeIn()
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
 
@@ -134,19 +134,7 @@ export default function MistCreamProductPage({ onNavigate }) {
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
-      <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container">
-          {productsList.map((prod, idx) => (
-            <button 
-              key={idx}
-              className={`op-tab-btn ${prod.path === 'product-mist-cream' ? 'active' : ''}`} 
-              onClick={() => onNavigate(prod.path)}
-            >
-              {prod.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductRibbon activePath="product-mist-cream" onNavigate={onNavigate} />
 
       {/* 3. PRODUCT OVERVIEW SECTION */}
       <section className="op-overview-section" ref={overviewRef}>
@@ -180,27 +168,7 @@ export default function MistCreamProductPage({ onNavigate }) {
                   <strong>Cream Pumps:</strong> Smooth-action cream pumps designed for precise dispensing of thick formulations including creams, lotions, foundations, and serums.
                 </p>
               </div>
-
-              {/* Product Specifications Badges */}
-              <div className="op-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Dispensing Types</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">Fine Mist</span>
-                    <span className="op-pill">Lotion Cream</span>
-                  </div>
-                </div>
-
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Materials Used</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">Cosmetic Grade Plastic</span>
-                    <span className="op-pill">Aluminium (Sheathed Options)</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+</div>
 
           </div>
         </div>
@@ -276,43 +244,7 @@ export default function MistCreamProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. TECHNICAL SPECIFICATIONS SECTION */}
-      <section className="op-specs-section" ref={specsRef}>
-        <div className="container">
-          <div className={`fade-section ${specsVisible ? 'visible' : ''}`}>
-            
-            <h2 className="op-specs-title">Technical Specifications</h2>
-            
-            <div className="op-table-wrapper">
-              <table className="op-specs-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { spec: "Product Type", detail: "Mist Pump / Cream Pump" },
-                    { spec: "Material", detail: "Cosmetic Grade Plastic" },
-                    { spec: "Dispensing Type", detail: "Fine Mist / Cream" },
-                    { spec: "Application", detail: "Cosmetic & Personal Care" },
-                    { spec: "Compliance", detail: "ISO Standards" }
-                  ].map((row, idx) => (
-                    <tr key={idx}>
-                      <td>{row.spec}</td>
-                      <td>{row.detail}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY CHOOSE ASHIRWAD SECTION */}
+{/* 7. WHY CHOOSE ASHIRWAD SECTION */}
       <section className="op-why-section" ref={whyRef}>
         <div className="container">
           <div className={`op-why-container fade-section ${whyVisible ? 'visible' : ''}`}>

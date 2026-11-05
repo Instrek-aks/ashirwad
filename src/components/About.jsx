@@ -44,7 +44,7 @@ export default function About() {
           </div>
           <FadeIn>
             <div className="factory-aerial-box">
-              <img src="/images/factory_aerial.webp" alt="Factory Aerial View" className="factory-aerial-img" />
+              <img src="/images/factory_aerial.webp" alt="Company Aerial View" className="factory-aerial-img" />
               {/* Optional small red indicator pin matching the visual in reference */}
               <div className="factory-pin"></div>
             </div>

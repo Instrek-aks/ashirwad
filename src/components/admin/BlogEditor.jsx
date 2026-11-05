@@ -9,7 +9,7 @@ const PRESET_IMAGES = [
   { label: 'R&D Laboratory', url: '/reseach.webp' },
   { label: 'Quality Cleanroom', url: '/quality.webp' },
   { label: 'Ophthalmic Precision Dropper', url: '/ophthalmic_user.webp' },
-  { label: 'Global Factory Aerial', url: '/global/1.webp' },
+  { label: 'Global Company Aerial', url: '/global/1.webp' },
   { label: 'High Speed Production', url: '/b4.webp' }
 ];
 

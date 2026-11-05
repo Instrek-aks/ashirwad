@@ -54,7 +54,7 @@ export default function VisionMission() {
               >
                 <img 
                   src={src} 
-                  alt={`Factory Interior ${i + 1}`} 
+                  alt={`Company Interior ${i + 1}`} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   onError={(e) => {
                     e.target.style.display = 'none';

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ProductRibbon from '../components/ProductRibbon'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -23,7 +24,6 @@ export default function CapsClosuresProductPage({ onNavigate }) {
   const [overviewRef, overviewVisible] = useFadeIn()
   const [galleryRef, galleryVisible] = useFadeIn()
   const [featureRef, featureVisible] = useFadeIn()
-  const [specsRef, specsVisible] = useFadeIn()
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
 
@@ -131,19 +131,7 @@ export default function CapsClosuresProductPage({ onNavigate }) {
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
-      <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container">
-          {productsList.map((prod, idx) => (
-            <button 
-              key={idx}
-              className={`op-tab-btn ${prod.path === 'product-caps-closures' ? 'active' : ''}`} 
-              onClick={() => onNavigate(prod.path)}
-            >
-              {prod.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductRibbon activePath="product-caps-closures" onNavigate={onNavigate} />
 
       {/* 3. PRODUCT OVERVIEW SECTION */}
       <section className="op-overview-section" ref={overviewRef}>
@@ -172,29 +160,7 @@ export default function CapsClosuresProductPage({ onNavigate }) {
               <p className="op-showcase-desc">
                 Available in multiple sizes and closure types, our solutions are built to protect products at every stage from production to end-use.
               </p>
-
-              {/* Product Specifications Badges */}
-              <div className="op-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Closure Types</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">Flip-Top Caps</span>
-                    <span className="op-pill">Screw Caps</span>
-                    <span className="op-pill">Child-Resistant Closures (CRC)</span>
-                    <span className="op-pill">Tamper-Evident Closures</span>
-                  </div>
-                </div>
-
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Materials Used</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">Pharmaceutical Grade Plastic</span>
-                    <span className="op-pill">Cosmetic Grade Plastic</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+</div>
 
           </div>
         </div>
@@ -270,44 +236,7 @@ export default function CapsClosuresProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. TECHNICAL SPECIFICATIONS SECTION */}
-      <section className="op-specs-section" ref={specsRef}>
-        <div className="container">
-          <div className={`fade-section ${specsVisible ? 'visible' : ''}`}>
-            
-            <h2 className="op-specs-title">Technical Specifications</h2>
-            
-            <div className="op-table-wrapper">
-              <table className="op-specs-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { spec: "Product Type", detail: "Caps & Closures" },
-                    { spec: "Closure Types", detail: "Flip-Top / Screw Cap / CRC / Tamper Evident" },
-                    { spec: "Material", detail: "Pharmaceutical / Cosmetic Grade Plastic" },
-                    { spec: "Size Options", detail: "Multiple (as per requirement)" },
-                    { spec: "Application", detail: "Pharma / Cosmetic / Nutraceutical" },
-                    { spec: "Compliance", detail: "GMP / ISO Standards" }
-                  ].map((row, idx) => (
-                    <tr key={idx}>
-                      <td>{row.spec}</td>
-                      <td>{row.detail}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY CHOOSE ASHIRWAD SECTION */}
+{/* 7. WHY CHOOSE ASHIRWAD SECTION */}
       <section className="op-why-section" ref={whyRef}>
         <div className="container">
           <div className={`op-why-container fade-section ${whyVisible ? 'visible' : ''}`}>

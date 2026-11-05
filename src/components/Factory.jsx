@@ -28,16 +28,16 @@ export default function Factory() {
           {images.map((src, i) => (
             <FadeIn key={i}>
               <div className="factory-gallery-item">
-                <img src={src} alt={`Factory Process ${i + 1}`} className="factory-gallery-img" />
+                <img src={src} alt={`Company Process ${i + 1}`} className="factory-gallery-img" />
               </div>
             </FadeIn>
           ))}
         </div>
 
-        {/* Our Factory Block */}
+        {/* Our Company Block */}
         <div className="factory-details-block">
           <div className="factory-left">
-            <h2>Our Factory</h2>
+            <h2>Our Company</h2>
           </div>
           <div className="factory-right">
             <p>

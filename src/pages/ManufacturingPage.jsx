@@ -278,12 +278,12 @@ export default function ManufacturingPage({ onNavigate }) {
               </div>
             </div>
 
-            {/* Card 4: Factory Floor Image */}
+            {/* Card 4: Company Floor Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
                 src="/3.webp" 
-                alt="Production Factory Floor" 
-                onError={(e) => handleImageError(e, "Factory Floor")}
+                alt="Production Company Floor" 
+                onError={(e) => handleImageError(e, "Company Floor")}
               />
             </div>
 

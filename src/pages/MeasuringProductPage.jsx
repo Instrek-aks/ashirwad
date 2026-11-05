@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ProductRibbon from '../components/ProductRibbon'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -23,7 +24,6 @@ export default function MeasuringProductPage({ onNavigate }) {
   const [overviewRef, overviewVisible] = useFadeIn()
   const [galleryRef, galleryVisible] = useFadeIn()
   const [featureRef, featureVisible] = useFadeIn()
-  const [specsRef, specsVisible] = useFadeIn()
   const [whyRef, whyVisible] = useFadeIn()
   const [ctaRef, ctaVisible] = useFadeIn()
 
@@ -127,19 +127,7 @@ export default function MeasuringProductPage({ onNavigate }) {
       </section>
 
       {/* 2. PRODUCT CATEGORY NAVIGATION */}
-      <div className="op-tabs-bar" ref={tabsRef}>
-        <div className="container op-tabs-container">
-          {productsList.map((prod, idx) => (
-            <button 
-              key={idx}
-              className={`op-tab-btn ${prod.path === 'product-measuring' ? 'active' : ''}`} 
-              onClick={() => onNavigate(prod.path)}
-            >
-              {prod.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductRibbon activePath="product-measuring" onNavigate={onNavigate} />
 
       {/* 3. PRODUCT OVERVIEW SECTION */}
       <section className="op-overview-section" ref={overviewRef}>
@@ -173,29 +161,7 @@ export default function MeasuringProductPage({ onNavigate }) {
                   <strong>Oral Droppers:</strong> Precision-engineered oral droppers for controlled liquid dispensing. Suitable for pediatric medicines, herbal liquids, and a wide range of oral healthcare formulations.
                 </p>
               </div>
-
-              {/* Product Specifications Badges */}
-              <div className="op-tags-wrapper" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px', borderTop: '1px solid var(--border-gray)', paddingTop: '40px', alignItems: 'flex-start' }}>
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Graduations</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">2.5 ml</span>
-                    <span className="op-pill">5 ml</span>
-                    <span className="op-pill">10 ml</span>
-                    <span className="op-pill">Clear Embossed Markings</span>
-                  </div>
-                </div>
-
-                <div className="op-tag-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px', flexWrap: 'wrap', textAlign: 'left', width: '100%' }}>
-                  <span className="op-tag-label" style={{ fontSize: '15px', fontWeight: '700', color: '#1F2937', minWidth: '160px', flexShrink: 0 }}>Materials Used</span>
-                  <div className="op-tag-pills" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span className="op-pill">Pharmaceutical Grade Polypropylene</span>
-                    <span className="op-pill">Food-Grade Plastic</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+</div>
 
           </div>
         </div>
@@ -270,43 +236,7 @@ export default function MeasuringProductPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. TECHNICAL SPECIFICATIONS SECTION */}
-      <section className="op-specs-section" ref={specsRef}>
-        <div className="container">
-          <div className={`fade-section ${specsVisible ? 'visible' : ''}`}>
-            
-            <h2 className="op-specs-title">Technical Specifications</h2>
-            
-            <div className="op-table-wrapper">
-              <table className="op-specs-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { spec: "Product Type", detail: "Measuring Caps & Oral Droppers" },
-                    { spec: "Material", detail: "Pharmaceutical Grade Plastic" },
-                    { spec: "Design", detail: "Graduated / Precision Dropper" },
-                    { spec: "Application", detail: "Oral Liquid Formulations" },
-                    { spec: "Compliance", detail: "GMP / ISO Standards" }
-                  ].map((row, idx) => (
-                    <tr key={idx}>
-                      <td>{row.spec}</td>
-                      <td>{row.detail}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 7. WHY CHOOSE ASHIRWAD SECTION */}
+{/* 7. WHY CHOOSE ASHIRWAD SECTION */}
       <section className="op-why-section" ref={whyRef}>
         <div className="container">
           <div className={`op-why-container fade-section ${whyVisible ? 'visible' : ''}`}>

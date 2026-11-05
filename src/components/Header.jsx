@@ -176,7 +176,7 @@ export default function Header({ page, onNavigate }) {
                 }}
                 style={{ display: 'inline-flex', alignItems: 'center', fontWeight: '550', fontSize: '15px', color: '#1F2937', gap: '5px' }}
               >
-                <span>Market Sectors</span>
+                <span>Our Segments</span>
                 <svg
                   className={`nav-chevron ${marketOpen ? 'chevron-rotated' : ''}`}
                   width="13"
@@ -193,9 +193,9 @@ export default function Header({ page, onNavigate }) {
                 </svg>
               </a>
               <div className={`nav-dropdown-menu ${marketOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '220px' }}>
-                <a href="/market/pharma" onClick={e => goTo(e, 'market-pharma')}>Pharma Market</a>
-                <a href="/market/cosmetic" onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic Market</a>
-                <a href="/market/nutraceutical" onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical Market</a>
+                <a href="/market/pharma" onClick={e => goTo(e, 'market-pharma')}>Pharmaceutical</a>
+                <a href="/market/nutraceutical" onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical</a>
+                <a href="/market/cosmetic" onClick={e => goTo(e, 'market-cosmetic')}>Cosmetic</a>
               </div>
             </div>
 
