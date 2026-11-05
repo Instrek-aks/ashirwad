@@ -1240,29 +1240,19 @@ body {
   transform: translateY(0);
 }
 
-/* Smooth Page Transition */
-.page-view-transition {
-  animation: pageViewFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes pageViewFadeIn {
-  from {
-    opacity: 0.88;
-  }
-  to {
-    opacity: 1;
-  }
+/* Page View Content */
+.page-view-content {
+  min-height: 60vh;
 }
 
 .fade-section {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  opacity: 1;
+  transform: none;
 }
 
 .fade-section.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Ensure above-the-fold content renders instantly without blank flash */

@@ -58,34 +58,20 @@ function App() {
   // Instant scroll-to-top and document title update whenever route changes
   useEffect(() => {
     document.title = getDocumentTitle(page);
-    const isProductSwitch = prevPageRef.current?.startsWith('product-') && page?.startsWith('product-');
-    if (!isProductSwitch) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      if (document.documentElement) document.documentElement.scrollTop = 0;
-      if (document.body) document.body.scrollTop = 0;
-
-      const timer = setTimeout(() => {
-        window.scrollTo(0, 0);
-        if (document.documentElement) document.documentElement.scrollTop = 0;
-        if (document.body) document.body.scrollTop = 0;
-      }, 40);
-
-      return () => clearTimeout(timer);
-    }
-    prevPageRef.current = page;
   }, [page, currentBlogSlug]);
 
   // Handle browser Back / Forward buttons and URL hash changes
   useEffect(() => {
     const handleLocationChange = () => {
       const route = parseCurrentLocation();
+      const isProductSwitch = page?.startsWith('product-') && route.page?.startsWith('product-');
       setPage(route.page);
       if (route.slug) {
         setCurrentBlogSlug(route.slug);
       }
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      if (document.documentElement) document.documentElement.scrollTop = 0;
-      if (document.body) document.body.scrollTop = 0;
+      if (!isProductSwitch) {
+        window.scrollTo(0, 0);
+      }
     };
 
     window.addEventListener('popstate', handleLocationChange);
@@ -94,12 +80,12 @@ function App() {
       window.removeEventListener('popstate', handleLocationChange);
       window.removeEventListener('hashchange', handleLocationChange);
     };
-  }, []);
+  }, [page]);
 
   // Central Navigation Handler (Updates browser URL, updates state, scrolls to top)
   const navigate = (target, data = null) => {
     const canonicalPath = getPathForTarget(target, data);
-    const isRibbonSwitch = Boolean(data?.fromRibbon) || (page?.startsWith('product-') && target?.startsWith('product-'));
+    const isProductSwitch = page?.startsWith('product-') && target?.startsWith('product-');
 
     if (typeof window !== 'undefined') {
       if (window.location.pathname !== canonicalPath) {
@@ -114,20 +100,10 @@ function App() {
       setPage(target);
     }
 
-    if (isRibbonSwitch) {
-      const scrollY = data?.scrollY ?? 280;
-      window.scrollTo({ top: scrollY, behavior: 'instant' });
-      requestAnimationFrame(() => {
-        const ribbonEl = document.getElementById('product-ribbon');
-        if (ribbonEl) {
-          const y = ribbonEl.getBoundingClientRect().top + window.pageYOffset - 74;
-          window.scrollTo({ top: Math.max(0, y), behavior: 'instant' });
-        }
-      });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      if (document.documentElement) document.documentElement.scrollTop = 0;
-      if (document.body) document.body.scrollTop = 0;
+    // Only scroll to top on non-product full-page navigation
+    // Product-to-product ribbon navigation stays smoothly anchored with zero jumping
+    if (!isProductSwitch) {
+      window.scrollTo(0, 0);
     }
   };
 
@@ -138,7 +114,7 @@ function App() {
   return (
     <>
       <Header page={page} onNavigate={navigate} />
-      <main key={page} className="page-view-transition" style={{ minHeight: '60vh' }}>
+      <main className="page-view-content" style={{ minHeight: '60vh' }}>
         {page === 'home' && (
         <>
           <Hero onNavigate={navigate} />

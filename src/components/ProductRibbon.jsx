@@ -34,15 +34,7 @@ export default function ProductRibbon({ activePath, onNavigate }) {
   const handleClick = (e, path) => {
     e.preventDefault()
     if (path === activePath) return
-
-    // Keep current vertical scroll anchored right at the sticky ribbon
-    const ribbonEl = document.getElementById('product-ribbon')
-    const currentScroll = window.scrollY
-    const ribbonTop = ribbonEl ? ribbonEl.getBoundingClientRect().top + window.pageYOffset - 74 : 280
-
-    const scrollY = currentScroll >= ribbonTop - 30 ? ribbonTop : currentScroll
-
-    onNavigate(path, { fromRibbon: true, scrollY })
+    onNavigate(path)
   }
 
   return (
