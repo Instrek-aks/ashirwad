@@ -78,7 +78,7 @@ export default function Hero({ onNavigate }) {
       <div className="hero-careers-ticker-centered" style={{ zIndex: 10 }}>
         <div className="container">
           <span>
-            Join our team – We are looking for talented &amp; driven people to come work with us.{' '}
+            Join our team - We are looking for talented &amp; driven people to come work with us.{' '}
             <a href="#careers" className="ticker-link-centered" onClick={(e) => { e.preventDefault(); onNavigate('career'); }}>
               Explore Careers
             </a>

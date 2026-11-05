@@ -57,7 +57,7 @@ export default function Commitment() {
       <section className="dev-overview-section">
         <div className="container">
           <div ref={overviewRef} className={`dev-overview-content fade-section ${overviewVisible ? 'visible' : ''}`}>
-            <h2 className="dev-overview-title">Inside Our Process: Step by Step – New Product Development</h2>
+            <h2 className="dev-overview-title">Inside Our Process: Step by Step - New Product Development</h2>
             <p className="dev-overview-subtitle">Check out our process for straightforward guidance.</p>
           </div>
         </div>
