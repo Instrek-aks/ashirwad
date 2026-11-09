@@ -4,7 +4,7 @@ export default function Excellence() {
   const cards = [
     {
       title: 'Manufacturing',
-      desc: 'We leverage advanced manufacturing technologies and modern facilities to deliver consistent quality and operational excellence.',
+      desc: 'We leverage advanced manufacturing technologies and modern facilities to deliver consistent quality and operational excellence. Every process follows documented procedures under our QMS, with in-process checks at each stage. Our skilled team is committed to efficient production and on-time delivery.',
       icon: (
         <svg viewBox="0 0 24 24" className="excellence-icon" fill="none" stroke="#2456D3" strokeWidth="2">
           <rect x="2" y="2" width="20" height="8" rx="2" />
@@ -16,7 +16,7 @@ export default function Excellence() {
     },
     {
       title: 'Sustainability',
-      desc: 'We follow environmentally responsible practices focused on efficiency, waste reduction, and sustainable growth.',
+      desc: 'We follow environmentally responsible practices focused on efficiency, waste reduction, and sustainable growth. Through optimized resource use and compliance with environmental regulations, we work to minimize our footprint at every stage.',
       icon: (
         <svg viewBox="0 0 24 24" className="excellence-icon" fill="none" stroke="#2456D3" strokeWidth="2">
           <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
@@ -26,7 +26,7 @@ export default function Excellence() {
     },
     {
       title: 'Quality',
-      desc: 'Our strict quality standards ensure every product meets industry regulations and customer expectations.',
+      desc: 'Our strict quality standards ensure every product meets industry regulations and customer expectations. Guided by our Quality Management System (QMS), we maintain documented processes, full traceability, and regular audits at every stage. We are committed to customer satisfaction and continual improvement.',
       icon: (
         <svg viewBox="0 0 24 24" className="excellence-icon" fill="none" stroke="#2456D3" strokeWidth="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
