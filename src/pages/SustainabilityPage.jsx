@@ -358,11 +358,11 @@ export default function SustainabilityPage({ onNavigate }) {
 
             {/* Right Column: Prominent Facility / Eco Image */}
             <div className="mfg-overview-right">
-              <div className="mfg-facility-img-box" style={{ border: '1px solid #D9EDE0' }}>
+              <div className="mfg-facility-img-box" style={{ border: '1px solid #D9EDE0', aspectRatio: '0.88', maxWidth: '400px', margin: '0 auto' }}>
                 <img 
                   src="/sustainibility/7.webp" 
                   alt="Our Sustainability Approach" 
-                  style={{ objectPosition: 'center 22%' }}
+                  style={{ objectPosition: 'bottom center' }}
                   onError={(e) => handleImageError(e, "Sustainability Approach")}
                 />
               </div>
