@@ -154,7 +154,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/Product_Images/image20.png" 
+                    src="/Product_Images/image20.webp" 
                     alt="High-Quality Production" 
                     onError={(e) => handleImageError(e, "Automated Production")}
                   />

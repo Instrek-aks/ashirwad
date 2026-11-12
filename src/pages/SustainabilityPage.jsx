@@ -18,6 +18,8 @@ function useFadeIn() {
 export default function SustainabilityPage({ onNavigate }) {
   const [heroRef, heroVisible] = useFadeIn()
   const [approachRef, approachVisible] = useFadeIn()
+  const [paperlessRef, paperlessVisible] = useFadeIn()
+  const [pillarsRef, pillarsVisible] = useFadeIn()
   const [ehsRef, ehsVisible] = useFadeIn()
   const [focusRef, focusVisible] = useFadeIn()
   const [gridRef, gridVisible] = useFadeIn()
@@ -95,16 +97,16 @@ export default function SustainabilityPage({ onNavigate }) {
       badge.style.flexDirection = 'column'
       badge.style.alignItems = 'center'
       badge.style.justifyContent = 'center'
-      badge.style.background = 'linear-gradient(135deg, #2F67F6 0%, #0D1C3D 100%)'
+      badge.style.background = 'linear-gradient(135deg, #16A34A 0%, #06291D 100%)'
       badge.style.color = '#FFFFFF'
       badge.style.padding = '20px'
       badge.style.textAlign = 'center'
       badge.style.borderRadius = '20px'
-      
+
       badge.innerHTML = `
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 8px; opacity: 0.85;">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
+          <path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z" />
+          <circle cx="12" cy="10" r="3" />
         </svg>
         <span style="font-size: 13px; font-weight: 500; letter-spacing: 0.5px;">${label}</span>
       `
@@ -129,22 +131,22 @@ export default function SustainabilityPage({ onNavigate }) {
       title: "Our Commitment to Environment, Health, and Safety (EHS):",
       points: [
         "Comply with all statutory EHS regulations, national standards, and customer sustainability frameworks.",
+        "Operate 100% paperless digital workflows across production, QA logs, and EHS reporting to eliminate paper waste.",
         "Prevent environmental pollution by minimizing emissions, recycling process scrap, and conserving water and power.",
-        "Implement rigorous hazard identification, risk assessments, and proactive incident reporting to maintain a zero-harm workplace.",
+        "Implement rigorous hazard identification, digital risk assessments, and proactive incident reporting for a zero-harm workplace.",
         "Conduct regular employee and contractor training in machine safety, PPE compliance, and cleanroom safety protocols.",
         "Regularly audit EHS systems and benchmark against global packaging and cleanroom standards (ISO 9001, ISO 15378, GMP).",
-        "Invest in energy-efficient all-electric injection blow molding machines and closed-loop process cooling systems.",
-        "Foster workplace innovation to conserve natural resources, improve ergonomics, and eliminate hazardous waste."
+        "Invest in energy-efficient all-electric injection blow molding machines and closed-loop process cooling systems."
       ]
     },
     about: {
       badge: "Core Philosophy",
       title: "Our Strategic Sustainability Blueprint:",
       points: [
+        "Transitioning to a 100% paperless organization where every operational, quality, and administrative workflow runs on unified digital systems.",
         "Embedding responsible manufacturing principles into every stage of pharmaceutical packaging design and supply.",
         "Active decoupling of operational growth from environmental impact through cleaner industrial technologies.",
-        "Collaborative supplier engagement ensuring ethical raw material sourcing and full chain-of-custody compliance.",
-        "Targeting verified life-cycle enhancements across our primary packaging containers, closures, and dispensing systems.",
+        "Collaborative supplier engagement ensuring ethical raw material sourcing and full digital chain-of-custody compliance.",
         "Fostering employee-driven green champions across all our production shifts and quality laboratories."
       ]
     },
@@ -152,9 +154,9 @@ export default function SustainabilityPage({ onNavigate }) {
       badge: "Leadership Vision",
       title: "Message from the Management:",
       points: [
-        "\"At Ashirwad Plastics, our ambition is to protect vital pharmaceutical products while safeguarding our planet's future.\"",
+        "\"At Ashirwad Plastics, going completely paperless is a defining milestone - protecting vital pharmaceutical products while safeguarding our planet's forests and future.\"",
+        "Replacing manual paper registers, physical approvals, and printed batch files with real-time ERP and cloud-based systems across every department.",
         "Continuous capital investment in low-emission machinery, rooftop solar feasibility, and advanced scrap reclaim systems.",
-        "Empowering our workforce through transparent leadership, safety ownership, and lifelong skill upgradation.",
         "Partnering closely with pharmaceutical innovators to develop lighter, circular-ready packaging that reduces global carbon footprints."
       ]
     },
@@ -162,9 +164,9 @@ export default function SustainabilityPage({ onNavigate }) {
       badge: "ESG Architecture",
       title: "Environmental, Social & Governance (ESG) Framework:",
       points: [
-        "Environmental: Carbon footprint tracking, closed-loop cooling, clean scrap pulverizing, and energy conservation.",
+        "Environmental: Zero-paper digital operations, carbon footprint tracking, closed-loop cooling, clean scrap pulverizing, and energy conservation.",
         "Social: Safe and inclusive workplace culture, fair wages, zero discrimination, and strong employee welfare schemes.",
-        "Governance: Transparent business ethics, strict anti-bribery policies, verifiable quality audits, and data integrity.",
+        "Governance: Paperless digital audit trails, transparent business ethics, verifiable quality audits, and uncompromised data integrity.",
         "Regulatory adherence to FDA DMF, US Pharmacopeia, and European Pharmacopoeia regulatory expectations."
       ]
     },
@@ -183,16 +185,16 @@ export default function SustainabilityPage({ onNavigate }) {
       title: "Operational & Climate Risk Management:",
       points: [
         "Proactive identification of supply chain disruptions, polymer feedstock price volatility, and regulatory shifts.",
+        "Cloud-backed digital redundancy ensuring all quality, batch, and dispatch data stays secure with zero physical document loss risk.",
         "Preventive maintenance protocols to avert unforeseen machine downtime, energy spikes, or hydraulic leakages.",
-        "Comprehensive fire safety infrastructure, automated hydrants, and emergency response drills.",
-        "Redundant power and water management systems ensuring uncompromised cleanroom packaging reliability."
+        "Comprehensive fire safety infrastructure, automated hydrants, and redundant power and water management systems."
       ]
     },
     whistle: {
       badge: "Ethics & Transparency",
       title: "Whistle Blower & Ethical Conduct Policy:",
       points: [
-        "Confidential, retaliation-free reporting channels for any violations of environmental, safety, or ethical standards.",
+        "Confidential, retaliation-free digital reporting channels for any violations of environmental, safety, or ethical standards.",
         "Immediate independent inquiry protocols overseen by top governance and compliance heads.",
         "Zero-tolerance stance against unethical trade practices, product tampering, or data concealment.",
         "Open-door culture encouraging every employee to speak up for workplace dignity and environmental protection."
@@ -202,7 +204,56 @@ export default function SustainabilityPage({ onNavigate }) {
 
   const currentPolicy = policyData[activePolicyTab] || policyData.ehs
 
+  const paperlessFeatures = [
+    {
+      title: "Unified ERP & Cloud",
+      desc: "Orders, stock, and dispatch run on one integrated system.",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      )
+    },
+    {
+      title: "Digital QA & Batch Logs",
+      desc: "Cleanroom checks and approvals recorded with full audit trails.",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <polyline points="9 12 11 14 15 10" />
+        </svg>
+      )
+    },
+    {
+      title: "E-Certificates & Billing",
+      desc: "CoAs, technical specs, and invoices shared electronically.",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <polyline points="9 15 11 17 15 13" />
+        </svg>
+      )
+    },
+    {
+      title: "Zero-Paper Floor & Office",
+      desc: "Shift handovers and approvals handled completely screen-to-screen.",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75" />
+        </svg>
+      )
+    }
+  ]
+
   const focusAreas = [
+    {
+      title: "100% Paperless Digital Systems",
+      desc: "Moving every production log, quality inspection, ERP workflow, and administrative approval onto digital platforms - eliminating paper usage company-wide.",
+      tag: "Zero Paper Usage"
+    },
     {
       title: "Sustainable Packaging Solutions",
       desc: "Developing recyclable and resource-optimized primary pharma packaging, closures, and dispensers designed for circularity and reduced material intensity.",
@@ -214,11 +265,6 @@ export default function SustainabilityPage({ onNavigate }) {
       tag: "Energy & Emissions"
     },
     {
-      title: "Responsible Supply Chain",
-      desc: "Ethically sourcing high-purity medical-grade virgin polymers and collaborating with certified suppliers who share our ecological and social standards.",
-      tag: "Sourcing & Ethics"
-    },
-    {
       title: "Circular Economy & Zero Landfill",
       desc: "Promoting 100% recyclability of clean industrial scrap, optimized purge reuse, and minimal waste-to-landfill across all production facilities.",
       tag: "Waste Minimization"
@@ -226,15 +272,15 @@ export default function SustainabilityPage({ onNavigate }) {
   ]
 
   return (
-    <div className="mfg-page-wrapper">
+    <div className="mfg-page-wrapper sustainability-green-theme">
 
       {/* 1. HERO SECTION */}
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/sustainibility/1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(4, 34, 22, 0.58), rgba(4, 34, 22, 0.76)), url('/sustainibility/1.webp')",
           position: 'relative',
-          minHeight: '480px'
+          minHeight: '490px'
         }}
       >
         <div 
@@ -242,11 +288,11 @@ export default function SustainabilityPage({ onNavigate }) {
           className={`mfg-hero-content fade-section ${heroVisible ? 'visible' : ''}`}
           style={{ 
             position: 'absolute',
-            top: 'clamp(100px, 9.2vw, 132px)',
+            top: 'clamp(92px, 8.8vw, 126px)',
             left: 'clamp(24px, 8.3vw, 120px)',
-            maxWidth: '852px',
+            maxWidth: '860px',
             width: 'calc(100% - 48px)',
-            minHeight: '238.729736328125px',
+            minHeight: '245px',
             display: 'flex',
             flexDirection: 'column',
             gap: '16px',
@@ -260,14 +306,36 @@ export default function SustainabilityPage({ onNavigate }) {
             <span className="breadcrumb-separator">&gt;</span>
             <span className="breadcrumb-active">SUSTAINABILITY</span>
           </nav>
-          <h1 className="mfg-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Sustainability & EHS</h1>
-          <p className="mfg-hero-desc" style={{ margin: 0, maxWidth: '640px' }}>
-            A core value that shapes every decision we make. We combine responsible manufacturing, workplace safety, and circular thinking to protect both healthcare products and the planet.
+
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              width: 'fit-content',
+              backgroundColor: 'rgba(34, 197, 94, 0.2)',
+              border: '1px solid rgba(74, 222, 128, 0.45)',
+              color: '#86EFAC',
+              padding: '5px 14px',
+              borderRadius: '100px',
+              fontSize: '11.5px',
+              fontWeight: 600,
+              letterSpacing: '0.8px',
+              textTransform: 'uppercase'
+            }}
+          >
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#4ADE80' }} />
+            100% Paperless &amp; Green Manufacturing
+          </div>
+
+          <h1 className="mfg-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Sustainability &amp; EHS</h1>
+          <p className="mfg-hero-desc" style={{ margin: 0, maxWidth: '660px' }}>
+            A core value that shapes every decision we make. By transitioning to 100% paperless digital systems alongside energy-efficient manufacturing and workplace safety, we protect both healthcare products and the planet.
           </p>
         </div>
       </section>
 
-      {/* 2. OVERVIEW SECTION (Matching Manufacturing, Quality & R&D Pages) */}
+      {/* 2. OVERVIEW SECTION */}
       <section className="mfg-overview-section">
         <div className="container">
           <div ref={approachRef} className={`mfg-overview-grid fade-section ${approachVisible ? 'visible' : ''}`}>
@@ -277,10 +345,10 @@ export default function SustainabilityPage({ onNavigate }) {
               <div className="mfg-accent-line" />
               <h2 className="mfg-section-title">Our Sustainability Approach</h2>
               <p className="mfg-overview-paragraph">
-                At Ashirwad Plastics, sustainability is not an afterthought—it is a core value embedded into how we design, manufacture, and deliver primary pharmaceutical and consumer packaging solutions. We recognise that choices made today define the environmental legacy we leave for the future.
+                At Ashirwad Plastics, sustainability is not an afterthought - it is a core value embedded into how we design, manufacture, and deliver primary pharmaceutical and consumer packaging solutions. We recognise that choices made today define the environmental legacy we leave for the future.
               </p>
               <p className="mfg-overview-paragraph">
-                From disciplined raw material stewardship and energy-efficient cleanroom molding to closed-loop recycling and strict compliance with global EHS benchmarks, we continuously minimize our environmental footprint while maintaining absolute pharmaceutical-grade precision.
+                As a landmark achievement toward zero-waste operations, we are transforming into a <strong>100% paperless enterprise</strong> - moving every operational workflow, quality inspection, batch record, and dispatch process onto unified digital systems while maintaining strict compliance with global EHS benchmarks.
               </p>
               <a 
                 href="#" 
@@ -293,7 +361,7 @@ export default function SustainabilityPage({ onNavigate }) {
 
             {/* Right Column: Prominent Facility / Eco Image */}
             <div className="mfg-overview-right">
-              <div className="mfg-facility-img-box">
+              <div className="mfg-facility-img-box" style={{ border: '1px solid #D9EDE0' }}>
                 <img 
                   src="/sustainibility/7.webp" 
                   alt="Our Sustainability Approach" 
@@ -306,16 +374,107 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 3. SUSTAINABILITY FRAMEWORK HIGHLIGHTS (Responsive Checkpoint Card) */}
-      <section style={{ backgroundColor: '#F8FAFC', padding: '60px 0', borderBottom: '1px solid var(--border-gray)' }}>
+      {/* 3. FLAGSHIP INITIATIVE: 100% PAPERLESS & DIGITAL SYSTEMS */}
+      <section style={{ backgroundColor: '#F3F9F5', padding: '56px 0 28px' }}>
+        <div className="container">
+          <div ref={paperlessRef} className={`paperless-showcase-card fade-section ${paperlessVisible ? 'visible' : ''}`}>
+            <div className="paperless-split-grid">
+              
+              {/* Left Column: Compact Narrative + 2x2 Highlights */}
+              <div>
+                <div 
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    backgroundColor: 'rgba(22, 163, 74, 0.12)',
+                    color: '#15803D',
+                    border: '1px solid rgba(22, 163, 74, 0.25)',
+                    padding: '4px 12px',
+                    borderRadius: '100px',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    letterSpacing: '0.7px',
+                    textTransform: 'uppercase',
+                    marginBottom: '12px'
+                  }}
+                >
+                  Zero Paper Usage - Digital Milestone
+                </div>
+
+                <h2 
+                  style={{ 
+                    fontSize: 'clamp(22px, 2.4vw, 30px)', 
+                    fontWeight: 700, 
+                    color: '#06291D', 
+                    lineHeight: 1.25,
+                    letterSpacing: '-0.4px',
+                    margin: '0 0 10px 0' 
+                  }}
+                >
+                  Going 100% Paperless on Unified Systems
+                </h2>
+
+                <p style={{ fontSize: '14.5px', lineHeight: 1.6, color: '#374151', margin: 0 }}>
+                  Every workflow - from production and cleanroom QA checks to dispatch and billing - now operates digitally with zero paper usage across the facility.
+                </p>
+
+                <div className="paperless-compact-points">
+                  {paperlessFeatures.map((item, idx) => (
+                    <div key={idx} className="paperless-point-item">
+                      <div className="paperless-icon-box">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#06291D', margin: '0 0 2px 0', lineHeight: 1.3 }}>
+                          {item.title}
+                        </h3>
+                        <p style={{ fontSize: '12.5px', lineHeight: 1.45, color: '#4B5563', margin: 0 }}>
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* <div className="paperless-metrics-bar">
+                  <span className="paperless-metric-chip">
+                    <strong>100%</strong> System-Driven Workflows
+                  </span>
+                  <span className="paperless-metric-chip">
+                    <strong>Zero</strong> Printed Floor Logs
+                  </span>
+                </div> */}
+              </div>
+
+              {/* Right Column: Visual Asset */}
+              <div>
+                <div className="paperless-visual-box">
+                  <img 
+                    src="/sustainibility/paperless.webp" 
+                    alt="100% Paperless Digital Manufacturing Systems" 
+                    onError={(e) => handleImageError(e, "100% Paperless Systems")}
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SUSTAINABILITY FRAMEWORK HIGHLIGHTS (Responsive Checkpoint Card) */}
+      <section style={{ backgroundColor: '#F3F9F5', padding: '24px 0 70px', borderBottom: '1px solid #D9EDE0' }}>
         <div className="container">
           <div 
+            ref={pillarsRef}
+            className={`fade-section ${pillarsVisible ? 'visible' : ''}`}
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '20px',
-              border: '1px solid #E2E8F0',
+              border: '1px solid #D9EDE0',
               padding: 'clamp(24px, 3.5vw, 44px)',
-              boxShadow: '0 8px 30px rgba(15, 23, 42, 0.04)'
+              boxShadow: '0 8px 30px rgba(6, 41, 29, 0.04)'
             }}
           >
             <div style={{ maxWidth: '720px', marginBottom: '28px' }}>
@@ -323,7 +482,7 @@ export default function SustainabilityPage({ onNavigate }) {
                 style={{
                   fontSize: '11.5px',
                   fontWeight: 700,
-                  color: '#2F67F6',
+                  color: '#15803D',
                   textTransform: 'uppercase',
                   letterSpacing: '0.8px',
                   display: 'inline-block',
@@ -332,7 +491,7 @@ export default function SustainabilityPage({ onNavigate }) {
               >
                 Operational Pillars
               </span>
-              <h3 style={{ fontSize: 'clamp(20px, 2.2vw, 26px)', fontWeight: 700, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: 'clamp(20px, 2.2vw, 26px)', fontWeight: 700, color: '#06291D', margin: 0 }}>
                 Our sustainability-focused approach brings together:
               </h3>
             </div>
@@ -345,14 +504,14 @@ export default function SustainabilityPage({ onNavigate }) {
               }}
             >
               {[
+                "100% paperless workflows across ERP, QA & dispatch",
+                "Real-time digital batch records eliminating printed logs",
                 "Carbon-conscious & energy-efficient manufacturing",
                 "Renewable & solar energy resources",
                 "Zero hazardous waste generation",
                 "Closed-loop water and chiller systems",
                 "100% recyclable virgin medical-grade polymers",
-                "In-house clean scrap reclaim optimization",
-                "Employee-driven sustainability & safety teams",
-                "Continuous environmental audits & compliance"
+                "In-house clean scrap reclaim optimization"
               ].map((item, idx) => (
                 <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                   <span 
@@ -360,8 +519,8 @@ export default function SustainabilityPage({ onNavigate }) {
                       width: '20px',
                       height: '20px',
                       borderRadius: '50%',
-                      backgroundColor: 'rgba(47, 103, 246, 0.1)',
-                      color: '#2F67F6',
+                      backgroundColor: 'rgba(22, 163, 74, 0.12)',
+                      color: '#16A34A',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -383,11 +542,11 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 4. POLICIES & GOVERNANCE (Clean & Minimalist with Tabs Above) */}
+      {/* 5. POLICIES & GOVERNANCE (Deep Forest Green Theme with Tabs) */}
       <section 
         className="mfg-capabilities-section" 
         style={{ 
-          backgroundColor: '#0D1C3D', 
+          backgroundColor: '#06291D', 
           color: '#FFFFFF',
           padding: 'clamp(60px, 7vw, 90px) 0',
           position: 'relative'
@@ -401,8 +560,8 @@ export default function SustainabilityPage({ onNavigate }) {
               <div 
                 style={{
                   display: 'inline-block',
-                  backgroundColor: 'rgba(47, 103, 246, 0.18)',
-                  color: '#60A5FA',
+                  backgroundColor: 'rgba(34, 197, 94, 0.16)',
+                  color: '#4ADE80',
                   padding: '5px 14px',
                   borderRadius: '100px',
                   fontSize: '11.5px',
@@ -410,7 +569,7 @@ export default function SustainabilityPage({ onNavigate }) {
                   letterSpacing: '1px',
                   textTransform: 'uppercase',
                   marginBottom: '14px',
-                  border: '1px solid rgba(47, 103, 246, 0.3)'
+                  border: '1px solid rgba(74, 222, 128, 0.3)'
                 }}
               >
                 Governance &amp; Compliance
@@ -427,8 +586,8 @@ export default function SustainabilityPage({ onNavigate }) {
               >
                 Policies &amp; Corporate Governance
               </h2>
-              <p style={{ fontSize: '15.5px', lineHeight: 1.65, color: '#94A3B8', margin: 0 }}>
-                Explore our corporate policies, occupational health and safety commitments, and ethical governance standards.
+              <p style={{ fontSize: '15.5px', lineHeight: 1.65, color: '#A7F3D0', opacity: 0.85, margin: 0 }}>
+                Explore our corporate policies, occupational health and safety commitments, and paperless governance standards.
               </p>
             </div>
 
@@ -454,23 +613,23 @@ export default function SustainabilityPage({ onNavigate }) {
                       borderRadius: '100px',
                       fontSize: '13.5px',
                       fontWeight: isActive ? 600 : 500,
-                      backgroundColor: isActive ? '#2F67F6' : 'rgba(255, 255, 255, 0.06)',
-                      color: isActive ? '#FFFFFF' : '#94A3B8',
-                      border: isActive ? '1px solid #2F67F6' : '1px solid rgba(255, 255, 255, 0.1)',
+                      backgroundColor: isActive ? '#16A34A' : 'rgba(255, 255, 255, 0.06)',
+                      color: isActive ? '#FFFFFF' : '#CBD5E1',
+                      border: isActive ? '1px solid #22C55E' : '1px solid rgba(255, 255, 255, 0.12)',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
                         e.currentTarget.style.color = '#FFFFFF'
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)'
+                        e.currentTarget.style.borderColor = 'rgba(74, 222, 128, 0.4)'
                         e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive) {
-                        e.currentTarget.style.color = '#94A3B8'
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+                        e.currentTarget.style.color = '#CBD5E1'
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'
                         e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)'
                       }
                     }}
@@ -484,11 +643,11 @@ export default function SustainabilityPage({ onNavigate }) {
             {/* Clean Content Card */}
             <div 
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(74, 222, 128, 0.18)',
                 borderRadius: '20px',
                 padding: 'clamp(24px, 4vw, 44px)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.28)',
                 maxWidth: '960px',
                 margin: '0 auto'
               }}
@@ -496,9 +655,9 @@ export default function SustainabilityPage({ onNavigate }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <span 
                   style={{
-                    backgroundColor: 'rgba(34, 197, 94, 0.15)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.18)',
                     color: '#4ADE80',
-                    border: '1px solid rgba(34, 197, 94, 0.3)',
+                    border: '1px solid rgba(74, 222, 128, 0.35)',
                     padding: '3px 10px',
                     borderRadius: '6px',
                     fontSize: '11.5px',
@@ -535,8 +694,8 @@ export default function SustainabilityPage({ onNavigate }) {
                         width: '18px',
                         height: '18px',
                         borderRadius: '50%',
-                        backgroundColor: 'rgba(47, 103, 246, 0.25)',
-                        color: '#60A5FA',
+                        backgroundColor: 'rgba(34, 197, 94, 0.22)',
+                        color: '#4ADE80',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -548,7 +707,7 @@ export default function SustainabilityPage({ onNavigate }) {
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </span>
-                    <span style={{ fontSize: '14px', lineHeight: 1.6, color: '#CBD5E1' }}>
+                    <span style={{ fontSize: '14px', lineHeight: 1.6, color: '#E2E8F0' }}>
                       {pt}
                     </span>
                   </div>
@@ -561,7 +720,7 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 5. SUSTAINABILITY FOCUS AREAS (Clean card layout without images or link buttons) */}
+      {/* 6. SUSTAINABILITY FOCUS AREAS */}
       <section className="mfg-capabilities-section" style={{ padding: '90px 0', backgroundColor: '#FFFFFF' }}>
         <div className="container">
           <div ref={focusRef} className={`fade-section ${focusVisible ? 'visible' : ''}`}>
@@ -572,11 +731,11 @@ export default function SustainabilityPage({ onNavigate }) {
                 Sustainability Focus Areas
               </h2>
               <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'var(--text-gray)', margin: 0 }}>
-                Our sustainability strategy advances responsible materials, low-emission processing, and ethical packaging solutions that protect consumers and preserve the environment.
+                Our sustainability strategy advances paperless digital systems, responsible materials, low-emission processing, and ethical packaging solutions that protect consumers and preserve the environment.
               </p>
             </div>
 
-            {/* 4 Cards Grid - Clean, Image-free, Minimalist */}
+            {/* 4 Cards Grid */}
             <div 
               style={{
                 display: 'grid',
@@ -588,31 +747,31 @@ export default function SustainabilityPage({ onNavigate }) {
                 <div 
                   key={idx}
                   style={{
-                    backgroundColor: '#F8FAFC',
+                    backgroundColor: '#F3F9F5',
                     borderRadius: '16px',
-                    border: '1px solid #E2E8F0',
+                    border: '1px solid #D9EDE0',
                     padding: '28px 24px',
                     display: 'flex',
                     flexDirection: 'column',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+                    boxShadow: '0 2px 8px rgba(6, 41, 29, 0.03)',
                     transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-4px)'
-                    e.currentTarget.style.boxShadow = '0 12px 24px rgba(15, 23, 42, 0.06)'
-                    e.currentTarget.style.borderColor = '#CBD5E1'
+                    e.currentTarget.style.boxShadow = '0 12px 24px rgba(22, 163, 74, 0.1)'
+                    e.currentTarget.style.borderColor = '#4ADE80'
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.02)'
-                    e.currentTarget.style.borderColor = '#E2E8F0'
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(6, 41, 29, 0.03)'
+                    e.currentTarget.style.borderColor = '#D9EDE0'
                   }}
                 >
                   <span 
                     style={{ 
                       fontSize: '11.5px', 
                       fontWeight: 700, 
-                      color: '#2F67F6', 
+                      color: '#15803D', 
                       textTransform: 'uppercase', 
                       letterSpacing: '0.8px',
                       marginBottom: '10px'
@@ -624,7 +783,7 @@ export default function SustainabilityPage({ onNavigate }) {
                     style={{ 
                       fontSize: '18px', 
                       fontWeight: 700, 
-                      color: '#0F172A', 
+                      color: '#06291D', 
                       marginBottom: '12px',
                       lineHeight: 1.35
                     }}
@@ -635,7 +794,7 @@ export default function SustainabilityPage({ onNavigate }) {
                     style={{ 
                       fontSize: '14px', 
                       lineHeight: 1.65, 
-                      color: '#64748B', 
+                      color: '#4B5563', 
                       margin: 0
                     }}
                   >
@@ -649,8 +808,8 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 5. SUSTAINABILITY PRACTICES GRID (3x2 Alternate Layout from Ashirwad Style) */}
-      <section className="mfg-capabilities-section" style={{ backgroundColor: '#F8FAFC', padding: '100px 0' }}>
+      {/* 7. SUSTAINABILITY PRACTICES GRID (3x2 Alternate Layout) */}
+      <section className="mfg-capabilities-section" style={{ backgroundColor: '#F3F9F5', padding: '100px 0' }}>
         <div className="container">
           <div ref={gridRef} className={`mfg-capabilities-grid fade-section ${gridVisible ? 'visible' : ''}`}>
             
@@ -663,14 +822,14 @@ export default function SustainabilityPage({ onNavigate }) {
               />
             </div>
 
-            {/* Card 2: What We Do (Text) */}
+            {/* Card 2: What We Do (Text - Deep Forest Green Card) */}
             <div className="mfg-grid-card mfg-card-dark">
               <h3 className="mfg-card-heading">What We Do for a Sustainable Future</h3>
               <div className="mfg-benefits-list">
                 
                 <div className="mfg-benefit-item">
                   <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" strokeWidth="3.5">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
@@ -682,7 +841,7 @@ export default function SustainabilityPage({ onNavigate }) {
 
                 <div className="mfg-benefit-item">
                   <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" strokeWidth="3.5">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
@@ -695,19 +854,19 @@ export default function SustainabilityPage({ onNavigate }) {
               </div>
             </div>
 
-            {/* Card 3: Waste Reduction (Text) */}
+            {/* Card 3: Zero-Waste & Paperless Floor (Text) */}
             <div className="mfg-grid-card mfg-card-light">
-              <h3 className="mfg-card-heading" style={{ color: '#1F2937' }}>Zero-Waste Generation</h3>
+              <h3 className="mfg-card-heading" style={{ color: '#06291D' }}>Zero-Waste &amp; Paperless Floor</h3>
               <div className="mfg-benefits-list">
                 <div className="mfg-benefit-item">
                   <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="3.5">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <p style={{ color: '#6B7280', fontSize: '15px', lineHeight: '1.6' }}>
-                      Through closed-loop resource management and proactive cleanroom regrind protocols for non-pharma ancillary components, we minimize landfill contributions and ensure maximum circular polymer recovery.
+                    <p style={{ color: '#4B5563', fontSize: '15px', lineHeight: '1.6' }}>
+                      By replacing printed shop-floor logs and paper checklists with digital systems - and combining that with closed-loop cleanroom regrind protocols - we eliminate paper waste while ensuring maximum circular polymer recovery.
                     </p>
                   </div>
                 </div>
@@ -734,16 +893,16 @@ export default function SustainabilityPage({ onNavigate }) {
 
             {/* Card 6: Sustainable Practices (Text) */}
             <div className="mfg-grid-card mfg-card-light">
-              <h3 className="mfg-card-heading" style={{ color: '#1F2937' }}>Sustainable Packaging Design</h3>
+              <h3 className="mfg-card-heading" style={{ color: '#06291D' }}>Sustainable Packaging Design</h3>
               <div className="mfg-benefits-list">
                 <div className="mfg-benefit-item">
                   <span className="mfg-check-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="3.5">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
                   <div className="mfg-benefit-content">
-                    <p style={{ color: '#6B7280', fontSize: '15px', lineHeight: '1.6' }}>
+                    <p style={{ color: '#4B5563', fontSize: '15px', lineHeight: '1.6' }}>
                       From mono-material closures and dispensers to optimized neck geometries, our designs simplify downstream municipal and industrial recycling streams across all major consumer and pharmaceutical markets.
                     </p>
                   </div>
@@ -755,21 +914,21 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. INITIATIVES & GREEN GALLERY */}
+      {/* 8. INITIATIVES & GREEN GALLERY */}
       <section 
         className="mfg-facility-section" 
         ref={galleryRef}
         style={{ 
           backgroundColor: '#FFFFFF', 
           padding: '90px 0', 
-          borderTop: '1px solid var(--border-gray)',
-          borderBottom: '1px solid var(--border-gray)'
+          borderTop: '1px solid #D9EDE0',
+          borderBottom: '1px solid #D9EDE0'
         }}
       >
         <div className="container">
           <div className={`fade-section ${galleryVisible ? 'visible' : ''}`}>
             
-            {/* Header: Exact match to website styling */}
+            {/* Header */}
             <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
@@ -780,8 +939,8 @@ export default function SustainabilityPage({ onNavigate }) {
             }}>
               <div>
                 <div className="mfg-accent-line" style={{ marginBottom: '14px' }} />
-                <h2 className="mfg-section-title" style={{ margin: '0 0 8px 0' }}>Greening & Campus Initiatives</h2>
-                <p style={{ fontSize: '15px', color: '#64748B', margin: 0 }}>
+                <h2 className="mfg-section-title" style={{ margin: '0 0 8px 0' }}>Greening &amp; Campus Initiatives</h2>
+                <p style={{ fontSize: '15px', color: '#4B5563', margin: 0 }}>
                   Witness our green campus, plantation drives, and employee-led environmental activities.
                 </p>
               </div>
@@ -796,23 +955,23 @@ export default function SustainabilityPage({ onNavigate }) {
                     height: '42px',
                     borderRadius: '50%',
                     background: '#FFFFFF',
-                    border: '1px solid #CBD5E1',
-                    color: '#0F172A',
+                    border: '1px solid #CBE7D5',
+                    color: '#06291D',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)',
+                    boxShadow: '0 2px 6px rgba(6, 41, 29, 0.05)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#2F67F6'
-                    e.currentTarget.style.color = '#2F67F6'
+                    e.currentTarget.style.borderColor = '#16A34A'
+                    e.currentTarget.style.color = '#16A34A'
                     e.currentTarget.style.transform = 'translateX(-2px)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#CBD5E1'
-                    e.currentTarget.style.color = '#0F172A'
+                    e.currentTarget.style.borderColor = '#CBE7D5'
+                    e.currentTarget.style.color = '#06291D'
                     e.currentTarget.style.transform = 'none'
                   }}
                 >
@@ -828,23 +987,23 @@ export default function SustainabilityPage({ onNavigate }) {
                     height: '42px',
                     borderRadius: '50%',
                     background: '#FFFFFF',
-                    border: '1px solid #CBD5E1',
-                    color: '#0F172A',
+                    border: '1px solid #CBE7D5',
+                    color: '#06291D',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)',
+                    boxShadow: '0 2px 6px rgba(6, 41, 29, 0.05)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#2F67F6'
-                    e.currentTarget.style.color = '#2F67F6'
+                    e.currentTarget.style.borderColor = '#16A34A'
+                    e.currentTarget.style.color = '#16A34A'
                     e.currentTarget.style.transform = 'translateX(2px)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#CBD5E1'
-                    e.currentTarget.style.color = '#0F172A'
+                    e.currentTarget.style.borderColor = '#CBE7D5'
+                    e.currentTarget.style.color = '#06291D'
                     e.currentTarget.style.transform = 'none'
                   }}
                 >
@@ -884,8 +1043,8 @@ export default function SustainabilityPage({ onNavigate }) {
                         overflow: 'hidden',
                         aspectRatio: '1.45',
                         width: '100%',
-                        backgroundColor: '#E2E8F0',
-                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+                        backgroundColor: '#E6F4EC',
+                        boxShadow: '0 8px 24px rgba(6, 41, 29, 0.06)',
                         cursor: 'pointer'
                       }}
                       onClick={() => setLightboxImg(src)}
@@ -926,7 +1085,7 @@ export default function SustainabilityPage({ onNavigate }) {
                       width: currentSlide === idx ? '26px' : '8px',
                       height: '8px',
                       borderRadius: '4px',
-                      background: currentSlide === idx ? '#2F67F6' : '#CBD5E1',
+                      background: currentSlide === idx ? '#16A34A' : '#CBE7D5',
                       border: 'none',
                       cursor: 'pointer',
                       padding: 0,
@@ -949,7 +1108,7 @@ export default function SustainabilityPage({ onNavigate }) {
             position: 'fixed',
             inset: 0,
             zIndex: 99999,
-            backgroundColor: 'rgba(15, 23, 42, 0.88)',
+            backgroundColor: 'rgba(6, 41, 29, 0.9)',
             backdropFilter: 'blur(8px)',
             display: 'flex',
             alignItems: 'center',
@@ -969,7 +1128,7 @@ export default function SustainabilityPage({ onNavigate }) {
               height: '42px',
               borderRadius: '50%',
               background: 'rgba(255, 255, 255, 0.15)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
               color: '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
@@ -997,13 +1156,13 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       )}
 
-      {/* 7. COMMITMENT BEYOND THE ENVIRONMENT */}
-      <section className="mfg-facility-section" style={{ backgroundColor: '#F8FAFC' }}>
+      {/* 9. COMMITMENT BEYOND THE ENVIRONMENT */}
+      <section className="mfg-facility-section" style={{ backgroundColor: '#F3F9F5' }}>
         <div className="container">
           <div ref={commitmentRef} className={`mfg-facility-grid fade-section ${commitmentVisible ? 'visible' : ''}`}>
             
             <div className="mfg-facility-left">
-              <div className="mfg-facility-img-box">
+              <div className="mfg-facility-img-box" style={{ border: '1px solid #D9EDE0' }}>
                 <img 
                   src="/sustainibility/2.webp" 
                   alt="Sustainable Workplace" 
@@ -1014,10 +1173,10 @@ export default function SustainabilityPage({ onNavigate }) {
 
             <div className="mfg-facility-right">
               <div className="mfg-accent-line" />
-              <h2 className="mfg-section-title">Beyond the Environment: Social & Ethics</h2>
+              <h2 className="mfg-section-title">Beyond the Environment: Social &amp; Ethics</h2>
               <div className="mfg-facility-desc">
                 <p>
-                  Sustainability at Ashirwad Plastics extends beyond carbon metrics and tree plantation. We are equally dedicated to workforce safety, ethical conduct, equal opportunity, and meaningful social upliftment across our regional facilities.
+                  Sustainability at Ashirwad Plastics extends beyond carbon metrics, paperless workflows, and tree plantation. We are equally dedicated to workforce safety, ethical conduct, equal opportunity, and meaningful social upliftment across our regional facilities.
                 </p>
                 <p>
                   We believe that long-term resilience requires creating measurable positive value across our three pillars: <strong>People, Planet, and Performance</strong>.
@@ -1029,8 +1188,8 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 8. JOURNEY FORWARD */}
-      <section className="mfg-people-section" style={{ borderTop: '1px solid var(--border-gray)', padding: '100px 0', backgroundColor: '#FFFFFF' }}>
+      {/* 10. JOURNEY FORWARD */}
+      <section className="mfg-people-section" style={{ borderTop: '1px solid #D9EDE0', padding: '100px 0', backgroundColor: '#FFFFFF' }}>
         <div className="container">
           <div ref={journeyRef} className={`mfg-people-grid fade-section ${journeyVisible ? 'visible' : ''}`}>
             
@@ -1039,16 +1198,16 @@ export default function SustainabilityPage({ onNavigate }) {
               <h2 className="mfg-section-title">Our Journey Forward</h2>
               <div className="mfg-people-desc">
                 <p>
-                  Sustainability is a continuous discipline of accountability and improvement. We hold our operations to world-class manufacturing standards, invest in next-generation cleanroom automation, and partner with leading healthcare brands to bring sustainable packaging to fruition.
+                  Sustainability is a continuous discipline of accountability and improvement. By pairing 100% paperless digital operations with next-generation cleanroom automation, we hold our manufacturing to world-class standards and partner with leading healthcare brands to bring sustainable packaging to fruition.
                 </p>
                 <p>
-                  Together with our customers, technical partners, and community members, we are building a safer, cleaner tomorrow.
+                  Together with our customers, technical partners, and community members, we are building a safer, cleaner, paper-free tomorrow.
                 </p>
               </div>
             </div>
 
             <div className="mfg-people-right">
-              <div className="mfg-people-img-box">
+              <div className="mfg-people-img-box" style={{ border: '1px solid #D9EDE0' }}>
                 <img 
                   src="/sustainibility/6.webp" 
                   alt="Our Journey Forward" 
@@ -1061,15 +1220,15 @@ export default function SustainabilityPage({ onNavigate }) {
         </div>
       </section>
 
-      {/* 9. CTA BANNER SECTION */}
+      {/* 11. CTA BANNER SECTION */}
       <section className="cta-banner-section">
         <div className="cta-dot-map-bg" />
         <div className="container">
           <div ref={ctaRef} className={`cta-banner-grid fade-section ${ctaVisible ? 'visible' : ''}`}>
-            <h2 className="cta-banner-heading">Want to Learn More About Our Sustainability &amp; EHS Framework?</h2>
+            <h2 className="cta-banner-heading">Want to Learn More About Our Paperless &amp; Sustainability Framework?</h2>
             <div className="cta-banner-right">
               <p className="cta-banner-desc">
-                Connect with our technical and compliance team to understand how our sustainable packaging practices can support your environmental goals.
+                Connect with our technical and compliance team to understand how our paperless digital systems and sustainable packaging practices can support your environmental goals.
               </p>
               <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} className="cta-banner-contact-link">
                 Contact Us <span className="underline-arrow">→</span>

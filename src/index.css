@@ -7765,3 +7765,145 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ========== SUSTAINABILITY GREEN THEME & PAPERLESS SHOWCASE ========== */
+.sustainability-green-theme {
+  background-color: #F3F9F5;
+}
+
+.sustainability-green-theme .mfg-accent-line {
+  background-color: #16A34A;
+}
+
+.sustainability-green-theme .mfg-cta-link {
+  color: #15803D;
+}
+
+.sustainability-green-theme .mfg-cta-link::after {
+  background-color: #15803D;
+}
+
+.sustainability-green-theme .mfg-card-dark {
+  background-color: #06291D;
+  box-shadow: 0 12px 32px rgba(6, 41, 29, 0.18);
+}
+
+.sustainability-green-theme .mfg-card-light {
+  background-color: #FFFFFF;
+  border: 1px solid #D9EDE0;
+  box-shadow: 0 8px 24px rgba(6, 41, 29, 0.04);
+}
+
+.sustainability-green-theme .mfg-facility-section {
+  background-color: #F3F9F5;
+}
+
+.sustainability-green-theme .cta-banner-section {
+  background: linear-gradient(135deg, #06291D 0%, #0B3E2B 100%);
+}
+
+.paperless-showcase-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #F2FAF5 100%);
+  border: 1px solid #CBE7D5;
+  border-radius: 22px;
+  padding: clamp(24px, 3vw, 38px);
+  box-shadow: 0 12px 32px rgba(6, 41, 29, 0.05);
+}
+
+.paperless-split-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(24px, 3.5vw, 44px);
+  align-items: center;
+}
+
+.paperless-compact-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+  margin-top: 22px;
+}
+
+.paperless-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background-color: #FFFFFF;
+  border: 1px solid #D9EDE0;
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.paperless-point-item:hover {
+  border-color: #4ADE80;
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.08);
+}
+
+.paperless-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background-color: rgba(22, 163, 74, 0.12);
+  color: #15803D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.paperless-metrics-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.paperless-metric-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #06291D;
+  color: #FFFFFF;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.paperless-metric-chip strong {
+  color: #4ADE80;
+  font-weight: 700;
+}
+
+.paperless-visual-box {
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background-color: #E6F4EC;
+  border: 1px solid #CBE7D5;
+  box-shadow: 0 12px 28px rgba(6, 41, 29, 0.08);
+  position: relative;
+}
+
+.paperless-visual-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 960px) {
+  .paperless-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .paperless-compact-points {
+    grid-template-columns: 1fr;
+  }
+}
