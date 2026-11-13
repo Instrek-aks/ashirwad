@@ -1398,6 +1398,7 @@ export default function AdminPage({ onNavigate }) {
                 </span>
                 <input
                   type="email"
+                  autoComplete="email"
                   required
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
@@ -1417,6 +1418,7 @@ export default function AdminPage({ onNavigate }) {
                 </span>
                 <input
                   type="password"
+                  autoComplete="current-password"
                   required
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}

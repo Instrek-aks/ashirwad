@@ -27,6 +27,13 @@ export const handleLogin = async (req, res, next) => {
       });
     }
 
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection is currently unavailable. Please check MongoDB on the server.'
+      });
+    }
+
     const authData = await loginAdmin(email, password);
 
     res.status(200).json({
