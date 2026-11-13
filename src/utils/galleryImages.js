@@ -30,7 +30,7 @@ export const GALLERY_IMAGES = [
   { label: 'Ophthalmic Delivery System', url: '/Product_Images/Ophthalmic Delivery System (1).webp', category: 'Products' },
   { label: 'Product Image 3', url: '/Product_Images/image3.jpeg', category: 'Products' },
   { label: 'Product Image 4', url: '/Product_Images/image4.jpeg', category: 'Products' },
-  { label: 'Product Image 7', url: '/Product_Images/image7.jpeg', category: 'Products' },
+  { label: 'Product Image 7', url: '/Product_Images/image7.webp', category: 'Products' },
   { label: 'Product Image 10', url: '/Product_Images/image10.jpeg', category: 'Products' },
   { label: 'Product Image 17', url: '/Product_Images/image17.png', category: 'Products' },
   { label: 'Product Image 18', url: '/Product_Images/image18.png', category: 'Products' },

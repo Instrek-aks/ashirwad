@@ -201,7 +201,10 @@ export const handleDashboardStats = async (req, res, next) => {
       Contact.countDocuments({ isSubscribed: true }),
       Blog.countDocuments({}),
       Blog.countDocuments({ isPublished: true }),
-      Blog.aggregate([{ $group: { _id: null, totalViews: { $sum: '$views' } } }]),
+      Blog.aggregate([
+        { $match: { isPublished: true } },
+        { $group: { _id: null, totalViews: { $sum: '$views' } } }
+      ]),
       Inquiry.countDocuments({}),
       Inquiry.countDocuments({ status: 'NEW' }),
       Inquiry.countDocuments({ type: 'PRODUCT_INQUIRY' }),

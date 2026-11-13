@@ -227,12 +227,18 @@ export const getContacts = async ({ page = 1, limit = 50, search = '', tag = '',
     query.isSubscribed = false;
   }
 
-  const pageNum = parseInt(page, 10) || 1;
-  const limitNum = parseInt(limit, 10) || 50;
-  const skip = (pageNum - 1) * limitNum;
+  const isAll = String(limit).toLowerCase() === 'all' || String(limit) === '0';
+  const pageNum = isAll ? 1 : (parseInt(page, 10) || 1);
+  const limitNum = isAll ? 0 : (parseInt(limit, 10) || 50);
+  const skip = isAll ? 0 : (pageNum - 1) * limitNum;
+
+  const findQuery = Contact.find(query).sort({ createdAt: -1 });
+  if (!isAll) {
+    findQuery.skip(skip).limit(limitNum);
+  }
 
   const [contacts, totalCount, tagsList] = await Promise.all([
-    Contact.find(query).sort({ createdAt: -1 }).skip(skip).limit(limitNum),
+    findQuery,
     Contact.countDocuments(query),
     Contact.distinct('tags')
   ]);
@@ -242,8 +248,8 @@ export const getContacts = async ({ page = 1, limit = 50, search = '', tag = '',
     pagination: {
       total: totalCount,
       page: pageNum,
-      pages: Math.ceil(totalCount / limitNum),
-      limit: limitNum
+      pages: isAll ? 1 : Math.ceil(totalCount / limitNum),
+      limit: isAll ? totalCount : limitNum
     },
     availableTags: tagsList.filter(Boolean)
   };

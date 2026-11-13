@@ -60,9 +60,9 @@ const apiLimiter = rateLimit({
 
 app.use('/api', apiLimiter);
 
-// Body parsers
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// Body parsers (matched to Nginx client_max_body_size 25M)
+app.use(express.json({ limit: '25mb' }));
+app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
 // Health check endpoint
 app.get('/health', (req, res) => {

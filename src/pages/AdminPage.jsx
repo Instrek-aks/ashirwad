@@ -448,7 +448,18 @@ export default function AdminPage({ onNavigate }) {
   // Campaign Composer State
   const [showEmailPreview, setShowEmailPreview] = useState(false);
   const [recipientMode, setRecipientMode] = useState('group'); // 'group' | 'direct' | 'both'
-  const [selectedCampaignGroup, setSelectedCampaignGroup] = useState('ALL');
+  const [selectedCampaignGroups, setSelectedCampaignGroups] = useState(['ALL']);
+  const [groupDropdownOpen, setGroupDropdownOpen] = useState(false);
+  const [groupSearchQuery, setGroupSearchQuery] = useState('');
+  const groupDropdownRef = useRef(null);
+  const [groupPickerModal, setGroupPickerModal] = useState({
+    open: false,
+    groupName: '',
+    loading: false,
+    members: [],
+    selectedEmails: [],
+    search: ''
+  });
   const [directRecipientsInput, setDirectRecipientsInput] = useState('');
   const [showCc, setShowCc] = useState(false);
   const [showBcc, setShowBcc] = useState(false);
@@ -461,11 +472,15 @@ export default function AdminPage({ onNavigate }) {
 
   // WYSIWYG Editor State
   const [isHtmlMode, setIsHtmlMode] = useState(false);
+  const [tablePopoverOpen, setTablePopoverOpen] = useState(false);
+  const [tableRows, setTableRows] = useState(3);
+  const [tableCols, setTableCols] = useState(3);
   const visualEditorRef = useRef(null);
 
   // Attached files for email
   const [emailAttachments, setEmailAttachments] = useState([]);
   const fileInputRef = useRef(null);
+  const inlineImageInputRef = useRef(null);
 
   const [testEmailRecipient, setTestEmailRecipient] = useState('');
   const [testEmailSending, setTestEmailSending] = useState(false);
@@ -495,6 +510,17 @@ export default function AdminPage({ onNavigate }) {
       fetchSavedTemplates();
     }
   }, [token]);
+
+  // Close multi-group dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (groupDropdownRef.current && !groupDropdownRef.current.contains(e.target)) {
+        setGroupDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Load contacts
   useEffect(() => {
@@ -544,14 +570,17 @@ export default function AdminPage({ onNavigate }) {
   const fetchCurrentUser = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/auth/me`, { headers: authHeaders });
+      if (res.status === 401 || res.status === 403) {
+        handleLogout();
+        return;
+      }
+      if (!res.ok) return; // Keep session during temporary 5xx/server restart
       const data = await res.json();
       if (data.success) {
         setUser(data.user);
-      } else {
-        handleLogout();
       }
     } catch {
-      handleLogout();
+      // Keep token in localStorage if backend is temporarily unreachable/restarting
     }
   };
 
@@ -1010,6 +1039,114 @@ export default function AdminPage({ onNavigate }) {
     }
   };
 
+  const handleInsertTable = (rows = tableRows, cols = tableCols) => {
+    const rCount = Math.max(1, Math.min(20, parseInt(rows, 10) || 3));
+    const cCount = Math.max(1, Math.min(10, parseInt(cols, 10) || 3));
+
+    const headerCells = Array.from({ length: cCount })
+      .map((_, i) => `<th style="border: 1px solid #CBD5E1; padding: 8px 10px; background-color: #F8FAFC; font-weight: 600; text-align: left;">Header ${i + 1}</th>`)
+      .join('');
+    const bodyRows = Array.from({ length: Math.max(1, rCount - 1) })
+      .map(() => {
+        const cells = Array.from({ length: cCount })
+          .map(() => `<td style="border: 1px solid #CBD5E1; padding: 8px 10px;">Cell</td>`)
+          .join('');
+        return `<tr>${cells}</tr>`;
+      })
+      .join('');
+
+    const tableHtml = `<table style="width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px;"><thead><tr>${headerCells}</tr></thead><tbody>${bodyRows}</tbody></table><p><br/></p>`;
+
+    if (isHtmlMode) {
+      setCampaignContent((prev) => `${prev}\n${tableHtml}`);
+    } else if (visualEditorRef.current) {
+      visualEditorRef.current.focus();
+      document.execCommand('insertHTML', false, tableHtml);
+      setCampaignContent(visualEditorRef.current.innerHTML);
+    }
+    setTablePopoverOpen(false);
+  };
+
+  const compressImageToDataUrl = (file, maxWidth = 800, quality = 0.82) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = () => reject(new Error('Failed to read image file.'));
+      reader.onload = () => {
+        const rawDataUrl = reader.result;
+        if (file.type === 'image/gif') {
+          resolve(rawDataUrl);
+          return;
+        }
+        const img = new Image();
+        img.onerror = () => resolve(rawDataUrl);
+        img.onload = () => {
+          const scale = img.width > maxWidth ? maxWidth / img.width : 1;
+          const width = Math.round(img.width * scale);
+          const height = Math.round(img.height * scale);
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const outMime = file.type === 'image/png' && file.size < 250 * 1024 ? 'image/png' : 'image/jpeg';
+          resolve(canvas.toDataURL(outMime, quality));
+        };
+        img.src = rawDataUrl;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const insertInlineImageFile = async (file) => {
+    if (!file || !file.type.startsWith('image/')) return;
+    if (file.size > 8 * 1024 * 1024) {
+      alert(`Image "${file.name}" exceeds 8MB limit.`);
+      return;
+    }
+    try {
+      const dataUrl = await compressImageToDataUrl(file);
+      const safeAlt = (file.name || 'image').replace(/"/g, '&quot;');
+      const imgHtml = `<img src="${dataUrl}" alt="${safeAlt}" style="max-width: 100%; height: auto; border-radius: 6px; margin: 10px 0; display: block;" />`;
+      if (isHtmlMode) {
+        setCampaignContent((prev) => `${prev}\n${imgHtml}`);
+      } else if (visualEditorRef.current) {
+        visualEditorRef.current.focus();
+        document.execCommand('insertHTML', false, imgHtml);
+        setCampaignContent(visualEditorRef.current.innerHTML);
+      }
+    } catch (err) {
+      alert('Could not insert image: ' + err.message);
+    }
+  };
+
+  const handleInlineImageSelect = async (e) => {
+    const files = Array.from(e.target.files || []);
+    for (const file of files) {
+      await insertInlineImageFile(file);
+    }
+    if (inlineImageInputRef.current) inlineImageInputRef.current.value = '';
+  };
+
+  const handleEditorPaste = async (e) => {
+    const items = Array.from(e.clipboardData?.items || []);
+    const imageItem = items.find((item) => item.type.startsWith('image/'));
+    if (imageItem) {
+      e.preventDefault();
+      const file = imageItem.getAsFile();
+      if (file) await insertInlineImageFile(file);
+    }
+  };
+
+  const handleEditorDrop = async (e) => {
+    const files = Array.from(e.dataTransfer?.files || []).filter((f) => f.type.startsWith('image/'));
+    if (files.length > 0) {
+      e.preventDefault();
+      for (const file of files) {
+        await insertInlineImageFile(file);
+      }
+    }
+  };
+
   const toggleEditorMode = () => {
     if (!isHtmlMode) {
       setIsHtmlMode(true);
@@ -1023,15 +1160,26 @@ export default function AdminPage({ onNavigate }) {
     }
   };
 
+  const MAX_TOTAL_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB combined limit
+
   const handleAttachmentUpload = (e) => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
 
+    let runningTotal = emailAttachments.reduce((sum, att) => sum + (att.size || 0), 0);
+
     files.forEach((file) => {
-      if (file.size > 10 * 1024 * 1024) {
-        alert(`File ${file.name} exceeds 10MB limit.`);
+      if (file.size > MAX_TOTAL_ATTACHMENT_BYTES) {
+        alert(`File "${file.name}" exceeds the 10 MB attachment limit.`);
         return;
       }
+
+      if (runningTotal + file.size > MAX_TOTAL_ATTACHMENT_BYTES) {
+        alert(`Cannot attach "${file.name}". Total attachments cannot exceed 10 MB.`);
+        return;
+      }
+
+      runningTotal += file.size;
 
       const reader = new FileReader();
       reader.onload = () => {
@@ -1061,6 +1209,72 @@ export default function AdminPage({ onNavigate }) {
       .split(/[\n,; ]+/)
       .map((e) => e.trim().toLowerCase())
       .filter((e) => e && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
+  };
+
+  const openGroupMemberPicker = async (groupName) => {
+    setGroupDropdownOpen(false);
+    const existingDirect = parseEmailsList(directRecipientsInput);
+    setGroupPickerModal({
+      open: true,
+      groupName,
+      loading: true,
+      members: [],
+      selectedEmails: existingDirect,
+      search: ''
+    });
+
+    try {
+      const params = new URLSearchParams({
+        tag: groupName,
+        limit: 'all',
+        subscribed: 'true'
+      });
+      const res = await fetch(`${API_BASE_URL}/contacts?${params.toString()}`, { headers: authHeaders });
+      const data = await res.json();
+      const members = data.success ? (data.data?.contacts || []) : [];
+      const memberEmailSet = new Set(members.map((m) => (m.email || '').toLowerCase().trim()).filter(Boolean));
+      const preselected = existingDirect.filter((email) => memberEmailSet.has(email));
+
+      setGroupPickerModal((prev) => ({
+        ...prev,
+        loading: false,
+        members,
+        selectedEmails: preselected
+      }));
+    } catch {
+      setGroupPickerModal((prev) => ({ ...prev, loading: false }));
+    }
+  };
+
+  const applyPickedGroupMembers = () => {
+    const picked = groupPickerModal.selectedEmails;
+    if (picked.length === 0) {
+      alert('Please select at least one contact.');
+      return;
+    }
+
+    const existingDirect = parseEmailsList(directRecipientsInput);
+    const merged = Array.from(new Set([...existingDirect, ...picked]));
+    setDirectRecipientsInput(merged.join(', '));
+
+    const remainingGroups = selectedCampaignGroups.filter(
+      (g) => g !== 'ALL' && g !== groupPickerModal.groupName
+    );
+    if (remainingGroups.length > 0) {
+      setSelectedCampaignGroups(remainingGroups);
+      setRecipientMode('both');
+    } else {
+      setRecipientMode('direct');
+    }
+
+    setGroupPickerModal({
+      open: false,
+      groupName: '',
+      loading: false,
+      members: [],
+      selectedEmails: [],
+      search: ''
+    });
   };
 
   const handleSendTestEmail = async () => {
@@ -1163,7 +1377,7 @@ export default function AdminPage({ onNavigate }) {
           title: campaignTitle || campaignSubject,
           subject: campaignSubject,
           contentHtml: campaignContent,
-          targetTags: recipientMode === 'direct' ? [] : [selectedCampaignGroup],
+          targetTags: recipientMode === 'direct' ? [] : selectedCampaignGroups,
           directRecipients: parseEmailsList(directRecipientsInput),
           cc: parseEmailsList(ccInput),
           bcc: parseEmailsList(bccInput),
@@ -1207,12 +1421,12 @@ export default function AdminPage({ onNavigate }) {
     setBccInput((camp.bcc || []).join(', '));
     if (camp.targetTags?.length && camp.directRecipients?.length) {
       setRecipientMode('both');
-      setSelectedCampaignGroup(camp.targetTags[0]);
+      setSelectedCampaignGroups(camp.targetTags);
     } else if (camp.directRecipients?.length) {
       setRecipientMode('direct');
     } else {
       setRecipientMode('group');
-      setSelectedCampaignGroup(camp.targetTags?.[0] || 'ALL');
+      setSelectedCampaignGroups(camp.targetTags?.length ? camp.targetTags : ['ALL']);
     }
     setActiveTab('campaign');
   };
@@ -1224,7 +1438,12 @@ export default function AdminPage({ onNavigate }) {
     }
 
     const directList = parseEmailsList(directRecipientsInput);
-    const targetTags = recipientMode === 'direct' ? [] : [selectedCampaignGroup];
+    const targetTags = recipientMode === 'direct' ? [] : selectedCampaignGroups;
+
+    if ((recipientMode === 'group' || recipientMode === 'both') && targetTags.length === 0) {
+      alert('Please select at least one contact group.');
+      return;
+    }
 
     if (recipientMode === 'direct' && directList.length === 0) {
       alert('Please enter at least one recipient email address.');
@@ -2663,17 +2882,199 @@ export default function AdminPage({ onNavigate }) {
                     </div>
 
                     {(recipientMode === 'group' || recipientMode === 'both') && (
-                      <div style={{ marginBottom: recipientMode === 'both' ? '8px' : '0' }}>
-                        <select
-                          value={selectedCampaignGroup}
-                          onChange={(e) => setSelectedCampaignGroup(e.target.value)}
-                          style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', color: '#0F172A', outline: 'none' }}
+                      <div
+                        ref={groupDropdownRef}
+                        style={{ position: 'relative', marginBottom: recipientMode === 'both' ? '8px' : '0' }}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setGroupDropdownOpen((prev) => !prev)}
+                          style={{
+                            width: '100%',
+                            padding: '7px 10px',
+                            borderRadius: '6px',
+                            border: groupDropdownOpen ? '1px solid #0F172A' : '1px solid #E2E8F0',
+                            backgroundColor: '#FFFFFF',
+                            fontSize: '12.5px',
+                            color: '#0F172A',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: '8px',
+                            cursor: 'pointer',
+                            textAlign: 'left'
+                          }}
                         >
-                          <option value="ALL">All Active Directory Contacts ({totalContacts} recipients)</option>
-                          {availableGroups.map((grp) => (
-                            <option key={grp} value={grp}>Group: "{grp}"</option>
-                          ))}
-                        </select>
+                          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {selectedCampaignGroups.includes('ALL')
+                              ? `All Active Directory Contacts (${totalContacts} recipients)`
+                              : selectedCampaignGroups.length === 1
+                                ? `Group: "${selectedCampaignGroups[0]}"`
+                                : `${selectedCampaignGroups.length} Groups: ${selectedCampaignGroups.slice(0, 2).join(', ')}${selectedCampaignGroups.length > 2 ? ` +${selectedCampaignGroups.length - 2} more` : ''}`}
+                          </span>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: groupDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s ease' }}>
+                            <polyline points="6 9 12 15 18 9" />
+                          </svg>
+                        </button>
+
+                        {groupDropdownOpen && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: 'calc(100% + 4px)',
+                              left: 0,
+                              right: 0,
+                              zIndex: 50,
+                              backgroundColor: '#FFFFFF',
+                              border: '1px solid #E2E8F0',
+                              borderRadius: '6px',
+                              boxShadow: '0 8px 24px rgba(15, 23, 42, 0.1)',
+                              overflow: 'hidden'
+                            }}
+                          >
+                            <div style={{ padding: '7px', borderBottom: '1px solid #F1F5F9', backgroundColor: '#F8FAFC' }}>
+                              <input
+                                type="text"
+                                autoFocus
+                                placeholder="Search groups..."
+                                value={groupSearchQuery}
+                                onChange={(e) => setGroupSearchQuery(e.target.value)}
+                                style={{
+                                  width: '100%',
+                                  padding: '5px 8px',
+                                  borderRadius: '5px',
+                                  border: '1px solid #E2E8F0',
+                                  fontSize: '12px',
+                                  color: '#0F172A',
+                                  backgroundColor: '#FFFFFF',
+                                  outline: 'none',
+                                  boxSizing: 'border-box'
+                                }}
+                              />
+                            </div>
+
+                            <div style={{ maxHeight: '210px', overflowY: 'auto', padding: '4px' }}>
+                              {(!groupSearchQuery.trim() || 'all active directory contacts'.includes(groupSearchQuery.trim().toLowerCase())) && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedCampaignGroups(['ALL']);
+                                    setGroupDropdownOpen(false);
+                                  }}
+                                  style={{
+                                    width: '100%',
+                                    padding: '6px 8px',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    backgroundColor: selectedCampaignGroups.includes('ALL') ? '#F1F5F9' : 'transparent',
+                                    color: '#0F172A',
+                                    fontSize: '12px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    cursor: 'pointer',
+                                    textAlign: 'left'
+                                  }}
+                                >
+                                  <span style={{ display: 'flex', alignItems: 'center', gap: '7px', fontWeight: selectedCampaignGroups.includes('ALL') ? '600' : '500' }}>
+                                    <input
+                                      type="checkbox"
+                                      readOnly
+                                      checked={selectedCampaignGroups.includes('ALL')}
+                                      style={{ margin: 0, cursor: 'pointer' }}
+                                    />
+                                    <span>All Active Directory Contacts</span>
+                                  </span>
+                                  <span style={{ fontSize: '11px', color: '#64748B' }}>{totalContacts}</span>
+                                </button>
+                              )}
+
+                              {availableGroups
+                                .filter((grp) => !groupSearchQuery.trim() || grp.toLowerCase().includes(groupSearchQuery.trim().toLowerCase()))
+                                .map((grp) => {
+                                  const isChecked = !selectedCampaignGroups.includes('ALL') && selectedCampaignGroups.includes(grp);
+                                  const grpMeta = groupsWithCounts.find((g) => g.name === grp);
+                                  return (
+                                    <button
+                                      key={grp}
+                                      type="button"
+                                      onClick={() => {
+                                        setSelectedCampaignGroups((prev) => {
+                                          const withoutAll = prev.filter((item) => item !== 'ALL');
+                                          if (withoutAll.includes(grp)) {
+                                            const next = withoutAll.filter((item) => item !== grp);
+                                            return next.length > 0 ? next : ['ALL'];
+                                          }
+                                          return [...withoutAll, grp];
+                                        });
+                                      }}
+                                      style={{
+                                        width: '100%',
+                                        padding: '6px 8px',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        backgroundColor: isChecked ? '#F1F5F9' : 'transparent',
+                                        color: '#0F172A',
+                                        fontSize: '12px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                        cursor: 'pointer',
+                                        textAlign: 'left'
+                                      }}
+                                    >
+                                      <span style={{ display: 'flex', alignItems: 'center', gap: '7px', fontWeight: isChecked ? '600' : '400' }}>
+                                        <input
+                                          type="checkbox"
+                                          readOnly
+                                          checked={isChecked}
+                                          style={{ margin: 0, cursor: 'pointer' }}
+                                        />
+                                        <span>{grp}</span>
+                                      </span>
+                                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                                        {grpMeta && <span style={{ fontSize: '11px', color: '#64748B' }}>{grpMeta.count}</span>}
+                                        <span
+                                          role="button"
+                                          tabIndex={0}
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            openGroupMemberPicker(grp);
+                                          }}
+                                          onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                              e.preventDefault();
+                                              e.stopPropagation();
+                                              openGroupMemberPicker(grp);
+                                            }
+                                          }}
+                                          style={{
+                                            fontSize: '11px',
+                                            fontWeight: '600',
+                                            color: '#2563EB',
+                                            padding: '2px 6px',
+                                            borderRadius: '4px',
+                                            backgroundColor: '#EFF6FF',
+                                            cursor: 'pointer'
+                                          }}
+                                        >
+                                          Pick people
+                                        </span>
+                                      </span>
+                                    </button>
+                                  );
+                                })}
+
+                              {availableGroups.filter((grp) => !groupSearchQuery.trim() || grp.toLowerCase().includes(groupSearchQuery.trim().toLowerCase())).length === 0 &&
+                                groupSearchQuery.trim() &&
+                                !'all active directory contacts'.includes(groupSearchQuery.trim().toLowerCase()) && (
+                                  <div style={{ padding: '10px', textAlign: 'center', fontSize: '11.5px', color: '#94A3B8' }}>
+                                    No matching groups
+                                  </div>
+                                )}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -2685,7 +3086,7 @@ export default function AdminPage({ onNavigate }) {
                           allContacts={allContactsForAutocomplete}
                           apiBaseUrl={API_BASE_URL}
                           authHeaders={authHeaders}
-                          placeholder="Type contact name, company, or email (Gmail-style suggestions)..."
+                          placeholder="Type contact name, company, or email..."
                         />
                       </div>
                     )}
@@ -2787,11 +3188,131 @@ export default function AdminPage({ onNavigate }) {
 
                         <button
                           type="button"
+                          title="Numbered List"
+                          onMouseDown={(e) => { e.preventDefault(); executeCommand('insertOrderedList'); }}
+                          style={{ width: '26px', height: '26px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#0F172A', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="10" y1="6" x2="21" y2="6" />
+                            <line x1="10" y1="12" x2="21" y2="12" />
+                            <line x1="10" y1="18" x2="21" y2="18" />
+                            <path d="M4 6h1v4" />
+                            <path d="M4 10h2" />
+                            <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
+                          </svg>
+                        </button>
+
+                        <button
+                          type="button"
                           title="Link"
                           onMouseDown={(e) => { e.preventDefault(); handleAddLink(); }}
                           style={{ width: '26px', height: '26px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#0F172A', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
                         >
                           <IconLink size={12} />
+                        </button>
+
+                        <div style={{ position: 'relative' }}>
+                          <button
+                            type="button"
+                            title="Insert Table"
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              setTablePopoverOpen((prev) => !prev);
+                            }}
+                            style={{ height: '26px', padding: '0 7px', borderRadius: '4px', border: tablePopoverOpen ? '1px solid #0F172A' : '1px solid #E2E8F0', backgroundColor: tablePopoverOpen ? '#F1F5F9' : '#FFFFFF', color: '#0F172A', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer' }}
+                          >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                              <line x1="3" y1="9" x2="21" y2="9" />
+                              <line x1="3" y1="15" x2="21" y2="15" />
+                              <line x1="9" y1="3" x2="9" y2="21" />
+                              <line x1="15" y1="3" x2="15" y2="21" />
+                            </svg>
+                            <span>Table</span>
+                          </button>
+
+                          {tablePopoverOpen && (
+                            <div
+                              style={{
+                                position: 'absolute',
+                                top: 'calc(100% + 4px)',
+                                left: 0,
+                                zIndex: 40,
+                                width: '190px',
+                                backgroundColor: '#FFFFFF',
+                                border: '1px solid #E2E8F0',
+                                borderRadius: '6px',
+                                padding: '10px',
+                                boxShadow: '0 8px 20px rgba(15, 23, 42, 0.12)'
+                              }}
+                            >
+                              <div style={{ fontSize: '11px', fontWeight: '600', color: '#0F172A', marginBottom: '6px' }}>
+                                Insert Table
+                              </div>
+                              <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
+                                <div style={{ flex: 1 }}>
+                                  <label style={{ display: 'block', fontSize: '10px', color: '#64748B', marginBottom: '2px' }}>Rows</label>
+                                  <input
+                                    type="number"
+                                    min="1"
+                                    max="20"
+                                    value={tableRows}
+                                    onChange={(e) => setTableRows(e.target.value)}
+                                    style={{ width: '100%', padding: '4px 6px', borderRadius: '4px', border: '1px solid #E2E8F0', fontSize: '12px', boxSizing: 'border-box' }}
+                                  />
+                                </div>
+                                <div style={{ flex: 1 }}>
+                                  <label style={{ display: 'block', fontSize: '10px', color: '#64748B', marginBottom: '2px' }}>Cols</label>
+                                  <input
+                                    type="number"
+                                    min="1"
+                                    max="10"
+                                    value={tableCols}
+                                    onChange={(e) => setTableCols(e.target.value)}
+                                    style={{ width: '100%', padding: '4px 6px', borderRadius: '4px', border: '1px solid #E2E8F0', fontSize: '12px', boxSizing: 'border-box' }}
+                                  />
+                                </div>
+                              </div>
+                              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '5px' }}>
+                                <button
+                                  type="button"
+                                  onClick={() => setTablePopoverOpen(false)}
+                                  style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#64748B', fontSize: '11px', cursor: 'pointer' }}
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleInsertTable(tableRows, tableCols)}
+                                  style={{ padding: '4px 9px', borderRadius: '4px', border: 'none', backgroundColor: '#0F172A', color: '#FFFFFF', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+                                >
+                                  Insert
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        <input
+                          ref={inlineImageInputRef}
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          style={{ display: 'none' }}
+                          onChange={handleInlineImageSelect}
+                        />
+                        <button
+                          type="button"
+                          title="Insert Inline Image (no storage needed)"
+                          onMouseDown={(e) => { e.preventDefault(); inlineImageInputRef.current && inlineImageInputRef.current.click(); }}
+                          style={{ height: '26px', padding: '0 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#0F172A', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer' }}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <circle cx="8.5" cy="8.5" r="1.5" />
+                            <polyline points="21 15 16 10 5 21" />
+                          </svg>
+                          <span>Image</span>
                         </button>
                       </div>
 
@@ -2830,6 +3351,8 @@ export default function AdminPage({ onNavigate }) {
                         className="email-rich-content"
                         contentEditable
                         onInput={handleVisualInput}
+                        onPaste={handleEditorPaste}
+                        onDrop={handleEditorDrop}
                         style={{
                           minHeight: '240px',
                           maxHeight: '400px',
@@ -3360,6 +3883,158 @@ export default function AdminPage({ onNavigate }) {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ==================== GROUP MEMBER PICKER MODAL ==================== */}
+      {groupPickerModal.open && (
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.4)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+          <div style={{ width: '100%', maxWidth: '500px', backgroundColor: '#FFFFFF', borderRadius: '8px', padding: '20px', boxShadow: '0 20px 45px rgba(15, 23, 42, 0.18)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '700', color: '#0F172A' }}>
+                  Select People from "{groupPickerModal.groupName}"
+                </h3>
+                <p style={{ margin: '2px 0 0 0', fontSize: '11.5px', color: '#64748B' }}>
+                  Pick specific subscribed contacts to add to your recipients.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setGroupPickerModal((prev) => ({ ...prev, open: false }))}
+                style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer' }}
+              >
+                <IconClose size={16} />
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+              <input
+                type="text"
+                autoFocus
+                placeholder="Search by name, email, or company..."
+                value={groupPickerModal.search}
+                onChange={(e) => setGroupPickerModal((prev) => ({ ...prev, search: e.target.value }))}
+                style={{ flex: 1, padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', outline: 'none', boxSizing: 'border-box' }}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const q = groupPickerModal.search.trim().toLowerCase();
+                  const visibleEmails = groupPickerModal.members
+                    .filter((m) => !q || (m.email || '').toLowerCase().includes(q) || (m.name || '').toLowerCase().includes(q) || (m.company || '').toLowerCase().includes(q))
+                    .map((m) => (m.email || '').toLowerCase().trim())
+                    .filter(Boolean);
+                  setGroupPickerModal((prev) => ({
+                    ...prev,
+                    selectedEmails: Array.from(new Set([...prev.selectedEmails, ...visibleEmails]))
+                  }));
+                }}
+                style={{ padding: '6px 9px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC', color: '#0F172A', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+              >
+                Select All
+              </button>
+              <button
+                type="button"
+                onClick={() => setGroupPickerModal((prev) => ({ ...prev, selectedEmails: [] }))}
+                style={{ padding: '6px 9px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#64748B', fontSize: '11.5px', fontWeight: '500', cursor: 'pointer' }}
+              >
+                Clear
+              </button>
+            </div>
+
+            <div style={{ border: '1px solid #E2E8F0', borderRadius: '6px', maxHeight: '280px', overflowY: 'auto', backgroundColor: '#F8FAFC' }}>
+              {groupPickerModal.loading ? (
+                <div style={{ padding: '24px', textAlign: 'center', fontSize: '12.5px', color: '#64748B' }}>
+                  Loading group members...
+                </div>
+              ) : (() => {
+                const q = groupPickerModal.search.trim().toLowerCase();
+                const filtered = groupPickerModal.members.filter((m) => {
+                  if (!q) return true;
+                  return (
+                    (m.email || '').toLowerCase().includes(q) ||
+                    (m.name || '').toLowerCase().includes(q) ||
+                    (m.company || '').toLowerCase().includes(q)
+                  );
+                });
+
+                if (filtered.length === 0) {
+                  return (
+                    <div style={{ padding: '24px', textAlign: 'center', fontSize: '12.5px', color: '#94A3B8' }}>
+                      No matching subscribed contacts in this group.
+                    </div>
+                  );
+                }
+
+                return filtered.map((m) => {
+                  const cleanEmail = (m.email || '').toLowerCase().trim();
+                  const isSelected = groupPickerModal.selectedEmails.includes(cleanEmail);
+                  return (
+                    <label
+                      key={m._id || cleanEmail}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '10px',
+                        padding: '8px 10px',
+                        borderBottom: '1px solid #F1F5F9',
+                        backgroundColor: isSelected ? '#EFF6FF' : '#FFFFFF',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => {
+                            setGroupPickerModal((prev) => ({
+                              ...prev,
+                              selectedEmails: isSelected
+                                ? prev.selectedEmails.filter((e) => e !== cleanEmail)
+                                : [...prev.selectedEmails, cleanEmail]
+                            }));
+                          }}
+                          style={{ margin: 0, cursor: 'pointer', flexShrink: 0 }}
+                        />
+                        <span style={{ minWidth: 0 }}>
+                          <div style={{ fontSize: '12.5px', fontWeight: '600', color: '#0F172A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {m.name || cleanEmail}
+                          </div>
+                          <div style={{ fontSize: '11px', color: '#64748B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {cleanEmail}{m.company ? ` · ${m.company}` : ''}
+                          </div>
+                        </span>
+                      </span>
+                    </label>
+                  );
+                });
+              })()}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '14px' }}>
+              <span style={{ fontSize: '12px', color: '#64748B', fontWeight: '500' }}>
+                {groupPickerModal.selectedEmails.length} of {groupPickerModal.members.length} selected
+              </span>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button
+                  type="button"
+                  onClick={() => setGroupPickerModal((prev) => ({ ...prev, open: false }))}
+                  style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#64748B', cursor: 'pointer', fontSize: '12px' }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={applyPickedGroupMembers}
+                  style={{ padding: '6px 14px', borderRadius: '6px', border: 'none', backgroundColor: '#0F172A', color: '#FFFFFF', fontWeight: '600', cursor: 'pointer', fontSize: '12px' }}
+                >
+                  Add Selected ({groupPickerModal.selectedEmails.length})
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -144,7 +144,7 @@ export default function PharmaMarketPage({ onNavigate }) {
             {/* Card 1: Closures Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/s1.webp" 
+                src="/Tablet%20Containers%20&%20Closures/banner.webp" 
                 alt="Pharmaceutical Closures" 
                 onError={(e) => handleImageError(e, "Pharmaceutical Closures")}
               />
@@ -191,8 +191,9 @@ export default function PharmaMarketPage({ onNavigate }) {
             {/* Card 4: Product showcase image card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/Product_Images/image7.jpeg" 
+                src="/Product_Images/image7.webp" 
                 alt="Ophthalmic & Pharma Packaging Lineup" 
+                style={{ objectPosition: 'right center' }}
                 onError={(e) => {
                   e.target.src = "/s2.webp";
                 }}

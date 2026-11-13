@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { blogService } from '../../services/blogService';
+import { getPathForTarget } from '../../utils/routes';
 import { exportTableToExcel, exportTableToPdf } from '../../utils/exportUtils';
 import ExportDropdown from './ExportDropdown';
 
@@ -450,14 +451,11 @@ export default function BlogManager({ onEditBlog, onCreateNew, token, onNavigate
                         <button
                           type="button"
                           onClick={() => {
-                            if (onNavigate) {
-                              onNavigate('blog-detail', b.slug);
-                            } else {
-                              window.open(`/#blog/${b.slug}`, '_blank');
-                            }
+                            const targetPath = getPathForTarget('blog-detail', b.slug);
+                            window.open(targetPath, '_blank', 'noopener,noreferrer');
                           }}
                           style={{ padding: '5px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#64748B', cursor: 'pointer', display: 'inline-flex' }}
-                          title="Preview public view"
+                          title="Preview public view (opens in new tab)"
                         >
                           <IconEye size={13} color="#64748B" />
                         </button>

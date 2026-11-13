@@ -30,7 +30,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Product_Images/image7.jpeg"
+    "/Product_Images/image7.webp"
   ]
 
   // Gallery images (removed 3rd and 5th items as per Change Request)
@@ -90,7 +90,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Product_Images/image7.jpeg')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Product_Images/image7-hero.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           position: 'relative',

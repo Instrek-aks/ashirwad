@@ -3,6 +3,27 @@ import { Campaign } from '../models/Campaign.js';
 import { EmailTemplate } from '../models/EmailTemplate.js';
 import { processCampaignQueue, retryFailedCampaignQueue, sendTestEmail } from '../services/email.service.js';
 
+const MAX_TOTAL_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10 MB combined limit
+
+const validateAttachmentSizeLimit = (attachments = []) => {
+  if (!Array.isArray(attachments) || attachments.length === 0) return null;
+  const totalBytes = attachments.reduce((sum, att) => {
+    if (!att) return sum;
+    if (typeof att.size === 'number' && att.size > 0) return sum + att.size;
+    if (typeof att.dataUrl === 'string') {
+      const base64Part = att.dataUrl.split(',')[1] || att.dataUrl;
+      return sum + Math.floor(base64Part.length * 0.75);
+    }
+    return sum;
+  }, 0);
+
+  if (totalBytes > MAX_TOTAL_ATTACHMENT_BYTES) {
+    const totalMb = (totalBytes / (1024 * 1024)).toFixed(2);
+    return `Total attachment size (${totalMb} MB) exceeds the 10 MB limit.`;
+  }
+  return null;
+};
+
 export const handleSendCampaign = async (req, res, next) => {
   try {
     const { title, subject, contentHtml, targetTags, directRecipients, cc, bcc, attachments, draftId } = req.body;
@@ -12,6 +33,11 @@ export const handleSendCampaign = async (req, res, next) => {
         success: false,
         message: 'Subject and email content are required.'
       });
+    }
+
+    const attachmentError = validateAttachmentSizeLimit(attachments);
+    if (attachmentError) {
+      return res.status(400).json({ success: false, message: attachmentError });
     }
 
     let campaign;
@@ -81,6 +107,11 @@ export const handleSaveDraft = async (req, res, next) => {
         success: false,
         message: 'Please provide at least a title or subject to save a draft.'
       });
+    }
+
+    const attachmentError = validateAttachmentSizeLimit(attachments);
+    if (attachmentError) {
+      return res.status(400).json({ success: false, message: attachmentError });
     }
 
     let draft;
@@ -203,6 +234,11 @@ export const handleSendTestEmail = async (req, res, next) => {
         success: false,
         message: 'Recipient email, subject, and content are required.'
       });
+    }
+
+    const attachmentError = validateAttachmentSizeLimit(attachments);
+    if (attachmentError) {
+      return res.status(400).json({ success: false, message: attachmentError });
     }
 
     const cleanTo = (to || '').toLowerCase().trim();

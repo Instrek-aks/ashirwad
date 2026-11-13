@@ -29,7 +29,7 @@ export const SEED_BLOGS = [
     isPublished: true,
     featured: true,
     publishedAt: '2026-01-20T09:00:00.000Z',
-    views: 1840,
+    views: 0,
     contentHtml: `
       <p>In modern ophthalmic and nasal therapeutics, patient outcomes depend directly on container closure integrity and volumetric dispensing precision. Ashirwad Plastics operates certified Class 10,000 and Class 100,000 cleanrooms in Solan, Himachal Pradesh, combining robotic injection blow molding (IBM) with optical machine vision to eliminate particulate contamination and maintain tolerances down to ±0.02 mm.</p>
 
@@ -76,7 +76,7 @@ export const SEED_BLOGS = [
     isPublished: true,
     featured: false,
     publishedAt: '2026-01-18T10:00:00.000Z',
-    views: 980,
+    views: 0,
     contentHtml: `
       <p>The pharmaceutical packaging sector has long grappled with an inherent conflict between barrier performance and recyclability. Traditional multi-layer blister laminates and co-extruded barrier bottles combine incompatible resins, rendering post-consumer mechanical recycling nearly impossible. Ashirwad Plastics is engineering mono-material HDPE and PP systems that bridge this gap.</p>
 
@@ -111,7 +111,7 @@ export const SEED_BLOGS = [
     isPublished: true,
     featured: false,
     publishedAt: '2026-01-15T10:00:00.000Z',
-    views: 1120,
+    views: 0,
     contentHtml: `
       <p>Regulatory approval for pharmaceutical containment requires relentless documentation rigor. Ashirwad Plastics maintains active Type III Drug Master Files (DMF) with the United States Food and Drug Administration (US FDA), enabling seamless reference access for our domestic and multinational formulation partners during ANDA and NDA submissions.</p>
 
@@ -203,14 +203,40 @@ export const blogService = {
     const blog = blogs.find((b) => b.slug === slug);
     if (!blog) return null;
 
-    blog.views = (blog.views || 0) + 1;
-    saveStoredBlogs(blogs);
-
     const related = blogs
       .filter((b) => b.slug !== slug && b.isPublished)
       .slice(0, 3);
 
     return { blog, related };
+  },
+
+  async recordBlogView(slug) {
+    if (!slug || typeof window === 'undefined') return;
+    // Do not count views when an admin is logged in and previewing
+    if (localStorage.getItem('ashirwad_admin_token')) return;
+
+    try {
+      const viewedRaw = sessionStorage.getItem('ashirwad_viewed_blogs');
+      const viewedSlugs = viewedRaw ? JSON.parse(viewedRaw) : [];
+      if (viewedSlugs.includes(slug)) return;
+
+      // Mark as viewed immediately to prevent duplicate calls (e.g. React StrictMode)
+      sessionStorage.setItem('ashirwad_viewed_blogs', JSON.stringify([...viewedSlugs, slug]));
+
+      let visitorId = localStorage.getItem('ashirwad_visitor_id');
+      if (!visitorId) {
+        visitorId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+        localStorage.setItem('ashirwad_visitor_id', visitorId);
+      }
+
+      await fetch(`${API_BASE_URL}/blogs/${encodeURIComponent(slug)}/view`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId })
+      });
+    } catch {
+      // Non-blocking analytics call
+    }
   },
 
   async getAdminBlogs(token) {

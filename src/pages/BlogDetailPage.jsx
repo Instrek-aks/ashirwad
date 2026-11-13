@@ -15,6 +15,9 @@ export default function BlogDetailPage({ slug, onNavigate }) {
         if (data && data.blog) {
           setBlogData(data.blog);
           setRelatedBlogs(data.related || []);
+          if (data.blog.isPublished) {
+            blogService.recordBlogView(data.blog.slug);
+          }
         } else {
           // If slug not found, load featured blog as graceful fallback
           const all = await blogService.getAllBlogs();

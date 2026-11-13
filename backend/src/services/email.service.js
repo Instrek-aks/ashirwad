@@ -1,7 +1,27 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { createTransporter } from '../config/mailer.js';
 import { env } from '../config/env.js';
 import { Campaign } from '../models/Campaign.js';
 import { Contact } from '../models/Contact.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const HEADER_LOGO_PATH = path.resolve(__dirname, '../../../public/logo-horizontal.png');
+const HEADER_LOGO_CID = 'ashirwad-header-logo@ashirwad';
+
+const getHeaderLogoAttachment = () => {
+  if (!fs.existsSync(HEADER_LOGO_PATH)) return [];
+  return [
+    {
+      filename: 'ashirwad-logo.png',
+      path: HEADER_LOGO_PATH,
+      cid: HEADER_LOGO_CID,
+      contentDisposition: 'inline'
+    }
+  ];
+};
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -28,9 +48,9 @@ export const renderTemplate = (contentHtml, recipient) => {
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 24px; color: #1e293b; line-height: 1.6; }
           .container { max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-          .header { background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%); padding: 24px 32px; text-align: left; }
-          .header h1 { color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-          .header p { color: #E0F2FE; margin: 4px 0 0 0; font-size: 13px; }
+          .header { background-color: #ffffff; padding: 20px 32px; text-align: left; border-bottom: 3px solid #2563EB; }
+          .header h1 { color: #0F172A; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.4px; }
+          .header p { color: #64748B; margin: 4px 0 0 0; font-size: 13px; }
           .content { padding: 32px; font-size: 15px; }
           .footer { background: #f1f5f9; padding: 18px 32px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; }
           .footer a { color: #2563eb; text-decoration: none; }
@@ -39,7 +59,9 @@ export const renderTemplate = (contentHtml, recipient) => {
       <body>
         <div class="container">
           <div class="header">
-            <h1>Ashirwad Plastics</h1>
+            ${fs.existsSync(HEADER_LOGO_PATH)
+              ? `<img src="cid:${HEADER_LOGO_CID}" alt="Ashirwad Plastics" style="height: 36px; width: auto; display: block; border: 0;" />`
+              : '<h1>Ashirwad Plastics</h1>'}
           </div>
           <div class="content">
             ${rendered}
@@ -64,13 +86,39 @@ const formatAttachments = (attachments = []) => {
     }));
 };
 
+const extractInlineDataImages = (html = '') => {
+  const inlineAttachments = [];
+  let index = 0;
+
+  const processedHtml = String(html).replace(
+    /(<img\b[^>]*?\bsrc\s*=\s*)(["'])(data:image\/(png|jpeg|jpg|gif|webp);base64,([^"']+))\2/gi,
+    (match, prefix, quote, _fullDataUrl, mimeSubType, base64Data) => {
+      index += 1;
+      const normalizedType = mimeSubType.toLowerCase() === 'jpg' ? 'jpeg' : mimeSubType.toLowerCase();
+      const cid = `inline-img-${index}-${Date.now()}@ashirwad`;
+      inlineAttachments.push({
+        filename: `inline-image-${index}.${normalizedType}`,
+        content: Buffer.from(base64Data, 'base64'),
+        contentType: `image/${normalizedType}`,
+        cid,
+        contentDisposition: 'inline'
+      });
+      return `${prefix}${quote}cid:${cid}${quote}`;
+    }
+  );
+
+  return { html: processedHtml, inlineAttachments };
+};
+
 export const sendTestEmail = async ({ to, subject, contentHtml, attachments = [], cc = [], bcc = [] }) => {
   const transporter = createTransporter();
   if (!transporter) {
     throw new Error('SMTP credentials are not configured in backend/.env file.');
   }
 
-  const html = renderTemplate(contentHtml, {
+  const { html: cidHtml, inlineAttachments } = extractInlineDataImages(contentHtml);
+
+  const html = renderTemplate(cidHtml, {
     email: to,
     name: 'Test Recipient',
     company: 'Ashirwad Plastics'
@@ -84,7 +132,7 @@ export const sendTestEmail = async ({ to, subject, contentHtml, attachments = []
     to,
     subject: `[TEST] ${subject}`,
     html,
-    attachments: formatAttachments(attachments)
+    attachments: [...formatAttachments(attachments), ...inlineAttachments, ...getHeaderLogoAttachment()]
   };
 
   if (env.SMTP.FROM_ADDRESS && env.SMTP.FROM_ADDRESS !== senderEmail) {
@@ -168,7 +216,8 @@ export const processCampaignQueue = async (campaignId) => {
     return;
   }
 
-  const formattedAttachments = formatAttachments(campaign.attachments);
+  const { html: cidContentHtml, inlineAttachments } = extractInlineDataImages(campaign.contentHtml);
+  const formattedAttachments = [...formatAttachments(campaign.attachments), ...inlineAttachments, ...getHeaderLogoAttachment()];
 
   // Process in batches of 20 with 1.2s delay to adhere to SMTP limits & avoid spam triggers
   const BATCH_SIZE = 20;
@@ -180,7 +229,7 @@ export const processCampaignQueue = async (campaignId) => {
     await Promise.all(
       batch.map(async (recipient) => {
         try {
-          const personalizedHtml = renderTemplate(campaign.contentHtml, recipient);
+          const personalizedHtml = renderTemplate(cidContentHtml, recipient);
 
           const senderEmail = env.SMTP.USER || env.SMTP.FROM_ADDRESS;
           const displayName = env.SMTP.FROM_NAME || 'Ashirwad Plastics Admin';
@@ -260,13 +309,14 @@ export const retryFailedCampaignQueue = async (campaignId) => {
   campaign.status = 'PROCESSING';
   await campaign.save();
 
-  const formattedAttachments = formatAttachments(campaign.attachments);
+  const { html: cidContentHtml, inlineAttachments } = extractInlineDataImages(campaign.contentHtml);
+  const formattedAttachments = [...formatAttachments(campaign.attachments), ...inlineAttachments, ...getHeaderLogoAttachment()];
   const senderEmail = env.SMTP.USER || env.SMTP.FROM_ADDRESS;
   const displayName = env.SMTP.FROM_NAME || 'Ashirwad Plastics Admin';
 
   for (const log of failedLogs) {
     try {
-      const personalizedHtml = renderTemplate(campaign.contentHtml, {
+      const personalizedHtml = renderTemplate(cidContentHtml, {
         email: log.email,
         name: log.name || '',
         company: log.company || ''

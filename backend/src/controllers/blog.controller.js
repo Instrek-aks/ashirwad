@@ -47,15 +47,15 @@ export const getPublishedBlogs = async (req, res) => {
   }
 };
 
+// Recent view deduplication cache (key: "slug:visitorKey" -> expiresAtMs)
+const VIEW_TTL_MS = 24 * 60 * 60 * 1000;
+const recentBlogViews = new Map();
+
 // GET /api/v1/blogs/:slug - Get single blog by slug (Public)
 export const getBlogBySlug = async (req, res) => {
   try {
     const { slug } = req.params;
-    const blog = await Blog.findOneAndUpdate(
-      { slug },
-      { $inc: { views: 1 } },
-      { new: true }
-    );
+    const blog = await Blog.findOne({ slug });
 
     if (!blog) {
       return res.status(404).json({ success: false, message: 'Blog article not found' });
@@ -88,6 +88,44 @@ export const getBlogBySlug = async (req, res) => {
         related: [...related, ...fallback]
       }
     });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// POST /api/v1/blogs/:slug/view - Record a deduplicated view for a published blog
+export const recordBlogView = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const rawVisitorId = req.body?.visitorId ? String(req.body.visitorId).trim() : '';
+    const ip = (req.headers['x-forwarded-for'] || req.ip || '').toString().split(',')[0].trim();
+    const visitorKey = rawVisitorId || ip;
+
+    const now = Date.now();
+    if (recentBlogViews.size > 10000) {
+      for (const [key, expiresAt] of recentBlogViews.entries()) {
+        if (expiresAt <= now) recentBlogViews.delete(key);
+      }
+    }
+
+    const cacheKey = `${slug}:${visitorKey}`;
+    const existingExpiry = recentBlogViews.get(cacheKey);
+    if (existingExpiry && existingExpiry > now) {
+      return res.json({ success: true, counted: false });
+    }
+
+    const updated = await Blog.findOneAndUpdate(
+      { slug, isPublished: true },
+      { $inc: { views: 1 } },
+      { new: true, select: 'views' }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ success: false, message: 'Published blog article not found' });
+    }
+
+    recentBlogViews.set(cacheKey, now + VIEW_TTL_MS);
+    res.json({ success: true, counted: true, views: updated.views });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

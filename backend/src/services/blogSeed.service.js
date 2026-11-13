@@ -17,7 +17,7 @@ export const defaultSeedBlogs = [
     isPublished: true,
     featured: true,
     publishedAt: new Date('2026-01-20T09:00:00.000Z'),
-    views: 1840,
+    views: 0,
     contentHtml: `<p>In modern ophthalmic and nasal therapeutics, patient outcomes depend directly on container closure integrity and volumetric dispensing precision. Ashirwad Plastics operates certified Class 10,000 and Class 100,000 cleanrooms in Solan, Himachal Pradesh, combining robotic injection blow molding (IBM) with optical machine vision to eliminate particulate contamination and maintain tolerances down to ±0.02 mm.</p>
 
 <p>Every batch of three-piece dropper assemblies—comprising LDPE bottles, controlled-orifice plugs, and tamper-evident caps—undergoes automated leak integrity testing, torque retention verification, and gamma-irradiation compatibility audits.</p>
@@ -60,7 +60,7 @@ export const defaultSeedBlogs = [
     isPublished: true,
     featured: false,
     publishedAt: new Date('2026-01-18T10:00:00.000Z'),
-    views: 980,
+    views: 0,
     contentHtml: `<p>The pharmaceutical packaging sector has long grappled with an inherent conflict between barrier performance and recyclability. Traditional multi-layer blister laminates and co-extruded barrier bottles combine incompatible resins, rendering post-consumer mechanical recycling nearly impossible. Ashirwad Plastics is engineering mono-material HDPE and PP systems that bridge this gap.</p>
 
 <h2>Redefining Moisture Vapor Transmission Rates (MVTR)</h2>
@@ -91,7 +91,7 @@ export const defaultSeedBlogs = [
     isPublished: true,
     featured: false,
     publishedAt: new Date('2026-01-15T10:00:00.000Z'),
-    views: 1120,
+    views: 0,
     contentHtml: `<p>Regulatory approval for pharmaceutical containment requires relentless documentation rigor. Ashirwad Plastics maintains active Type III Drug Master Files (DMF) with the United States Food and Drug Administration (US FDA), enabling seamless reference access for our domestic and multinational formulation partners during ANDA and NDA submissions.</p>
 
 <h2>Engineering Child-Resistance with Senior-Friendly Ergonomics</h2>
@@ -113,6 +113,13 @@ export const ensureDefaultBlogs = async () => {
       console.log('[Seed] Seeding default pharmaceutical packaging blogs to database...');
       await Blog.insertMany(defaultSeedBlogs);
       console.log('[Seed] Successfully seeded 3 meaningful blogs.');
+    } else {
+      // Clear legacy hardcoded fake view counts from initial seed if still present
+      await Promise.all([
+        Blog.updateOne({ slug: defaultSeedBlogs[0].slug, views: 1840 }, { $set: { views: 0 } }),
+        Blog.updateOne({ slug: defaultSeedBlogs[1].slug, views: 980 }, { $set: { views: 0 } }),
+        Blog.updateOne({ slug: defaultSeedBlogs[2].slug, views: 1120 }, { $set: { views: 0 } })
+      ]);
     }
   } catch (error) {
     console.error('[Seed Error] Failed to ensure default blogs in database:', error.message);
