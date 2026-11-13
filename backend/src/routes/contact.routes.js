@@ -10,15 +10,21 @@ import {
   handleExportContacts,
   handleGetGroups,
   handleRenameGroup,
-  handleDeleteGroup
+  handleDeleteGroup,
+  handleBulkContactAction,
+  handleUnsubscribe
 } from '../controllers/contact.controller.js';
 import { protectAdmin } from '../middlewares/auth.middleware.js';
 import { uploadSheet } from '../middlewares/upload.middleware.js';
 
 const router = Router();
 
+// Public unsubscribe endpoint for email campaign footers
+router.get('/unsubscribe', handleUnsubscribe);
+
 router.use(protectAdmin); // All contact management routes are secured
 
+router.post('/bulk', handleBulkContactAction);
 router.delete('/purge/all', handleClearAllContacts);
 router.get('/', handleGetContacts);
 router.post('/', handleCreateContact);

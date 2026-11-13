@@ -131,8 +131,8 @@ export const handleDeleteGroup = async (req, res, next) => {
 
 export const handleGetContacts = async (req, res, next) => {
   try {
-    const { page, limit, search, tag } = req.query;
-    const result = await getContacts({ page, limit, search, tag });
+    const { page, limit, search, tag, subscribed } = req.query;
+    const result = await getContacts({ page, limit, search, tag, subscribed });
 
     res.status(200).json({
       success: true,
@@ -262,6 +262,68 @@ export const handleClearAllContacts = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+};
+
+export const handleBulkContactAction = async (req, res, next) => {
+  try {
+    const { ids, action, tag } = req.body;
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ success: false, message: 'No contacts selected.' });
+    }
+
+    if (action === 'delete') {
+      const result = await Contact.deleteMany({ _id: { $in: ids } });
+      return res.status(200).json({ success: true, message: `Deleted ${result.deletedCount} contact(s).` });
+    }
+
+    if (action === 'unsubscribe') {
+      await Contact.updateMany({ _id: { $in: ids } }, { $set: { isSubscribed: false } });
+      return res.status(200).json({ success: true, message: `Unsubscribed ${ids.length} contact(s).` });
+    }
+
+    if (action === 'subscribe') {
+      await Contact.updateMany({ _id: { $in: ids } }, { $set: { isSubscribed: true } });
+      return res.status(200).json({ success: true, message: `Re-subscribed ${ids.length} contact(s).` });
+    }
+
+    if (action === 'addTag') {
+      const cleanTag = (tag || '').trim();
+      if (!cleanTag) {
+        return res.status(400).json({ success: false, message: 'Tag name is required.' });
+      }
+      await Contact.updateMany({ _id: { $in: ids } }, { $addToSet: { tags: cleanTag } });
+      return res.status(200).json({ success: true, message: `Added tag "${cleanTag}" to ${ids.length} contact(s).` });
+    }
+
+    return res.status(400).json({ success: false, message: 'Invalid bulk action.' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const handleUnsubscribe = async (req, res) => {
+  try {
+    const email = (req.query.email || '').toLowerCase().trim();
+    if (email) {
+      await Contact.findOneAndUpdate({ email }, { $set: { isSubscribed: false } });
+    }
+    res.status(200).send(`
+      <!DOCTYPE html>
+      <html>
+        <head><meta charset="utf-8"><title>Unsubscribed - Ashirwad Plastics</title></head>
+        <body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:20px;">
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:32px;max-width:440px;text-align:center;">
+            <h2 style="margin:0 0 8px 0;color:#0f172a;font-size:20px;">Unsubscribed Successfully</h2>
+            <p style="margin:0;color:#64748b;font-size:14px;line-height:1.5;">
+              ${email ? `<strong>${email}</strong> has been removed from future Ashirwad Plastics email campaigns.` : 'You have been unsubscribed from future Ashirwad Plastics email campaigns.'}
+            </p>
+          </div>
+        </body>
+      </html>
+    `);
+  } catch (error) {
+    res.status(500).send('Unable to process unsubscribe request.');
   }
 };
 

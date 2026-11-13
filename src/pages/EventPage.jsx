@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { inquiryService } from '../services/inquiryService'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -28,11 +29,20 @@ export default function EventPage({ onNavigate }) {
   const [ctaRef, ctaVisible] = useFadeIn()
   const [footerCtaRef, footerCtaVisible] = useFadeIn()
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
     if (email.trim()) {
-      setSubmitted(true)
-      setEmail('')
+      try {
+        await inquiryService.submitInquiry({
+          type: 'EVENT_UPDATE',
+          email: email.trim(),
+          source: 'Event Page'
+        })
+        setSubmitted(true)
+        setEmail('')
+      } catch (err) {
+        alert(err.message || 'Unable to register for updates.')
+      }
     }
   }
 

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { blogService } from '../../services/blogService';
+import { exportTableToExcel, exportTableToPdf } from '../../utils/exportUtils';
+import ExportDropdown from './ExportDropdown';
 
 // Clean SVG Icons
 const IconSearch = ({ size = 15, color = 'currentColor' }) => (
@@ -147,7 +149,45 @@ export default function BlogManager({ onEditBlog, onCreateNew, token, onNavigate
           </p>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          <ExportDropdown
+            onExportExcel={() =>
+              exportTableToExcel(
+                'Ashirwad_Articles_Export.xls',
+                'Articles',
+                [
+                  { label: 'Title', key: 'title' },
+                  { label: 'Slug', key: 'slug' },
+                  { label: 'Category', key: 'category' },
+                  { label: 'Status', accessor: (b) => (b.isPublished ? 'Published' : 'Draft') },
+                  { label: 'Views', accessor: (b) => b.views || 0 },
+                  { label: 'Read Time', key: 'readTime' },
+                  { label: 'Date', accessor: (b) => new Date(b.publishedAt || b.createdAt).toLocaleDateString() }
+                ],
+                filteredBlogs
+              )
+            }
+            onExportPdf={() =>
+              exportTableToPdf({
+                title: 'Articles & Technical Publications',
+                subtitle: `Category: ${selectedCategory} • Status: ${selectedStatus}`,
+                summary: [
+                  { label: 'Total', value: totalCount },
+                  { label: 'Published', value: publishedCount },
+                  { label: 'Drafts', value: draftCount },
+                  { label: 'Total Readers', value: totalViews }
+                ],
+                columns: [
+                  { label: 'Title', key: 'title' },
+                  { label: 'Category', key: 'category' },
+                  { label: 'Status', accessor: (b) => (b.isPublished ? 'Published' : 'Draft') },
+                  { label: 'Views', accessor: (b) => b.views || 0 },
+                  { label: 'Read Time', key: 'readTime' }
+                ],
+                rows: filteredBlogs
+              })
+            }
+          />
           <button
             onClick={onCreateNew}
             type="button"

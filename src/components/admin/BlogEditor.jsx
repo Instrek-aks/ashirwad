@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import GalleryModal from './GalleryModal';
 
 // Preset packaging images available in the project for instant selection
 const PRESET_IMAGES = [
@@ -75,7 +76,8 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
   const [excerpt, setExcerpt] = useState(blog?.excerpt || '');
   const [category, setCategory] = useState(blog?.category || 'Packaging Innovation');
   const [coverImage, setCoverImage] = useState(blog?.coverImage || '/Product_Images/32.png');
-  const [readTime, setReadTime] = useState(blog?.readTime || '5 min read');
+  const [readTime, setReadTime] = useState(blog?.readTime || '1 min read');
+  const [readTimeManual, setReadTimeManual] = useState(Boolean(blog?.readTime));
   const [authorName, setAuthorName] = useState(blog?.author?.name || 'Ashirwad Plastics Editorial Team');
   const [authorRole, setAuthorRole] = useState(blog?.author?.role || 'Packaging & R&D Specialist');
   const [tags, setTags] = useState(blog?.tags || ['Pharma', 'Innovation']);
@@ -93,7 +95,7 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
   const [linkData, setLinkData] = useState({ text: '', url: '', newTab: true });
   
   const [showImageModal, setShowImageModal] = useState(false);
-  const [activeImageSubTab, setActiveImageSubTab] = useState(1); // 1 for left image, 2 for right image
+  const [galleryTarget, setGalleryTarget] = useState(null); // 'cover' | 'inline1' | 'inline2' | null
   const [imageData, setImageData] = useState({
     url: '/Product_Images/32.png',
     alt: '32mm Dispenser Pump',
@@ -169,20 +171,26 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
     }
   };
 
-  // Auto calculate read time
-  useEffect(() => {
-    const textOnly = contentHtml.replace(/<[^>]*>/g, ' ');
+  // Auto calculate read time unless manually overridden
+  const computeReadTime = (html) => {
+    const textOnly = (html || '').replace(/<[^>]*>/g, ' ');
     const wordCount = textOnly.trim().split(/\s+/).filter(Boolean).length;
     const minutes = Math.max(1, Math.ceil(wordCount / 200));
-    setReadTime(`${minutes} min read`);
-  }, [contentHtml]);
+    return `${minutes} min read`;
+  };
 
-  // Keep visual editor in sync with contentHtml state
+  useEffect(() => {
+    if (!readTimeManual) {
+      setReadTime(computeReadTime(contentHtml));
+    }
+  }, [contentHtml, readTimeManual]);
+
+  // Keep visual editor initialized with contentHtml
   useEffect(() => {
     if (visualEditorRef.current && visualEditorRef.current.innerHTML !== contentHtml) {
       visualEditorRef.current.innerHTML = contentHtml;
     }
-  }, [editorMode]);
+  }, []);
 
   // Command execution for rich formatting
   const executeCommand = (command, value = null) => {
@@ -384,7 +392,6 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
       alt2: prev.alt2 || '36mm Nasal Spray',
       caption2: prev.caption2 || ''
     }));
-    setActiveImageSubTab(1);
     setShowImageModal(true);
   };
 
@@ -765,69 +772,38 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
                   <span>Quote</span>
                 </button>
               </div>
-
-              {/* View Mode Switcher */}
-              <div style={{ display: 'flex', backgroundColor: '#F1F5F9', padding: '2px', borderRadius: '6px' }}>
-                <button
-                  type="button"
-                  onClick={() => setEditorMode('visual')}
-                  style={{ padding: '3px 8px', borderRadius: '4px', border: 'none', backgroundColor: editorMode === 'visual' ? '#FFFFFF' : 'transparent', color: editorMode === 'visual' ? '#0F172A' : '#64748B', fontSize: '11.5px', fontWeight: editorMode === 'visual' ? '600' : '500', cursor: 'pointer' }}
-                >
-                  Visual
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditorMode('html')}
-                  style={{ padding: '3px 8px', borderRadius: '4px', border: 'none', backgroundColor: editorMode === 'html' ? '#FFFFFF' : 'transparent', color: editorMode === 'html' ? '#0F172A' : '#64748B', fontSize: '11.5px', fontWeight: editorMode === 'html' ? '600' : '500', cursor: 'pointer' }}
-                >
-                  HTML
-                </button>
-              </div>
             </div>
 
-            {/* Editor Workspace */}
-            {editorMode === 'visual' ? (
-              <div
-                ref={visualEditorRef}
-                contentEditable
-                onInput={handleVisualInput}
-                onKeyUp={saveCurrentSelection}
-                onMouseUp={saveCurrentSelection}
-                onSelect={saveCurrentSelection}
-                onFocus={saveCurrentSelection}
-                style={{
-                  minHeight: '440px',
-                  maxHeight: '640px',
-                  overflowY: 'auto',
-                  padding: '24px 28px',
-                  outline: 'none',
-                  fontSize: '14.5px',
-                  lineHeight: '1.7',
-                  color: '#1E293B'
-                }}
-              />
-            ) : (
-              <textarea
-                ref={htmlTextareaRef}
-                value={contentHtml}
-                onChange={(e) => setContentHtml(e.target.value)}
-                style={{
-                  width: '100%',
-                  minHeight: '440px',
-                  maxHeight: '640px',
-                  padding: '20px',
-                  fontFamily: 'Consolas, Monaco, monospace',
-                  fontSize: '13px',
-                  lineHeight: '1.5',
-                  backgroundColor: '#F8FAFC',
-                  color: '#0F172A',
-                  border: 'none',
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                  resize: 'vertical'
-                }}
-              />
-            )}
+            {/* Visual Editor Workspace */}
+            <div
+              ref={visualEditorRef}
+              className="blog-visual-editor"
+              contentEditable
+              onInput={handleVisualInput}
+              onKeyUp={saveCurrentSelection}
+              onMouseUp={saveCurrentSelection}
+              onSelect={saveCurrentSelection}
+              onFocus={saveCurrentSelection}
+              style={{
+                minHeight: '440px',
+                maxHeight: '640px',
+                overflowY: 'auto',
+                padding: '24px 28px',
+                outline: 'none',
+                fontSize: '14.5px',
+                lineHeight: '1.7',
+                color: '#1E293B'
+              }}
+            />
+            <style>{`
+              .blog-visual-editor p { margin: 0 0 12px 0; }
+              .blog-visual-editor h2 { font-size: 20px; font-weight: 700; color: #0F172A; margin: 20px 0 10px; }
+              .blog-visual-editor h3 { font-size: 16.5px; font-weight: 700; color: #0F172A; margin: 16px 0 8px; }
+              .blog-visual-editor ul { list-style-type: disc; list-style-position: outside; padding-left: 28px; margin: 10px 0 14px; }
+              .blog-visual-editor ol { list-style-type: decimal; list-style-position: outside; padding-left: 28px; margin: 10px 0 14px; }
+              .blog-visual-editor li { margin-bottom: 6px; padding-left: 4px; }
+              .blog-visual-editor ul ul { list-style-type: circle; margin: 4px 0; }
+            `}</style>
           </div>
         </div>
 
@@ -887,13 +863,30 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#64748B', marginBottom: '6px' }}>
-                Read Time
-              </label>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                <label style={{ fontSize: '12px', fontWeight: '600', color: '#64748B' }}>
+                  Read Time {readTimeManual ? '(Manual)' : '(Auto)'}
+                </label>
+                {readTimeManual && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setReadTimeManual(false);
+                      setReadTime(computeReadTime(contentHtml));
+                    }}
+                    style={{ border: 'none', background: 'none', color: '#2563EB', fontSize: '11px', fontWeight: '600', cursor: 'pointer', padding: 0 }}
+                  >
+                    Reset to Auto
+                  </button>
+                )}
+              </div>
               <input
                 type="text"
                 value={readTime}
-                onChange={(e) => setReadTime(e.target.value)}
+                onChange={(e) => {
+                  setReadTimeManual(true);
+                  setReadTime(e.target.value);
+                }}
                 placeholder="5 min read"
                 style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', color: '#0F172A', boxSizing: 'border-box', outline: 'none' }}
               />
@@ -921,32 +914,26 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
               value={coverImage}
               onChange={(e) => setCoverImage(e.target.value)}
               placeholder="Image path or URL..."
-              style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', color: '#0F172A', boxSizing: 'border-box', marginBottom: '10px', outline: 'none' }}
+              style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', color: '#0F172A', boxSizing: 'border-box', marginBottom: '10px', outline: 'none' }}
             />
 
-            <span style={{ fontSize: '11px', color: '#94A3B8', display: 'block', marginBottom: '6px' }}>
-              Presets:
-            </span>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px' }}>
-              {PRESET_IMAGES.map((img) => (
-                <button
-                  key={img.url}
-                  type="button"
-                  onClick={() => setCoverImage(img.url)}
-                  title={img.label}
-                  style={{
-                    height: '42px',
-                    borderRadius: '4px',
-                    border: coverImage === img.url ? '2px solid #0F172A' : '1px solid #E2E8F0',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    padding: 0
-                  }}
-                >
-                  <img src={img.url} alt={img.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </button>
-              ))}
-            </div>
+            <button
+              type="button"
+              onClick={() => setGalleryTarget('cover')}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                borderRadius: '6px',
+                border: '1px solid #CBD5E1',
+                backgroundColor: '#F8FAFC',
+                color: '#0F172A',
+                fontSize: '12.5px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              Browse Full Image Gallery
+            </button>
           </div>
 
           {/* Author Details */}
@@ -1076,16 +1063,26 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
         </div>
       )}
 
-      {/* ==================== INSERT IMAGE MODAL ==================== */}
+      {/* ==================== INSERT IMAGE MODAL (CLEAN & SPACIOUS) ==================== */}
       {showImageModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.4)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-          <div style={{ width: '100%', maxWidth: '520px', backgroundColor: '#FFFFFF', borderRadius: '8px', padding: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-            
+        <div
+          style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.45)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
+          onClick={() => setShowImageModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: '100%', maxWidth: '640px', backgroundColor: '#FFFFFF', borderRadius: '12px', padding: '22px 24px', boxShadow: '0 20px 40px rgba(15, 23, 42, 0.16)', maxHeight: '88vh', overflowY: 'auto' }}
+          >
             {/* Header */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#0F172A', margin: 0 }}>
-                {imageData.layout === 'grid2' ? 'Insert 2-Image Grid at Cursor' : 'Insert Image at Cursor'}
-              </h3>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div>
+                <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#0F172A', margin: 0 }}>
+                  Insert Image into Article
+                </h3>
+                <p style={{ fontSize: '12px', color: '#64748B', margin: '2px 0 0 0' }}>
+                  Choose a layout and pick assets from the full website gallery.
+                </p>
+              </div>
               <button
                 type="button"
                 onClick={() => setShowImageModal(false)}
@@ -1095,21 +1092,20 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
               </button>
             </div>
 
-            {/* Layout Selector at Top */}
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', backgroundColor: '#F1F5F9', padding: '3px', borderRadius: '6px' }}>
+            {/* Layout Selector */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '18px', backgroundColor: '#F1F5F9', padding: '4px', borderRadius: '8px' }}>
               <button
                 type="button"
                 onClick={() => setImageData({ ...imageData, layout: 'full' })}
                 style={{
-                  flex: 1,
-                  padding: '6px',
-                  borderRadius: '4px',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
                   border: 'none',
                   backgroundColor: imageData.layout === 'full' ? '#FFFFFF' : 'transparent',
                   color: imageData.layout === 'full' ? '#0F172A' : '#64748B',
-                  fontSize: '12px',
+                  fontSize: '12.5px',
                   fontWeight: imageData.layout === 'full' ? '600' : '500',
-                  boxShadow: imageData.layout === 'full' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
+                  boxShadow: imageData.layout === 'full' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
                   cursor: 'pointer'
                 }}
               >
@@ -1119,15 +1115,14 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
                 type="button"
                 onClick={() => setImageData({ ...imageData, layout: 'grid2' })}
                 style={{
-                  flex: 1,
-                  padding: '6px',
-                  borderRadius: '4px',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
                   border: 'none',
                   backgroundColor: imageData.layout === 'grid2' ? '#FFFFFF' : 'transparent',
                   color: imageData.layout === 'grid2' ? '#0F172A' : '#64748B',
-                  fontSize: '12px',
+                  fontSize: '12.5px',
                   fontWeight: imageData.layout === 'grid2' ? '600' : '500',
-                  boxShadow: imageData.layout === 'grid2' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
+                  boxShadow: imageData.layout === 'grid2' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
                   cursor: 'pointer'
                 }}
               >
@@ -1135,265 +1130,156 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
               </button>
             </div>
 
-            {imageData.layout === 'grid2' ? (
-              <div>
-                {/* Sub-Tabs for Image 1 & Image 2 */}
-                <div style={{ display: 'flex', borderBottom: '1px solid #E2E8F0', marginBottom: '12px' }}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveImageSubTab(1)}
-                    style={{
-                      flex: 1,
-                      padding: '8px',
-                      background: 'none',
-                      border: 'none',
-                      borderBottom: activeImageSubTab === 1 ? '2px solid #0F172A' : '2px solid transparent',
-                      color: activeImageSubTab === 1 ? '#0F172A' : '#64748B',
-                      fontWeight: activeImageSubTab === 1 ? '600' : '500',
-                      fontSize: '12.5px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    1. Left Image
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveImageSubTab(2)}
-                    style={{
-                      flex: 1,
-                      padding: '8px',
-                      background: 'none',
-                      border: 'none',
-                      borderBottom: activeImageSubTab === 2 ? '2px solid #0F172A' : '2px solid transparent',
-                      color: activeImageSubTab === 2 ? '#0F172A' : '#64748B',
-                      fontWeight: activeImageSubTab === 2 ? '600' : '500',
-                      fontSize: '12.5px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    2. Right Image
-                  </button>
-                </div>
-
-                {/* Tab 1 Content: Left Image */}
-                {activeImageSubTab === 1 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <div>
-                      <label style={{ fontSize: '11px', fontWeight: '600', color: '#64748B', display: 'block', marginBottom: '4px' }}>
-                        Quick Select Left Asset
-                      </label>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', maxHeight: '100px', overflowY: 'auto', padding: '4px', border: '1px solid #E2E8F0', borderRadius: '6px', backgroundColor: '#F8FAFC' }}>
-                        {PRESET_IMAGES.map((preset, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => setImageData({ ...imageData, url: preset.url, alt: preset.label })}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '5px',
-                              padding: '4px 6px',
-                              borderRadius: '4px',
-                              border: imageData.url === preset.url ? '1.5px solid #0F172A' : '1px solid #E2E8F0',
-                              backgroundColor: '#FFFFFF',
-                              cursor: 'pointer',
-                              textAlign: 'left'
-                            }}
-                          >
-                            <img src={preset.url} alt="" style={{ width: '18px', height: '18px', objectFit: 'cover', borderRadius: '3px' }} />
-                            <span style={{ fontSize: '10px', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{preset.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label style={{ fontSize: '11.5px', color: '#64748B', display: 'block', marginBottom: '3px' }}>Left Image URL</label>
-                      <input
-                        type="text"
-                        value={imageData.url}
-                        onChange={(e) => setImageData({ ...imageData, url: e.target.value })}
-                        placeholder="/Product_Images/32.png"
-                        style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', boxSizing: 'border-box', outline: 'none' }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ fontSize: '11.5px', color: '#64748B', display: 'block', marginBottom: '3px' }}>Left Caption (Optional)</label>
-                      <input
-                        type="text"
-                        value={imageData.caption}
-                        onChange={(e) => setImageData({ ...imageData, caption: e.target.value })}
-                        placeholder="e.g. Primary dispenser pump..."
-                        style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', boxSizing: 'border-box', outline: 'none' }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Tab 2 Content: Right Image */}
-                {activeImageSubTab === 2 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <div>
-                      <label style={{ fontSize: '11px', fontWeight: '600', color: '#64748B', display: 'block', marginBottom: '4px' }}>
-                        Quick Select Right Asset
-                      </label>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', maxHeight: '100px', overflowY: 'auto', padding: '4px', border: '1px solid #E2E8F0', borderRadius: '6px', backgroundColor: '#F8FAFC' }}>
-                        {PRESET_IMAGES.map((preset, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => setImageData({ ...imageData, url2: preset.url, alt2: preset.label })}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '5px',
-                              padding: '4px 6px',
-                              borderRadius: '4px',
-                              border: imageData.url2 === preset.url ? '1.5px solid #0F172A' : '1px solid #E2E8F0',
-                              backgroundColor: '#FFFFFF',
-                              cursor: 'pointer',
-                              textAlign: 'left'
-                            }}
-                          >
-                            <img src={preset.url} alt="" style={{ width: '18px', height: '18px', objectFit: 'cover', borderRadius: '3px' }} />
-                            <span style={{ fontSize: '10px', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{preset.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label style={{ fontSize: '11.5px', color: '#64748B', display: 'block', marginBottom: '3px' }}>Right Image URL</label>
-                      <input
-                        type="text"
-                        value={imageData.url2}
-                        onChange={(e) => setImageData({ ...imageData, url2: e.target.value })}
-                        placeholder="/Product_Images/36.png"
-                        style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', boxSizing: 'border-box', outline: 'none' }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ fontSize: '11.5px', color: '#64748B', display: 'block', marginBottom: '3px' }}>Right Caption (Optional)</label>
-                      <input
-                        type="text"
-                        value={imageData.caption2}
-                        onChange={(e) => setImageData({ ...imageData, caption2: e.target.value })}
-                        placeholder="e.g. Automated assembly line verification..."
-                        style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', boxSizing: 'border-box', outline: 'none' }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Live Split Preview of Both Images */}
-                <div style={{ marginTop: '12px', padding: '10px', borderRadius: '6px', backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0' }}>
-                  <span style={{ fontSize: '11px', fontWeight: '600', color: '#64748B', display: 'block', marginBottom: '6px' }}>
-                    Side-by-Side Preview (Click to Edit)
+            {/* Image Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: imageData.layout === 'grid2' ? '1fr 1fr' : '1fr', gap: '16px' }}>
+              {/* Image 1 Card */}
+              <div style={{ padding: '14px', borderRadius: '8px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '12px', fontWeight: '700', color: '#0F172A' }}>
+                    {imageData.layout === 'grid2' ? 'Left Image' : 'Selected Image'}
                   </span>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                    <div
-                      onClick={() => setActiveImageSubTab(1)}
-                      style={{ border: activeImageSubTab === 1 ? '1.5px solid #0F172A' : '1px solid #CBD5E1', borderRadius: '4px', overflow: 'hidden', cursor: 'pointer', backgroundColor: '#FFFFFF' }}
-                      title="Click to edit Left Image"
-                    >
-                      <img src={imageData.url || '/Product_Images/32.png'} alt="Left Preview" style={{ width: '100%', height: '65px', objectFit: 'cover', display: 'block' }} />
-                      <div style={{ padding: '3px 6px', fontSize: '10.5px', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        1. {imageData.caption || imageData.alt || 'Left Image'}
-                      </div>
-                    </div>
-                    <div
-                      onClick={() => setActiveImageSubTab(2)}
-                      style={{ border: activeImageSubTab === 2 ? '1.5px solid #0F172A' : '1px solid #CBD5E1', borderRadius: '4px', overflow: 'hidden', cursor: 'pointer', backgroundColor: '#FFFFFF' }}
-                      title="Click to edit Right Image"
-                    >
-                      <img src={imageData.url2 || '/Product_Images/36.png'} alt="Right Preview" style={{ width: '100%', height: '65px', objectFit: 'cover', display: 'block' }} />
-                      <div style={{ padding: '3px 6px', fontSize: '10.5px', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        2. {imageData.caption2 || imageData.alt2 || 'Right Image'}
-                      </div>
-                    </div>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setGalleryTarget('inline1')}
+                    style={{
+                      padding: '5px 10px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      backgroundColor: '#2563EB',
+                      color: '#FFFFFF',
+                      fontSize: '11.5px',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Choose from Gallery
+                  </button>
                 </div>
 
+                <div style={{ height: '140px', borderRadius: '6px', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {imageData.url ? (
+                    <img src={imageData.url} alt={imageData.alt || 'Preview'} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <span style={{ fontSize: '12px', color: '#94A3B8' }}>No image selected</span>
+                  )}
+                </div>
+
+                <input
+                  type="text"
+                  value={imageData.url}
+                  onChange={(e) => setImageData({ ...imageData, url: e.target.value })}
+                  placeholder="/Product_Images/32.png"
+                  style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '12px', backgroundColor: '#FFFFFF', boxSizing: 'border-box', outline: 'none' }}
+                />
+
+                <input
+                  type="text"
+                  value={imageData.caption}
+                  onChange={(e) => setImageData({ ...imageData, caption: e.target.value })}
+                  placeholder="Optional caption..."
+                  style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '12px', backgroundColor: '#FFFFFF', boxSizing: 'border-box', outline: 'none' }}
+                />
               </div>
-            ) : (
-              /* Single Image Layout */
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div>
-                  <label style={{ fontSize: '11.5px', fontWeight: '600', color: '#64748B', display: 'block', marginBottom: '6px' }}>
-                    Quick Assets
-                  </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', maxHeight: '110px', overflowY: 'auto', padding: '4px', border: '1px solid #E2E8F0', borderRadius: '6px', backgroundColor: '#F8FAFC' }}>
-                    {PRESET_IMAGES.map((preset, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setImageData({ ...imageData, url: preset.url, alt: preset.label })}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '5px',
-                          padding: '4px 6px',
-                          borderRadius: '4px',
-                          border: imageData.url === preset.url ? '1.5px solid #0F172A' : '1px solid #E2E8F0',
-                          backgroundColor: '#FFFFFF',
-                          cursor: 'pointer',
-                          textAlign: 'left'
-                        }}
-                      >
-                        <img src={preset.url} alt="" style={{ width: '20px', height: '20px', objectFit: 'cover', borderRadius: '3px' }} />
-                        <span style={{ fontSize: '10.5px', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{preset.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
 
-                <div>
-                  <label style={{ fontSize: '12px', color: '#64748B', display: 'block', marginBottom: '4px' }}>Image URL / File Path</label>
+              {/* Image 2 Card (only in 2-col mode) */}
+              {imageData.layout === 'grid2' && (
+                <div style={{ padding: '14px', borderRadius: '8px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#0F172A' }}>Right Image</span>
+                    <button
+                      type="button"
+                      onClick={() => setGalleryTarget('inline2')}
+                      style={{
+                        padding: '5px 10px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        backgroundColor: '#2563EB',
+                        color: '#FFFFFF',
+                        fontSize: '11.5px',
+                        fontWeight: '600',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Choose from Gallery
+                    </button>
+                  </div>
+
+                  <div style={{ height: '140px', borderRadius: '6px', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {imageData.url2 ? (
+                      <img src={imageData.url2} alt={imageData.alt2 || 'Preview'} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : (
+                      <span style={{ fontSize: '12px', color: '#94A3B8' }}>No image selected</span>
+                    )}
+                  </div>
+
                   <input
                     type="text"
-                    value={imageData.url}
-                    onChange={(e) => setImageData({ ...imageData, url: e.target.value })}
-                    placeholder="/Product_Images/32.png"
-                    style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '13px', boxSizing: 'border-box', outline: 'none' }}
+                    value={imageData.url2}
+                    onChange={(e) => setImageData({ ...imageData, url2: e.target.value })}
+                    placeholder="/Product_Images/36.png"
+                    style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '12px', backgroundColor: '#FFFFFF', boxSizing: 'border-box', outline: 'none' }}
                   />
-                </div>
 
-                <div>
-                  <label style={{ fontSize: '12px', color: '#64748B', display: 'block', marginBottom: '4px' }}>Caption (Optional)</label>
                   <input
                     type="text"
-                    value={imageData.caption}
-                    onChange={(e) => setImageData({ ...imageData, caption: e.target.value })}
-                    placeholder="e.g. Cleanroom precision dropper specification..."
-                    style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '13px', boxSizing: 'border-box', outline: 'none' }}
+                    value={imageData.caption2}
+                    onChange={(e) => setImageData({ ...imageData, caption2: e.target.value })}
+                    placeholder="Optional caption..."
+                    style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '12px', backgroundColor: '#FFFFFF', boxSizing: 'border-box', outline: 'none' }}
                   />
                 </div>
-              </div>
-            )}
+              )}
+            </div>
 
             {/* Actions */}
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '18px', paddingTop: '14px', borderTop: '1px solid #F1F5F9' }}>
               <button
                 type="button"
                 onClick={() => setShowImageModal(false)}
-                style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#475569', fontSize: '12.5px', cursor: 'pointer' }}
+                style={{ padding: '7px 14px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#475569', fontSize: '12.5px', cursor: 'pointer' }}
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleInsertImage}
-                style={{ padding: '6px 16px', borderRadius: '6px', border: 'none', background: '#0F172A', color: '#FFFFFF', fontSize: '12.5px', fontWeight: '500', cursor: 'pointer' }}
+                style={{ padding: '7px 18px', borderRadius: '6px', border: 'none', background: '#0F172A', color: '#FFFFFF', fontSize: '12.5px', fontWeight: '600', cursor: 'pointer' }}
               >
                 {imageData.layout === 'grid2' ? 'Insert 2-Image Grid' : 'Insert Image'}
               </button>
             </div>
-
           </div>
         </div>
       )}
+
+      {/* ==================== FULL WEBSITE GALLERY MODAL ==================== */}
+      <GalleryModal
+        isOpen={Boolean(galleryTarget)}
+        onClose={() => setGalleryTarget(null)}
+        currentUrl={
+          galleryTarget === 'cover'
+            ? coverImage
+            : galleryTarget === 'inline2'
+              ? imageData.url2
+              : imageData.url
+        }
+        title={
+          galleryTarget === 'cover'
+            ? 'Select Cover Image'
+            : galleryTarget === 'inline2'
+              ? 'Select Right Grid Image'
+              : 'Select Article Image'
+        }
+        onSelect={(img) => {
+          if (galleryTarget === 'cover') {
+            setCoverImage(img.url);
+          } else if (galleryTarget === 'inline1') {
+            setImageData((prev) => ({ ...prev, url: img.url, alt: img.label }));
+          } else if (galleryTarget === 'inline2') {
+            setImageData((prev) => ({ ...prev, url2: img.url, alt2: img.label }));
+          }
+        }}
+      />
 
       {/* ==================== INSERT TABLE MODAL ==================== */}
       {showTableModal && (

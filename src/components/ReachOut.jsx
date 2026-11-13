@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import FadeIn from './FadeIn'
+import { inquiryService } from '../services/inquiryService'
 
 /* ─── Fade-in on scroll hook ─── */
 function useFadeIn() {
@@ -40,13 +41,30 @@ export default function ReachOut() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!formData.fullName || !formData.phone || !formData.email || !formData.agree) {
       alert('Please fill out all required fields and accept the terms.')
       return
     }
-    console.log('Form Submitted:', { tab: activeTab, ...formData })
+    try {
+      await inquiryService.submitInquiry({
+        type: activeTab === 'careers' ? 'CAREER_APPLICATION' : 'PRODUCT_INQUIRY',
+        fullName: formData.fullName,
+        phone: formData.phone,
+        email: formData.email,
+        company: formData.company,
+        productType: formData.productType,
+        description: formData.description,
+        careerDept: formData.careerDept,
+        resumeUrl: formData.resumeUrl,
+        source: activeTab === 'general' ? 'Home ReachOut (General)' : 'Home ReachOut'
+      })
+    } catch (err) {
+      console.error('ReachOut submission error:', err)
+      alert(err.message || 'Failed to submit inquiry. Please try again.')
+      return
+    }
     setIsSubmitted(true)
     setTimeout(() => {
       setIsSubmitted(false)

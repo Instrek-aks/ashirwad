@@ -15,6 +15,9 @@ export const renderTemplate = (contentHtml, recipient) => {
   rendered = rendered.replace(/{{company}}/gi, company);
   rendered = rendered.replace(/{{email}}/gi, email);
 
+  const baseBackendUrl = process.env.BACKEND_PUBLIC_URL || `http://localhost:${env.PORT}`;
+  const unsubscribeUrl = `${baseBackendUrl.replace(/\/+$/, '')}/api/v1/contacts/unsubscribe?email=${encodeURIComponent(email || '')}`;
+
   // Wrap in responsive, modern corporate email layout
   return `
     <!DOCTYPE html>
@@ -42,7 +45,8 @@ export const renderTemplate = (contentHtml, recipient) => {
             ${rendered}
           </div>
           <div class="footer">
-            <p style="margin: 0;">© ${new Date().getFullYear()} Ashirwad Plastics. All rights reserved.</p>
+            <p style="margin: 0 0 6px 0;">© ${new Date().getFullYear()} Ashirwad Plastics. All rights reserved.</p>
+            ${email ? `<p style="margin: 0; font-size: 11px; color: #94a3b8;">Don't want to receive these emails? <a href="${unsubscribeUrl}">Unsubscribe</a></p>` : ''}
           </div>
         </div>
       </body>
@@ -234,6 +238,68 @@ export const processCampaignQueue = async (campaignId) => {
   }
 
   campaign.status = campaign.failedCount === allRecipients.length ? 'FAILED' : 'COMPLETED';
+  campaign.markModified('recipientLogs');
+  campaign.markModified('failureLogs');
+  await campaign.save();
+};
+
+export const retryFailedCampaignQueue = async (campaignId) => {
+  const campaign = await Campaign.findById(campaignId);
+  if (!campaign) return;
+
+  const transporter = createTransporter();
+  if (!transporter) {
+    campaign.status = 'FAILED';
+    await campaign.save();
+    return;
+  }
+
+  const failedLogs = (campaign.recipientLogs || []).filter((r) => r.status === 'FAILED');
+  if (failedLogs.length === 0) return;
+
+  campaign.status = 'PROCESSING';
+  await campaign.save();
+
+  const formattedAttachments = formatAttachments(campaign.attachments);
+  const senderEmail = env.SMTP.USER || env.SMTP.FROM_ADDRESS;
+  const displayName = env.SMTP.FROM_NAME || 'Ashirwad Plastics Admin';
+
+  for (const log of failedLogs) {
+    try {
+      const personalizedHtml = renderTemplate(campaign.contentHtml, {
+        email: log.email,
+        name: log.name || '',
+        company: log.company || ''
+      });
+
+      const mailOptions = {
+        from: `"${displayName}" <${senderEmail}>`,
+        to: log.email,
+        subject: campaign.subject,
+        html: personalizedHtml,
+        attachments: formattedAttachments
+      };
+
+      if (env.SMTP.FROM_ADDRESS && env.SMTP.FROM_ADDRESS !== senderEmail) {
+        mailOptions.replyTo = env.SMTP.FROM_ADDRESS;
+      }
+
+      await transporter.sendMail(mailOptions);
+      log.status = 'DELIVERED';
+      log.error = undefined;
+      log.timestamp = new Date();
+      campaign.sentCount += 1;
+      campaign.failedCount = Math.max(0, campaign.failedCount - 1);
+    } catch (err) {
+      log.error = err.message;
+      log.timestamp = new Date();
+    }
+  }
+
+  campaign.failureLogs = (campaign.recipientLogs || [])
+    .filter((r) => r.status === 'FAILED')
+    .map((r) => ({ email: r.email, reason: r.error || 'Failed', timestamp: r.timestamp }));
+  campaign.status = campaign.failedCount > 0 && campaign.sentCount === 0 ? 'FAILED' : 'COMPLETED';
   campaign.markModified('recipientLogs');
   campaign.markModified('failureLogs');
   await campaign.save();

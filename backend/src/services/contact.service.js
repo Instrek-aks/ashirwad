@@ -202,7 +202,7 @@ export const importContactsBulk = async (contacts, defaultTag = 'Imported', sour
   };
 };
 
-export const getContacts = async ({ page = 1, limit = 50, search = '', tag = '' }) => {
+export const getContacts = async ({ page = 1, limit = 50, search = '', tag = '', subscribed = 'all' }) => {
   const query = {};
 
   if (search) {
@@ -215,6 +215,12 @@ export const getContacts = async ({ page = 1, limit = 50, search = '', tag = '' 
 
   if (tag && tag !== 'ALL') {
     query.tags = tag;
+  }
+
+  if (subscribed === 'true') {
+    query.isSubscribed = true;
+  } else if (subscribed === 'false') {
+    query.isSubscribed = false;
   }
 
   const pageNum = parseInt(page, 10) || 1;

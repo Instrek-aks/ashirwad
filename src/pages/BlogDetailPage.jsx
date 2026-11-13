@@ -241,6 +241,36 @@ export default function BlogDetailPage({ slug, onNavigate }) {
                   margin: 36px 0 16px;
                   line-height: 1.35;
                 }
+                .blog-detail-content h3 {
+                  font-size: 17.5px;
+                  font-weight: 700;
+                  color: #111827;
+                  margin: 26px 0 12px;
+                  line-height: 1.4;
+                }
+                .blog-detail-content ul {
+                  list-style-type: disc;
+                  list-style-position: outside;
+                  padding-left: 28px;
+                  margin: 12px 0 20px;
+                  color: #4B5563;
+                }
+                .blog-detail-content ol {
+                  list-style-type: decimal;
+                  list-style-position: outside;
+                  padding-left: 28px;
+                  margin: 12px 0 20px;
+                  color: #4B5563;
+                }
+                .blog-detail-content li {
+                  margin-bottom: 8px;
+                  padding-left: 4px;
+                  line-height: 1.7;
+                }
+                .blog-detail-content ul ul {
+                  list-style-type: circle;
+                  margin: 6px 0;
+                }
                 .blog-detail-content .blog-full-image {
                   margin: 26px 0 32px;
                 }

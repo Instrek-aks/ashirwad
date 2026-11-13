@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import BlogManager from '../components/admin/BlogManager';
 import BlogEditor from '../components/admin/BlogEditor';
+import OverviewDashboard from '../components/admin/OverviewDashboard';
+import InquiriesManager from '../components/admin/InquiriesManager';
+import SettingsPanel from '../components/admin/SettingsPanel';
+import RecipientAutocomplete from '../components/admin/RecipientAutocomplete';
+import TemplatesManager from '../components/admin/TemplatesManager';
+import ExportDropdown from '../components/admin/ExportDropdown';
+import { exportTableToExcel, exportTableToPdf, downloadAuthorizedFile } from '../utils/exportUtils';
 import { blogService } from '../services/blogService';
 
 // Dynamic API Base URL from Vite Environment or fallback to local backend
@@ -280,6 +287,16 @@ const IconCode = ({ size = 13, color = 'currentColor' }) => (
   </svg>
 );
 
+const IconFileText = ({ size = 15, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <polyline points="10 9 9 9 8 9" />
+  </svg>
+);
+
 // Pre-made corporate email templates
 const EMAIL_TEMPLATES = [
   {
@@ -332,8 +349,8 @@ export default function AdminPage({ onNavigate }) {
   // Logout Modal State
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
-  // Active Tab: 'blogs' | 'new-blog' | 'edit-blog' | 'contacts' | 'campaign' | 'history' | 'settings'
-  const [activeTab, setActiveTab] = useState('blogs');
+  // Active Tab: 'overview' | 'inquiries' | 'blogs' | 'new-blog' | 'edit-blog' | 'contacts' | 'campaign' | 'history' | 'settings'
+  const [activeTab, setActiveTab] = useState('overview');
   const [editingBlog, setEditingBlog] = useState(null);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -363,6 +380,10 @@ export default function AdminPage({ onNavigate }) {
   const [availableGroups, setAvailableGroups] = useState(['Pharma-Leads', 'Export-VIP', 'General', 'Cosmetic-Pack', 'Wholesale-Buyers']);
   const [contactsLoading, setContactsLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
+  const [subscribedFilter, setSubscribedFilter] = useState('all');
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
+  const [bulkTagInput, setBulkTagInput] = useState('');
+  const [allContactsForAutocomplete, setAllContactsForAutocomplete] = useState([]);
 
   // Lead Source Options preset
   const LEAD_SOURCES = [
@@ -450,6 +471,8 @@ export default function AdminPage({ onNavigate }) {
   const [testEmailSending, setTestEmailSending] = useState(false);
   const [campaignLaunching, setCampaignLaunching] = useState(false);
   const [campaignFeedback, setCampaignFeedback] = useState(null);
+  const [savedTemplates, setSavedTemplates] = useState([]);
+  const [activeDraftId, setActiveDraftId] = useState(null);
 
   // Campaign History State
   const [campaigns, setCampaigns] = useState([]);
@@ -468,6 +491,8 @@ export default function AdminPage({ onNavigate }) {
       fetchCurrentUser();
       fetchSystemStatus();
       fetchGroups();
+      fetchAllContactsForAutocomplete();
+      fetchSavedTemplates();
     }
   }, [token]);
 
@@ -476,14 +501,32 @@ export default function AdminPage({ onNavigate }) {
     if (token) {
       fetchContactsList();
     }
-  }, [token, currentPage, searchQuery, selectedGroup, pageSize]);
+  }, [token, currentPage, searchQuery, selectedGroup, pageSize, subscribedFilter]);
 
-  // Load history
+  // Refresh autocomplete contacts & templates when entering campaign or templates tab
+  useEffect(() => {
+    if (token && (activeTab === 'campaign' || activeTab === 'templates')) {
+      fetchAllContactsForAutocomplete();
+      fetchSavedTemplates();
+    }
+  }, [token, activeTab]);
+
+  // Load history + auto-poll if any campaign is PROCESSING
   useEffect(() => {
     if (token && activeTab === 'history') {
       fetchCampaignHistory();
     }
   }, [token, activeTab]);
+
+  useEffect(() => {
+    if (!token || activeTab !== 'history') return;
+    const hasProcessing = campaigns.some((c) => c.status === 'PROCESSING');
+    if (!hasProcessing) return;
+    const timer = setInterval(() => {
+      fetchCampaignHistory();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [token, activeTab, campaigns]);
 
   // Sync WYSIWYG editor content when tab is switched to campaign or editor mounts
   useEffect(() => {
@@ -628,6 +671,18 @@ export default function AdminPage({ onNavigate }) {
     setNewGroupNameInput('');
   };
 
+  const fetchAllContactsForAutocomplete = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/contacts?page=1&limit=500`, { headers: authHeaders });
+      const data = await res.json();
+      if (data.success) {
+        setAllContactsForAutocomplete(data.data.contacts || []);
+      }
+    } catch (err) {
+      console.warn('Autocomplete contacts load error', err);
+    }
+  };
+
   const fetchContactsList = async () => {
     setContactsLoading(true);
     try {
@@ -635,13 +690,15 @@ export default function AdminPage({ onNavigate }) {
         page: currentPage,
         limit: pageSize,
         search: searchQuery,
-        tag: selectedGroup
+        tag: selectedGroup,
+        subscribed: subscribedFilter
       });
       const res = await fetch(`${API_BASE_URL}/contacts?${queryParams}`, { headers: authHeaders });
       const data = await res.json();
       if (data.success) {
         setContacts(data.data.contacts || []);
         setTotalContacts(data.data.pagination?.total || 0);
+        setSelectedContactIds([]);
         if (data.data.availableTags?.length) {
           setAvailableGroups((prev) => Array.from(new Set([...data.data.availableTags, ...prev])).filter(Boolean));
         }
@@ -1039,6 +1096,125 @@ export default function AdminPage({ onNavigate }) {
     }
   };
 
+  const handleBulkContacts = async (action, tagValue = '') => {
+    if (selectedContactIds.length === 0) return;
+    if (action === 'delete' && !window.confirm(`Delete ${selectedContactIds.length} selected contact(s)?`)) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/contacts/bulk`, {
+        method: 'POST',
+        headers: { ...authHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedContactIds, action, tag: tagValue })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setBulkTagInput('');
+        fetchContactsList();
+        fetchAllContactsForAutocomplete();
+      } else {
+        alert(data.message || 'Bulk action failed');
+      }
+    } catch (err) {
+      alert('Bulk action error: ' + err.message);
+    }
+  };
+
+  const fetchSavedTemplates = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/campaigns/templates`, { headers: authHeaders });
+      const data = await res.json();
+      if (data.success) setSavedTemplates(data.templates || []);
+    } catch (err) {
+      console.warn('Templates load error', err);
+    }
+  };
+
+  const handleSaveAsTemplate = async () => {
+    const name = window.prompt('Enter a name for this email template:');
+    if (!name || !name.trim()) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/campaigns/templates`, {
+        method: 'POST',
+        headers: { ...authHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          subject: campaignSubject,
+          contentHtml: campaignContent
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        fetchSavedTemplates();
+        setCampaignFeedback({ type: 'success', message: `Template "${name.trim()}" saved.` });
+      }
+    } catch (err) {
+      alert('Failed to save template');
+    }
+  };
+
+  const handleSaveCampaignDraft = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/campaigns/draft`, {
+        method: 'POST',
+        headers: { ...authHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: activeDraftId,
+          title: campaignTitle || campaignSubject,
+          subject: campaignSubject,
+          contentHtml: campaignContent,
+          targetTags: recipientMode === 'direct' ? [] : [selectedCampaignGroup],
+          directRecipients: parseEmailsList(directRecipientsInput),
+          cc: parseEmailsList(ccInput),
+          bcc: parseEmailsList(bccInput),
+          attachments: emailAttachments
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setActiveDraftId(data.campaign._id);
+        setCampaignFeedback({ type: 'success', message: 'Draft saved! You can resume it anytime from Broadcast History.' });
+      }
+    } catch (err) {
+      alert('Failed to save draft');
+    }
+  };
+
+  const handleRetryFailedCampaign = async (id) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/campaigns/${id}/retry-failed`, {
+        method: 'POST',
+        headers: authHeaders
+      });
+      const data = await res.json();
+      if (data.success) {
+        fetchCampaignHistory();
+        alert(data.message);
+      } else {
+        alert(data.message || 'Retry failed');
+      }
+    } catch (err) {
+      alert('Retry error: ' + err.message);
+    }
+  };
+
+  const handleCloneCampaign = (camp) => {
+    setActiveDraftId(camp.status === 'DRAFT' ? camp._id : null);
+    setCampaignSubject(camp.subject || '');
+    setCampaignContent(camp.contentHtml || '');
+    setDirectRecipientsInput((camp.directRecipients || []).join(', '));
+    setCcInput((camp.cc || []).join(', '));
+    setBccInput((camp.bcc || []).join(', '));
+    if (camp.targetTags?.length && camp.directRecipients?.length) {
+      setRecipientMode('both');
+      setSelectedCampaignGroup(camp.targetTags[0]);
+    } else if (camp.directRecipients?.length) {
+      setRecipientMode('direct');
+    } else {
+      setRecipientMode('group');
+      setSelectedCampaignGroup(camp.targetTags?.[0] || 'ALL');
+    }
+    setActiveTab('campaign');
+  };
+
   const handleLaunchCampaign = async () => {
     if (!campaignSubject.trim() || !campaignContent.trim()) {
       alert('Subject line and content are required.');
@@ -1070,12 +1246,14 @@ export default function AdminPage({ onNavigate }) {
           directRecipients: directList,
           cc: parseEmailsList(ccInput),
           bcc: parseEmailsList(bccInput),
-          attachments: emailAttachments
+          attachments: emailAttachments,
+          draftId: activeDraftId
         })
       });
       const data = await res.json();
 
       if (data.success) {
+        setActiveDraftId(null);
         setCampaignFeedback({
           type: 'success',
           message: 'Campaign has been queued for dispatch.'
@@ -1278,6 +1456,7 @@ export default function AdminPage({ onNavigate }) {
       case 'edit-blog': return 'Edit Article';
       case 'contacts': return 'Contacts';
       case 'campaign': return 'Email Campaigns';
+      case 'templates': return 'Campaign Templates';
       case 'history': return 'Broadcast History';
       case 'settings': return 'Settings';
       default: return 'Overview';
@@ -1409,6 +1588,73 @@ export default function AdminPage({ onNavigate }) {
 
               {/* Navigation Groups */}
               <div style={{ flex: 1, overflowY: 'auto', padding: sidebarCollapsed ? '8px 6px' : '10px 10px' }}>
+
+                {/* Section 0: Dashboard & Inbox */}
+                <div style={{ marginBottom: sidebarCollapsed ? '8px' : '18px' }}>
+                  {!sidebarCollapsed && (
+                    <span style={{ fontSize: '11px', fontWeight: '600', color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', padding: '4px 10px', marginBottom: '2px' }}>
+                      Workspace
+                    </span>
+                  )}
+
+                  <button
+                    onClick={() => {
+                      setActiveTab('overview');
+                      setMobileSidebarOpen(false);
+                    }}
+                    title="Overview"
+                    style={{
+                      width: sidebarCollapsed ? '36px' : '100%',
+                      height: '34px',
+                      margin: sidebarCollapsed ? '0 auto 4px' : '0 0 2px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: sidebarCollapsed ? 'center' : 'flex-start',
+                      gap: '8px',
+                      padding: sidebarCollapsed ? '0' : '7px 10px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      backgroundColor: activeTab === 'overview' ? '#F1F5F9' : 'transparent',
+                      color: activeTab === 'overview' ? '#0F172A' : '#475569',
+                      fontSize: '13px',
+                      fontWeight: activeTab === 'overview' ? '600' : '500',
+                      cursor: 'pointer',
+                      textAlign: 'left'
+                    }}
+                  >
+                    <IconLayers size={15} color={activeTab === 'overview' ? '#0F172A' : '#64748B'} />
+                    {!sidebarCollapsed && <span>Overview</span>}
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setActiveTab('inquiries');
+                      setMobileSidebarOpen(false);
+                    }}
+                    title="Inquiries & Applications"
+                    style={{
+                      width: sidebarCollapsed ? '36px' : '100%',
+                      height: '34px',
+                      margin: sidebarCollapsed ? '0 auto 4px' : '0 0 2px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: sidebarCollapsed ? 'center' : 'flex-start',
+                      gap: '8px',
+                      padding: sidebarCollapsed ? '0' : '7px 10px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      backgroundColor: activeTab === 'inquiries' ? '#F1F5F9' : 'transparent',
+                      color: activeTab === 'inquiries' ? '#0F172A' : '#475569',
+                      fontSize: '13px',
+                      fontWeight: activeTab === 'inquiries' ? '600' : '500',
+                      cursor: 'pointer',
+                      textAlign: 'left'
+                    }}
+                  >
+                    <IconFolder size={15} color={activeTab === 'inquiries' ? '#0F172A' : '#64748B'} />
+                    {!sidebarCollapsed && <span>Inquiries & Jobs</span>}
+                  </button>
+                </div>
                 
                 {/* Section 1: Content */}
                 <div style={{ marginBottom: sidebarCollapsed ? '8px' : '18px' }}>
@@ -1559,6 +1805,45 @@ export default function AdminPage({ onNavigate }) {
                   >
                     <IconMail size={15} color={activeTab === 'campaign' ? '#0F172A' : '#64748B'} />
                     {!sidebarCollapsed && <span>Email Campaigns</span>}
+                  </button>
+
+                  {/* Campaign Templates */}
+                  <button
+                    onClick={() => {
+                      setActiveTab('templates');
+                      setMobileSidebarOpen(false);
+                    }}
+                    title="Campaign Templates"
+                    style={{
+                      width: sidebarCollapsed ? '36px' : '100%',
+                      height: '34px',
+                      margin: sidebarCollapsed ? '0 auto 4px' : '0 0 2px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: sidebarCollapsed ? 'center' : 'flex-start',
+                      gap: '8px',
+                      padding: sidebarCollapsed ? '0' : '7px 10px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      backgroundColor: activeTab === 'templates' ? '#F1F5F9' : 'transparent',
+                      color: activeTab === 'templates' ? '#0F172A' : '#475569',
+                      fontSize: '13px',
+                      fontWeight: activeTab === 'templates' ? '600' : '500',
+                      cursor: 'pointer',
+                      textAlign: 'left'
+                    }}
+                  >
+                    <IconFileText size={15} color={activeTab === 'templates' ? '#0F172A' : '#64748B'} />
+                    {!sidebarCollapsed && (
+                      <>
+                        <span style={{ flex: 1 }}>Templates</span>
+                        {savedTemplates.length > 0 && (
+                          <span style={{ fontSize: '11px', padding: '1px 6px', borderRadius: '10px', backgroundColor: '#F1F5F9', color: '#475569', fontWeight: '600' }}>
+                            {savedTemplates.length}
+                          </span>
+                        )}
+                      </>
+                    )}
                   </button>
 
                   {/* History */}
@@ -1751,7 +2036,40 @@ export default function AdminPage({ onNavigate }) {
 
         {/* Main Content Body (with marginTop for fixed 56px header) */}
         <main style={{ marginTop: '56px', padding: '24px', flex: 1, maxWidth: '1440px', width: '100%', boxSizing: 'border-box' }}>
+          <style>{`
+            .email-rich-content ul { list-style-type: disc; list-style-position: outside; padding-left: 28px; margin: 10px 0 14px; }
+            .email-rich-content ol { list-style-type: decimal; list-style-position: outside; padding-left: 28px; margin: 10px 0 14px; }
+            .email-rich-content li { margin-bottom: 5px; padding-left: 4px; }
+            .email-rich-content ul ul { list-style-type: circle; margin: 4px 0; }
+            .email-rich-content p { margin: 0 0 10px 0; }
+          `}</style>
           
+          {/* TAB: OVERVIEW DASHBOARD */}
+          {activeTab === 'overview' && (
+            <OverviewDashboard
+              apiBaseUrl={API_BASE_URL}
+              token={token}
+              systemStatus={systemStatus}
+              onNavigateTab={(tab) => setActiveTab(tab)}
+              onCreateNewBlog={() => {
+                setEditingBlog(null);
+                setActiveTab('new-blog');
+              }}
+            />
+          )}
+
+          {/* TAB: INQUIRIES & CAREER APPLICATIONS */}
+          {activeTab === 'inquiries' && (
+            <InquiriesManager
+              apiBaseUrl={API_BASE_URL}
+              token={token}
+              onContactsUpdated={() => {
+                fetchContactsList();
+                fetchAllContactsForAutocomplete();
+              }}
+            />
+          )}
+
           {/* TAB: BLOG ARTICLES */}
           {activeTab === 'blogs' && (
             <BlogManager
@@ -1822,31 +2140,35 @@ export default function AdminPage({ onNavigate }) {
                       <span>Add Contact</span>
                     </button>
 
-                    <button
-                      onClick={handleExportExcel}
-                      disabled={exportLoading}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '5px',
-                        padding: '6px 10px',
-                        borderRadius: '6px',
-                        border: '1px solid #E2E8F0',
-                        backgroundColor: '#FFFFFF',
-                        color: exportLoading ? '#94A3B8' : '#334155',
-                        fontSize: '12px',
-                        cursor: exportLoading ? 'not-allowed' : 'pointer'
-                      }}
-                    >
-                      <IconDownload size={13} color="#64748B" />
-                      <span>{exportLoading ? 'Exporting...' : 'Export'}</span>
-                    </button>
+                    <ExportDropdown
+                      loading={exportLoading}
+                      onExportExcel={handleExportExcel}
+                      onExportPdf={() =>
+                        exportTableToPdf({
+                          title: 'Contacts & Subscribers Directory',
+                          subtitle: `Group: ${selectedGroup} • Subscription: ${subscribedFilter}`,
+                          summary: [
+                            { label: 'Total Directory', value: totalContacts },
+                            { label: 'Shown on Page', value: contacts.length }
+                          ],
+                          columns: [
+                            { label: 'Name', accessor: (c) => c.name || '—' },
+                            { label: 'Email', key: 'email' },
+                            { label: 'Company', accessor: (c) => c.company || '—' },
+                            { label: 'Phone', accessor: (c) => c.phone || '—' },
+                            { label: 'Groups', accessor: (c) => (c.tags || []).join(', ') },
+                            { label: 'Status', accessor: (c) => (c.isSubscribed === false ? 'Unsubscribed' : 'Subscribed') }
+                          ],
+                          rows: contacts
+                        })
+                      }
+                    />
                   </div>
                 </div>
 
                 {/* Filter Toolbar */}
-                <div style={{ padding: '10px 16px', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E5E7EB', display: 'flex', gap: '10px' }}>
-                  <div style={{ position: 'relative', flex: 1 }}>
+                <div style={{ padding: '10px 16px', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E5E7EB', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  <div style={{ position: 'relative', flex: 1, minWidth: '180px' }}>
                     <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', display: 'flex', color: '#94A3B8' }}>
                       <IconSearch size={14} color="#94A3B8" />
                     </span>
@@ -1862,7 +2184,7 @@ export default function AdminPage({ onNavigate }) {
                   <select
                     value={selectedGroup}
                     onChange={(e) => setSelectedGroup(e.target.value)}
-                    style={{ padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '12px', color: '#334155', outline: 'none', minWidth: '160px' }}
+                    style={{ padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '12px', color: '#334155', outline: 'none', minWidth: '150px' }}
                   >
                     <option value="ALL">All Groups ({totalContacts})</option>
                     {availableGroups.map((grp) => {
@@ -1874,14 +2196,79 @@ export default function AdminPage({ onNavigate }) {
                       );
                     })}
                   </select>
+
+                  <select
+                    value={subscribedFilter}
+                    onChange={(e) => setSubscribedFilter(e.target.value)}
+                    style={{ padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '12px', color: '#334155', outline: 'none' }}
+                  >
+                    <option value="all">All Status</option>
+                    <option value="true">Subscribed</option>
+                    <option value="false">Unsubscribed</option>
+                  </select>
                 </div>
+
+                {/* Bulk Actions Bar */}
+                {selectedContactIds.length > 0 && (
+                  <div style={{ padding: '8px 16px', backgroundColor: '#EFF6FF', borderBottom: '1px solid #BFDBFE', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#1E3A8A' }}>
+                      {selectedContactIds.length} contact(s) selected
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                      <input
+                        type="text"
+                        value={bulkTagInput}
+                        onChange={(e) => setBulkTagInput(e.target.value)}
+                        placeholder="Tag name..."
+                        style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #93C5FD', fontSize: '11.5px', width: '110px' }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleBulkContacts('addTag', bulkTagInput)}
+                        style={{ padding: '4px 9px', borderRadius: '4px', border: 'none', backgroundColor: '#2563EB', color: '#FFFFFF', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        + Add Tag
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleBulkContacts('subscribe')}
+                        style={{ padding: '4px 9px', borderRadius: '4px', border: '1px solid #CBD5E1', backgroundColor: '#FFFFFF', color: '#0F172A', fontSize: '11.5px', cursor: 'pointer' }}
+                      >
+                        Subscribe
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleBulkContacts('unsubscribe')}
+                        style={{ padding: '4px 9px', borderRadius: '4px', border: '1px solid #CBD5E1', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '11.5px', cursor: 'pointer' }}
+                      >
+                        Unsubscribe
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleBulkContacts('delete')}
+                        style={{ padding: '4px 9px', borderRadius: '4px', border: '1px solid #FCA5A5', backgroundColor: '#FEF2F2', color: '#DC2626', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 {/* Data Table */}
                 <div style={{ overflowX: 'auto' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12.5px' }}>
                     <thead>
                       <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E5E7EB', color: '#64748B', fontSize: '11.5px', fontWeight: '600' }}>
-                        <th style={{ padding: '10px 16px' }}>Contact</th>
+                        <th style={{ padding: '10px 10px 10px 16px', width: '28px' }}>
+                          <input
+                            type="checkbox"
+                            checked={contacts.length > 0 && selectedContactIds.length === contacts.length}
+                            onChange={(e) =>
+                              setSelectedContactIds(e.target.checked ? contacts.map((c) => c._id) : [])
+                            }
+                          />
+                        </th>
+                        <th style={{ padding: '10px 12px' }}>Contact</th>
                         <th style={{ padding: '10px 14px' }}>Company</th>
                         <th style={{ padding: '10px 14px' }}>Group Tag</th>
                         <th style={{ padding: '10px 14px' }}>Source</th>
@@ -1891,13 +2278,13 @@ export default function AdminPage({ onNavigate }) {
                     <tbody>
                       {contactsLoading ? (
                         <tr>
-                          <td colSpan="5" style={{ padding: '36px', textAlign: 'center', color: '#64748B' }}>
+                          <td colSpan="6" style={{ padding: '36px', textAlign: 'center', color: '#64748B' }}>
                             Loading contacts...
                           </td>
                         </tr>
                       ) : contacts.length === 0 ? (
                         <tr>
-                          <td colSpan="5" style={{ padding: '36px', textAlign: 'center' }}>
+                          <td colSpan="6" style={{ padding: '36px', textAlign: 'center' }}>
                             <div style={{ fontSize: '13px', fontWeight: '600', color: '#334155', marginBottom: '2px' }}>No contacts found</div>
                             <div style={{ fontSize: '12px', color: '#94A3B8' }}>
                               Import an Excel/CSV file on the right or add a contact manually.
@@ -1912,7 +2299,18 @@ export default function AdminPage({ onNavigate }) {
                             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F8FAFC'}
                             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                           >
-                            <td style={{ padding: '10px 16px' }}>
+                            <td style={{ padding: '10px 10px 10px 16px' }}>
+                              <input
+                                type="checkbox"
+                                checked={selectedContactIds.includes(c._id)}
+                                onChange={(e) =>
+                                  setSelectedContactIds((prev) =>
+                                    e.target.checked ? [...prev, c._id] : prev.filter((id) => id !== c._id)
+                                  )
+                                }
+                              />
+                            </td>
+                            <td style={{ padding: '10px 12px' }}>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                 <div style={{ width: '28px', height: '28px', borderRadius: '4px', backgroundColor: '#F1F5F9', color: '#334155', fontWeight: '600', fontSize: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                   {getInitials(c.name, c.email)}
@@ -2120,7 +2518,7 @@ export default function AdminPage({ onNavigate }) {
             <div style={{ display: 'grid', gridTemplateColumns: showEmailPreview ? '1fr 380px' : '1fr', gap: '20px', alignItems: 'start' }}>
               
               {/* Compose Studio */}
-              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #E5E7EB', overflow: 'hidden' }}>
+              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #E5E7EB', overflow: 'visible' }}>
                 
                 {/* Header */}
                 <div style={{ padding: '14px 20px', borderBottom: '1px solid #F1F5F9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
@@ -2152,19 +2550,50 @@ export default function AdminPage({ onNavigate }) {
                       <span>{showEmailPreview ? 'Hide Preview' : 'Preview'}</span>
                     </button>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
                       <span style={{ fontSize: '12px', color: '#64748B' }}>Template:</span>
                       <select
                         onChange={(e) => {
-                          const tpl = EMAIL_TEMPLATES.find((t) => t.name === e.target.value);
-                          if (tpl) handleApplyTemplate(tpl);
+                          const val = e.target.value;
+                          const preset = EMAIL_TEMPLATES.find((t) => t.name === val);
+                          if (preset) {
+                            handleApplyTemplate(preset);
+                            return;
+                          }
+                          const custom = savedTemplates.find((t) => t._id === val);
+                          if (custom) {
+                            handleApplyTemplate({ subject: custom.subject, html: custom.contentHtml });
+                          }
                         }}
                         style={{ padding: '5px 8px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', color: '#334155', backgroundColor: '#FFFFFF', outline: 'none' }}
                       >
-                        {EMAIL_TEMPLATES.map((t) => (
-                          <option key={t.name} value={t.name}>{t.name}</option>
-                        ))}
+                        <optgroup label="Built-in Templates">
+                          {EMAIL_TEMPLATES.map((t) => (
+                            <option key={t.name} value={t.name}>{t.name}</option>
+                          ))}
+                        </optgroup>
+                        {savedTemplates.length > 0 && (
+                          <optgroup label="Saved Templates">
+                            {savedTemplates.map((t) => (
+                              <option key={t._id} value={t._id}>{t.name}</option>
+                            ))}
+                          </optgroup>
+                        )}
                       </select>
+                      <button
+                        type="button"
+                        onClick={handleSaveAsTemplate}
+                        style={{ padding: '5px 9px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC', color: '#334155', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Save Template
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveTab('templates')}
+                        style={{ padding: '5px 9px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#2563EB', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Manage
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -2243,36 +2672,39 @@ export default function AdminPage({ onNavigate }) {
 
                     {(recipientMode === 'direct' || recipientMode === 'both') && (
                       <div>
-                        <textarea
-                          rows="2"
+                        <RecipientAutocomplete
                           value={directRecipientsInput}
-                          onChange={(e) => setDirectRecipientsInput(e.target.value)}
-                          placeholder="Recipient email addresses (separated by commas or newlines)..."
-                          style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', color: '#0F172A', outline: 'none', boxSizing: 'border-box' }}
+                          onChange={setDirectRecipientsInput}
+                          allContacts={allContactsForAutocomplete}
+                          apiBaseUrl={API_BASE_URL}
+                          authHeaders={authHeaders}
+                          placeholder="Type contact name, company, or email (Gmail-style suggestions)..."
                         />
                       </div>
                     )}
 
                     {showCc && (
                       <div style={{ marginTop: '8px' }}>
-                        <input
-                          type="text"
+                        <RecipientAutocomplete
                           value={ccInput}
-                          onChange={(e) => setCcInput(e.target.value)}
-                          placeholder="Cc: client@domain.com"
-                          style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', outline: 'none', boxSizing: 'border-box' }}
+                          onChange={setCcInput}
+                          allContacts={allContactsForAutocomplete}
+                          apiBaseUrl={API_BASE_URL}
+                          authHeaders={authHeaders}
+                          placeholder="Cc: type contact name or email..."
                         />
                       </div>
                     )}
 
                     {showBcc && (
                       <div style={{ marginTop: '8px' }}>
-                        <input
-                          type="text"
+                        <RecipientAutocomplete
                           value={bccInput}
-                          onChange={(e) => setBccInput(e.target.value)}
-                          placeholder="Bcc: archive@domain.com"
-                          style={{ width: '100%', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', outline: 'none', boxSizing: 'border-box' }}
+                          onChange={setBccInput}
+                          allContacts={allContactsForAutocomplete}
+                          apiBaseUrl={API_BASE_URL}
+                          authHeaders={authHeaders}
+                          placeholder="Bcc: type contact name or email..."
                         />
                       </div>
                     )}
@@ -2388,6 +2820,7 @@ export default function AdminPage({ onNavigate }) {
                     {!isHtmlMode ? (
                       <div
                         ref={visualEditorRef}
+                        className="email-rich-content"
                         contentEditable
                         onInput={handleVisualInput}
                         style={{
@@ -2471,6 +2904,14 @@ export default function AdminPage({ onNavigate }) {
 
                       <button
                         type="button"
+                        onClick={handleSaveCampaignDraft}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '7px 12px', borderRadius: '6px', border: '1px solid #CBD5E1', backgroundColor: '#F8FAFC', color: '#0F172A', fontSize: '12.5px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        <span>Save Draft</span>
+                      </button>
+
+                      <button
+                        type="button"
                         onClick={() => fileInputRef.current && fileInputRef.current.click()}
                         style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '7px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '12.5px', cursor: 'pointer' }}
                       >
@@ -2534,6 +2975,7 @@ export default function AdminPage({ onNavigate }) {
 
                     <div style={{ padding: '18px 16px', backgroundColor: '#FFFFFF', fontSize: '12.5px', lineHeight: '1.6', color: '#1E293B', minHeight: '180px' }}>
                       <div
+                        className="email-rich-content"
                         dangerouslySetInnerHTML={{
                           __html: campaignContent
                             .replace(/{{name}}/gi, 'Valued Client')
@@ -2563,26 +3005,81 @@ export default function AdminPage({ onNavigate }) {
             </div>
           )}
 
+          {/* TAB: CAMPAIGN TEMPLATES */}
+          {activeTab === 'templates' && (
+            <TemplatesManager
+              savedTemplates={savedTemplates}
+              builtInTemplates={EMAIL_TEMPLATES}
+              apiBaseUrl={API_BASE_URL}
+              authHeaders={authHeaders}
+              onTemplatesChanged={fetchSavedTemplates}
+              onUseTemplate={(tpl) => {
+                handleApplyTemplate({ subject: tpl.subject, html: tpl.html });
+                setActiveTab('campaign');
+                setCampaignFeedback({ type: 'success', message: `Loaded template "${tpl.name}" into Composer.` });
+              }}
+            />
+          )}
+
           {/* TAB: CAMPAIGN HISTORY */}
           {activeTab === 'history' && (
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #E5E7EB', padding: '18px 20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '16px' }}>
                 <div>
                   <h2 style={{ fontSize: '15px', fontWeight: '700', color: '#0F172A', margin: 0 }}>
                     Broadcast History
                   </h2>
                   <p style={{ fontSize: '12.5px', color: '#64748B', margin: '2px 0 0 0' }}>
-                    Audit trail of past dispatches and delivery statuses.
+                    Audit trail of past dispatches, drafts, and delivery statuses.
                   </p>
                 </div>
 
-                <button
-                  onClick={fetchCampaignHistory}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '12px', cursor: 'pointer' }}
-                >
-                  <IconRefresh size={13} color="#64748B" />
-                  <span>Refresh</span>
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <ExportDropdown
+                    onExportExcel={() =>
+                      exportTableToExcel(
+                        'Ashirwad_Broadcast_History.xls',
+                        'Broadcast History',
+                        [
+                          { label: 'Subject', key: 'subject' },
+                          { label: 'Status', key: 'status' },
+                          { label: 'Audience', accessor: (c) => (c.targetTags?.length > 0 ? c.targetTags.join(', ') : `${c.directRecipients?.length || 0} direct`) },
+                          { label: 'Delivered', accessor: (c) => c.sentCount || 0 },
+                          { label: 'Failed', accessor: (c) => c.failedCount || 0 },
+                          { label: 'Date', accessor: (c) => new Date(c.createdAt).toLocaleDateString() }
+                        ],
+                        campaigns
+                      )
+                    }
+                    onExportPdf={() =>
+                      exportTableToPdf({
+                        title: 'Email Broadcast History Report',
+                        subtitle: 'Campaign delivery & audit summary',
+                        summary: [
+                          { label: 'Total Campaigns', value: campaigns.length },
+                          { label: 'Total Delivered', value: campaigns.reduce((s, c) => s + (c.sentCount || 0), 0) },
+                          { label: 'Total Failed', value: campaigns.reduce((s, c) => s + (c.failedCount || 0), 0) }
+                        ],
+                        columns: [
+                          { label: 'Subject', key: 'subject' },
+                          { label: 'Status', key: 'status' },
+                          { label: 'Audience', accessor: (c) => (c.targetTags?.length > 0 ? c.targetTags.join(', ') : `${c.directRecipients?.length || 0} direct`) },
+                          { label: 'Delivered', accessor: (c) => c.sentCount || 0 },
+                          { label: 'Failed', accessor: (c) => c.failedCount || 0 },
+                          { label: 'Date', accessor: (c) => new Date(c.createdAt).toLocaleDateString() }
+                        ],
+                        rows: campaigns
+                      })
+                    }
+                  />
+                  <button
+                    onClick={fetchCampaignHistory}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '12px', cursor: 'pointer' }}
+                  >
+                    <IconRefresh size={13} color="#64748B" />
+                    <span>Refresh</span>
+                  </button>
+                </div>
               </div>
 
               {campaignsLoading ? (
@@ -2647,13 +3144,44 @@ export default function AdminPage({ onNavigate }) {
                           <td style={{ padding: '10px 12px', color: '#64748B', fontSize: '11.5px' }}>
                             {new Date(camp.createdAt).toLocaleDateString()}
                           </td>
-                          <td style={{ padding: '10px 14px', textAlign: 'right' }}>
-                            <button
-                              onClick={() => handleOpenCampaignInspector(camp)}
-                              style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '11.5px', cursor: 'pointer' }}
-                            >
-                              Inspect
-                            </button>
+                          <td style={{ padding: '10px 14px', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                              <button
+                                type="button"
+                                onClick={() => handleCloneCampaign(camp)}
+                                style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #BFDBFE', backgroundColor: '#EFF6FF', color: '#1D4ED8', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                              >
+                                {camp.status === 'DRAFT' ? 'Resume' : 'Clone'}
+                              </button>
+                              {camp.failedCount > 0 && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleRetryFailedCampaign(camp._id)}
+                                  style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #FDE68A', backgroundColor: '#FFFBEB', color: '#B45309', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                                >
+                                  Retry Failed
+                                </button>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  downloadAuthorizedFile(
+                                    `${API_BASE_URL}/campaigns/${camp._id}/export`,
+                                    token,
+                                    `Campaign_${camp._id}.xlsx`
+                                  )
+                                }
+                                style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '11.5px', cursor: 'pointer' }}
+                              >
+                                Excel
+                              </button>
+                              <button
+                                onClick={() => handleOpenCampaignInspector(camp)}
+                                style={{ padding: '4px 8px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '11.5px', cursor: 'pointer' }}
+                              >
+                                Inspect
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))}
@@ -2666,75 +3194,19 @@ export default function AdminPage({ onNavigate }) {
 
           {/* TAB: SETTINGS */}
           {activeTab === 'settings' && (
-            <div style={{ maxWidth: '720px' }}>
-              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #E5E7EB', padding: '24px', marginBottom: '20px' }}>
-                <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#0F172A', margin: '0 0 6px 0' }}>
-                  Environment & SMTP
-                </h2>
-                <p style={{ fontSize: '12.5px', color: '#64748B', margin: '0 0 18px 0' }}>
-                  Configuration loaded from <code>backend/.env</code>.
-                </p>
-
-                <div style={{ padding: '14px', backgroundColor: '#F8FAFC', borderRadius: '6px', border: '1px solid #E2E8F0', marginBottom: '16px' }}>
-                  <pre style={{ margin: 0, fontSize: '11.5px', color: '#334155', fontFamily: 'monospace', lineHeight: '1.5' }}>
-{`SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-EMAIL_FROM_NAME="Ashirwad Plastics"`}
-                  </pre>
-                </div>
-
-                <button
-                  onClick={fetchSystemStatus}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '7px 14px', borderRadius: '6px', border: 'none', backgroundColor: '#0F172A', color: '#FFFFFF', fontSize: '12.5px', fontWeight: '500', cursor: 'pointer' }}
-                >
-                  <IconRefresh size={13} color="#FFFFFF" />
-                  <span>Test Diagnostics</span>
-                </button>
-              </div>
-
-              {/* Data Cleanup Card */}
-              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #FEE2E2', padding: '24px' }}>
-                <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#991B1B', margin: '0 0 4px 0' }}>
-                  Maintenance & Data Reset
-                </h3>
-                <p style={{ fontSize: '12px', color: '#64748B', margin: '0 0 16px 0' }}>
-                  Clear test contacts and broadcast history. Admin accounts remain untouched.
-                </p>
-
-                {purgeFeedback && (
-                  <div style={{ margin: '0 0 14px 0', padding: '10px 12px', borderRadius: '6px', fontSize: '12px', backgroundColor: purgeFeedback.type === 'success' ? '#F0FDF4' : '#FEF2F2', border: purgeFeedback.type === 'success' ? '1px solid #BBF7D0' : '1px solid #FECACA', color: purgeFeedback.type === 'success' ? '#166534' : '#991B1B' }}>
-                    {purgeFeedback.message}
-                  </div>
-                )}
-
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  <button
-                    type="button"
-                    disabled={purgeLoading}
-                    onClick={() => handlePurgeAllTestData('contacts')}
-                    style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '12px', cursor: purgeLoading ? 'wait' : 'pointer' }}
-                  >
-                    Clear Contacts ({totalContacts})
-                  </button>
-                  <button
-                    type="button"
-                    disabled={purgeLoading}
-                    onClick={() => handlePurgeAllTestData('history')}
-                    style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '12px', cursor: purgeLoading ? 'wait' : 'pointer' }}
-                  >
-                    Clear History ({campaigns.length})
-                  </button>
-                  <button
-                    type="button"
-                    disabled={purgeLoading}
-                    onClick={() => handlePurgeAllTestData('all')}
-                    style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #FCA5A5', backgroundColor: '#FEF2F2', color: '#DC2626', fontSize: '12px', fontWeight: '600', cursor: purgeLoading ? 'wait' : 'pointer' }}
-                  >
-                    {purgeLoading ? 'Clearing...' : 'Clear All Test Data'}
-                  </button>
-                </div>
-              </div>
-            </div>
+            <SettingsPanel
+              apiBaseUrl={API_BASE_URL}
+              token={token}
+              user={user}
+              onUserUpdated={(updatedUser) => setUser(updatedUser)}
+              systemStatus={systemStatus}
+              onRefreshDiagnostics={fetchSystemStatus}
+              totalContacts={totalContacts}
+              totalCampaigns={campaigns.length}
+              purgeLoading={purgeLoading}
+              purgeFeedback={purgeFeedback}
+              onPurgeData={handlePurgeAllTestData}
+            />
           )}
 
         </main>
@@ -3387,6 +3859,7 @@ EMAIL_FROM_NAME="Ashirwad Plastics"`}
                 {campaignModalTab === 'email' ? (
                   <div style={{ fontSize: '13px', lineHeight: '1.6', color: '#1E293B' }}>
                     <div
+                      className="email-rich-content"
                       dangerouslySetInnerHTML={{
                         __html: selectedCampaignDetails.contentHtml
                           .replace(/{{name}}/gi, 'Client Name')
