@@ -75,6 +75,7 @@ export const handleImportFile = async (req, res, next) => {
         totalRows: parsed.totalRows,
         validProcessed: parsed.validContacts.length,
         invalidSkipped: parsed.invalidRows,
+        duplicatesSkipped: parsed.duplicateRows,
         newAdded: importResult.added,
         updated: importResult.updated,
         assignedGroup: targetTag,

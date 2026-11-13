@@ -859,8 +859,10 @@ export default function AdminPage({ onNavigate }) {
 
   const handleOpenEditModal = (contact) => {
     const isCustom = !LEAD_SOURCES.includes(contact.source);
-    const contactGroup = contact.tags?.[0] || 'General';
-    setAvailableGroups((prev) => Array.from(new Set([...prev, contactGroup])));
+    const contactTags = Array.isArray(contact.tags) && contact.tags.length > 0
+      ? Array.from(new Set(contact.tags.map((t) => String(t).trim()).filter(Boolean)))
+      : ['General'];
+    setAvailableGroups((prev) => Array.from(new Set([...prev, ...contactTags])));
 
     setEditingContact({
       _id: contact._id,
@@ -868,8 +870,8 @@ export default function AdminPage({ onNavigate }) {
       name: contact.name || '',
       company: contact.company || '',
       phone: contact.phone || '',
-      group: contactGroup,
-      customGroup: '',
+      tags: contactTags,
+      newGroupInput: '',
       source: isCustom && contact.source ? 'Other' : (contact.source || 'Website Inquiry'),
       customSource: isCustom ? (contact.source || '') : ''
     });
@@ -885,9 +887,9 @@ export default function AdminPage({ onNavigate }) {
       ? (editingContact.customSource?.trim() || 'Other')
       : (editingContact.source || 'Website Inquiry');
 
-    const finalGroup = editingContact.group === '__NEW__'
-      ? (editingContact.customGroup?.trim() || 'General')
-      : (editingContact.group || 'General');
+    const finalTags = Array.isArray(editingContact.tags) && editingContact.tags.length > 0
+      ? Array.from(new Set(editingContact.tags.map((t) => String(t).trim()).filter(Boolean)))
+      : ['General'];
 
     try {
       const res = await fetch(`${API_BASE_URL}/contacts/${editingContact._id}`, {
@@ -898,7 +900,7 @@ export default function AdminPage({ onNavigate }) {
           name: editingContact.name,
           company: editingContact.company,
           phone: editingContact.phone,
-          tags: [finalGroup],
+          tags: finalTags,
           source: finalSource
         })
       });
@@ -907,7 +909,7 @@ export default function AdminPage({ onNavigate }) {
       if (data.success) {
         setShowEditModal(false);
         setEditingContact(null);
-        setAvailableGroups((prev) => Array.from(new Set([...prev, finalGroup])));
+        setAvailableGroups((prev) => Array.from(new Set([...prev, ...finalTags])));
         fetchContactsList();
         fetchGroups();
       } else {
@@ -2504,8 +2506,11 @@ export default function AdminPage({ onNavigate }) {
                       {uploadFeedback.message}
                     </div>
                     {uploadFeedback.stats && (
-                      <div style={{ fontSize: '11px', opacity: 0.9, lineHeight: '1.4' }}>
-                        +{uploadFeedback.stats.newAdded} added, {uploadFeedback.stats.updated} updated
+                      <div style={{ fontSize: '11px', opacity: 0.9, lineHeight: '1.5', marginTop: '4px' }}>
+                        <div>+{uploadFeedback.stats.newAdded} added, {uploadFeedback.stats.updated} updated</div>
+                        <div>
+                          Total rows: {uploadFeedback.stats.totalRows} · Valid unique: {uploadFeedback.stats.validProcessed} · Invalid skipped: {uploadFeedback.stats.invalidSkipped} · Duplicates in file: {uploadFeedback.stats.duplicatesSkipped ?? Math.max(0, (uploadFeedback.stats.totalRows || 0) - (uploadFeedback.stats.validProcessed || 0) - (uploadFeedback.stats.invalidSkipped || 0))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -3413,27 +3418,72 @@ export default function AdminPage({ onNavigate }) {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '11.5px', fontWeight: '600', color: '#64748B', marginBottom: '3px' }}>Group Tag</label>
-                <select
-                  value={editingContact.group}
-                  onChange={(e) => setEditingContact({ ...editingContact, group: e.target.value })}
-                  style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', outline: 'none' }}
-                >
-                  {availableGroups.map((grp) => (
-                    <option key={grp} value={grp}>{grp}</option>
-                  ))}
-                  <option value="__NEW__">+ New Group...</option>
-                </select>
-                {editingContact.group === '__NEW__' && (
+                <label style={{ display: 'block', fontSize: '11.5px', fontWeight: '600', color: '#64748B', marginBottom: '5px' }}>
+                  Group Tags ({editingContact.tags?.length || 0} selected)
+                </label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', maxHeight: '110px', overflowY: 'auto', padding: '6px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC' }}>
+                  {Array.from(new Set([...availableGroups, ...(editingContact.tags || [])])).map((grp) => {
+                    const isSelected = (editingContact.tags || []).includes(grp);
+                    return (
+                      <button
+                        key={grp}
+                        type="button"
+                        onClick={() => {
+                          const current = editingContact.tags || [];
+                          const next = isSelected
+                            ? current.filter((t) => t !== grp)
+                            : [...current, grp];
+                          setEditingContact({ ...editingContact, tags: next });
+                        }}
+                        style={{
+                          padding: '4px 9px',
+                          borderRadius: '999px',
+                          border: isSelected ? '1px solid #0F172A' : '1px solid #CBD5E1',
+                          backgroundColor: isSelected ? '#0F172A' : '#FFFFFF',
+                          color: isSelected ? '#FFFFFF' : '#475569',
+                          fontSize: '11.5px',
+                          fontWeight: isSelected ? '600' : '500',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        {isSelected ? `✓ ${grp}` : grp}
+                      </button>
+                    );
+                  })}
+                </div>
+                <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
                   <input
                     type="text"
-                    required
-                    placeholder="New group name..."
-                    value={editingContact.customGroup}
-                    onChange={(e) => setEditingContact({ ...editingContact, customGroup: e.target.value })}
-                    style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12.5px', marginTop: '6px', boxSizing: 'border-box', outline: 'none' }}
+                    placeholder="Add new group tag..."
+                    value={editingContact.newGroupInput || ''}
+                    onChange={(e) => setEditingContact({ ...editingContact, newGroupInput: e.target.value })}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const val = (editingContact.newGroupInput || '').trim();
+                        if (!val) return;
+                        const nextTags = Array.from(new Set([...(editingContact.tags || []), val]));
+                        setAvailableGroups((prev) => Array.from(new Set([...prev, val])));
+                        setEditingContact({ ...editingContact, tags: nextTags, newGroupInput: '' });
+                      }
+                    }}
+                    style={{ flex: 1, padding: '6px 9px', borderRadius: '6px', border: '1px solid #E2E8F0', fontSize: '12px', boxSizing: 'border-box', outline: 'none' }}
                   />
-                )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const val = (editingContact.newGroupInput || '').trim();
+                      if (!val) return;
+                      const nextTags = Array.from(new Set([...(editingContact.tags || []), val]));
+                      setAvailableGroups((prev) => Array.from(new Set([...prev, val])));
+                      setEditingContact({ ...editingContact, tags: nextTags, newGroupInput: '' });
+                    }}
+                    style={{ padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC', color: '#0F172A', fontSize: '11.5px', fontWeight: '600', cursor: 'pointer' }}
+                  >
+                    + Add
+                  </button>
+                </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '8px' }}>

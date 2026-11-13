@@ -93,6 +93,7 @@ export const parseSheetBuffer = (buffer, mapping = {}) => {
   const parsedContacts = [];
   const seenEmails = new Set();
   let invalidRows = 0;
+  let duplicateRows = 0;
 
   const emailCol = mapping.emailCol;
   const nameCol = mapping.nameCol;
@@ -156,6 +157,8 @@ export const parseSheetBuffer = (buffer, mapping = {}) => {
           phone: phone,
           tags: [targetTag]
         });
+      } else {
+        duplicateRows++;
       }
     } else {
       invalidRows++;
@@ -165,7 +168,8 @@ export const parseSheetBuffer = (buffer, mapping = {}) => {
   return {
     totalRows: rawRows.length,
     validContacts: parsedContacts,
-    invalidRows
+    invalidRows,
+    duplicateRows
   };
 };
 
