@@ -39,8 +39,8 @@ export default function SustainabilityPage({ onNavigate }) {
     { src: '/sustainibility/6.webp', alt: 'Chairman Mr. Hira Lal Jain planting a sapling at Ashirwad Plastics' },
     { src: '/sustainibility/4.webp', alt: 'Leadership team participating in campus greening drive' },
     { src: '/sustainibility/5.webp', alt: 'Tree plantation initiative with healthcare partners' },
-    { src: '/sustainibility/7.webp', alt: 'Environmental stewardship plantation on campus' },
-    { src: '/sustainibility/8.webp', alt: 'Partner tree plantation drive at Ashirwad facility' }
+    { src: '/sustainibility/7.webp', alt: 'Environmental stewardship plantation on campus', objectPosition: 'center 72%' },
+    { src: '/sustainibility/8.webp', alt: 'Partner tree plantation drive at Ashirwad facility', objectPosition: 'center 62%' }
   ]
 
   // Responsive itemsPerView
@@ -880,7 +880,7 @@ export default function SustainabilityPage({ onNavigate }) {
                           width: '100%',
                           height: '100%',
                           objectFit: 'cover',
-                          objectPosition: 'center 22%',
+                          objectPosition: item.objectPosition || 'center 22%',
                           display: 'block',
                           transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
                         }}
