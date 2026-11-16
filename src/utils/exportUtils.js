@@ -182,3 +182,121 @@ export const exportTableToPdf = ({ title, subtitle = '', columns, rows, summary 
   printWindow.document.close();
 };
 
+/**
+ * Opens a print-ready exact email preview window and triggers browser Print / Save as PDF.
+ */
+export const exportEmailPreviewToPdf = ({ subject = '', html = '', attachments = [] }) => {
+  const printWindow = window.open('', '_blank', 'width=820,height=900');
+  if (!printWindow) {
+    alert('Please allow pop-ups in your browser to export the email preview as PDF.');
+    return;
+  }
+
+  const origin = window.location.origin;
+  const renderedBody = String(html || '')
+    .replace(/{{name}}/gi, 'Valued Partner')
+    .replace(/{{company}}/gi, 'your organization')
+    .replace(/{{email}}/gi, 'partner@company.com');
+
+  const attachmentsHtml = attachments.length > 0
+    ? `<div style="margin-top: 20px; padding-top: 12px; border-top: 1px dashed #e2e8f0; font-size: 12px; color: #64748b;">
+        <strong>Attachments (${attachments.length}):</strong>
+        <ul style="margin: 6px 0 0; padding-left: 18px;">
+          ${attachments.map((a) => `<li>${escapeHtml(a.filename)}</li>`).join('')}
+        </ul>
+      </div>`
+    : '';
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>${escapeHtml(subject || 'Email Campaign Preview')}</title>
+        <style>
+          @page { size: A4; margin: 14mm; }
+          * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 24px;
+            color: #1e293b;
+            line-height: 1.6;
+          }
+          .subject-bar {
+            max-width: 620px;
+            margin: 0 auto 12px;
+            padding: 10px 16px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #475569;
+          }
+          .subject-bar strong { color: #0f172a; }
+          .container {
+            max-width: 620px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+          }
+          .header {
+            background-color: #ffffff;
+            padding: 20px 32px;
+            text-align: left;
+            border-bottom: 3px solid #2563EB;
+          }
+          .content {
+            padding: 32px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #1e293b;
+          }
+          .content ul { list-style-type: disc; padding-left: 28px; margin: 8px 0; list-style-position: outside; }
+          .content ol { list-style-type: decimal; padding-left: 28px; margin: 8px 0; list-style-position: outside; }
+          .content li { margin: 4px 0; }
+          .content p { margin: 0 0 10px; }
+          .content img { max-width: 100%; height: auto; }
+          .footer {
+            background: #f1f5f9;
+            padding: 18px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+          }
+          .footer a { color: #2563eb; text-decoration: none; }
+        </style>
+      </head>
+      <body>
+        <div class="subject-bar">
+          <strong>Subject:</strong> ${escapeHtml(subject || '(No Subject)')}
+        </div>
+        <div class="container">
+          <div class="header">
+            <img src="${origin}/logo-horizontal.png" alt="Ashirwad Plastics" style="height: 36px; width: auto; display: block; border: 0;" />
+          </div>
+          <div class="content">
+            ${renderedBody}
+            ${attachmentsHtml}
+          </div>
+          <div class="footer">
+            <p style="margin: 0 0 6px 0;">&copy; ${new Date().getFullYear()} Ashirwad Plastics. All rights reserved.</p>
+            <p style="margin: 0; font-size: 11px; color: #94a3b8;">Don't want to receive these emails? <a href="#unsubscribe">Unsubscribe</a></p>
+          </div>
+        </div>
+        <script>
+          window.onload = function() {
+            setTimeout(function() { window.print(); }, 350);
+          };
+        </script>
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+};
+

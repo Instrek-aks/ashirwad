@@ -8,7 +8,7 @@ import RecipientAutocomplete from '../components/admin/RecipientAutocomplete';
 import TemplatesManager from '../components/admin/TemplatesManager';
 import EmailRichEditor from '../components/admin/EmailRichEditor';
 import ExportDropdown from '../components/admin/ExportDropdown';
-import { exportTableToExcel, exportTableToPdf, downloadAuthorizedFile } from '../utils/exportUtils';
+import { exportTableToExcel, exportTableToPdf, exportEmailPreviewToPdf, downloadAuthorizedFile } from '../utils/exportUtils';
 import { blogService } from '../services/blogService';
 
 // Dynamic API Base URL from Vite Environment or fallback to local backend
@@ -448,6 +448,7 @@ export default function AdminPage({ onNavigate }) {
 
   // Campaign Composer State
   const [showEmailPreview, setShowEmailPreview] = useState(false);
+  const [showFullScreenPreview, setShowFullScreenPreview] = useState(false);
   const [recipientMode, setRecipientMode] = useState('group'); // 'group' | 'direct' | 'both'
   const [selectedCampaignGroups, setSelectedCampaignGroups] = useState(['ALL']);
   const [groupDropdownOpen, setGroupDropdownOpen] = useState(false);
@@ -3225,59 +3226,166 @@ export default function AdminPage({ onNavigate }) {
                 </div>
               </div>
 
-              {/* Clean Email Preview Pane */}
+              {/* Exact Email Preview Pane */}
               {showEmailPreview && (
-                <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #E5E7EB', padding: '16px', position: 'sticky', top: '80px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                <div style={{ backgroundColor: '#FFFFFF', borderRadius: '8px', border: '1px solid #E5E7EB', padding: '14px', position: 'sticky', top: '80px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '10px', flexWrap: 'wrap' }}>
                     <span style={{ fontSize: '13px', fontWeight: '700', color: '#0F172A' }}>
-                      Preview
+                      Email Preview
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => setShowEmailPreview(false)}
-                      style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', display: 'flex', padding: '2px' }}
-                    >
-                      <IconClose size={15} />
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <button
+                        type="button"
+                        onClick={() => setShowFullScreenPreview(true)}
+                        style={{ padding: '4px 8px', borderRadius: '5px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Full Screen
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => exportEmailPreviewToPdf({ subject: campaignSubject, html: campaignContent, attachments: emailAttachments })}
+                        style={{ padding: '4px 8px', borderRadius: '5px', border: '1px solid #E2E8F0', backgroundColor: '#0F172A', color: '#FFFFFF', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Export PDF
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowEmailPreview(false)}
+                        style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', display: 'flex', padding: '2px' }}
+                      >
+                        <IconClose size={15} />
+                      </button>
+                    </div>
                   </div>
 
-                  <div style={{ borderRadius: '6px', border: '1px solid #E2E8F0', overflow: 'hidden' }}>
-                    {/* Clean Minimal Email Header (No flashy gradient) */}
-                    <div style={{ backgroundColor: '#0F172A', padding: '14px 18px', color: '#FFFFFF' }}>
-                      <img
-                        src="/logo-white.webp"
-                        alt="Logo"
-                        style={{ height: '20px', width: 'auto', marginBottom: '8px', display: 'block' }}
-                      />
-                      <div style={{ fontSize: '13.5px', fontWeight: '600', color: '#FFFFFF' }}>
-                        {campaignSubject || 'Subject preview'}
+                  {/* Subject Header */}
+                  <div style={{ padding: '8px 10px', backgroundColor: '#F8FAFC', borderRadius: '6px', border: '1px solid #E2E8F0', marginBottom: '10px', fontSize: '12px', color: '#475569' }}>
+                    <strong style={{ color: '#0F172A' }}>Subject:</strong> {campaignSubject || '(No Subject)'}
+                  </div>
+
+                  {/* Exact Email Shell matching backend renderTemplate() */}
+                  <div style={{ backgroundColor: '#f8fafc', padding: '14px', borderRadius: '8px', border: '1px solid #E2E8F0', maxHeight: '65vh', overflowY: 'auto' }}>
+                    <div style={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
+                      <div style={{ backgroundColor: '#ffffff', padding: '16px 20px', textAlign: 'left', borderBottom: '3px solid #2563EB' }}>
+                        <img
+                          src="/logo-horizontal.png"
+                          alt="Ashirwad Plastics"
+                          style={{ height: '30px', width: 'auto', display: 'block', border: 0 }}
+                        />
+                      </div>
+
+                      <div style={{ padding: '20px', fontSize: '14px', lineHeight: '1.6', color: '#1e293b', minHeight: '160px' }}>
+                        <div
+                          className="email-rich-content"
+                          dangerouslySetInnerHTML={{
+                            __html: (campaignContent || '')
+                              .replace(/{{name}}/gi, 'Valued Partner')
+                              .replace(/{{company}}/gi, 'your organization')
+                              .replace(/{{email}}/gi, 'partner@company.com')
+                          }}
+                        />
+
+                        {emailAttachments.length > 0 && (
+                          <div style={{ marginTop: '16px', paddingTop: '10px', borderTop: '1px dashed #e2e8f0', fontSize: '11.5px', color: '#64748b' }}>
+                            <span>Attachments ({emailAttachments.length}):</span>
+                            <div style={{ marginTop: '4px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                              {emailAttachments.map((a, i) => (
+                                <span key={i} style={{ color: '#0f172a' }}>• {a.filename}</span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <div style={{ backgroundColor: '#f1f5f9', padding: '14px 20px', textAlign: 'center', fontSize: '11.5px', color: '#64748b', borderTop: '1px solid #e2e8f0' }}>
+                        <p style={{ margin: '0 0 4px 0' }}>© {new Date().getFullYear()} Ashirwad Plastics. All rights reserved.</p>
+                        <p style={{ margin: 0, fontSize: '10.5px', color: '#94a3b8' }}>
+                          Don&apos;t want to receive these emails? <span style={{ color: '#2563eb' }}>Unsubscribe</span>
+                        </p>
                       </div>
                     </div>
+                  </div>
+                </div>
+              )}
 
-                    <div style={{ padding: '18px 16px', backgroundColor: '#FFFFFF', fontSize: '12.5px', lineHeight: '1.6', color: '#1E293B', minHeight: '180px' }}>
-                      <div
-                        className="email-rich-content"
-                        dangerouslySetInnerHTML={{
-                          __html: campaignContent
-                            .replace(/{{name}}/gi, 'Valued Client')
-                            .replace(/{{company}}/gi, 'Your Organization')
-                        }}
-                      />
-
-                      {emailAttachments.length > 0 && (
-                        <div style={{ marginTop: '16px', paddingTop: '10px', borderTop: '1px dashed #E2E8F0', fontSize: '11.5px', color: '#64748B' }}>
-                          <span>Attachments ({emailAttachments.length}):</span>
-                          <div style={{ marginTop: '4px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                            {emailAttachments.map((a, i) => (
-                              <span key={i} style={{ color: '#0F172A' }}>• {a.filename}</span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+              {/* Full Screen Email Preview Modal */}
+              {showFullScreenPreview && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    inset: 0,
+                    backgroundColor: 'rgba(15, 23, 42, 0.65)',
+                    zIndex: 1400,
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  <div style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E2E8F0', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
+                    <div>
+                      <div style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>
+                        Full Email Preview
+                      </div>
+                      <div style={{ fontSize: '12px', color: '#64748B' }}>
+                        Subject: <strong style={{ color: '#0F172A' }}>{campaignSubject || '(No Subject)'}</strong>
+                      </div>
                     </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <button
+                        type="button"
+                        onClick={() => exportEmailPreviewToPdf({ subject: campaignSubject, html: campaignContent, attachments: emailAttachments })}
+                        style={{ padding: '7px 14px', borderRadius: '6px', border: 'none', backgroundColor: '#0F172A', color: '#FFFFFF', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Export as PDF
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowFullScreenPreview(false)}
+                        style={{ padding: '7px 14px', borderRadius: '6px', border: '1px solid #CBD5E1', backgroundColor: '#FFFFFF', color: '#334155', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
 
-                    <div style={{ padding: '10px 14px', backgroundColor: '#F8FAFC', borderTop: '1px solid #E2E8F0', fontSize: '11px', color: '#94A3B8', textAlign: 'center' }}>
-                      Ashirwad Plastics
+                  <div style={{ flex: 1, overflowY: 'auto', backgroundColor: '#f8fafc', padding: '28px 16px' }}>
+                    <div style={{ maxWidth: '620px', margin: '0 auto', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
+                      <div style={{ backgroundColor: '#ffffff', padding: '20px 32px', textAlign: 'left', borderBottom: '3px solid #2563EB' }}>
+                        <img
+                          src="/logo-horizontal.png"
+                          alt="Ashirwad Plastics"
+                          style={{ height: '36px', width: 'auto', display: 'block', border: 0 }}
+                        />
+                      </div>
+
+                      <div style={{ padding: '32px', fontSize: '15px', lineHeight: '1.6', color: '#1e293b', minHeight: '220px' }}>
+                        <div
+                          className="email-rich-content"
+                          dangerouslySetInnerHTML={{
+                            __html: (campaignContent || '')
+                              .replace(/{{name}}/gi, 'Valued Partner')
+                              .replace(/{{company}}/gi, 'your organization')
+                              .replace(/{{email}}/gi, 'partner@company.com')
+                          }}
+                        />
+
+                        {emailAttachments.length > 0 && (
+                          <div style={{ marginTop: '20px', paddingTop: '12px', borderTop: '1px dashed #e2e8f0', fontSize: '12px', color: '#64748b' }}>
+                            <span>Attachments ({emailAttachments.length}):</span>
+                            <div style={{ marginTop: '4px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                              {emailAttachments.map((a, i) => (
+                                <span key={i} style={{ color: '#0f172a' }}>• {a.filename}</span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <div style={{ backgroundColor: '#f1f5f9', padding: '18px 32px', textAlign: 'center', fontSize: '12px', color: '#64748b', borderTop: '1px solid #e2e8f0' }}>
+                        <p style={{ margin: '0 0 6px 0' }}>© {new Date().getFullYear()} Ashirwad Plastics. All rights reserved.</p>
+                        <p style={{ margin: 0, fontSize: '11px', color: '#94a3b8' }}>
+                          Don&apos;t want to receive these emails? <span style={{ color: '#2563eb' }}>Unsubscribe</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

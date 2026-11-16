@@ -12,9 +12,12 @@ export default function EmailRichEditor({
   const [tablePopoverOpen, setTablePopoverOpen] = useState(false);
   const [tableRows, setTableRows] = useState(3);
   const [tableCols, setTableCols] = useState(3);
+  const [hasSelectedImg, setHasSelectedImg] = useState(false);
+  const [imgWidthInput, setImgWidthInput] = useState('100%');
 
   const visualEditorRef = useRef(null);
   const inlineImageInputRef = useRef(null);
+  const selectedImgRef = useRef(null);
 
   // Sync external value changes (e.g., template applied, modal opened, switching from Code to Visual)
   useEffect(() => {
@@ -174,11 +177,67 @@ export default function EmailRichEditor({
   };
 
   const toggleEditorMode = () => {
+    setHasSelectedImg(false);
+    selectedImgRef.current = null;
     if (!isHtmlMode) {
       setIsHtmlMode(true);
     } else {
       setIsHtmlMode(false);
     }
+  };
+
+  const handleEditorClick = (e) => {
+    if (e.target && e.target.tagName === 'IMG') {
+      selectedImgRef.current = e.target;
+      const currentW = e.target.style.width || (e.target.getAttribute('width') ? `${e.target.getAttribute('width')}px` : '100%');
+      setImgWidthInput(currentW);
+      setHasSelectedImg(true);
+    } else {
+      selectedImgRef.current = null;
+      setHasSelectedImg(false);
+    }
+  };
+
+  const applyImageWidth = (rawWidth) => {
+    const img = selectedImgRef.current;
+    if (!img || !visualEditorRef.current) return;
+    const trimmed = String(rawWidth || '').trim();
+    if (!trimmed) return;
+    // Default bare numbers to px
+    const normalized = /^\d+$/.test(trimmed) ? `${trimmed}px` : trimmed;
+    img.style.width = normalized;
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto';
+    if (normalized.endsWith('px')) {
+      img.setAttribute('width', normalized.replace('px', ''));
+    } else {
+      img.removeAttribute('width');
+    }
+    setImgWidthInput(normalized);
+    if (onChange) onChange(visualEditorRef.current.innerHTML);
+  };
+
+  const applyImageAlign = (align) => {
+    const img = selectedImgRef.current;
+    if (!img || !visualEditorRef.current) return;
+    img.style.display = 'block';
+    if (align === 'left') {
+      img.style.margin = '10px auto 10px 0';
+    } else if (align === 'center') {
+      img.style.margin = '10px auto';
+    } else if (align === 'right') {
+      img.style.margin = '10px 0 10px auto';
+    }
+    if (onChange) onChange(visualEditorRef.current.innerHTML);
+  };
+
+  const removeSelectedImage = () => {
+    const img = selectedImgRef.current;
+    if (!img || !visualEditorRef.current) return;
+    img.remove();
+    selectedImgRef.current = null;
+    setHasSelectedImg(false);
+    if (onChange) onChange(visualEditorRef.current.innerHTML);
   };
 
   return (
@@ -425,11 +484,157 @@ export default function EmailRichEditor({
         </div>
       </div>
 
+      {/* Contextual Image Size & Alignment Bar */}
+      {hasSelectedImg && !isHtmlMode && (
+        <div
+          style={{
+            padding: '6px 10px',
+            backgroundColor: '#EFF6FF',
+            borderBottom: '1px solid #BFDBFE',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '8px',
+            fontSize: '11.5px'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap' }}>
+            <span style={{ fontWeight: '600', color: '#1E3A8A', marginRight: '2px' }}>Image Size:</span>
+            {['25%', '50%', '75%', '100%'].map((preset) => (
+              <button
+                key={preset}
+                type="button"
+                onMouseDown={(e) => { e.preventDefault(); applyImageWidth(preset); }}
+                style={{
+                  padding: '2px 7px',
+                  borderRadius: '4px',
+                  border: imgWidthInput === preset ? '1px solid #2563EB' : '1px solid #BFDBFE',
+                  backgroundColor: imgWidthInput === preset ? '#2563EB' : '#FFFFFF',
+                  color: imgWidthInput === preset ? '#FFFFFF' : '#1E3A8A',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                {preset}
+              </button>
+            ))}
+
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', marginLeft: '4px' }}>
+              <input
+                type="text"
+                value={imgWidthInput}
+                onChange={(e) => setImgWidthInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    applyImageWidth(imgWidthInput);
+                  }
+                }}
+                placeholder="e.g. 300px or 60%"
+                style={{
+                  width: '82px',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  border: '1px solid #BFDBFE',
+                  fontSize: '11px',
+                  color: '#0F172A',
+                  backgroundColor: '#FFFFFF',
+                  outline: 'none'
+                }}
+              />
+              <button
+                type="button"
+                onMouseDown={(e) => { e.preventDefault(); applyImageWidth(imgWidthInput); }}
+                style={{
+                  padding: '2px 7px',
+                  borderRadius: '4px',
+                  border: 'none',
+                  backgroundColor: '#1E3A8A',
+                  color: '#FFFFFF',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+            <span style={{ fontWeight: '600', color: '#1E3A8A', marginRight: '2px' }}>Align:</span>
+            {[
+              { id: 'left', label: 'Left' },
+              { id: 'center', label: 'Center' },
+              { id: 'right', label: 'Right' }
+            ].map((a) => (
+              <button
+                key={a.id}
+                type="button"
+                onMouseDown={(e) => { e.preventDefault(); applyImageAlign(a.id); }}
+                style={{
+                  padding: '2px 7px',
+                  borderRadius: '4px',
+                  border: '1px solid #BFDBFE',
+                  backgroundColor: '#FFFFFF',
+                  color: '#1E3A8A',
+                  fontSize: '11px',
+                  cursor: 'pointer'
+                }}
+              >
+                {a.label}
+              </button>
+            ))}
+
+            <button
+              type="button"
+              onMouseDown={(e) => { e.preventDefault(); removeSelectedImage(); }}
+              style={{
+                padding: '2px 7px',
+                borderRadius: '4px',
+                border: '1px solid #FECACA',
+                backgroundColor: '#FEF2F2',
+                color: '#DC2626',
+                fontSize: '11px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                marginLeft: '4px'
+              }}
+            >
+              Remove
+            </button>
+            <button
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                selectedImgRef.current = null;
+                setHasSelectedImg(false);
+              }}
+              title="Close image options"
+              style={{
+                padding: '2px 6px',
+                borderRadius: '4px',
+                border: 'none',
+                backgroundColor: 'transparent',
+                color: '#64748B',
+                fontSize: '13px',
+                cursor: 'pointer'
+              }}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
       {!isHtmlMode ? (
         <div
           ref={visualEditorRef}
           className="email-rich-content"
           contentEditable
+          onClick={handleEditorClick}
           onInput={handleVisualInput}
           onPaste={handleEditorPaste}
           onDrop={handleEditorDrop}
