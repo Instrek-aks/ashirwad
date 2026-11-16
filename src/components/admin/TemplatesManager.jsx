@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
+import EmailRichEditor from './EmailRichEditor';
 
 const DEFAULT_CATEGORIES = ['General', 'Newsletter', 'Product Launch', 'Trade Show', 'Follow-up', 'Festive'];
 
@@ -23,16 +24,9 @@ export default function TemplatesManager({
   const [tplHtml, setTplHtml] = useState('<p>Dear Partner,</p><p>Write your email template content here...</p>');
   const [showEditorPreview, setShowEditorPreview] = useState(false);
   const [saving, setSaving] = useState(false);
-  const editorRef = useRef(null);
 
   // Preview Modal State
   const [previewTemplate, setPreviewTemplate] = useState(null);
-
-  useEffect(() => {
-    if (editorOpen && !showEditorPreview && editorRef.current) {
-      editorRef.current.innerHTML = tplHtml || '';
-    }
-  }, [editorOpen, showEditorPreview, editingId]);
 
   const allCategories = Array.from(
     new Set([
@@ -90,31 +84,9 @@ export default function TemplatesManager({
     setEditorOpen(true);
   };
 
-  const execCmd = (command, value = null) => {
-    document.execCommand(command, false, value);
-    if (editorRef.current) {
-      setTplHtml(editorRef.current.innerHTML);
-      editorRef.current.focus();
-    }
-  };
-
-  const insertMergeTag = (tag) => {
-    if (showEditorPreview) return;
-    if (editorRef.current) {
-      editorRef.current.focus();
-      const inserted = document.execCommand('insertText', false, tag);
-      if (!inserted) {
-        editorRef.current.innerHTML += tag;
-      }
-      setTplHtml(editorRef.current.innerHTML);
-    } else {
-      setTplHtml((prev) => `${prev}${tag}`);
-    }
-  };
-
   const handleSaveTemplate = async (e) => {
     e.preventDefault();
-    const currentHtml = editorRef.current ? editorRef.current.innerHTML : tplHtml;
+    const currentHtml = tplHtml || '';
     if (!tplName.trim() || !tplSubject.trim() || !currentHtml.trim()) {
       setFeedback({ type: 'error', message: 'Template name, subject, and body content are required.' });
       return;
@@ -637,103 +609,13 @@ export default function TemplatesManager({
                 />
               </div>
 
-              <div style={{ border: '1px solid #E2E8F0', borderRadius: '6px', overflow: 'hidden' }}>
-                <div style={{ padding: '6px 10px', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
-                    <select
-                      onChange={(e) => execCmd('formatBlock', e.target.value)}
-                      defaultValue="p"
-                      disabled={showEditorPreview}
-                      style={{ padding: '3px 6px', borderRadius: '4px', border: '1px solid #E2E8F0', fontSize: '11.5px', backgroundColor: '#FFFFFF' }}
-                    >
-                      <option value="p">Normal</option>
-                      <option value="h2">Heading</option>
-                      <option value="h3">Subheading</option>
-                    </select>
-                    <button type="button" disabled={showEditorPreview} onClick={() => execCmd('bold')} style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontWeight: '700', fontSize: '11.5px', cursor: 'pointer' }}>B</button>
-                    <button type="button" disabled={showEditorPreview} onClick={() => execCmd('italic')} style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontStyle: 'italic', fontSize: '11.5px', cursor: 'pointer' }}>I</button>
-                    <button type="button" disabled={showEditorPreview} onClick={() => execCmd('underline')} style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', textDecoration: 'underline', fontSize: '11.5px', cursor: 'pointer' }}>U</button>
-                    <button type="button" disabled={showEditorPreview} onClick={() => execCmd('insertUnorderedList')} style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '11.5px', cursor: 'pointer' }}>• List</button>
-                    <button type="button" disabled={showEditorPreview} onClick={() => execCmd('insertOrderedList')} style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '11.5px', cursor: 'pointer' }}>1. List</button>
-                    <button
-                      type="button"
-                      disabled={showEditorPreview}
-                      onClick={() => {
-                        const url = window.prompt('Enter link URL:');
-                        if (url) execCmd('createLink', url);
-                      }}
-                      style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '11.5px', cursor: 'pointer' }}
-                    >
-                      Link
-                    </button>
-                    <button type="button" disabled={showEditorPreview} onClick={() => execCmd('removeFormat')} style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', fontSize: '11.5px', cursor: 'pointer', color: '#64748B' }}>Clear</button>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
-                    <button
-                      type="button"
-                      disabled={showEditorPreview}
-                      onMouseDown={(e) => { e.preventDefault(); insertMergeTag('{{name}}'); }}
-                      style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '11px', fontWeight: '600', cursor: showEditorPreview ? 'not-allowed' : 'pointer' }}
-                    >
-                      + Name
-                    </button>
-                    <button
-                      type="button"
-                      disabled={showEditorPreview}
-                      onMouseDown={(e) => { e.preventDefault(); insertMergeTag('{{company}}'); }}
-                      style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '11px', fontWeight: '600', cursor: showEditorPreview ? 'not-allowed' : 'pointer' }}
-                    >
-                      + Company
-                    </button>
-                    <button
-                      type="button"
-                      disabled={showEditorPreview}
-                      onMouseDown={(e) => { e.preventDefault(); insertMergeTag('{{email}}'); }}
-                      style={{ padding: '3px 7px', borderRadius: '4px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF', color: '#475569', fontSize: '11px', fontWeight: '600', cursor: showEditorPreview ? 'not-allowed' : 'pointer' }}
-                    >
-                      + Email
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (!showEditorPreview && editorRef.current) {
-                          setTplHtml(editorRef.current.innerHTML);
-                        }
-                        setShowEditorPreview(!showEditorPreview);
-                      }}
-                      style={{
-                        padding: '4px 9px',
-                        borderRadius: '4px',
-                        border: '1px solid #CBD5E1',
-                        backgroundColor: showEditorPreview ? '#0F172A' : '#FFFFFF',
-                        color: showEditorPreview ? '#FFFFFF' : '#334155',
-                        fontSize: '11.5px',
-                        fontWeight: '600',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      {showEditorPreview ? 'Back to Edit' : 'Preview'}
-                    </button>
-                  </div>
-                </div>
-
-                {showEditorPreview ? (
-                  <div
-                    className="email-rich-content"
-                    style={{ minHeight: '220px', maxHeight: '340px', overflowY: 'auto', padding: '14px', fontSize: '13.5px', lineHeight: '1.6', color: '#1E293B', backgroundColor: '#FFFFFF' }}
-                    dangerouslySetInnerHTML={{ __html: tplHtml }}
-                  />
-                ) : (
-                  <div
-                    ref={editorRef}
-                    className="email-rich-content"
-                    contentEditable
-                    onInput={(e) => setTplHtml(e.currentTarget.innerHTML)}
-                    style={{ minHeight: '220px', maxHeight: '340px', overflowY: 'auto', padding: '14px', fontSize: '13.5px', lineHeight: '1.6', color: '#1E293B', outline: 'none' }}
-                  />
-                )}
-              </div>
+              <EmailRichEditor
+                value={tplHtml}
+                onChange={setTplHtml}
+                minHeight="240px"
+                maxHeight="380px"
+                showCodeToggle={false}
+              />
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', paddingTop: '6px' }}>
                 <button
