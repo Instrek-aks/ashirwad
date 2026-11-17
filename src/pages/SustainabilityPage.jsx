@@ -36,11 +36,11 @@ export default function SustainabilityPage({ onNavigate }) {
 
   // Real campus tree plantation drive photos
   const galleryImages = [
-    { src: '/sustainibility/6.webp', alt: 'Chairman Mr. Hira Lal Jain planting a sapling at Ashirwad Plastics' },
-    { src: '/sustainibility/4.webp', alt: 'Leadership team participating in campus greening drive' },
-    { src: '/sustainibility/5.webp', alt: 'Tree plantation initiative with healthcare partners' },
-    { src: '/sustainibility/7.webp', alt: 'Environmental stewardship plantation on campus', objectPosition: 'center 72%' },
-    { src: '/sustainibility/8.webp', alt: 'Partner tree plantation drive at Ashirwad facility', objectPosition: 'center 62%' }
+    { src: '/images/sustainability/gallery-6.webp', alt: 'Chairman Mr. Hira Lal Jain planting a sapling at Ashirwad Plastics' },
+    { src: '/images/sustainability/gallery-4.webp', alt: 'Leadership team participating in campus greening drive' },
+    { src: '/images/sustainability/gallery-5.webp', alt: 'Tree plantation initiative with healthcare partners' },
+    { src: '/images/sustainability/gallery-7.webp', alt: 'Environmental stewardship plantation on campus', objectPosition: 'center 72%' },
+    { src: '/images/sustainability/gallery-8.webp', alt: 'Partner tree plantation drive at Ashirwad facility', objectPosition: 'center 62%' }
   ]
 
   // Responsive itemsPerView
@@ -275,7 +275,7 @@ export default function SustainabilityPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(4, 34, 22, 0.58), rgba(4, 34, 22, 0.76)), url('/sustainibility/1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(4, 34, 22, 0.58), rgba(4, 34, 22, 0.76)), url('/images/sustainability/gallery-1.webp')",
           position: 'relative',
           minHeight: '490px'
         }}
@@ -360,7 +360,7 @@ export default function SustainabilityPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box" style={{ border: '1px solid #D9EDE0', aspectRatio: '0.88', maxWidth: '400px', margin: '0 auto' }}>
                 <img 
-                  src="/sustainibility/7.webp" 
+                  src="/images/sustainability/gallery-7.webp" 
                   alt="Our Sustainability Approach" 
                   style={{ objectPosition: 'bottom center' }}
                   onError={(e) => handleImageError(e, "Sustainability Approach")}
@@ -449,7 +449,7 @@ export default function SustainabilityPage({ onNavigate }) {
               <div>
                 <div className="paperless-visual-box">
                   <img 
-                    src="/sustainibility/paperless.webp" 
+                    src="/images/sustainability/paperless.webp" 
                     alt="100% Paperless Digital Manufacturing Systems" 
                     onError={(e) => handleImageError(e, "100% Paperless Systems")}
                   />
@@ -639,7 +639,7 @@ export default function SustainabilityPage({ onNavigate }) {
             {/* Card 1: Sustainable Packaging Image */}
             <div className="mfg-grid-card mfg-img-card" style={{ border: '1px solid #D9EDE0' }}>
               <img 
-                src="/sustainibility/image20.webp" 
+                src="/images/sustainability/eco-initiative.webp" 
                 alt="What We Do for a Sustainable Future - Pharmaceutical Packaging" 
                 onError={(e) => handleImageError(e, "Sustainable Future")}
               />
@@ -699,7 +699,7 @@ export default function SustainabilityPage({ onNavigate }) {
             {/* Card 4: Environmental Stewardship Image */}
             <div className="mfg-grid-card mfg-img-card" style={{ border: '1px solid #D9EDE0' }}>
               <img 
-                src="/sustainibility/3.webp" 
+                src="/images/sustainability/gallery-3.webp" 
                 alt="Environmental Stewardship and Renewable Energy" 
                 onError={(e) => handleImageError(e, "Environmental Stewardship")}
               />
@@ -708,7 +708,7 @@ export default function SustainabilityPage({ onNavigate }) {
             {/* Card 5: Responsible Sterile Packaging Logistics Image */}
             <div className="mfg-grid-card mfg-img-card" style={{ border: '1px solid #D9EDE0' }}>
               <img 
-                src="/sustainibility/2.webp" 
+                src="/images/sustainability/gallery-2.webp" 
                 alt="Recyclable Corrugated Packaging and Clean Sterilization" 
                 onError={(e) => handleImageError(e, "Clean Packaging Logistics")}
               />
@@ -989,7 +989,7 @@ export default function SustainabilityPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box" style={{ border: '1px solid #D9EDE0' }}>
                 <img 
-                  src="/sustainibility/6.webp" 
+                  src="/images/sustainability/gallery-6.webp" 
                   alt="Ashirwad Plastics Chairman Tree Plantation Initiative" 
                   style={{ objectPosition: 'center 25%' }}
                   onError={(e) => handleImageError(e, "Leadership & Community")}

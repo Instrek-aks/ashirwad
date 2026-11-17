@@ -29,23 +29,23 @@ export default function CapsClosuresProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Caps and Closures.webp"
+    "/images/products/caps-and-closures.webp"
   ]
 
   // Gallery images (simulated product variants + Item 26 filter proof caps)
   const galleryImages = [
-    { src: "/Product_Images/filter_proof_caps.webp", fallback: "/Caps and Closures.webp", label: "Filter Proof Caps" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Flip-Top Cap Model" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Standard Screw Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Child-Resistant CRC Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Tamper-Evident Closure" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_33_56 AM.webp", label: "Multiple Sizes Display" }
+    { src: "/Product_Images/filter_proof_caps.webp", fallback: "/images/products/caps-and-closures.webp", label: "Filter Proof Caps" },
+    { src: "/images/products/caps-closures-model.webp", label: "Flip-Top Cap Model" },
+    { src: "/images/products/caps-closures-model.webp", label: "Standard Screw Cap" },
+    { src: "/images/products/caps-closures-model.webp", label: "Child-Resistant CRC Cap" },
+    { src: "/images/products/caps-closures-model.webp", label: "Tamper-Evident Closure" },
+    { src: "/images/products/caps-closures-model.webp", label: "Multiple Sizes Display" }
   ]
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
     if (e.target.src.includes('filter_proof_caps.webp')) {
-      e.target.src = '/Caps and Closures.webp'
+      e.target.src = '/images/products/caps-and-closures.webp'
       return
     }
     e.target.style.display = 'none'
@@ -81,8 +81,8 @@ export default function CapsClosuresProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -95,7 +95,7 @@ export default function CapsClosuresProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Caps and Closures.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/caps-and-closures.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -269,7 +269,7 @@ export default function CapsClosuresProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

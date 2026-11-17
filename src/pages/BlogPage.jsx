@@ -39,7 +39,7 @@ export default function BlogPage({ onNavigate }) {
         style={{
           position: 'relative',
           backgroundColor: '#0A1C2A',
-          backgroundImage: 'linear-gradient(180deg, rgba(7, 18, 28, 0.38) 0%, rgba(10, 25, 38, 0.58) 100%), url(/blog-hero-bg.webp)',
+          backgroundImage: 'linear-gradient(180deg, rgba(7, 18, 28, 0.38) 0%, rgba(10, 25, 38, 0.58) 100%), url(/images/blog/blog-hero-bg.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -152,7 +152,7 @@ export default function BlogPage({ onNavigate }) {
               }}
             >
               <img
-                src={featuredBlog.coverImage || '/blog-stethoscope.webp'}
+                src={featuredBlog.coverImage || '/images/blog/blog-stethoscope.webp'}
                 alt={featuredBlog.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.02)'; }}
@@ -240,7 +240,7 @@ export default function BlogPage({ onNavigate }) {
                   }}
                 >
                   <img
-                    src={post.coverImage || '/blog-stethoscope.webp'}
+                    src={post.coverImage || '/images/blog/blog-stethoscope.webp'}
                     alt={post.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s ease' }}
                     onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.03)'; }}

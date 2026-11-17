@@ -29,17 +29,17 @@ export default function DispenserProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Dispenser Pumps.webp"
+    "/images/products/dispenser-pumps.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Dispenser Pump 24mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Dispenser Pump 28mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Lotion Pump Assembly" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Hygienic Snap Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Nozzle Spray Detail" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_21_35 AM.webp", label: "Pump Spring Calibration" }
+    { src: "/images/products/dispenser-pump-model.webp", label: "Dispenser Pump 24mm" },
+    { src: "/images/products/dispenser-pump-model.webp", label: "Dispenser Pump 28mm" },
+    { src: "/images/products/dispenser-pump-model.webp", label: "Lotion Pump Assembly" },
+    { src: "/images/products/dispenser-pump-model.webp", label: "Hygienic Snap Cap" },
+    { src: "/images/products/dispenser-pump-model.webp", label: "Nozzle Spray Detail" },
+    { src: "/images/products/dispenser-pump-model.webp", label: "Pump Spring Calibration" }
   ]
 
   // Graceful fallback for missing local images
@@ -77,8 +77,8 @@ export default function DispenserProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -91,7 +91,7 @@ export default function DispenserProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Dispenser Pumps.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/dispenserpumps.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -265,7 +265,7 @@ export default function DispenserProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

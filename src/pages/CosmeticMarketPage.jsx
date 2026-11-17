@@ -58,7 +58,7 @@ export default function CosmeticMarketPage({ onNavigate }) {
       <section 
         className="pharma-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/co.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/markets/cosmetic-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -123,7 +123,7 @@ export default function CosmeticMarketPage({ onNavigate }) {
             <div className="overview-right-col">
               <div className="world-map-container">
                 <img 
-                  src="/map.webp" 
+                  src="/images/global/world-map.webp" 
                   alt="Ashirwad Plastics Global Presence Map" 
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
                 />
@@ -142,7 +142,7 @@ export default function CosmeticMarketPage({ onNavigate }) {
             {/* Card 1: Closures Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/c2.webp" 
+                src="/images/markets/cosmetic-2.webp" 
                 alt="Cosmetic Bottles" 
                 onError={(e) => handleImageError(e, "Cosmetic Bottles")}
               />
@@ -189,7 +189,7 @@ export default function CosmeticMarketPage({ onNavigate }) {
             {/* Card 4: Product Showcase Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/c3.webp" 
+                src="/images/markets/cosmetic-3.webp" 
                 alt="Premium Cosmetic Renders" 
                 onError={(e) => handleImageError(e, "Premium Renders")}
               />
@@ -209,11 +209,11 @@ export default function CosmeticMarketPage({ onNavigate }) {
             <div className="pharma-products-grid">
                
               {[
-                { name: "Glass Droppers", desc: "Premium-quality glass droppers offering controlled dispensing and enhanced product compatibility.", img: "/o5.webp", path: "product-glass-dropper" },
-                { name: "Mist & Cream Pumps", desc: "Precision-engineered mist and cream pumps delivering smooth and consistent dispensing performance.", img: "/o8.webp", path: "product-mist-cream" },
-                { name: "Dispenser Pumps", desc: "Reliable dispenser pump systems designed for efficient and controlled liquid dispensing applications.", img: "/o6.webp", path: "product-dispenser" },
-                { name: "Caps & Closures", desc: "A comprehensive range of closures engineered for safety, protection, and product integrity.", img: "/o9.webp", path: "product-caps-closures" },
-                { name: "Trigger Pumps", desc: "Durable and ergonomically designed trigger pumps suitable for personal care and industrial applications.", img: "/o7.webp", path: "product-trigger" }
+                { name: "Oral & Glass Droppers", desc: "Premium-quality glass droppers offering controlled dispensing and enhanced product compatibility.", img: "/images/markets/showcase-5.webp", path: "product-glass-dropper" },
+                { name: "Mist & Cream Pumps", desc: "Precision-engineered mist and cream pumps delivering smooth and consistent dispensing performance.", img: "/images/markets/showcase-8.webp", path: "product-mist-cream" },
+                { name: "Dispenser Pumps", desc: "Reliable dispenser pump systems designed for efficient and controlled liquid dispensing applications.", img: "/images/markets/showcase-6.webp", path: "product-dispenser" },
+                { name: "Caps & Closures", desc: "A comprehensive range of closures engineered for safety, protection, and product integrity.", img: "/images/markets/showcase-9.webp", path: "product-caps-closures" },
+                { name: "Trigger Pumps", desc: "Durable and ergonomically designed trigger pumps suitable for personal care and industrial applications.", img: "/images/markets/showcase-7.webp", path: "product-trigger" }
               ].map((prod, idx) => (
                 <div key={idx} className="pharma-product-card">
                   <div className="product-img-box">
@@ -279,7 +279,7 @@ export default function CosmeticMarketPage({ onNavigate }) {
               <div className="why-partner-right">
                 <div className="why-partner-img-wrapper">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad Plastics Team" 
                     onError={(e) => handleImageError(e, "Ashirwad Plastics Team")}
                   />

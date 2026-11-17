@@ -2,15 +2,15 @@ import FadeIn from './FadeIn'
 
 export default function VisionMission() {
   const images = [
-    '/hs1.webp',
-    '/hs2.webp',
-    '/hs3.webp',
-    '/hs4.webp',
-    '/hs5.webp',
-    '/g3.webp',
-    '/g1.webp',
-    '/p.webp',
-    '/g2.webp'
+    '/images/vision/slide-1.webp',
+    '/images/vision/slide-2.webp',
+    '/images/vision/slide-3.webp',
+    '/images/vision/slide-4.webp',
+    '/images/vision/slide-5.webp',
+    '/images/vision/goal-3.webp',
+    '/images/vision/goal-1.webp',
+    '/images/vision/purpose.webp',
+    '/images/vision/goal-2.webp'
   ]
 
   return (

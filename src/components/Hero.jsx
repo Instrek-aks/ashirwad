@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import FadeIn from './FadeIn'
 
 const heroImages = [
-  '/cosmetic.gif',
-  '/pharmaa.gif',
-  '/Sustainbility.gif'
+  '/images/hero/cosmetic.gif',
+  '/images/hero/pharma.gif',
+  '/images/hero/sustainability.gif'
 ]
 
 export default function Hero({ onNavigate }) {

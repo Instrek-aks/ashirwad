@@ -29,17 +29,17 @@ export default function GlassDropperProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Glass Droppers.webp"
+    "/images/products/glass-droppers.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper White Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper Silver Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper Gold Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Glass Dropper Black Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Pipette Precision Tip" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_19_05 AM.webp", label: "Amber Bottle Combination" }
+    { src: "/images/products/glass-dropper-model.webp", label: "Glass Dropper White Cap" },
+    { src: "/images/products/glass-dropper-model.webp", label: "Glass Dropper Silver Cap" },
+    { src: "/images/products/glass-dropper-model.webp", label: "Glass Dropper Gold Cap" },
+    { src: "/images/products/glass-dropper-model.webp", label: "Glass Dropper Black Cap" },
+    { src: "/images/products/glass-dropper-model.webp", label: "Pipette Precision Tip" },
+    { src: "/images/products/glass-dropper-model.webp", label: "Amber Bottle Combination" }
   ]
 
   // Graceful fallback for missing local images
@@ -77,8 +77,8 @@ export default function GlassDropperProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -91,7 +91,7 @@ export default function GlassDropperProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Glass Droppers.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/glass-droppers.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -119,9 +119,9 @@ export default function GlassDropperProductPage({ onNavigate }) {
               <span className="breadcrumb-separator">&gt;</span>
               <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
               <span className="breadcrumb-separator">&gt;</span>
-              <span className="breadcrumb-active">GLASS DROPPERS</span>
+              <span className="breadcrumb-active">ORAL &amp; GLASS DROPPERS</span>
             </nav>
-            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Glass Droppers</h1>
+            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Oral &amp; Glass Droppers</h1>
           </div>
         </div>
       </section>
@@ -265,7 +265,7 @@ export default function GlassDropperProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />
@@ -282,7 +282,7 @@ export default function GlassDropperProductPage({ onNavigate }) {
         <div className="cta-dot-map-bg" />
         <div className="container">
           <div className="cta-banner-grid">
-            <h2 className="cta-banner-heading">Looking for Premium Glass Droppers?</h2>
+            <h2 className="cta-banner-heading">Looking for Premium Oral &amp; Glass Droppers?</h2>
             <div className="cta-banner-right">
               <p className="cta-banner-desc">
                 Get in touch with our team to explore glass dropper solutions tailored to your product and brand requirements.

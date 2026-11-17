@@ -2,31 +2,31 @@ import { useState } from 'react'
 import FadeIn from './FadeIn'
 
 const clientBrands = [
-  { name: 'Mankind', logo: '/v1.webp' },
-  { name: 'Alkem Healthcare', logo: '/v2.webp' },
-  { name: 'Leeford', logo: '/v3.webp' },
-  { name: 'Akums', logo: '/v4.webp' },
-  { name: 'Add', logo: '/v5.webp' },
-  { name: 'Tirupati', logo: '/v7.webp' },
-  { name: 'Acme Generics', logo: '/v8.webp' },
-  { name: 'Immacule', logo: '/v9.webp' },
-  { name: 'Pure & Cure', logo: '/v10.webp' },
-  { name: 'Synokem', logo: '/v11.webp' },
-  { name: 'Macleods', logo: '/v12.webp' },
-  { name: 'Client 12', logo: '/nl.png' },
-  { name: 'Client 13', logo: '/lc1.png' },
-  { name: 'Client 14', logo: '/lc2.png' },
-  { name: 'Client 15', logo: '/lc3.png' },
-  { name: 'Client 16', logo: '/lc4.png' },
-  { name: 'Client 17', logo: '/lc5.png' }
+  { name: 'Mankind', logo: '/images/clients/client-1.webp' },
+  { name: 'Alkem Healthcare', logo: '/images/clients/client-2.webp' },
+  { name: 'Leeford', logo: '/images/clients/client-3.webp' },
+  { name: 'Akums', logo: '/images/clients/client-4.webp' },
+  { name: 'Add', logo: '/images/clients/client-5.webp' },
+  { name: 'Tirupati', logo: '/images/clients/client-7.webp' },
+  { name: 'Acme Generics', logo: '/images/clients/client-8.webp' },
+  { name: 'Immacule', logo: '/images/clients/client-9.webp' },
+  { name: 'Pure & Cure', logo: '/images/clients/client-10.webp' },
+  { name: 'Synokem', logo: '/images/clients/client-11.webp' },
+  { name: 'Macleods', logo: '/images/clients/client-12.webp' },
+  { name: 'Client 12', logo: '/images/clients/client-nl.png' },
+  { name: 'Client 13', logo: '/images/clients/logo-client-1.png' },
+  { name: 'Client 14', logo: '/images/clients/logo-client-2.png' },
+  { name: 'Client 15', logo: '/images/clients/logo-client-3.png' },
+  { name: 'Client 16', logo: '/images/clients/logo-client-4.png' },
+  { name: 'Client 17', logo: '/images/clients/logo-client-5.png' }
 ]
 
-const largeLogos = ['/v1.webp', '/v2.webp', '/v4.webp', '/v5.webp', '/v7.webp', '/v8.webp', '/v9.webp', '/lc1.png']
+const largeLogos = ['/images/clients/client-1.webp', '/images/clients/client-2.webp', '/images/clients/client-4.webp', '/images/clients/client-5.webp', '/images/clients/client-7.webp', '/images/clients/client-8.webp', '/images/clients/client-9.webp', '/images/clients/logo-client-1.png']
 
 function ClientLogoCard({ brand, width }) {
   const [imgFailed, setImgFailed] = useState(false)
   const isLarge = largeLogos.includes(brand.logo)
-  const isV2 = brand.logo === '/v2.webp'
+  const isV2 = brand.logo === '/images/clients/client-2.webp'
 
   return (
     <div 
@@ -55,7 +55,7 @@ function ClientLogoCard({ brand, width }) {
             maxHeight: '90px', 
             objectFit: 'contain', 
             display: 'block',
-            transform: brand.logo === '/v2.webp' ? 'scale(1.25)' : 'none'
+            transform: brand.logo === '/images/clients/client-2.webp' ? 'scale(1.25)' : 'none'
           }}
           onError={() => setImgFailed(true)}
         />

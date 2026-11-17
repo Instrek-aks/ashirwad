@@ -5,31 +5,31 @@ export default function BottomCertifications() {
     {
       title: 'ISO 15378:2017',
       desc: 'Primary Packaging Materials for Medicinal Products',
-      img: '/Product_Images/image3.jpeg',
+      img: '/images/certifications/iso-cert-1.jpeg',
       alt: 'ISO 15378 SGS Certification'
     },
     {
       title: 'ISO 9001:2015',
       desc: 'Quality Management Systems Standard',
-      img: '/Product_Images/image4.jpeg',
+      img: '/images/certifications/iso-cert-2.jpeg',
       alt: 'ISO 9001 SGS Certification'
     },
     {
       title: 'US FDA DMF',
       desc: 'US Drug Master File (DMF) Registered Facility',
-      img: '/nl.webp',
+      img: '/images/certifications/cert-nl.webp',
       alt: 'US FDA DMF Registration'
     },
     {
       title: 'Health Canada DMF',
       desc: 'Health Canada Drug Master File (HC DMF) Documentation',
-      img: '/c4.webp',
+      img: '/images/certifications/cert-4.webp',
       alt: 'Health Canada DMF Registered'
     },
     {
       title: 'cGMP Compliant',
       desc: 'Current Good Manufacturing Practice Compliant Facility',
-      img: '/c5.webp',
+      img: '/images/certifications/cert-5.webp',
       alt: 'cGMP Compliance'
     }
   ]

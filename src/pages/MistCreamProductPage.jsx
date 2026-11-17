@@ -29,24 +29,24 @@ export default function MistCreamProductPage({ onNavigate }) {
 
   // Carousel images (Item 8: Replace first image with Rohit's image)
   const carouselImages = [
-    "/Product_Images/mist_cream_pump.jpg",
-    "/Mist & Cream Pumps.webp"
+    "/images/products/mist-cream-pump.jpg",
+    "/images/products/mist-and-cream-pumps.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Fine Mist Pump 20mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Cream Pump 24mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Skincare Bottle Setup" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Ribbed Cap Finish" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Smooth Cap Finish" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_31_14 AM.webp", label: "Double Wall Protection" }
+    { src: "/images/products/mist-cream-model.webp", label: "Fine Mist Pump 20mm" },
+    { src: "/images/products/mist-cream-model.webp", label: "Cream Pump 24mm" },
+    { src: "/images/products/mist-cream-model.webp", label: "Skincare Bottle Setup" },
+    { src: "/images/products/mist-cream-model.webp", label: "Ribbed Cap Finish" },
+    { src: "/images/products/mist-cream-model.webp", label: "Smooth Cap Finish" },
+    { src: "/images/products/mist-cream-model.webp", label: "Double Wall Protection" }
   ]
 
   // Graceful fallback for missing local images
   const handleImageError = (e, label) => {
     if (e.target.src.includes('mist_cream_pump_main.webp')) {
-      e.target.src = '/Mist & Cream Pumps.webp'
+      e.target.src = '/images/products/mist-and-cream-pumps.webp'
       return
     }
     e.target.style.display = 'none'
@@ -82,8 +82,8 @@ export default function MistCreamProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -96,7 +96,7 @@ export default function MistCreamProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Product_Images/mist_cream_pump.jpg'), url('/Mist & Cream Pumps.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/mist-and-cream-pumps.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           position: 'relative',
@@ -277,7 +277,7 @@ export default function MistCreamProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

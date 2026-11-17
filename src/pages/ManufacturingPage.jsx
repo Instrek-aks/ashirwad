@@ -60,7 +60,7 @@ export default function ManufacturingPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/b2.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/facility/facility-2.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -123,11 +123,11 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/quality/2.webp" 
+                  src="/images/quality/quality-2.webp" 
                   alt="Manufacturing Quality Control Process" 
                   onError={(e) => {
-                    if (e.target.src !== window.location.origin + '/b1.webp') {
-                      e.target.src = '/b1.webp'
+                    if (e.target.src !== window.location.origin + '/images/facility/facility-1.webp') {
+                      e.target.src = '/images/facility/facility-1.webp'
                     } else {
                       handleImageError(e, "Manufacturing Quality Control Process")
                     }
@@ -149,7 +149,7 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/2.webp" 
+                  src="/images/facility/manufacturing-2.webp" 
                   alt="Ashirwad Plastics Manufacturing Cleanroom" 
                   onError={(e) => handleImageError(e, "Facility Cleanroom")}
                 />
@@ -184,7 +184,7 @@ export default function ManufacturingPage({ onNavigate }) {
             {/* Card 1: Production Line Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/b3.webp" 
+                src="/images/facility/facility-3.webp" 
                 alt="Plastic Containers Production Line" 
                 onError={(e) => handleImageError(e, "Plastic Containers Line")}
               />
@@ -281,7 +281,7 @@ export default function ManufacturingPage({ onNavigate }) {
             {/* Card 4: Company Floor Image */}
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/3.webp" 
+                src="/images/facility/manufacturing-3.webp" 
                 alt="Production Company Floor" 
                 onError={(e) => handleImageError(e, "Company Floor")}
               />
@@ -313,7 +313,7 @@ export default function ManufacturingPage({ onNavigate }) {
             <div className="mfg-people-right">
               <div className="mfg-people-img-box">
                 <img 
-                  src="/s7.webp" 
+                  src="/images/markets/cta-banner-bg.webp" 
                   alt="Ashirwad Plastics Workforce Team" 
                   onError={(e) => handleImageError(e, "Workforce Team")}
                 />

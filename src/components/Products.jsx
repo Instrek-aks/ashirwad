@@ -6,65 +6,65 @@ const productsList = [
     id: 'ophthalmic',
     name: 'Ophthalmic Delivery System',
     desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
-    img: '/Product_Images/image10.jpeg',
+    img: '/images/products/pharma-pack.jpeg',
     cover: true
   },
   {
     id: 'nasal',
     name: 'Nasal Delivery System',
     desc: 'Advanced nasal dispensing for consistent dosing, convenience, & product integrity.',
-    img: '/https_/home prod/Nasal Delivery System.webp',
+    img: '/images/products/home/nasal-delivery-system.webp',
     cover: true
   },
   {
     id: 'tablet',
     name: 'Tablet Containers & Closures',
     desc: 'Secure, durable packaging for safe storage & protection of solid-dose products.',
-    img: '/https_/home prod/Tablet Containers & Closures.webp',
+    img: '/images/products/home/tablet-containers-closures.webp',
     cover: true
   },
   {
     id: 'measuring',
-    name: 'Measuring Caps & Oral Droppers',
+    name: 'Measuring Caps',
     desc: 'Accurate, user-friendly dispensing for liquid pharmaceutical formulations.',
-    img: '/https_/home prod/Measuring Caps & Oral Droppers.webp'
+    img: '/images/products/home/measuring-caps-oral-droppers.webp'
   },
   {
     id: 'dropper',
-    name: 'Glass Droppers',
+    name: 'Oral & Glass Droppers',
     desc: 'Premium glass droppers for controlled dispensing and enhanced compatibility.',
-    img: '/https_/home prod/Glass Droppers.webp'
+    img: '/images/products/home/glass-droppers.webp'
   },
   {
     id: 'dispenser',
     name: 'Dispenser Pumps',
     desc: 'Reliable pump systems for efficient, controlled liquid dispensing.',
-    img: '/https_/home prod/Dispenser Pumps.webp'
+    img: '/images/products/home/dispenser-pumps.webp'
   },
   {
     id: 'trigger',
     name: 'Trigger Pumps',
     desc: 'Durable and ergonomically designed trigger pumps for industrial and healthcare liquids.',
-    img: '/Trigger Pumps.webp'
+    img: '/images/products/trigger-pumps.webp'
   },
   {
     id: 'flipoff',
     name: 'Flip off Seals',
     desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
-    img: '/https_/home prod/Flip off Seals.webp'
+    img: '/images/products/home/flip-off-seals.webp'
   },
   {
     id: 'mist',
     name: 'Mist & Cream Pumps',
     desc: 'Precision-engineered mist and cream pumps for smooth, consistent dispensing.',
-    img: '/Product_Images/mist_cream_pump.jpg',
-    fallbackImg: '/Mist & Cream Pumps.webp'
+    img: '/images/products/mist-cream-pump.jpg',
+    fallbackImg: '/images/products/mist-and-cream-pumps.webp'
   },
   {
     id: 'caps',
     name: 'Caps and Closures',
     desc: 'A wide range of closures for safety, protection, and product integrity.',
-    img: '/https_/home prod/Caps and Closures.webp'
+    img: '/images/products/home/caps-and-closures.webp'
   }
 ]
 

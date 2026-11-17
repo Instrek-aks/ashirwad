@@ -373,7 +373,7 @@ export default function BlogManager({ onEditBlog, onCreateNew, token, onNavigate
                       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <div style={{ width: '48px', height: '36px', borderRadius: '4px', overflow: 'hidden', backgroundColor: '#F1F5F9', flexShrink: 0, border: '1px solid #E2E8F0' }}>
                           <img
-                            src={b.coverImage || '/Product_Images/32.png'}
+                            src={b.coverImage || '/images/products/cleanroom-facility.png'}
                             alt={b.title}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />

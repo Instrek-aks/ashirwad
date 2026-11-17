@@ -1591,7 +1591,7 @@ export default function AdminPage({ onNavigate }) {
           
           <div style={{ textAlign: 'center', marginBottom: '28px' }}>
             <img
-              src="/logo.webp"
+              src="/images/brand/logo.webp"
               alt="Logo"
               style={{ height: '36px', width: 'auto', objectFit: 'contain', margin: '0 auto 16px', display: 'block' }}
             />
@@ -1766,7 +1766,7 @@ export default function AdminPage({ onNavigate }) {
               {/* Brand Header: Logo centered */}
               <div style={{ height: '56px', padding: sidebarCollapsed ? '0 8px' : '0 20px', borderBottom: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
-                  src={sidebarCollapsed ? "/logo-icon.webp" : "/logo.webp"}
+                  src={sidebarCollapsed ? "/images/brand/logo-icon.webp" : "/images/brand/logo.webp"}
                   alt="Logo"
                   style={{
                     height: sidebarCollapsed ? '24px' : '26px',
@@ -3268,7 +3268,7 @@ export default function AdminPage({ onNavigate }) {
                     <div style={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
                       <div style={{ backgroundColor: '#ffffff', padding: '16px 20px', textAlign: 'left', borderBottom: '3px solid #2563EB' }}>
                         <img
-                          src="/logo-horizontal.png"
+                          src="/images/brand/logo-horizontal.png"
                           alt="Ashirwad Plastics"
                           style={{ height: '30px', width: 'auto', display: 'block', border: 0 }}
                         />
@@ -3351,7 +3351,7 @@ export default function AdminPage({ onNavigate }) {
                     <div style={{ maxWidth: '620px', margin: '0 auto', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
                       <div style={{ backgroundColor: '#ffffff', padding: '20px 32px', textAlign: 'left', borderBottom: '3px solid #2563EB' }}>
                         <img
-                          src="/logo-horizontal.png"
+                          src="/images/brand/logo-horizontal.png"
                           alt="Ashirwad Plastics"
                           style={{ height: '36px', width: 'auto', display: 'block', border: 0 }}
                         />

@@ -3,15 +3,15 @@ import GalleryModal from './GalleryModal';
 
 // Preset packaging images available in the project for instant selection
 const PRESET_IMAGES = [
-  { label: '32mm Dispenser Pump', url: '/Product_Images/32.png' },
-  { label: '36mm Nasal Spray', url: '/Product_Images/36.png' },
-  { label: '38mm Tablet Container', url: '/Product_Images/38.png' },
-  { label: 'Sustainability & ESG', url: '/sustanibility.webp' },
-  { label: 'R&D Laboratory', url: '/reseach.webp' },
-  { label: 'Quality Cleanroom', url: '/quality.webp' },
-  { label: 'Ophthalmic Precision Dropper', url: '/ophthalmic_user.webp' },
-  { label: 'Global Company Aerial', url: '/global/1.webp' },
-  { label: 'High Speed Production', url: '/b4.webp' }
+  { label: '32mm Dispenser Pump', url: '/images/products/cleanroom-facility.png' },
+  { label: '36mm Nasal Spray', url: '/images/products/precision-molding.png' },
+  { label: '38mm Tablet Container', url: '/images/products/about-packaging.png' },
+  { label: 'Sustainability & ESG', url: '/images/sustainability/sustainability-cover.webp' },
+  { label: 'R&D Laboratory', url: '/images/rd/research-cover.webp' },
+  { label: 'Quality Cleanroom', url: '/images/quality/quality-cover.webp' },
+  { label: 'Ophthalmic Precision Dropper', url: '/images/products/ophthalmic/ophthalmic-user.webp' },
+  { label: 'Global Company Aerial', url: '/images/global/global-1.webp' },
+  { label: 'High Speed Production', url: '/images/facility/facility-4.webp' }
 ];
 
 const CATEGORIES = [
@@ -75,7 +75,7 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
   const [slug, setSlug] = useState(blog?.slug || '');
   const [excerpt, setExcerpt] = useState(blog?.excerpt || '');
   const [category, setCategory] = useState(blog?.category || 'Packaging Innovation');
-  const [coverImage, setCoverImage] = useState(blog?.coverImage || '/Product_Images/32.png');
+  const [coverImage, setCoverImage] = useState(blog?.coverImage || '/images/products/cleanroom-facility.png');
   const [readTime, setReadTime] = useState(blog?.readTime || '1 min read');
   const [readTimeManual, setReadTimeManual] = useState(Boolean(blog?.readTime));
   const [authorName, setAuthorName] = useState(blog?.author?.name || 'Ashirwad Plastics Editorial Team');
@@ -97,10 +97,10 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
   const [showImageModal, setShowImageModal] = useState(false);
   const [galleryTarget, setGalleryTarget] = useState(null); // 'cover' | 'inline1' | 'inline2' | null
   const [imageData, setImageData] = useState({
-    url: '/Product_Images/32.png',
+    url: '/images/products/cleanroom-facility.png',
     alt: '32mm Dispenser Pump',
     caption: '',
-    url2: '/Product_Images/36.png',
+    url2: '/images/products/precision-molding.png',
     alt2: '36mm Nasal Spray',
     caption2: '',
     layout: 'full'
@@ -385,10 +385,10 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
     setImageData((prev) => ({
       ...prev,
       layout: prev.layout || 'full',
-      url: prev.url || '/Product_Images/32.png',
+      url: prev.url || '/images/products/cleanroom-facility.png',
       alt: prev.alt || '32mm Dispenser Pump',
       caption: prev.caption || '',
-      url2: prev.url2 || '/Product_Images/36.png',
+      url2: prev.url2 || '/images/products/precision-molding.png',
       alt2: prev.alt2 || '36mm Nasal Spray',
       caption2: prev.caption2 || ''
     }));
@@ -417,8 +417,8 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
     if (!imageData.url) return;
     let snippet = '';
     if (imageData.layout === 'grid2') {
-      const url1 = imageData.url || '/Product_Images/32.png';
-      const url2 = imageData.url2 || '/Product_Images/36.png';
+      const url1 = imageData.url || '/images/products/cleanroom-facility.png';
+      const url2 = imageData.url2 || '/images/products/precision-molding.png';
       const alt1 = imageData.alt || 'Packaging Component 1';
       const alt2 = imageData.alt2 || 'Packaging Component 2';
       const cap1 = imageData.caption;
@@ -534,7 +534,7 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
       author: {
         name: authorName.trim(),
         role: authorRole.trim(),
-        avatar: '/logo-icon-192.png'
+        avatar: '/images/brand/logo-icon-192.png'
       },
       tags,
       isPublished: publishStatus,
@@ -1168,7 +1168,7 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
                   type="text"
                   value={imageData.url}
                   onChange={(e) => setImageData({ ...imageData, url: e.target.value })}
-                  placeholder="/Product_Images/32.png"
+                  placeholder="/images/products/cleanroom-facility.png"
                   style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '12px', backgroundColor: '#FFFFFF', boxSizing: 'border-box', outline: 'none' }}
                 />
 
@@ -1216,7 +1216,7 @@ export default function BlogEditor({ blog, onSave, onCancel, token }) {
                     type="text"
                     value={imageData.url2}
                     onChange={(e) => setImageData({ ...imageData, url2: e.target.value })}
-                    placeholder="/Product_Images/36.png"
+                    placeholder="/images/products/precision-molding.png"
                     style={{ width: '100%', padding: '7px 10px', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '12px', backgroundColor: '#FFFFFF', boxSizing: 'border-box', outline: 'none' }}
                   />
 

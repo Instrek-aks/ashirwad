@@ -29,17 +29,17 @@ export default function TriggerProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Trigger Pumps.webp"
+    "/images/products/trigger-pumps.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Trigger Pump Red Variant" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Trigger Pump Blue Variant" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Trigger Pump Green Variant" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Adjustable Nozzle Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Dip Tube Connection" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_27_10 AM.webp", label: "Ergonomic Handle Grip" }
+    { src: "/images/products/trigger-pump-model.webp", label: "Trigger Pump Red Variant" },
+    { src: "/images/products/trigger-pump-model.webp", label: "Trigger Pump Blue Variant" },
+    { src: "/images/products/trigger-pump-model.webp", label: "Trigger Pump Green Variant" },
+    { src: "/images/products/trigger-pump-model.webp", label: "Adjustable Nozzle Cap" },
+    { src: "/images/products/trigger-pump-model.webp", label: "Dip Tube Connection" },
+    { src: "/images/products/trigger-pump-model.webp", label: "Ergonomic Handle Grip" }
   ]
 
   // Graceful fallback for missing local images
@@ -77,8 +77,8 @@ export default function TriggerProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -91,7 +91,7 @@ export default function TriggerProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Trigger Pumps.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/trigger-pumps.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -265,7 +265,7 @@ export default function TriggerProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

@@ -58,7 +58,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/r&d/1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/rd/rd-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -119,7 +119,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/r&d/2.webp" 
+                  src="/images/rd/rd-2.webp" 
                   alt="Research and Design Lab" 
                   onError={(e) => handleImageError(e, "Research and Design Lab")}
                 />
@@ -137,7 +137,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
             
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/b3.webp" 
+                src="/images/facility/facility-3.webp" 
                 alt="State of the Art Facility" 
                 onError={(e) => handleImageError(e, "State of the Art Facility")}
               />
@@ -206,7 +206,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
 
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/s7.webp" 
+                src="/images/markets/cta-banner-bg.webp" 
                 alt="Product Testing Inspection" 
                 onError={(e) => handleImageError(e, "Product Testing Lab")}
               />
@@ -224,7 +224,7 @@ export default function ResearchDevelopmentPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/r&d/3.webp" 
+                  src="/images/rd/rd-3.webp" 
                   alt="Multidisciplinary Team" 
                   onError={(e) => handleImageError(e, "Multidisciplinary Team")}
                 />

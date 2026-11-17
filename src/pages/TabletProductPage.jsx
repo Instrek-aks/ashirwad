@@ -29,17 +29,17 @@ export default function TabletProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Tablet Containers & Closures/banner.webp"
+    "/images/products/tablet-containers/banner.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Tablet Containers & Closures/Products/1.webp", label: "Pure Form. Trusted Protection. - Tablet Container" },
-    { src: "/Tablet Containers & Closures/Products/2.webp", label: "Precision You Can Trust - Dosing & Storage" },
-    { src: "/Tablet Containers & Closures/Products/3.webp", label: "Precision in Every Drop, Safety in Every Use" },
-    { src: "/Tablet Containers & Closures/Products/4.webp", label: "Better Design, Smarter Care - Bottle Assembly" },
-    { src: "/Tablet Containers & Closures/Products/5.webp", label: "Safe, Secure, Reliable - Exploded Cap View" },
-    { src: "/Tablet Containers & Closures/Products/6.webp", label: "Protecting What Matters - Multi-Size Range" }
+    { src: "/images/products/tablet-containers/product-1.webp", label: "Pure Form. Trusted Protection. - Tablet Container" },
+    { src: "/images/products/tablet-containers/product-2.webp", label: "Precision You Can Trust - Dosing & Storage" },
+    { src: "/images/products/tablet-containers/product-3.webp", label: "Precision in Every Drop, Safety in Every Use" },
+    { src: "/images/products/tablet-containers/product-4.webp", label: "Better Design, Smarter Care - Bottle Assembly" },
+    { src: "/images/products/tablet-containers/product-5.webp", label: "Safe, Secure, Reliable - Exploded Cap View" },
+    { src: "/images/products/tablet-containers/product-6.webp", label: "Protecting What Matters - Multi-Size Range" }
   ]
 
   // Graceful fallback for missing local images
@@ -77,8 +77,8 @@ export default function TabletProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -91,7 +91,7 @@ export default function TabletProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Tablet Containers & Closures/banner.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/tablet-containers.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -289,7 +289,7 @@ export default function TabletProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

@@ -58,7 +58,7 @@ export default function HomeCarePage({ onNavigate }) {
       <section 
         className="pharma-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/h1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/markets/homecare-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -123,7 +123,7 @@ export default function HomeCarePage({ onNavigate }) {
             <div className="overview-right-col">
               <div className="world-map-container">
                 <img 
-                  src="/map.webp" 
+                  src="/images/global/world-map.webp" 
                   alt="Ashirwad Plastics Global Presence Map" 
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
                 />
@@ -142,7 +142,7 @@ export default function HomeCarePage({ onNavigate }) {
             {/* Card 1: Closures Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/h2.webp" 
+                src="/images/markets/homecare-2.webp" 
                 alt="Home Care Bottles" 
                 onError={(e) => handleImageError(e, "Home Care Bottles")}
               />
@@ -189,7 +189,7 @@ export default function HomeCarePage({ onNavigate }) {
             {/* Card 4: Product Showcase Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/h3.webp" 
+                src="/images/markets/homecare-3.webp" 
                 alt="Product Displays" 
                 onError={(e) => handleImageError(e, "Product Displays")}
               />
@@ -209,10 +209,10 @@ export default function HomeCarePage({ onNavigate }) {
             <div className="pharma-products-grid">
                
               {[
-                { name: "Tablet Containers & Closures", desc: "Secure, moisture-barrier packaging for vitamins, dietary supplements, and solid dose formulations.", img: "/https_/home prod/Tablet Containers & Closures.webp", path: "product-tablet" },
-                { name: "Measuring Caps & Oral Droppers", desc: "Accurate, user-friendly dosing systems for liquid nutraceutical and dietary formulations.", img: "/https_/home prod/Measuring Caps & Oral Droppers.webp", path: "product-measuring" },
-                { name: "Glass Droppers", desc: "Premium glass dropper bottles for controlled dispensing of herbal extracts, tinctures, and oils.", img: "/https_/home prod/Glass Droppers.webp", path: "product-glass-dropper" },
-                { name: "Caps & Closures", desc: "Child-resistant (CRC) and tamper-evident closures ensuring complete safety and seal integrity.", img: "/https_/home prod/Caps and Closures.webp", path: "product-caps-closures" }
+                { name: "Tablet Containers & Closures", desc: "Secure, moisture-barrier packaging for vitamins, dietary supplements, and solid dose formulations.", img: "/images/products/home/tablet-containers-closures.webp", path: "product-tablet" },
+                { name: "Measuring Caps", desc: "Accurate, user-friendly dosing systems for liquid nutraceutical and dietary formulations.", img: "/images/products/home/measuring-caps-oral-droppers.webp", path: "product-measuring" },
+                { name: "Oral & Glass Droppers", desc: "Premium glass dropper bottles for controlled dispensing of herbal extracts, tinctures, and oils.", img: "/images/products/home/glass-droppers.webp", path: "product-glass-dropper" },
+                { name: "Caps & Closures", desc: "Child-resistant (CRC) and tamper-evident closures ensuring complete safety and seal integrity.", img: "/images/products/home/caps-and-closures.webp", path: "product-caps-closures" }
               ].map((prod, idx) => (
                 <div key={idx} className="pharma-product-card">
                   <div className="product-img-box">
@@ -278,7 +278,7 @@ export default function HomeCarePage({ onNavigate }) {
               <div className="why-partner-right">
                 <div className="why-partner-img-wrapper">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad Plastics Team" 
                     onError={(e) => handleImageError(e, "Ashirwad Plastics Team")}
                   />

@@ -258,8 +258,8 @@ export default function ReachOut() {
                         <option value="nasal">Nasal Delivery Systems</option>
                         <option value="tablet">Tablet Containers &amp; Closures</option>
                         <option value="flipoff">Flip-Off Seals</option>
-                        <option value="measuring">Measuring Caps &amp; Oral Droppers</option>
-                        <option value="glass-dropper">Glass Droppers</option>
+                        <option value="measuring">Measuring Caps</option>
+                        <option value="glass-dropper">Oral &amp; Glass Droppers</option>
                         <option value="dispenser">Dispenser Pumps</option>
                         <option value="trigger">Trigger Pumps</option>
                         <option value="mist-cream">Mist &amp; Cream Pumps</option>

@@ -30,15 +30,15 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Product_Images/image7.webp"
+    "/images/products/ophthalmic/ophthalmic-bottle.webp"
   ]
 
   // Gallery images (removed 3rd and 5th items as per Change Request)
   const galleryImages = [
-    { src: "/d1.webp", label: "Ophthalmic Delivery System" },
-    { src: "/d2.webp", label: "Ophthalmic Bottle 5ml" },
-    { src: "/d4.webp", label: "Ophthalmic Bottle 10ml" },
-    { src: "/d6.webp", label: "CRC Closure Detail" }
+    { src: "/images/products/ophthalmic/dropper-1.webp", label: "Ophthalmic Delivery System" },
+    { src: "/images/products/ophthalmic/dropper-2.webp", label: "Ophthalmic Bottle 5ml" },
+    { src: "/images/products/ophthalmic/dropper-4.webp", label: "Ophthalmic Bottle 10ml" },
+    { src: "/images/products/ophthalmic/dropper-6.webp", label: "CRC Closure Detail" }
   ]
 
   // Graceful fallback for missing local images
@@ -76,8 +76,8 @@ export default function OphthalmicProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -90,7 +90,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Product_Images/image7-hero.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/ophthalmic-delivery-system.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           position: 'relative',
@@ -203,7 +203,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
               <a 
-                href="/Ashirwad Plastics - website content.pdf" 
+                href="/docs/ashirwad-plastics-website-content.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="op-download-btn"
@@ -328,7 +328,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

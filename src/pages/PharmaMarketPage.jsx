@@ -59,7 +59,7 @@ export default function PharmaMarketPage({ onNavigate }) {
       <section 
         className="pharma-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/p1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/markets/pharma-hero.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -124,7 +124,7 @@ export default function PharmaMarketPage({ onNavigate }) {
             <div className="overview-right-col">
               <div className="world-map-container">
                 <img 
-                  src="/map.webp" 
+                  src="/images/global/world-map.webp" 
                   alt="Ashirwad Plastics Global Presence Map" 
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
                 />
@@ -144,7 +144,7 @@ export default function PharmaMarketPage({ onNavigate }) {
             {/* Card 1: Closures Image Card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/Tablet%20Containers%20&%20Closures/banner.webp" 
+                src="/images/products/tablet-containers/banner.webp" 
                 alt="Pharmaceutical Closures" 
                 onError={(e) => handleImageError(e, "Pharmaceutical Closures")}
               />
@@ -191,11 +191,11 @@ export default function PharmaMarketPage({ onNavigate }) {
             {/* Card 4: Product showcase image card */}
             <div className="feature-card feature-img-card">
               <img 
-                src="/Product_Images/image7.webp" 
+                src="/images/products/ophthalmic/ophthalmic-bottle.webp" 
                 alt="Ophthalmic & Pharma Packaging Lineup" 
                 style={{ objectPosition: 'right center' }}
                 onError={(e) => {
-                  e.target.src = "/s2.webp";
+                  e.target.src = "/images/markets/pharma-section-2.webp";
                 }}
               />
             </div>
@@ -217,10 +217,10 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/Product_Images/image10.jpeg" 
+                    src="/images/products/pharma-pack.jpeg" 
                     alt="Ophthalmic Delivery System" 
                     onError={(e) => {
-                      e.target.src = "/s3.webp";
+                      e.target.src = "/images/markets/pharma-section-3.webp";
                     }}
                   />
                 </div>
@@ -243,7 +243,7 @@ export default function PharmaMarketPage({ onNavigate }) {
                     src="/Product_Images/image26.jpeg" 
                     alt="Nasal Delivery System" 
                     onError={(e) => {
-                      e.target.src = "/s5.webp";
+                      e.target.src = "/images/markets/pharma-section-5.webp";
                     }}
                   />
                 </div>
@@ -263,7 +263,7 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/s6.webp" 
+                    src="/images/markets/pharma-section-6.webp" 
                     alt="Tablet Container" 
                     onError={(e) => handleImageError(e, "Tablet Container")}
                   />
@@ -284,7 +284,7 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/o10.webp" 
+                    src="/images/markets/showcase-10.webp" 
                     alt="Flip Off Seals" 
                     onError={(e) => handleImageError(e, "Flip Off Seals")}
                   />
@@ -305,13 +305,13 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/o4.webp" 
-                    alt="Measuring Caps & Oral Droppers" 
-                    onError={(e) => handleImageError(e, "Measuring Caps & Oral Droppers")}
+                    src="/images/markets/showcase-4.webp" 
+                    alt="Measuring Caps" 
+                    onError={(e) => handleImageError(e, "Measuring Caps")}
                   />
                 </div>
                 <div className="product-info-box">
-                  <h3 className="product-info-title">Measuring Caps & Oral Droppers</h3>
+                  <h3 className="product-info-title">Measuring Caps</h3>
                   <p className="product-info-desc">Accurate, user-friendly dispensing for liquid pharmaceutical formulations.</p>
                 </div>
                 <button className="product-card-arrow-btn" onClick={() => onNavigate('contact')}>
@@ -326,7 +326,7 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="pharma-product-card">
                 <div className="product-img-box">
                   <img 
-                    src="/o9.webp" 
+                    src="/images/markets/showcase-9.webp" 
                     alt="Caps and Closures" 
                     onError={(e) => handleImageError(e, "Caps and Closures")}
                   />
@@ -418,7 +418,7 @@ export default function PharmaMarketPage({ onNavigate }) {
               <div className="why-partner-right">
                 <div className="why-partner-img-wrapper">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad Plastics Team" 
                     onError={(e) => handleImageError(e, "Ashirwad Plastics Team")}
                   />

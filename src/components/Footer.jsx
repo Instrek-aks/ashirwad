@@ -34,7 +34,7 @@ export default function Footer({ page, onNavigate }) {
           width: '100%',
           minHeight: '480px',
           height: 'clamp(460px, 48vw, 680px)',
-          backgroundImage: 'linear-gradient(180deg, rgba(13, 28, 61, 0) 0%, rgba(13, 28, 61, 0) 35%, rgba(13, 28, 61, 0.45) 60%, rgba(13, 28, 61, 0.82) 82%, #0D1C3D 100%), url(/factory-aerial.webp)',
+          backgroundImage: 'linear-gradient(180deg, rgba(13, 28, 61, 0) 0%, rgba(13, 28, 61, 0) 35%, rgba(13, 28, 61, 0.45) 60%, rgba(13, 28, 61, 0.82) 82%, #0D1C3D 100%), url(/images/hero/reachout-bg.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
@@ -88,7 +88,7 @@ export default function Footer({ page, onNavigate }) {
                 onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
               >
-                <img src="/logo-white.webp" alt="Ashirwad Plastics Logo" style={{ height: "42px", width: "auto", objectFit: "contain", display: "block" }} />
+                <img src="/images/brand/logo-white.webp" alt="Ashirwad Plastics Logo" style={{ height: "42px", width: "auto", objectFit: "contain", display: "block" }} />
               </a>
             </div>
             <p className="footer-about-text" style={{ fontSize: '13px', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '24px', maxWidth: '280px' }}>
@@ -142,8 +142,8 @@ export default function Footer({ page, onNavigate }) {
               <li><a href="/products/nasal" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery Systems</a></li>
               <li><a href="/products/tablet" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a></li>
               <li><a href="/products/flip-off" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a></li>
-              <li><a href="/products/measuring" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-measuring')}>Measuring Caps &amp; Oral Droppers</a></li>
-              <li><a href="/products/glass-dropper" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-glass-dropper')}>Glass Droppers</a></li>
+              <li><a href="/products/measuring" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-measuring')}>Measuring Caps</a></li>
+              <li><a href="/products/glass-dropper" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-glass-dropper')}>Oral &amp; Glass Droppers</a></li>
               <li><a href="/products/dispenser" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a></li>
               <li><a href="/products/trigger" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a></li>
               <li><a href="/products/mist-cream" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a></li>

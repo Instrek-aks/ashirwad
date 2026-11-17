@@ -88,7 +88,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
       title: 'Advancing Ophthalmic & Nasal Delivery: Precision Cleanroom Molding in Healthcare',
       slug: 'advancing-ophthalmic-nasal-delivery-precision-cleanroom-molding',
       category: 'Pharmaceutical Packaging',
-      coverImage: '/blog-stethoscope.webp',
+      coverImage: '/images/blog/blog-stethoscope.webp',
       readTime: '6 min read',
       publishedAt: '2026-01-20T09:00:00.000Z'
     },
@@ -97,7 +97,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
       title: 'The Future of Sustainable Polymers: Mono-Material Barrier Systems in Pharma',
       slug: 'future-of-sustainable-polymers-mono-material-barrier-systems',
       category: 'Sustainability & R&D',
-      coverImage: '/blog-card-1.webp',
+      coverImage: '/images/blog/blog-card-1.webp',
       readTime: '5 min read',
       publishedAt: '2026-01-18T10:00:00.000Z'
     },
@@ -106,7 +106,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
       title: 'Regulatory Compliance & DMF Filings: Safeguarding Child-Resistant Closures',
       slug: 'regulatory-compliance-dmf-filings-child-resistant-closures',
       category: 'Quality & Compliance',
-      coverImage: '/blog-card-2.webp',
+      coverImage: '/images/blog/blog-card-2.webp',
       readTime: '6 min read',
       publishedAt: '2026-01-15T10:00:00.000Z'
     }
@@ -125,7 +125,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
   const article = blogData || {
     title: 'Lorem ipsum dolor sit amet consectetur. Nisl lorem vulputate.',
     excerpt: 'Lorem ipsum dolor sit amet consectetur. Risus ultrices eleifend dolor lacus ullamcorper. In magna lobortis adipiscing sed purus vel neque a amet. Quisque purus tincidunt risus consectetur pulvinar faucibus tincidunt massa. Turpis quis cras bibendum lorem ac ipsum phasellus at.',
-    coverImage: '/blog-stethoscope.webp',
+    coverImage: '/images/blog/blog-stethoscope.webp',
     publishedAt: '2026-01-20T09:00:00.000Z',
     readTime: '6 min read'
   };
@@ -161,7 +161,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
               }}
             >
               <img
-                src={article.coverImage || '/blog-stethoscope.webp'}
+                src={article.coverImage || '/images/blog/blog-stethoscope.webp'}
                 alt={article.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
@@ -371,7 +371,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
                 }}
               >
                 <img
-                  src="/blog-stethoscope.webp"
+                  src="/images/blog/blog-stethoscope.webp"
                   alt="Ready to elevate team strategy"
                   style={{
                     width: '100%',
@@ -484,7 +484,7 @@ export default function BlogDetailPage({ slug, onNavigate }) {
                   }}
                 >
                   <img
-                    src={item.coverImage || `/blog-card-${(idx % 3) + 1}.webp`}
+                    src={item.coverImage || `/images/blog/blog-card-${(idx % 3) + 1}.webp`}
                     alt={item.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />

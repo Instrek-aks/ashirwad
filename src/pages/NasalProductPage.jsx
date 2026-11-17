@@ -30,17 +30,17 @@ export default function NasalProductPage({ onNavigate }) {
 
   // Carousel images (Nasal spray focus)
   const carouselImages = [
-    "/Nasal Delivery System/Products/17.png",
+    "/images/products/nasal/product-17.png",
   ]
 
   // Gallery images (Item 19: 6 Nasal Delivery System product images)
   const galleryImages = [
-    { src: "/Nasal Delivery System/Products/19 (1).png", label: "Nasal Delivery System 19 (1)" },
-    { src: "/Nasal Delivery System/Products/19 (2).png", label: "Nasal Delivery System 19 (2)" },
-    { src: "/Nasal Delivery System/Products/19 (3).png", label: "Nasal Delivery System 19 (3)" },
-    { src: "/Nasal Delivery System/Products/19 (4).png", label: "Nasal Delivery System 19 (4)" },
-    { src: "/Nasal Delivery System/Products/19 (5).png", label: "Nasal Delivery System 19 (5)" },
-    { src: "/Nasal Delivery System/Products/19 (6).png", label: "Nasal Delivery System 19 (6)" }
+    { src: "/images/products/nasal/variant-19-1.png", label: "Nasal Delivery System 19 (1)" },
+    { src: "/images/products/nasal/variant-19-2.png", label: "Nasal Delivery System 19 (2)" },
+    { src: "/images/products/nasal/variant-19-3.png", label: "Nasal Delivery System 19 (3)" },
+    { src: "/images/products/nasal/variant-19-4.png", label: "Nasal Delivery System 19 (4)" },
+    { src: "/images/products/nasal/variant-19-5.png", label: "Nasal Delivery System 19 (5)" },
+    { src: "/images/products/nasal/variant-19-6.png", label: "Nasal Delivery System 19 (6)" }
   ]
 
   // Graceful fallback for missing local images
@@ -82,8 +82,8 @@ export default function NasalProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -96,7 +96,7 @@ export default function NasalProductPage({ onNavigate }) {
       <section 
         className="np-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Nasal Delivery System/banner.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/nasal-delivery-system.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -324,7 +324,7 @@ export default function NasalProductPage({ onNavigate }) {
               <div className="np-why-right">
                 <div className="np-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

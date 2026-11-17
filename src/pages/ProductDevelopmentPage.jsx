@@ -28,7 +28,7 @@ export default function ProductDevelopmentPage({ onNavigate }) {
       <section 
         className="dev-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/a.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/about/product-dev.webp')",
           position: 'relative',
           minHeight: '480px'
         }}

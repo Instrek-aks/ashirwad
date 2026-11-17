@@ -127,7 +127,7 @@ export default function CareerPage({ onNavigate }) {
       <section 
         className="career-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/career/banner.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/images/career/banner.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -295,7 +295,7 @@ export default function CareerPage({ onNavigate }) {
             <div className="promise-right">
               <div className="promise-img-box">
                 <img 
-                  src="/career/1.webp" 
+                  src="/images/career/career-1.webp" 
                   alt="Ashirwad laboratory testing" 
                   onError={(e) => handleImageError(e, "Laboratory Testing")}
                 />

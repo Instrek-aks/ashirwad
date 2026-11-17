@@ -59,7 +59,7 @@ export default function GlobalPresencePage({ onNavigate }) {
       <section 
         className="gp-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/global/1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/images/global/global-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -119,7 +119,7 @@ export default function GlobalPresencePage({ onNavigate }) {
             <div className="gp-overview-right">
               <div className="gp-map-container" style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: '0 12px 36px rgba(0, 0, 0, 0.08)' }}>
                 <img 
-                  src="/map.webp" 
+                  src="/images/global/world-map.webp" 
                   alt="World Map Distribution" 
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
                   onError={(e) => handleImageError(e, "World Map")}
@@ -139,7 +139,7 @@ export default function GlobalPresencePage({ onNavigate }) {
             {/* Card 1: Hologram Globe Card */}
             <div className="gp-grid-card gp-img-card">
               <img 
-                src="/global/2.webp" 
+                src="/images/global/global-2.webp" 
                 alt="Global Business Hologram" 
                 onError={(e) => handleImageError(e, "Global Hologram")}
               />
@@ -233,7 +233,7 @@ export default function GlobalPresencePage({ onNavigate }) {
             {/* Card 4: Earth Digital Connection Image */}
             <div className="gp-grid-card gp-img-card">
               <img 
-                src="/b6.webp" 
+                src="/images/facility/facility-6.webp" 
                 alt="Earth Digital Connectivity" 
                 onError={(e) => handleImageError(e, "Earth Connections")}
               />

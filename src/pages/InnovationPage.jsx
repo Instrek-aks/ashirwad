@@ -58,7 +58,7 @@ export default function InnovationPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/innovation/1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/innovation/innovation-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -119,11 +119,11 @@ export default function InnovationPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/innovation/2.webp" 
+                  src="/images/innovation/innovation-2.webp" 
                   alt="R&D and Innovation Lab" 
                   onError={(e) => {
-                    if (e.target.src !== window.location.origin + '/innovation/2.webp') {
-                      e.target.src = '/innovation/2.webp'
+                    if (e.target.src !== window.location.origin + '/images/innovation/innovation-2.webp') {
+                      e.target.src = '/images/innovation/innovation-2.webp'
                     } else {
                       handleImageError(e, "R&D and Innovation Lab")
                     }
@@ -143,7 +143,7 @@ export default function InnovationPage({ onNavigate }) {
             
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/Product_Images/36.png" 
+                src="/images/products/precision-molding.png" 
                 alt="Product Enhancement Research" 
                 onError={(e) => handleImageError(e, "Product Enhancement")}
               />
@@ -212,7 +212,7 @@ export default function InnovationPage({ onNavigate }) {
 
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/s7.webp" 
+                src="/images/markets/cta-banner-bg.webp" 
                 alt="Technology Integration checks" 
                 onError={(e) => handleImageError(e, "Technology Integration")}
               />
@@ -230,7 +230,7 @@ export default function InnovationPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/innovation/3.webp" 
+                  src="/images/innovation/innovation-3.webp" 
                   alt="Collaborative Innovation Teams" 
                   onError={(e) => handleImageError(e, "Collaborative Teams")}
                 />

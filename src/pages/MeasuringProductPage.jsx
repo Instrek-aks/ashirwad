@@ -29,17 +29,17 @@ export default function MeasuringProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Measuring Caps & Oral Droppers.webp"
+    "/images/products/measuring-caps-oral-droppers.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Graduated Measuring Cap" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Pediatric Oral Dropper" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Syrup Bottle Assembly" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Cap Inner Lining Thread" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Cleanroom Inspection" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_17_04 AM.webp", label: "Volume Calibration" }
+    { src: "/images/products/measuring-oral-model.webp", label: "Graduated Measuring Cap" },
+    { src: "/images/products/measuring-oral-model.webp", label: "Pediatric Oral Dropper" },
+    { src: "/images/products/measuring-oral-model.webp", label: "Syrup Bottle Assembly" },
+    { src: "/images/products/measuring-oral-model.webp", label: "Cap Inner Lining Thread" },
+    { src: "/images/products/measuring-oral-model.webp", label: "Cleanroom Inspection" },
+    { src: "/images/products/measuring-oral-model.webp", label: "Volume Calibration" }
   ]
 
   // Graceful fallback for missing local images
@@ -77,8 +77,8 @@ export default function MeasuringProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -91,7 +91,7 @@ export default function MeasuringProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Measuring Caps & Oral Droppers.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/measuring-caps-oral-droppers.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -119,9 +119,9 @@ export default function MeasuringProductPage({ onNavigate }) {
               <span className="breadcrumb-separator">&gt;</span>
               <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
               <span className="breadcrumb-separator">&gt;</span>
-              <span className="breadcrumb-active">MEASURING CAPS &amp; ORAL DROPPERS</span>
+              <span className="breadcrumb-active">MEASURING CAPS</span>
             </nav>
-            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Measuring Caps &amp; Oral Droppers</h1>
+            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Measuring Caps</h1>
           </div>
         </div>
       </section>
@@ -269,7 +269,7 @@ export default function MeasuringProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

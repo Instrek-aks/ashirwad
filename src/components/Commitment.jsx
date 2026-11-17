@@ -82,7 +82,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/Product_Images/image17.png" 
+                    src="/images/commitment/commitment-1.png" 
                     alt="Initial Expert Consultation" 
                     onError={(e) => handleImageError(e, "Consultation Team")}
                   />
@@ -106,7 +106,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/Product_Images/image18.png" 
+                    src="/images/commitment/commitment-2.png" 
                     alt="Customized Design Development" 
                     onError={(e) => handleImageError(e, "Design & Development Team")}
                   />
@@ -130,7 +130,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/Product_Images/image19.png" 
+                    src="/images/commitment/commitment-3.png" 
                     alt="Prototype Creation and Approval" 
                     onError={(e) => handleImageError(e, "Prototype Inspection")}
                   />
@@ -154,7 +154,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/Product_Images/image20.webp" 
+                    src="/images/commitment/commitment-4.webp" 
                     alt="High-Quality Production" 
                     onError={(e) => handleImageError(e, "Automated Production")}
                   />
@@ -178,7 +178,7 @@ export default function Commitment() {
               <div className="dev-step-right">
                 <div className="dev-step-img-box">
                   <img 
-                    src="/Product_Images/image21.png" 
+                    src="/images/commitment/commitment-5.png" 
                     alt="Comprehensive Quality Check" 
                     onError={(e) => handleImageError(e, "Quality Assurance")}
                   />

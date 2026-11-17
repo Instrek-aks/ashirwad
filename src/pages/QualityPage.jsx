@@ -60,7 +60,7 @@ export default function QualityPage({ onNavigate }) {
       <section 
         className="mfg-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/quality/1.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/quality/quality-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -121,11 +121,11 @@ export default function QualityPage({ onNavigate }) {
             <div className="mfg-overview-right">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/Product_Images/32.png" 
+                  src="/images/products/cleanroom-facility.png" 
                   alt="Quality Lab Testing" 
                   onError={(e) => {
-                    if (e.target.src !== window.location.origin + '/quality/1.webp') {
-                      e.target.src = '/quality/1.webp'
+                    if (e.target.src !== window.location.origin + '/images/quality/quality-1.webp') {
+                      e.target.src = '/images/quality/quality-1.webp'
                     } else {
                       handleImageError(e, "Quality Lab Testing")
                     }
@@ -148,8 +148,9 @@ export default function QualityPage({ onNavigate }) {
             
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/quality/3.webp" 
+                src="/images/quality/ophthalmic-bottle.webp" 
                 alt="Product Testing Lab" 
+                style={{ objectPosition: 'right center' }}
                 onError={(e) => handleImageError(e, "Product Testing")}
               />
             </div>
@@ -217,7 +218,7 @@ export default function QualityPage({ onNavigate }) {
 
             <div className="mfg-grid-card mfg-img-card">
               <img 
-                src="/s7.webp" 
+                src="/images/markets/cta-banner-bg.webp" 
                 alt="Quality Inspection Checks" 
                 onError={(e) => handleImageError(e, "Inspection Checks")}
               />
@@ -235,7 +236,7 @@ export default function QualityPage({ onNavigate }) {
             <div className="mfg-facility-left">
               <div className="mfg-facility-img-box">
                 <img 
-                  src="/quality/2.webp" 
+                  src="/images/quality/quality-2.webp" 
                   alt="Raw Material Sourcing Quality" 
                   onError={(e) => handleImageError(e, "Raw Material Quality")}
                 />

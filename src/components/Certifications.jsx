@@ -15,23 +15,23 @@ export default function Certifications() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '48px', flexWrap: 'wrap' }}>
           
           <FadeIn>
-            <img src="/Product_Images/image3.jpeg" alt="ISO 15378 SGS Certification" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
+            <img src="/images/certifications/iso-cert-1.jpeg" alt="ISO 15378 SGS Certification" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/Product_Images/image4.jpeg" alt="ISO 9001 SGS Certification" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
+            <img src="/images/certifications/iso-cert-2.jpeg" alt="ISO 9001 SGS Certification" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/nl.webp" alt="US FDA Registration" style={{ height: '55px', maxWidth: '180px', objectFit: 'contain' }} />
+            <img src="/images/certifications/cert-nl.webp" alt="US FDA Registration" style={{ height: '55px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c4.webp" alt="Health Canada Registered" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
+            <img src="/images/certifications/cert-4.webp" alt="Health Canada Registered" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
           <FadeIn>
-            <img src="/c5.webp" alt="GMP Compliant" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
+            <img src="/images/certifications/cert-5.webp" alt="GMP Compliant" style={{ height: '78px', maxWidth: '180px', objectFit: 'contain' }} />
           </FadeIn>
 
         </div>

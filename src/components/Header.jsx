@@ -92,7 +92,7 @@ export default function Header({ page, onNavigate }) {
           style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
         >
           <img
-            src="/logo.webp"
+            src="/images/brand/logo.webp"
             alt="Ashirwad Plastics Logo"
             style={{ height: '38px', width: 'auto', objectFit: 'contain', display: 'block' }}
           />
@@ -114,7 +114,7 @@ export default function Header({ page, onNavigate }) {
           {/* Drawer Top Header for Mobile */}
           <div className="nav-drawer-header">
             <img
-              src="/logo.webp"
+              src="/images/brand/logo.webp"
               alt="Ashirwad Plastics Logo"
               style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
             />
@@ -237,8 +237,8 @@ export default function Header({ page, onNavigate }) {
                 <a href="/products/nasal" onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery System</a>
                 <a href="/products/tablet" onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a>
                 <a href="/products/flip-off" onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a>
-                <a href="/products/measuring" onClick={e => goTo(e, 'product-measuring')}>Measuring Caps &amp; Oral Droppers</a>
-                <a href="/products/glass-dropper" onClick={e => goTo(e, 'product-glass-dropper')}>Glass Droppers</a>
+                <a href="/products/measuring" onClick={e => goTo(e, 'product-measuring')}>Measuring Caps</a>
+                <a href="/products/glass-dropper" onClick={e => goTo(e, 'product-glass-dropper')}>Oral &amp; Glass Droppers</a>
                 <a href="/products/dispenser" onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a>
                 <a href="/products/trigger" onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a>
                 <a href="/products/mist-cream" onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a>

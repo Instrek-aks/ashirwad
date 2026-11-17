@@ -29,17 +29,17 @@ export default function FlipOffProductPage({ onNavigate }) {
 
   // Carousel images
   const carouselImages = [
-    "/Flip off Seals.webp"
+    "/images/products/flip-off-seals.webp"
   ]
 
   // Gallery images (simulated product variants)
   const galleryImages = [
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Flip-Off Seal 13mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Flip-Off Seal 20mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Flip-Off Seal 28mm" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Aluminium Collar Detail" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Various Colors Selection" },
-    { src: "/Product_Images/ChatGPT Image Jun 18, 2026, 01_35_32 AM.webp", label: "Tamper-Evident Feature" }
+    { src: "/images/products/flip-off-seal-model.webp", label: "Flip-Off Seal 13mm" },
+    { src: "/images/products/flip-off-seal-model.webp", label: "Flip-Off Seal 20mm" },
+    { src: "/images/products/flip-off-seal-model.webp", label: "Flip-Off Seal 28mm" },
+    { src: "/images/products/flip-off-seal-model.webp", label: "Aluminium Collar Detail" },
+    { src: "/images/products/flip-off-seal-model.webp", label: "Various Colors Selection" },
+    { src: "/images/products/flip-off-seal-model.webp", label: "Tamper-Evident Feature" }
   ]
 
   // Graceful fallback for missing local images
@@ -77,8 +77,8 @@ export default function FlipOffProductPage({ onNavigate }) {
     { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
     { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
     { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-    { name: 'Measuring Caps & Oral Droppers ↗', path: 'product-measuring' },
-    { name: 'Glass Droppers ↗', path: 'product-glass-dropper' },
+    { name: 'Measuring Caps ↗', path: 'product-measuring' },
+    { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
     { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
     { name: 'Trigger Pumps ↗', path: 'product-trigger' },
     { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
@@ -91,7 +91,7 @@ export default function FlipOffProductPage({ onNavigate }) {
       <section 
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/Flip off Seals.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/flip-off-seals.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -262,7 +262,7 @@ export default function FlipOffProductPage({ onNavigate }) {
               <div className="op-why-right">
                 <div className="op-why-img-box">
                   <img 
-                    src="/s7.webp" 
+                    src="/images/markets/cta-banner-bg.webp" 
                     alt="Ashirwad plastics workforce" 
                     onError={(e) => handleImageError(e, "Workforce Team")}
                   />

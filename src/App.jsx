@@ -123,11 +123,11 @@ function App() {
           <VisionMission />
           <Excellence />
           <Products onNavigate={navigate} />
+          <BottomCertifications />
           <Commitment />
           <Clients />
           <FuturePlan />
           <Innovation />
-          <BottomCertifications />
         </>
       )}
       {page === 'about' && (

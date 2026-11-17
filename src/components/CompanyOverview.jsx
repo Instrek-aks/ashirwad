@@ -38,7 +38,7 @@ export default function CompanyOverview({ onNavigate }) {
             style={{ display: 'block' }}
           >
             <img 
-              src="/y.webp" 
+              src="/images/facility/overview-thumb.webp" 
               alt="Ashirwad Plastics Solan Facility" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               onError={(e) => {

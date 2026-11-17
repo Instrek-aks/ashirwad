@@ -122,7 +122,7 @@ export default function ContactPage({ onNavigate }) {
         className="contact-hero" 
         id="contact-top"
         style={{
-          backgroundImage: "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 100%), url('/contact/1.webp')",
+          backgroundImage: "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 100%), url('/images/contact/contact-1.webp')",
           position: 'relative',
           minHeight: '480px'
         }}
@@ -423,7 +423,7 @@ export default function ContactPage({ onNavigate }) {
             <div className="facility-image-card">
               <div className="facility-img-wrapper">
                 <img 
-                  src="/f2.webp" 
+                  src="/images/facility/future-2.webp" 
                   alt="Manufacturing Facility" 
                   onError={(e) => handleImageError(e, "Manufacturing Facility")}
                 />
@@ -436,7 +436,7 @@ export default function ContactPage({ onNavigate }) {
             <div className="facility-image-card">
               <div className="facility-img-wrapper">
                 <img 
-                  src="/reseach.webp" 
+                  src="/images/rd/research-cover.webp" 
                   alt="Laboratory" 
                   onError={(e) => handleImageError(e, "Laboratory")}
                 />
@@ -449,7 +449,7 @@ export default function ContactPage({ onNavigate }) {
             <div className="facility-image-card">
               <div className="facility-img-wrapper">
                 <img 
-                  src="/g1.webp" 
+                  src="/images/vision/goal-1.webp" 
                   alt="Production Floor" 
                   onError={(e) => handleImageError(e, "Production Floor")}
                 />
@@ -462,7 +462,7 @@ export default function ContactPage({ onNavigate }) {
             <div className="facility-image-card">
               <div className="facility-img-wrapper">
                 <img 
-                  src="/g2.webp" 
+                  src="/images/vision/goal-2.webp" 
                   alt="Clean Room" 
                   onError={(e) => handleImageError(e, "Clean Room")}
                 />
@@ -475,7 +475,7 @@ export default function ContactPage({ onNavigate }) {
             <div className="facility-image-card">
               <div className="facility-img-wrapper">
                 <img 
-                  src="/quality.webp" 
+                  src="/images/quality/quality-cover.webp" 
                   alt="Quality Testing" 
                   onError={(e) => handleImageError(e, "Quality Testing")}
                 />
@@ -488,7 +488,7 @@ export default function ContactPage({ onNavigate }) {
             <div className="facility-image-card">
               <div className="facility-img-wrapper">
                 <img 
-                  src="/f1.webp" 
+                  src="/images/facility/future-1.webp" 
                   alt="Production Facility" 
                   onError={(e) => handleImageError(e, "Production Facility")}
                 />
@@ -517,7 +517,7 @@ export default function ContactPage({ onNavigate }) {
       {/* 5. MAP SECTION */}
       <section className="interactive-map-section" style={{ height: '500px', width: '100%', overflow: 'hidden' }}>
         <img 
-          src="/m1.webp" 
+          src="/images/contact/facility-location.webp" 
           alt="Ashirwad Plastics Location Map" 
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
