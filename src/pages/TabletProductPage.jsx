@@ -164,7 +164,7 @@ export default function TabletProductPage({ onNavigate }) {
       </section>
 
       {/* 4. PRODUCT IMAGES GALLERY */}
-      <section className="op-gallery-section" ref={galleryRef}>
+      {/* <section className="op-gallery-section" ref={galleryRef}>
         <div className="container">
           <div className={`fade-section ${galleryVisible ? 'visible' : ''}`}>
             
@@ -186,7 +186,7 @@ export default function TabletProductPage({ onNavigate }) {
 
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 5. FEATURES & APPLICATIONS SECTION */}
       <section className="op-features-section" ref={featureRef}>

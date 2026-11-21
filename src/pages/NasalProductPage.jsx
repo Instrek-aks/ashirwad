@@ -169,7 +169,7 @@ export default function NasalProductPage({ onNavigate }) {
       </section>
 
       {/* 4. PRODUCT IMAGES GALLERY */}
-      <section className="np-gallery-section" ref={galleryRef}>
+      {/* <section className="np-gallery-section" ref={galleryRef}>
         <div className="container">
           <div className={`fade-section ${galleryVisible ? 'visible' : ''}`}>
             
@@ -191,7 +191,7 @@ export default function NasalProductPage({ onNavigate }) {
 
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 5. FEATURES & APPLICATIONS SECTION */}
       <section className="np-features-section" ref={featureRef}>
