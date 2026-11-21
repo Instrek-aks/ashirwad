@@ -4,6 +4,7 @@ import ExportDropdown from './ExportDropdown';
 
 const TYPE_OPTIONS = [
   { value: 'ALL', label: 'All Submissions' },
+  { value: 'GENERAL_QUERY', label: 'General Queries' },
   { value: 'PRODUCT_INQUIRY', label: 'Product Inquiries' },
   { value: 'CAREER_APPLICATION', label: 'Career Applications' },
   { value: 'EVENT_UPDATE', label: 'Event Signups' }
@@ -170,12 +171,45 @@ export default function InquiriesManager({ apiBaseUrl, token, onContactsUpdated 
   };
 
   const getTypeBadge = (type) => {
+    if (type === 'GENERAL_QUERY') return { label: 'Query', bg: '#E0F2FE', color: '#0369A1' };
     if (type === 'CAREER_APPLICATION') return { label: 'Career', bg: '#F3E8FF', color: '#6B21A8' };
     if (type === 'EVENT_UPDATE') return { label: 'Event', bg: '#FEF3C7', color: '#92400E' };
     return { label: 'Product', bg: '#DBEAFE', color: '#1E40AF' };
   };
 
   const renderTableHeaders = () => {
+    if (typeFilter === 'GENERAL_QUERY') {
+      return (
+        <>
+          <th style={{ padding: '10px 14px' }}>Name &amp; Email</th>
+          <th style={{ padding: '10px 12px' }}>Query</th>
+          <th style={{ padding: '10px 12px' }}>Source</th>
+          <th style={{ padding: '10px 12px' }}>Status</th>
+          <th style={{ padding: '10px 12px' }}>Date</th>
+          <th style={{ padding: '10px 14px', textAlign: 'right' }}>Action</th>
+        </>
+      );
+    }
+    if (typeFilter === 'GENERAL_QUERY') {
+      return (
+        <>
+          <td style={{ padding: '10px 14px' }}>
+            <div style={{ fontWeight: '600', color: '#0F172A' }}>{item.fullName || '—'}</div>
+            <div style={{ fontSize: '11.5px', color: '#64748B' }}>{item.email}</div>
+          </td>
+          <td style={{ padding: '10px 12px', color: '#334155', maxWidth: '320px' }}>
+            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {item.description || '—'}
+            </div>
+          </td>
+          <td style={{ padding: '10px 12px', color: '#64748B', fontSize: '11.5px' }}>{item.source}</td>
+          {statusCell}
+          {dateCell}
+          {viewCell}
+        </>
+      );
+    }
+
     if (typeFilter === 'PRODUCT_INQUIRY') {
       return (
         <>
@@ -268,6 +302,26 @@ export default function InquiriesManager({ apiBaseUrl, token, onContactsUpdated 
       </td>
     );
 
+    if (typeFilter === 'GENERAL_QUERY') {
+      return (
+        <>
+          <td style={{ padding: '10px 14px' }}>
+            <div style={{ fontWeight: '600', color: '#0F172A' }}>{item.fullName || '—'}</div>
+            <div style={{ fontSize: '11.5px', color: '#64748B' }}>{item.email}</div>
+          </td>
+          <td style={{ padding: '10px 12px', color: '#334155', maxWidth: '320px' }}>
+            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {item.description || '—'}
+            </div>
+          </td>
+          <td style={{ padding: '10px 12px', color: '#64748B', fontSize: '11.5px' }}>{item.source}</td>
+          {statusCell}
+          {dateCell}
+          {viewCell}
+        </>
+      );
+    }
+
     if (typeFilter === 'PRODUCT_INQUIRY') {
       return (
         <>
@@ -350,6 +404,10 @@ export default function InquiriesManager({ apiBaseUrl, token, onContactsUpdated 
             </div>
           ) : item.type === 'EVENT_UPDATE' ? (
             <span style={{ color: '#64748B' }}>Event newsletter signup</span>
+          ) : item.type === 'GENERAL_QUERY' ? (
+            <div style={{ maxWidth: '280px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {item.description || '—'}
+            </div>
           ) : (
             <div>
               <span>{item.company || '—'}</span>

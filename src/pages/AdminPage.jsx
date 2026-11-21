@@ -3,6 +3,7 @@ import BlogManager from '../components/admin/BlogManager';
 import BlogEditor from '../components/admin/BlogEditor';
 import OverviewDashboard from '../components/admin/OverviewDashboard';
 import InquiriesManager from '../components/admin/InquiriesManager';
+import QrCodesManager from '../components/admin/QrCodesManager';
 import SettingsPanel from '../components/admin/SettingsPanel';
 import RecipientAutocomplete from '../components/admin/RecipientAutocomplete';
 import TemplatesManager from '../components/admin/TemplatesManager';
@@ -1683,6 +1684,7 @@ export default function AdminPage({ onNavigate }) {
       case 'campaign': return 'Email Campaigns';
       case 'templates': return 'Campaign Templates';
       case 'history': return 'Broadcast History';
+      case 'qrcodes': return 'QR Codes';
       case 'settings': return 'Settings';
       default: return 'Overview';
     }
@@ -2111,6 +2113,35 @@ export default function AdminPage({ onNavigate }) {
                   ) : (
                     <div style={{ borderTop: '1px solid #F1F5F9', margin: '6px 4px' }} />
                   )}
+
+                  <button
+                    onClick={() => {
+                      setActiveTab('qrcodes');
+                      setMobileSidebarOpen(false);
+                    }}
+                    title="QR Codes"
+                    style={{
+                      width: sidebarCollapsed ? '36px' : '100%',
+                      height: '34px',
+                      margin: sidebarCollapsed ? '0 auto 4px' : '0 0 2px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: sidebarCollapsed ? 'center' : 'flex-start',
+                      gap: '8px',
+                      padding: sidebarCollapsed ? '0' : '7px 10px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      backgroundColor: activeTab === 'qrcodes' ? '#F1F5F9' : 'transparent',
+                      color: activeTab === 'qrcodes' ? '#0F172A' : '#475569',
+                      fontSize: '13px',
+                      fontWeight: activeTab === 'qrcodes' ? '600' : '500',
+                      cursor: 'pointer',
+                      textAlign: 'left'
+                    }}
+                  >
+                    <IconFileText size={15} color={activeTab === 'qrcodes' ? '#0F172A' : '#64748B'} />
+                    {!sidebarCollapsed && <span>QR Codes</span>}
+                  </button>
 
                   <button
                     onClick={() => {
@@ -3582,6 +3613,10 @@ export default function AdminPage({ onNavigate }) {
           )}
 
           {/* TAB: SETTINGS */}
+          {activeTab === 'qrcodes' && (
+            <QrCodesManager />
+          )}
+
           {activeTab === 'settings' && (
             <SettingsPanel
               apiBaseUrl={API_BASE_URL}

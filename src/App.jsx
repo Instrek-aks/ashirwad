@@ -14,6 +14,7 @@ import BottomCertifications from './components/BottomCertifications'
 import Footer from './components/Footer'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import QueryPage from './pages/QueryPage'
 import PharmaMarketPage from './pages/PharmaMarketPage'
 import CosmeticMarketPage from './pages/CosmeticMarketPage'
 import HomeCarePage from './pages/HomeCarePage'
@@ -135,6 +136,9 @@ function App() {
       )}
       {page === 'contact' && (
         <ContactPage onNavigate={navigate} />
+      )}
+      {page === 'query' && (
+        <QueryPage onNavigate={navigate} />
       )}
       {page === 'market-pharma' && (
         <PharmaMarketPage onNavigate={navigate} />

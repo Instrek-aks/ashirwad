@@ -4,6 +4,7 @@ export const ROUTE_MAP = {
   home: '/',
   about: '/about',
   contact: '/contact',
+  query: '/query',
   blogs: '/blogs',
   'blog-detail': (slug) => `/blog/${slug}`,
   'market-pharma': '/market/pharma',
@@ -92,9 +93,12 @@ export function parseCurrentLocation() {
     return { page: 'about', slug: null };
   }
 
-  // 5. Check Contact
+  // 5. Check Contact & Query
   if (path === '/contact' || hash === 'contact') {
     return { page: 'contact', slug: null };
+  }
+  if (path === '/query' || hash === 'query') {
+    return { page: 'query', slug: null };
   }
 
   // 6. Check Market Sectors
@@ -184,6 +188,7 @@ export function getDocumentTitle(page, blogTitle = '') {
     home: 'Ashirwad Plastics | Engineered for Precision. Designed for Care.',
     about: 'About Us | Ashirwad Plastics',
     contact: 'Contact Us | Ashirwad Plastics',
+    query: 'Submit a Query | Ashirwad Plastics',
     blogs: 'Insights & Knowledge Center | Ashirwad Plastics',
     'market-pharma': 'Pharmaceutical Market Solutions | Ashirwad Plastics',
     'market-cosmetic': 'Cosmetic & Personal Care Packaging | Ashirwad Plastics',

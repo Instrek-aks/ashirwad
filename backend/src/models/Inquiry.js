@@ -4,7 +4,7 @@ const inquirySchema = new mongoose.Schema(
   {
     type: {
       type: String,
-      enum: ['PRODUCT_INQUIRY', 'CAREER_APPLICATION', 'EVENT_UPDATE'],
+      enum: ['PRODUCT_INQUIRY', 'CAREER_APPLICATION', 'EVENT_UPDATE', 'GENERAL_QUERY'],
       default: 'PRODUCT_INQUIRY'
     },
     fullName: {

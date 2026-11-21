@@ -154,6 +154,7 @@ export default function QualityPage({ onNavigate }) {
                 onError={(e) => handleImageError(e, "Product Testing")}
               />
             </div>
+            
 
             <div className="mfg-grid-card mfg-card-dark">
               <h3 className="mfg-card-heading">How We Retain Our Quality</h3>
