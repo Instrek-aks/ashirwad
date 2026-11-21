@@ -249,6 +249,7 @@ export default function TabletProductPage({ onNavigate }) {
               <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
               <div className="op-mfg-desc">
                 Manufactured using advanced automated systems and strict quality assurance processes to deliver consistency, reliability, and regulatory-ready packaging solutions.
+                Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
               </div>
             </div>
 

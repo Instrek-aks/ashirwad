@@ -229,6 +229,7 @@ export default function MeasuringProductPage({ onNavigate }) {
               <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
               <div className="op-mfg-desc">
                 Produced in advanced manufacturing facilities with strict quality control systems to ensure dimensional accuracy, hygienic safety, and consistent performance across all liquid dispensing applications.
+                Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
               </div>
             </div>
 

@@ -222,6 +222,7 @@ export default function FlipOffProductPage({ onNavigate }) {
               <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
               <div className="op-mfg-desc">
                 Manufactured in controlled environments using pharmaceutical-grade materials with stringent quality checks to ensure consistent sealing integrity, sterility, and compliance with international pharmaceutical packaging standards.
+                Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
               </div>
             </div>
 

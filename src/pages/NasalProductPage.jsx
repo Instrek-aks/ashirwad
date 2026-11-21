@@ -229,7 +229,7 @@ export default function NasalProductPage({ onNavigate }) {
               <div className="np-feature-card np-card-navy">
                 <h3>Regulatory Compliance &amp; Quality</h3>
                 <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
-                  Ashirwad Plastics supports pharmaceutical packaging requirements through controlled manufacturing processes and regulatory documentation, including US Drug Master File (US DMF) and Health Canada Drug Master File (HC DMF).
+                  Ashirwad Plastics supports pharmaceutical packaging requirements through ISO classified cleanroom manufacturing and regulatory documentation, including US Drug Master File (US DMF) and Health Canada Drug Master File (HC DMF).
                 </p>
                 <h4 style={{ color: '#60A5FA', fontSize: '16px', fontWeight: 600, marginBottom: '8px', marginTop: '16px' }}>Customized Nasal Delivery Solutions</h4>
                 <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
