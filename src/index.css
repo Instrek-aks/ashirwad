@@ -5437,7 +5437,7 @@ body {
 
 /* 3. PRODUCT OVERVIEW SECTION */
 .op-overview-section {
-  padding: 100px 0;
+  padding: 100px 0 50px;
   background-color: var(--white);
 }
 
@@ -5647,7 +5647,7 @@ body {
 
 /* 5. FEATURES & APPLICATIONS SECTION */
 .op-features-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: var(--white);
 }
 
@@ -5791,7 +5791,7 @@ body {
 
 /* 7. WHY CHOOSE ASHIRWAD SECTION */
 .op-why-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: var(--white);
 }
 
@@ -6072,7 +6072,7 @@ body {
 
 /* 3. PRODUCT OVERVIEW SECTION */
 .np-overview-section {
-  padding: 100px 0;
+  padding: 100px 0 50px;
   background-color: var(--white);
 }
 
@@ -6282,7 +6282,7 @@ body {
 
 /* 5. FEATURES & APPLICATIONS SECTION */
 .np-features-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: var(--white);
 }
 
@@ -6426,7 +6426,7 @@ body {
 
 /* 7. WHY CHOOSE ASHIRWAD SECTION */
 .np-why-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: var(--white);
 }
 
@@ -7926,4 +7926,51 @@ body {
   .paperless-metric-chip strong {
     font-size: 14px;
   }
+}
+
+/* Responsive breadcrumbs (all pages) */
+.op-breadcrumb, .np-breadcrumb, .ep-breadcrumb, .gp-breadcrumb, .career-breadcrumb, .contact-breadcrumb, .pharma-breadcrumb, .dev-breadcrumb, .mfg-breadcrumb {
+  flex-wrap: wrap;
+  row-gap: 4px;
+  max-width: 100%;
+}
+.op-breadcrumb span, .np-breadcrumb span, .ep-breadcrumb span, .gp-breadcrumb span, .career-breadcrumb span, .contact-breadcrumb span, .pharma-breadcrumb span, .dev-breadcrumb span, .mfg-breadcrumb span {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 768px) {
+  .op-hero, .np-hero { height: auto; min-height: 380px; padding: 60px 0; }
+  .op-breadcrumb, .np-breadcrumb, .ep-breadcrumb, .gp-breadcrumb, .career-breadcrumb, .contact-breadcrumb, .pharma-breadcrumb, .dev-breadcrumb, .mfg-breadcrumb {
+    font-size: 12px;
+    letter-spacing: 1px;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .op-hero, .np-hero { min-height: 320px; padding: 48px 0; }
+  .op-breadcrumb, .np-breadcrumb, .ep-breadcrumb, .gp-breadcrumb, .career-breadcrumb, .contact-breadcrumb, .pharma-breadcrumb, .dev-breadcrumb, .mfg-breadcrumb {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    gap: 4px;
+  }
+}
+/* Responsive 5-step process (home + new product development) */
+@media (max-width: 768px) {
+  .dev-overview-section { padding: 60px 0 40px 0; }
+  .dev-overview-subtitle { font-size: 15px; }
+  .dev-process-section { padding: 0 0 60px 0; }
+  .dev-process-gradient-box { padding: 28px 20px; border-radius: 24px; }
+  .dev-step-row { gap: 24px; }
+  .dev-step-number { font-size: 40px; margin-bottom: 8px; }
+  .dev-step-heading { font-size: 20px; margin-bottom: 14px; overflow-wrap: anywhere; }
+  .dev-step-desc { font-size: 14px; line-height: 1.6; }
+  .dev-step-img-box { border-radius: 14px; }
+  .dev-step-divider { margin: 28px 0; }
+}
+@media (max-width: 480px) {
+  .dev-overview-title { font-size: 24px; letter-spacing: -0.5px; }
+  .dev-process-gradient-box { padding: 22px 16px; border-radius: 20px; }
+  .dev-step-number { font-size: 34px; }
+  .dev-step-heading { font-size: 18px; }
+  .dev-step-desc { font-size: 13.5px; }
 }

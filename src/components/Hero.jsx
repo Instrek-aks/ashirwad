@@ -46,14 +46,14 @@ export default function Hero({ onNavigate }) {
       {/* Main Centered Hero Copy */}
       <div className="container hero-centered-container" style={{ position: 'relative', zIndex: 10 }}>
         <FadeIn>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 18px', background: 'rgba(255, 255, 255, 0.92)', border: '1px solid rgba(36, 86, 211, 0.25)', borderRadius: '30px', marginBottom: '20px', boxShadow: '0 4px 16px rgba(36, 86, 211, 0.08)' }}>
+          {/* <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 18px', background: 'rgba(255, 255, 255, 0.92)', border: '1px solid rgba(36, 86, 211, 0.25)', borderRadius: '30px', marginBottom: '20px', boxShadow: '0 4px 16px rgba(36, 86, 211, 0.08)' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2456D3' }} />
             <span style={{ fontSize: '13px', fontWeight: '700', color: '#163A9B', letterSpacing: '0.6px', textTransform: 'uppercase' }}>
               Engineered for precision. Designed for care.
             </span>
-          </div>
+          </div> */}
           <h1 className="hero-centered-title">
-            Innovative, World-Class<br />Packaging Solutions
+            Engineered for precision, Designed for care.
           </h1>
           <p className="hero-centered-desc">
             Driving sustainable growth through reliable packaging solutions that enhance efficiency, ensure quality, and support long-term business success.
