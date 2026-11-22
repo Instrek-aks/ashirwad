@@ -5,6 +5,7 @@ import { createTransporter } from '../config/mailer.js';
 import { env } from '../config/env.js';
 import { Campaign } from '../models/Campaign.js';
 import { Contact } from '../models/Contact.js';
+import { Inquiry } from '../models/Inquiry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,15 +26,67 @@ const getHeaderLogoAttachment = () => {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const renderTemplate = (contentHtml, recipient) => {
-  let rendered = contentHtml;
-  const name = recipient.name || 'Valued Partner';
-  const company = recipient.company || 'your organization';
-  const email = recipient.email;
+const getRecipientDisplayData = (recipient = {}, defaults = {}) => {
+  const name = (recipient.name || '').trim() || defaults.name || 'Valued Partner';
+  const company = (recipient.company || '').trim() || defaults.company || 'your organization';
+  const email = (recipient.email || '').trim() || defaults.email || '';
+  return { name, company, email };
+};
 
-  rendered = rendered.replace(/{{name}}/gi, name);
-  rendered = rendered.replace(/{{company}}/gi, company);
-  rendered = rendered.replace(/{{email}}/gi, email);
+export const replaceTemplateVariables = (text = '', recipient = {}, defaults = {}) => {
+  const { name, company, email } = getRecipientDisplayData(recipient, defaults);
+  return String(text || '')
+    .replace(/\{\{\s*name\s*\}\}/gi, name)
+    .replace(/\{\{\s*company\s*\}\}/gi, company)
+    .replace(/\{\{\s*email\s*\}\}/gi, email);
+};
+
+const lookupRecipientDetailsByEmails = async (emails = []) => {
+  const cleanEmails = [...new Set(
+    emails.map((e) => (e || '').toLowerCase().trim()).filter(Boolean)
+  )];
+  const detailsMap = new Map();
+  if (cleanEmails.length === 0) return detailsMap;
+
+  const contacts = await Contact.find({ email: { $in: cleanEmails } })
+    .select('email name company')
+    .lean();
+  for (const c of contacts) {
+    const email = (c.email || '').toLowerCase().trim();
+    if (!email) continue;
+    detailsMap.set(email, {
+      name: (c.name || '').trim(),
+      company: (c.company || '').trim()
+    });
+  }
+
+  const missingOrPartial = cleanEmails.filter((email) => {
+    const existing = detailsMap.get(email);
+    return !existing || !existing.name || !existing.company;
+  });
+
+  if (missingOrPartial.length > 0) {
+    const inquiries = await Inquiry.find({ email: { $in: missingOrPartial } })
+      .sort({ createdAt: -1 })
+      .select('email fullName company')
+      .lean();
+    for (const inq of inquiries) {
+      const email = (inq.email || '').toLowerCase().trim();
+      if (!email) continue;
+      const existing = detailsMap.get(email) || { name: '', company: '' };
+      detailsMap.set(email, {
+        name: existing.name || (inq.fullName || '').trim(),
+        company: existing.company || (inq.company || '').trim()
+      });
+    }
+  }
+
+  return detailsMap;
+};
+
+export const renderTemplate = (contentHtml, recipient, defaults = {}) => {
+  const { email } = getRecipientDisplayData(recipient, defaults);
+  const rendered = replaceTemplateVariables(contentHtml, recipient, defaults);
 
   const baseBackendUrl = process.env.BACKEND_PUBLIC_URL || `http://localhost:${env.PORT}`;
   const unsubscribeUrl = `${baseBackendUrl.replace(/\/+$/, '')}/api/v1/contacts/unsubscribe?email=${encodeURIComponent(email || '')}`;
@@ -118,11 +171,17 @@ export const sendTestEmail = async ({ to, subject, contentHtml, attachments = []
 
   const { html: cidHtml, inlineAttachments } = extractInlineDataImages(contentHtml);
 
-  const html = renderTemplate(cidHtml, {
-    email: to,
-    name: 'Test Recipient',
-    company: 'Ashirwad Plastics'
-  });
+  const cleanTo = (to || '').toLowerCase().trim();
+  const detailsMap = await lookupRecipientDetailsByEmails([cleanTo]);
+  const recipientDetails = detailsMap.get(cleanTo) || {};
+  const recipient = {
+    email: cleanTo,
+    name: recipientDetails.name || 'Test Recipient',
+    company: recipientDetails.company || 'Ashirwad Plastics'
+  };
+
+  const html = renderTemplate(cidHtml, recipient);
+  const personalizedSubject = replaceTemplateVariables(subject, recipient);
 
   const senderEmail = env.SMTP.USER || env.SMTP.FROM_ADDRESS;
   const displayName = env.SMTP.FROM_NAME || 'Ashirwad Plastics Admin';
@@ -130,7 +189,7 @@ export const sendTestEmail = async ({ to, subject, contentHtml, attachments = []
   const mailOptions = {
     from: `"${displayName}" <${senderEmail}>`,
     to,
-    subject: `[TEST] ${subject}`,
+    subject: `[TEST] ${personalizedSubject}`,
     html,
     attachments: [...formatAttachments(attachments), ...inlineAttachments, ...getHeaderLogoAttachment()]
   };
@@ -199,9 +258,24 @@ export const processCampaignQueue = async (campaignId) => {
         seenEmails.add(cleanEmail);
         allRecipients.push({
           email: cleanEmail,
-          name: typeof item === 'object' ? item.name || '' : '',
-          company: typeof item === 'object' ? item.company || '' : ''
+          name: typeof item === 'object' ? (item.name || '').trim() : '',
+          company: typeof item === 'object' ? (item.company || '').trim() : ''
         });
+      }
+    }
+  }
+
+  // Enrich any recipients missing name/company from Contact or Inquiry records
+  const emailsNeedingLookup = allRecipients
+    .filter((r) => !r.name || !r.company)
+    .map((r) => r.email);
+  if (emailsNeedingLookup.length > 0) {
+    const detailsMap = await lookupRecipientDetailsByEmails(emailsNeedingLookup);
+    for (const r of allRecipients) {
+      const details = detailsMap.get(r.email);
+      if (details) {
+        if (!r.name && details.name) r.name = details.name;
+        if (!r.company && details.company) r.company = details.company;
       }
     }
   }
@@ -230,6 +304,7 @@ export const processCampaignQueue = async (campaignId) => {
       batch.map(async (recipient) => {
         try {
           const personalizedHtml = renderTemplate(cidContentHtml, recipient);
+          const personalizedSubject = replaceTemplateVariables(campaign.subject, recipient);
 
           const senderEmail = env.SMTP.USER || env.SMTP.FROM_ADDRESS;
           const displayName = env.SMTP.FROM_NAME || 'Ashirwad Plastics Admin';
@@ -237,7 +312,7 @@ export const processCampaignQueue = async (campaignId) => {
           const mailOptions = {
             from: `"${displayName}" <${senderEmail}>`,
             to: recipient.email,
-            subject: campaign.subject,
+            subject: personalizedSubject,
             html: personalizedHtml,
             attachments: formattedAttachments
           };
@@ -306,6 +381,13 @@ export const retryFailedCampaignQueue = async (campaignId) => {
   const failedLogs = (campaign.recipientLogs || []).filter((r) => r.status === 'FAILED');
   if (failedLogs.length === 0) return;
 
+  const retryEmailsNeedingLookup = failedLogs
+    .filter((log) => !log.name || !log.company)
+    .map((log) => log.email);
+  const retryDetailsMap = retryEmailsNeedingLookup.length > 0
+    ? await lookupRecipientDetailsByEmails(retryEmailsNeedingLookup)
+    : new Map();
+
   campaign.status = 'PROCESSING';
   await campaign.save();
 
@@ -316,16 +398,25 @@ export const retryFailedCampaignQueue = async (campaignId) => {
 
   for (const log of failedLogs) {
     try {
-      const personalizedHtml = renderTemplate(cidContentHtml, {
+      const cleanEmail = (log.email || '').toLowerCase().trim();
+      const details = retryDetailsMap.get(cleanEmail);
+      if (details) {
+        if (!log.name && details.name) log.name = details.name;
+        if (!log.company && details.company) log.company = details.company;
+      }
+
+      const recipient = {
         email: log.email,
         name: log.name || '',
         company: log.company || ''
-      });
+      };
+      const personalizedHtml = renderTemplate(cidContentHtml, recipient);
+      const personalizedSubject = replaceTemplateVariables(campaign.subject, recipient);
 
       const mailOptions = {
         from: `"${displayName}" <${senderEmail}>`,
         to: log.email,
-        subject: campaign.subject,
+        subject: personalizedSubject,
         html: personalizedHtml,
         attachments: formattedAttachments
       };
