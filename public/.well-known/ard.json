@@ -8,7 +8,7 @@
     {
       "identifier": "urn:air:www.ashirwadplastics.com:docs:llms-txt",
       "displayName": "Ashirwad Plastics llms.txt",
-      "type": "text/markdown",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://www.ashirwadplastics.com/llms.txt",
       "description": "Structured Markdown overview of Ashirwad Plastics' pharmaceutical, nutraceutical, and cosmetic packaging products, market segments, and company resources.",
       "representativeQueries": [
@@ -16,6 +16,7 @@
         "find Ashirwad Plastics product catalog and contact information"
       ],
       "trustManifest": {
+        "identity": "did:web:www.ashirwadplastics.com",
         "publisher": "Ashirwad Plastics",
         "contact": "mailto:info@ashirwadplastics.com",
         "lastUpdated": "2026-11-23"
@@ -32,6 +33,7 @@
         "view specifications for Ashirwad Plastics pharma containers and closures"
       ],
       "trustManifest": {
+        "identity": "did:web:www.ashirwadplastics.com",
         "publisher": "Ashirwad Plastics",
         "contact": "mailto:info@ashirwadplastics.com",
         "lastUpdated": "2026-11-23"
