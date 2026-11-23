@@ -119,9 +119,9 @@ export default function MeasuringProductPage({ onNavigate }) {
               <span className="breadcrumb-separator">&gt;</span>
               <span onClick={() => onNavigate('home')} style={{ cursor: 'pointer' }}>PRODUCTS</span>
               <span className="breadcrumb-separator">&gt;</span>
-              <span className="breadcrumb-active">MEASURING CAPS</span>
+              <span className="breadcrumb-active">ORAL DROPPERS &amp; MEASURING CAPS</span>
             </nav>
-            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Measuring Caps</h1>
+            <h1 className="op-hero-title" style={{ margin: 0, lineHeight: 1.15 }}>Oral Droppers &amp; Measuring Caps</h1>
           </div>
         </div>
       </section>
@@ -153,13 +153,25 @@ export default function MeasuringProductPage({ onNavigate }) {
               </div>
 
               {/* Product Description */}
-              <div style={{ padding: '24px 0', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <p style={{ margin: 0, fontSize: '15px', color: '#475569', lineHeight: '1.6' }}>
-                  <strong>Measuring Caps:</strong> Graduated measuring caps available in <strong>2.5 ml, 5 ml, and 10 ml</strong> capacities for precise dosage delivery of syrups and liquid medicines. Easy to read, user-friendly, and built for pharmaceutical-grade accuracy.
-                </p>
-                <p style={{ margin: 0, fontSize: '15px', color: '#475569', lineHeight: '1.6' }}>
-                  <strong>Oral Droppers:</strong> Precision-engineered oral droppers (<strong>2.5 ml, 5 ml, and 10 ml</strong>) for accurate, user-friendly dosing of liquid oral and paediatric formulations, herbal liquids, and oral healthcare products.
-                </p>
+              <p className="op-showcase-desc">
+                Accurate, user-friendly dosing systems engineered for liquid oral, syrup, and paediatric formulations.
+              </p>
+              <div className="product-spec-grid">
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Capacities</span>
+                  <span className="product-spec-value">2.5 ml, 5 ml &amp; 10 ml</span>
+                  <span className="product-spec-note">Graduated measuring caps &amp; oral droppers</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Material</span>
+                  <span className="product-spec-value">Pharmaceutical-Grade</span>
+                  <span className="product-spec-note">Leak-resistant construction</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Quality</span>
+                  <span className="product-spec-value">Class 7 &amp; 8 Cleanroom</span>
+                  <span className="product-spec-note">Pharma-grade, leak-resistant build</span>
+                </div>
               </div>
 </div>
 
@@ -181,12 +193,11 @@ export default function MeasuringProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Available Capacities: 2.5 ml, 5 ml, and 10 ml options",
-                    "Precise liquid measurement and dosage control",
-                    "User-friendly and easy-to-read design for oral and paediatric formulations",
-                    "Leak-resistant construction",
-                    "Durable pharmaceutical-grade materials",
-                    "Hygienic and safe for oral use"
+                    "Clear, easy-to-read graduation markings for accurate dose measurement",
+                    "User-friendly, hygienic design suited for paediatric and adult use",
+                    "Smooth, controlled drop and pour delivery without dripping",
+                    "Secure thread fit preventing leakage during transit and storage",
+                    "Compatible with syrups, suspensions, and herbal liquid formulations"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
                       <span className="op-check-icon">

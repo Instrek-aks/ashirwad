@@ -155,8 +155,30 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our ophthalmic delivery systems are available in <strong>5 ml, 6 ml, 10 ml, and 15 ml</strong> capacities across the <strong>AP Series</strong> (proprietary bottle geometry for consistent wall thickness and predictable squeeze force) and <strong>R Series</strong> (industry-standard design for established filling and labelling lines). Manufactured from pharmaceutical-grade LDPE in a GMP-compliant cleanroom facility, our bottles feature a 14 mm narrow, ringed-neck finish with USP-aligned tamper-evident ring retention and are supported by US Type III DMF and Health Canada DMF documentation.
+                Pharmaceutical-grade LDPE ophthalmic bottles engineered for sterile, controlled multidose dispensing across global markets.
               </p>
+              <div className="product-spec-grid">
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Capacities &amp; Series</span>
+                  <span className="product-spec-value">5 ml, 6 ml, 10 ml &amp; 15 ml</span>
+                  <span className="product-spec-note">AP Series &amp; R Series options</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Neck &amp; Closure</span>
+                  <span className="product-spec-value">14 mm Ringed-Neck</span>
+                  <span className="product-spec-note">USP ring retention, tear-off TE &amp; CRC</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Nozzle Options</span>
+                  <span className="product-spec-value">Closed, Pre-Pricked &amp; Flow-Control</span>
+                  <span className="product-spec-note">Preservative-free antimicrobial options</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Sterilisation &amp; DMF</span>
+                  <span className="product-spec-value">EtO &amp; Gamma Compatible</span>
+                  <span className="product-spec-note">US Type III DMF &amp; HC DMF</span>
+                </div>
+              </div>
 </div>
 
           </div>
@@ -212,13 +234,12 @@ export default function OphthalmicProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Multiple Capacities & Series: 5 ml, 6 ml, 10 ml, and 15 ml options across AP Series and R Series.",
-                    "Nozzle Options: Closed-tip, pre-pricked, and flow-control nozzles for controlled drop delivery.",
-                    "Neck & Closure Options: 14 mm narrow, ringed-neck finish with USP-aligned tamper-evident ring retention, tear-off TE, and senior-friendly push-and-turn CRC caps.",
-                    "Preservative-Free & Antimicrobial: Integrated antimicrobial technology supporting preservative-free formulations for chronic everyday use.",
-                    "Cleanroom Manufacturing: Class 7 & Class 8 cleanroom production under ISO 9001:2015 and ISO 15378:2017.",
-                    "Sterilisation & Packaging: Suitable for EtO and Gamma sterilisation; supplied in polybags, Tyvek bags, and beta bags.",
-                    "Regulatory & Flexible Supply: US Type III DMF reference, Health Canada DMF documentation, and flexible order quantities."
+                    "AP Series proprietary geometry for consistent wall thickness and predictable squeeze force.",
+                    "R Series industry-standard profile compatible with established filling and labelling lines.",
+                    "Integrated antimicrobial technology supporting preservative-free chronic formulations.",
+                    "Senior-friendly push-and-turn CRC closure for safe yet effortless opening.",
+                    "Flexible secondary packaging in polybags, Tyvek bags, and beta bags.",
+                    "Flexible order quantities with responsive production planning."
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item" style={{ alignItems: 'flex-start' }}>
                       <span className="op-check-icon" style={{ marginTop: '2px' }}>

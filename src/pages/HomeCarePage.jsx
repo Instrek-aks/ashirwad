@@ -209,10 +209,10 @@ export default function HomeCarePage({ onNavigate }) {
             <div className="pharma-products-grid">
                
               {[
-                { name: "Tablet Containers & Closures", desc: "Secure, moisture-barrier packaging for vitamins, dietary supplements, and solid dose formulations.", img: "/images/products/home/tablet-containers-closures.webp", path: "product-tablet" },
-                { name: "Measuring Caps", desc: "Accurate, user-friendly dosing systems for liquid nutraceutical and dietary formulations.", img: "/images/products/home/measuring-caps-oral-droppers.webp", path: "product-measuring" },
-                { name: "Oral & Glass Droppers", desc: "Premium glass dropper bottles for controlled dispensing of herbal extracts, tinctures, and oils.", img: "/images/products/home/glass-droppers.webp", path: "product-glass-dropper" },
-                { name: "Caps & Closures", desc: "Child-resistant (CRC) and tamper-evident closures ensuring complete safety and seal integrity.", img: "/images/products/home/caps-and-closures.webp", path: "product-caps-closures" }
+                { name: "Tablet Containers & Closures", desc: "30cc to 300cc HDPE containers with CRC and CT closures for vitamins, supplements, and solid-dose products.", img: "/images/products/home/tablet-containers-closures.webp", path: "product-tablet" },
+                { name: "Protein Jars", desc: "Wide-mouth HDPE jars with tamper-evident caps engineered for bulk powder packaging.", img: "/images/products/home/tablet-containers-closures.webp", path: "product-protein-jars" },
+                { name: "Oral Droppers & Measuring Caps", desc: "2.5 ml, 5 ml & 10 ml dosing systems for liquid oral, paediatric, and nutraceutical formulations.", img: "/images/products/home/measuring-caps-oral-droppers.webp", path: "product-measuring" },
+                { name: "Caps & Closures", desc: "Screw, disc-top, flip-top, CRC, and CT closures ensuring complete safety and seal integrity.", img: "/images/products/home/caps-and-closures.webp", path: "product-caps-closures" }
               ].map((prod, idx) => (
                 <div key={idx} className="pharma-product-card">
                   <div className="product-img-box">

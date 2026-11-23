@@ -209,11 +209,8 @@ export default function CosmeticMarketPage({ onNavigate }) {
             <div className="pharma-products-grid">
                
               {[
-                { name: "Oral & Glass Droppers", desc: "Premium-quality glass droppers offering controlled dispensing and enhanced product compatibility.", img: "/images/markets/showcase-5.webp", path: "product-glass-dropper" },
-                { name: "Mist & Cream Pumps", desc: "Precision-engineered mist and cream pumps delivering smooth and consistent dispensing performance.", img: "/images/markets/showcase-8.webp", path: "product-mist-cream" },
-                { name: "Dispenser Pumps", desc: "Reliable dispenser pump systems designed for efficient and controlled liquid dispensing applications.", img: "/images/markets/showcase-6.webp", path: "product-dispenser" },
-                { name: "Caps & Closures", desc: "A comprehensive range of closures engineered for safety, protection, and product integrity.", img: "/images/markets/showcase-9.webp", path: "product-caps-closures" },
-                { name: "Trigger Pumps", desc: "Durable and ergonomically designed trigger pumps suitable for personal care and industrial applications.", img: "/images/markets/showcase-7.webp", path: "product-trigger" }
+                { name: "Personal Care Bottles & Closures", desc: "118 ml, 236 ml & 1 L bottles with pump and flip-top closures for personal care products.", img: "/images/markets/showcase-6.webp", path: "product-personal-care" },
+                { name: "Caps & Closures", desc: "Screw, disc-top and flip-top closures engineered for safety, protection, and product integrity.", img: "/images/markets/showcase-9.webp", path: "product-caps-closures" }
               ].map((prod, idx) => (
                 <div key={idx} className="pharma-product-card">
                   <div className="product-img-box">

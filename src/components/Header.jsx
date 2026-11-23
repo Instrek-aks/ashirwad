@@ -233,15 +233,13 @@ export default function Header({ page, onNavigate }) {
                 </svg>
               </a>
               <div className={`nav-dropdown-menu ${productsOpen ? 'mobile-expanded' : ''}`} style={{ minWidth: '280px', maxHeight: '420px', overflowY: 'auto' }}>
-                <a href="/products/ophthalmic" onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery System</a>
-                <a href="/products/nasal" onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery System</a>
+                <a href="/products/ophthalmic" onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery Systems</a>
+                <a href="/products/nasal" onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery Systems</a>
                 <a href="/products/tablet" onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a>
+                <a href="/products/protein-jars" onClick={e => goTo(e, 'product-protein-jars')}>Protein Jars</a>
                 <a href="/products/flip-off" onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a>
-                <a href="/products/measuring" onClick={e => goTo(e, 'product-measuring')}>Measuring Caps</a>
-                <a href="/products/glass-dropper" onClick={e => goTo(e, 'product-glass-dropper')}>Oral &amp; Glass Droppers</a>
-                <a href="/products/dispenser" onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a>
-                <a href="/products/trigger" onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a>
-                <a href="/products/mist-cream" onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a>
+                <a href="/products/measuring" onClick={e => goTo(e, 'product-measuring')}>Oral Droppers &amp; Measuring Caps</a>
+                <a href="/products/personal-care" onClick={e => goTo(e, 'product-personal-care')}>Personal Care Bottles &amp; Closures</a>
                 <a href="/products/caps-closures" onClick={e => goTo(e, 'product-caps-closures')}>Caps &amp; Closures</a>
               </div>
             </div>

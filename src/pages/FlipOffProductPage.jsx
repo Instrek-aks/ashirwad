@@ -154,8 +154,25 @@ export default function FlipOffProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our tamper-evident flip-off seals are engineered to meet the strict safety and quality demands of the pharmaceutical industry, providing a secure and clean closure for injectable vials and sterile presentations. Available in blue, red, green, white, yellow, and custom colours.
+                Tamper-evident flip-off seals engineered for injectable pharmaceutical vials and sterile presentations.
               </p>
+              <div className="product-spec-grid">
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Application</span>
+                  <span className="product-spec-value">Injectable Vials</span>
+                  <span className="product-spec-note">Sterile presentations &amp; tamper evidence</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Colour Options</span>
+                  <span className="product-spec-value">Blue, Red, Green, White, Yellow</span>
+                  <span className="product-spec-note">Custom colours also available</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Compliance</span>
+                  <span className="product-spec-value">Class 7 &amp; 8 Cleanroom</span>
+                  <span className="product-spec-note">ISO 9001:2015 &amp; ISO 15378:2017</span>
+                </div>
+              </div>
 </div>
 
           </div>
@@ -176,11 +193,11 @@ export default function FlipOffProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Tamper-evident protection for injectable vials and sterile presentations",
-                    "Secure and reliable sealing performance",
-                    "Pharmaceutical-grade quality materials",
-                    "Available in blue, red, green, white, yellow, and custom colours",
-                    "Compatible with standard pharmaceutical vials"
+                    "Visible tamper-evidence ensuring sterility until point of administration",
+                    "Clean, smooth flip-off actuation with zero sharp edges",
+                    "Consistent dimensional accuracy for high-speed vial crimping lines",
+                    "Pharmaceutical-grade polypropylene cap and aluminium seal compatibility",
+                    "High-volume supply readiness for sterile injectable manufacturing"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
                       <span className="op-check-icon">

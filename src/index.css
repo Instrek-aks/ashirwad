@@ -5477,9 +5477,50 @@ body {
   font-size: 15px;
   line-height: 1.7;
   color: var(--text-gray);
-  max-width: 680px;
-  margin: 0 auto 36px;
+  max-width: 720px;
+  margin: 0 auto 24px;
   text-align: center;
+}
+
+.product-spec-grid {
+  width: 100%;
+  max-width: 950px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.product-spec-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-spec-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2563EB;
+}
+
+.product-spec-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.35;
+}
+
+.product-spec-note {
+  font-size: 12.5px;
+  color: #64748B;
+  line-height: 1.45;
 }
 
 .op-carousel-wrapper {

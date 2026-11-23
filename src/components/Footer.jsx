@@ -168,12 +168,10 @@ export default function Footer({ page, onNavigate }) {
               <li><a href="/products/ophthalmic" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery Systems</a></li>
               <li><a href="/products/nasal" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery Systems</a></li>
               <li><a href="/products/tablet" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-tablet')}>Tablet Containers &amp; Closures</a></li>
+              <li><a href="/products/protein-jars" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-protein-jars')}>Protein Jars</a></li>
               <li><a href="/products/flip-off" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-flipoff')}>Flip-Off Seals</a></li>
-              <li><a href="/products/measuring" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-measuring')}>Measuring Caps</a></li>
-              <li><a href="/products/glass-dropper" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-glass-dropper')}>Oral &amp; Glass Droppers</a></li>
-              <li><a href="/products/dispenser" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-dispenser')}>Dispenser Pumps</a></li>
-              <li><a href="/products/trigger" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-trigger')}>Trigger Pumps</a></li>
-              <li><a href="/products/mist-cream" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-mist-cream')}>Mist &amp; Cream Pumps</a></li>
+              <li><a href="/products/measuring" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-measuring')}>Oral Droppers &amp; Measuring Caps</a></li>
+              <li><a href="/products/personal-care" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-personal-care')}>Personal Care Bottles &amp; Closures</a></li>
               <li><a href="/products/caps-closures" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-caps-closures')}>Caps &amp; Closures</a></li>
             </ul>
           </div>

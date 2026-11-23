@@ -4,66 +4,53 @@ import FadeIn from './FadeIn'
 const productsList = [
   {
     id: 'ophthalmic',
-    name: 'Ophthalmic Delivery System',
-    desc: 'High-precision ophthalmic packaging for safe, sterile, & reliable drug delivery.',
+    name: 'Ophthalmic Delivery Systems',
+    desc: '5 ml, 6 ml, 10 ml & 15 ml — High-precision packaging for safe, sterile and reliable topical drug delivery.',
     img: '/images/products/pharma-pack.jpeg',
     cover: true
   },
   {
     id: 'nasal',
-    name: 'Nasal Delivery System',
-    desc: 'Advanced nasal dispensing for consistent dosing, convenience, & product integrity.',
+    name: 'Nasal Delivery Systems',
+    desc: 'Bottle and actuator assembly — Advanced nasal dispensing for consistent dosing, convenience and product integrity.',
     img: '/images/products/home/nasal-delivery-system.webp',
     cover: true
   },
   {
     id: 'tablet',
-    name: 'Tablet Containers & Closures',
-    desc: 'Secure, durable packaging for safe storage & protection of solid-dose products.',
+    name: 'Tablet Containers and Closures',
+    desc: '30cc to 300cc HDPE — Secure, durable packaging for safe storage and protection of solid-dose products.',
     img: '/images/products/home/tablet-containers-closures.webp',
     cover: true
   },
   {
-    id: 'measuring',
-    name: 'Measuring Caps',
-    desc: 'Accurate, user-friendly dispensing for liquid pharmaceutical formulations.',
-    img: '/images/products/home/measuring-caps-oral-droppers.webp'
-  },
-  {
-    id: 'dropper',
-    name: 'Oral & Glass Droppers',
-    desc: 'Premium glass droppers for controlled dispensing and enhanced compatibility.',
-    img: '/images/products/home/glass-droppers.webp'
-  },
-  {
-    id: 'dispenser',
-    name: 'Dispenser Pumps',
-    desc: 'Reliable pump systems for efficient, controlled liquid dispensing.',
-    img: '/images/products/home/dispenser-pumps.webp'
-  },
-  {
-    id: 'trigger',
-    name: 'Trigger Pumps',
-    desc: 'Durable and ergonomically designed trigger pumps for industrial and healthcare liquids.',
-    img: '/images/products/trigger-pumps.webp'
+    id: 'protein-jars',
+    name: 'Protein Jars',
+    desc: 'Wide-mouth HDPE, tamper-evident caps — Bulk powder packaging engineered for a secure, tamper-evident reseal.',
+    img: '/images/products/home/tablet-containers-closures.webp'
   },
   {
     id: 'flipoff',
-    name: 'Flip off Seals',
-    desc: 'Secure, tamper-evident seals for pharmaceutical safety and sterility.',
+    name: 'Flip-Off Seals',
+    desc: 'Blue, red, green, white, yellow, custom — Tamper-evident seals for injectable vials and sterile presentations.',
     img: '/images/products/home/flip-off-seals.webp'
   },
   {
-    id: 'mist',
-    name: 'Mist & Cream Pumps',
-    desc: 'Precision-engineered mist and cream pumps for smooth, consistent dispensing.',
-    img: '/images/products/mist-cream-pump.jpg',
-    fallbackImg: '/images/products/mist-and-cream-pumps.webp'
+    id: 'measuring',
+    name: 'Oral Droppers and Measuring Caps',
+    desc: '2.5 ml, 5 ml & 10 ml — Accurate, user-friendly dosing for liquid oral and paediatric formulations.',
+    img: '/images/products/home/measuring-caps-oral-droppers.webp'
+  },
+  {
+    id: 'personal-care',
+    name: 'Personal Care Bottles & Closures',
+    desc: '118 ml, 236 ml & 1 L — Bottles with pump and flip-top closures for personal care products.',
+    img: '/images/products/home/dispenser-pumps.webp'
   },
   {
     id: 'caps',
-    name: 'Caps and Closures',
-    desc: 'A wide range of closures for safety, protection, and product integrity.',
+    name: 'Caps & Closures',
+    desc: 'Screw, disc-top and flip-top caps — Dispensing and screw closures for pharmaceutical and personal care bottles.',
     img: '/images/products/home/caps-and-closures.webp'
   }
 ]
@@ -82,18 +69,14 @@ function ProductCard({ product, onNavigate }) {
           if (onNavigate) onNavigate('product-nasal');
         } else if (product.id === 'tablet') {
           if (onNavigate) onNavigate('product-tablet');
+        } else if (product.id === 'protein-jars') {
+          if (onNavigate) onNavigate('product-protein-jars');
         } else if (product.id === 'flipoff') {
           if (onNavigate) onNavigate('product-flipoff');
         } else if (product.id === 'measuring') {
           if (onNavigate) onNavigate('product-measuring');
-        } else if (product.id === 'dropper') {
-          if (onNavigate) onNavigate('product-glass-dropper');
-        } else if (product.id === 'dispenser') {
-          if (onNavigate) onNavigate('product-dispenser');
-        } else if (product.id === 'trigger') {
-          if (onNavigate) onNavigate('product-trigger');
-        } else if (product.id === 'mist') {
-          if (onNavigate) onNavigate('product-mist-cream');
+        } else if (product.id === 'personal-care') {
+          if (onNavigate) onNavigate('product-personal-care');
         } else if (product.id === 'caps') {
           if (onNavigate) onNavigate('product-caps-closures');
         } else {

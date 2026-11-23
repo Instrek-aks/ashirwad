@@ -158,9 +158,31 @@ export default function NasalProductPage({ onNavigate }) {
               </div>
 
               {/* Product Description */}
-              <p className="np-showcase-desc">
-                Available as bottle and actuator assemblies and nasal squeeze systems, our nasal delivery solutions are manufactured in GMP-compliant Class 7 &amp; Class 8 cleanrooms under ISO 9001:2015 and ISO 15378:2017 using pharmaceutical-grade raw materials. Designed for consistent spray patterns, everyday convenience, and product integrity throughout shelf life, we also offer customized development solutions with tailored spray characteristics and short lead times.
+              <p className="np-showcase-desc" style={{ marginBottom: '24px' }}>
+                Bottle and actuator assemblies and nasal squeeze systems engineered for repeatable dosing, everyday convenience, and formulation integrity.
               </p>
+              <div className="product-spec-grid">
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Configuration</span>
+                  <span className="product-spec-value">Bottle &amp; Actuator Assembly</span>
+                  <span className="product-spec-note">Metered-dose &amp; nasal squeeze systems</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Performance</span>
+                  <span className="product-spec-value">Consistent Spray Pattern</span>
+                  <span className="product-spec-note">Smooth actuation &amp; repeatable dosing</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Cleanroom</span>
+                  <span className="product-spec-value">Class 7 &amp; Class 8</span>
+                  <span className="product-spec-note">GMP-compliant manufacturing in Baddi</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Quality &amp; DMF</span>
+                  <span className="product-spec-value">ISO 9001:2015 &amp; 15378:2017</span>
+                  <span className="product-spec-note">US DMF &amp; Health Canada DMF aligned</span>
+                </div>
+              </div>
 </div>
 
           </div>
@@ -204,13 +226,12 @@ export default function NasalProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="np-feature-list">
                   {[
-                    "One Certified Source: GMP-compliant Class 7 & Class 8 cleanroom manufacturing under ISO 9001:2015 and ISO 15378:2017.",
-                    "Consistent Spray Pattern: Nasal dispensing engineered for repeatable, dependable dosing.",
-                    "Convenience & Smooth Actuation: Simple, comfortable dispensing for everyday use.",
-                    "Product Integrity: Packaging that helps protect the formulation throughout shelf life.",
-                    "Bottle & Actuator Assembly: Available in metered-dose nasal spray devices and nasal squeeze systems.",
-                    "Customized Spray Characteristics: Development options tailored to formulation and application requirements.",
-                    "Pharmaceutical-Grade Materials: Automated processes using materials selected for pharmaceutical packaging."
+                    "Smooth, comfortable actuation engineered for everyday patient use.",
+                    "Formulation integrity protection throughout product shelf life.",
+                    "Tailored spray characteristics to match specific intranasal formulations.",
+                    "Enhanced drug delivery supporting effective intranasal absorption.",
+                    "Pharmaceutical-grade raw materials with automated online conveying.",
+                    "Streamlined custom development with short lead times."
                   ].map((feat, idx) => (
                     <div key={idx} className="np-feature-item" style={{ alignItems: 'flex-start' }}>
                       <span className="np-check-icon" style={{ marginTop: '2px' }}>

@@ -1,15 +1,13 @@
 import { useLayoutEffect, useRef } from 'react'
 
 const productsList = [
-  { name: 'Ophthalmic Delivery System ↗', path: 'product-ophthalmic' },
-  { name: 'Nasal Delivery System ↗', path: 'product-nasal' },
+  { name: 'Ophthalmic Delivery Systems ↗', path: 'product-ophthalmic' },
+  { name: 'Nasal Delivery Systems ↗', path: 'product-nasal' },
   { name: 'Tablet Containers & Closures ↗', path: 'product-tablet' },
-  { name: 'Flip off Seals ↗', path: 'product-flipoff' },
-  { name: 'Measuring Caps ↗', path: 'product-measuring' },
-  { name: 'Oral & Glass Droppers ↗', path: 'product-glass-dropper' },
-  { name: 'Dispenser Pumps ↗', path: 'product-dispenser' },
-  { name: 'Trigger Pumps ↗', path: 'product-trigger' },
-  { name: 'Mist & Cream Pumps ↗', path: 'product-mist-cream' },
+  { name: 'Protein Jars ↗', path: 'product-protein-jars' },
+  { name: 'Flip-Off Seals ↗', path: 'product-flipoff' },
+  { name: 'Oral Droppers & Measuring Caps ↗', path: 'product-measuring' },
+  { name: 'Personal Care Bottles & Closures ↗', path: 'product-personal-care' },
   { name: 'Caps & Closures ↗', path: 'product-caps-closures' }
 ]
 

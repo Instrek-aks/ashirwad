@@ -154,8 +154,30 @@ export default function TabletProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our HDPE tablet containers range from <strong>30 cc to 300 cc</strong> and are engineered for moisture protection, durability, and secure storage. Featuring a wide-mouth design, precision-moulded necks, smooth labelling surfaces, and customisable bottle and closure colours, they pair with Child-Resistant Closures (CRC: 28 mm &amp; 33 mm; 38 mm under development) and Continuous-Thread Closures (CT: 33 mm, 38 mm &amp; 53 mm).
+                Versatile HDPE tablet containers with matching child-resistant and continuous-thread closures for solid-dose pharmaceutical and nutraceutical products.
               </p>
+              <div className="product-spec-grid">
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Capacities</span>
+                  <span className="product-spec-value">30 cc to 300 cc HDPE</span>
+                  <span className="product-spec-note">Wide-mouth &amp; precision-moulded necks</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">CRC Closures</span>
+                  <span className="product-spec-value">28 mm &amp; 33 mm</span>
+                  <span className="product-spec-note">Push-and-turn; 38 mm under development</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">CT Closures</span>
+                  <span className="product-spec-value">33 mm, 38 mm &amp; 53 mm</span>
+                  <span className="product-spec-note">Conventional screw-cap design</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Qualification</span>
+                  <span className="product-spec-value">CRC &amp; Adult-Use Tested</span>
+                  <span className="product-spec-note">Smooth labelling &amp; custom colours</span>
+                </div>
+              </div>
 </div>
 
           </div>
@@ -199,13 +221,12 @@ export default function TabletProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Versatile Capacities: 30 cc to 300 cc HDPE containers for varied tablet counts and pack requirements",
-                    "Wide-Mouth & Precision Necks: Convenient filling/dispensing with controlled neck dimensions for consistent closure fit",
-                    "Child-Resistant Closures (CRC): Push-and-turn design in 28 mm and 33 mm (38 mm under development)",
-                    "Continuous-Thread Closures (CT): Conventional screw-cap design in 33 mm, 38 mm, and 53 mm",
-                    "Tested & Senior-Friendly: Comfortable grip designed for elderly patients, with child-resistance and adult-use testing reports available",
-                    "Brand Customisation: Smooth labelling surfaces and custom bottle and closure colours",
-                    "Superior Moisture Protection: Durable, pharmaceutical-grade HDPE with secure sealing"
+                    "Superior moisture barrier protecting tablets and capsules from humidity",
+                    "Wide-mouth access for fast, clean filling and effortless dispensing",
+                    "Precision-moulded necks ensuring consistent closure fit and seal integrity",
+                    "Smooth bottle surfaces for crisp, clear product labelling",
+                    "Comfortable closure grip designed for elderly patients too",
+                    "Custom bottle and closure colours to strengthen brand identity"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
                       <span className="op-check-icon">

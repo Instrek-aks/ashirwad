@@ -158,8 +158,30 @@ export default function CapsClosuresProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our dispensing and screw closures—including <strong>screw, disc-top, and flip-top caps</strong>—are engineered for pharmaceutical and personal care bottles. We also offer precision <strong>Child-Resistant Closures (CRC: 28 mm &amp; 33 mm; 38 mm under development)</strong> and <strong>Continuous-Thread Closures (CT: 33 mm, 38 mm &amp; 53 mm)</strong> to protect products at every stage from production to end-use.
+                Dispensing and screw closures engineered for secure sealing across pharmaceutical and personal care bottles.
               </p>
+              <div className="product-spec-grid">
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Closure Types</span>
+                  <span className="product-spec-value">Screw, Disc-Top &amp; Flip-Top</span>
+                  <span className="product-spec-note">Pharmaceutical &amp; personal care bottles</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">CRC Sizes</span>
+                  <span className="product-spec-value">28 mm &amp; 33 mm</span>
+                  <span className="product-spec-note">Push-and-turn; 38 mm under development</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">CT Sizes</span>
+                  <span className="product-spec-value">33 mm, 38 mm &amp; 53 mm</span>
+                  <span className="product-spec-note">Conventional continuous-thread caps</span>
+                </div>
+                <div className="product-spec-card">
+                  <span className="product-spec-label">Qualification</span>
+                  <span className="product-spec-value">CRC &amp; Adult-Use Tested</span>
+                  <span className="product-spec-note">Reports for qualified combinations</span>
+                </div>
+              </div>
 </div>
 
           </div>
@@ -180,12 +202,12 @@ export default function CapsClosuresProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Closure Types: Screw, disc-top, and flip-top caps for pharmaceutical and personal care bottles",
-                    "Child-Resistant Closures (CRC): Push-and-turn design in 28 mm and 33 mm (38 mm under development)",
-                    "Continuous-Thread Closures (CT): Conventional screw-cap design in 33 mm, 38 mm, and 53 mm",
-                    "Tamper-evident options for product safety",
-                    "Secure and leak-proof sealing performance with comfortable grip for elderly patients",
-                    "Custom colours to complement container branding"
+                    "Smooth, consistent thread engagement for a secure, leak-proof seal",
+                    "Comfortable grip, ergonomically designed for elderly patients too",
+                    "Tamper-evident options providing visible indication of first opening",
+                    "High chemical durability and formulation compatibility",
+                    "Custom colours to complement container branding",
+                    "Precision-moulded alignment across high-volume production runs"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
                       <span className="op-check-icon">

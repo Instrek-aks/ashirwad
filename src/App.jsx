@@ -30,12 +30,10 @@ import EventPage from './pages/EventPage'
 import OphthalmicProductPage from './pages/OphthalmicProductPage'
 import NasalProductPage from './pages/NasalProductPage'
 import TabletProductPage from './pages/TabletProductPage'
+import ProteinJarsProductPage from './pages/ProteinJarsProductPage'
 import FlipOffProductPage from './pages/FlipOffProductPage'
 import MeasuringProductPage from './pages/MeasuringProductPage'
-import GlassDropperProductPage from './pages/GlassDropperProductPage'
-import DispenserProductPage from './pages/DispenserProductPage'
-import TriggerProductPage from './pages/TriggerProductPage'
-import MistCreamProductPage from './pages/MistCreamProductPage'
+import PersonalCareProductPage from './pages/PersonalCareProductPage'
 import CapsClosuresProductPage from './pages/CapsClosuresProductPage'
 import AdminPage from './pages/AdminPage'
 import BlogPage from './pages/BlogPage'
@@ -188,23 +186,17 @@ function App() {
       {page === 'product-tablet' && (
         <TabletProductPage onNavigate={navigate} />
       )}
+      {page === 'product-protein-jars' && (
+        <ProteinJarsProductPage onNavigate={navigate} />
+      )}
       {page === 'product-flipoff' && (
         <FlipOffProductPage onNavigate={navigate} />
       )}
       {page === 'product-measuring' && (
         <MeasuringProductPage onNavigate={navigate} />
       )}
-      {page === 'product-glass-dropper' && (
-        <GlassDropperProductPage onNavigate={navigate} />
-      )}
-      {page === 'product-dispenser' && (
-        <DispenserProductPage onNavigate={navigate} />
-      )}
-      {page === 'product-trigger' && (
-        <TriggerProductPage onNavigate={navigate} />
-      )}
-      {page === 'product-mist-cream' && (
-        <MistCreamProductPage onNavigate={navigate} />
+      {page === 'product-personal-care' && (
+        <PersonalCareProductPage onNavigate={navigate} />
       )}
       {page === 'product-caps-closures' && (
         <CapsClosuresProductPage onNavigate={navigate} />
