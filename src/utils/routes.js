@@ -29,6 +29,7 @@ export const ROUTE_MAP = {
   presence: '/global-presence',
   career: '/careers',
   event: '/events',
+  brochure: '/docs/AP-Brochure.pdf',
   admin: '/admin'
 };
 
@@ -168,6 +169,9 @@ export function parseCurrentLocation() {
   if (path === '/events' || path === '/event' || hash === 'event') {
     return { page: 'event', slug: null };
   }
+  if (path === '/docs/ap-brochure.pdf' || path === '/brochure' || hash === 'brochure') {
+    return { page: 'brochure', slug: null };
+  }
 
   // Default to home
   return { page: 'home', slug: null };
@@ -205,6 +209,7 @@ export function getDocumentTitle(page, blogTitle = '') {
     presence: 'Global Presence & Export Network | Ashirwad Plastics',
     career: 'Careers & Opportunities | Ashirwad Plastics',
     event: 'CPHI-PMEC Event & Exhibitions | Ashirwad Plastics',
+    brochure: 'Download Company Brochure | Ashirwad Plastics',
     admin: 'Admin CMS Portal | Ashirwad Plastics'
   };
   return titles[page] || 'Ashirwad Plastics | Pharmaceutical Packaging';

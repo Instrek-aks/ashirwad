@@ -17,7 +17,7 @@ function useFadeIn() {
 }
 
 export default function ProteinJarsProductPage({ onNavigate }) {
-  const [activeSlide] = useState(0)
+  const [activeSlide, setActiveSlide] = useState(0)
 
   const [heroRef, heroVisible] = useFadeIn()
   const [overviewRef, overviewVisible] = useFadeIn()
@@ -26,7 +26,8 @@ export default function ProteinJarsProductPage({ onNavigate }) {
   const [ctaRef] = useFadeIn()
 
   const carouselImages = [
-    '/images/products/tablet-containers/banner.webp'
+    '/images/products/protein-jars/banner.webp',
+    '/images/products/protein-jars/product-2.webp'
   ]
 
   const handleImageError = (e, label) => {
@@ -62,7 +63,7 @@ export default function ProteinJarsProductPage({ onNavigate }) {
       <section
         className="op-hero"
         style={{
-          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/tablet-containers.webp')",
+          backgroundImage: "linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/images/product-banners/protein-jars.webp')",
           position: 'relative',
           minHeight: '280px',
           height: 'auto',
@@ -111,7 +112,7 @@ export default function ProteinJarsProductPage({ onNavigate }) {
 
             {/* Product Showcase Card */}
             <div className="op-showcase-card">
-              <div className="op-carousel-wrapper">
+              <div className="op-carousel-wrapper" style={{ position: 'relative' }}>
                 <div className="op-carousel-slide">
                   <img
                     src={carouselImages[activeSlide]}
@@ -119,6 +120,28 @@ export default function ProteinJarsProductPage({ onNavigate }) {
                     onError={(e) => handleImageError(e, `Protein Jars ${activeSlide + 1}`)}
                   />
                 </div>
+                {carouselImages.length > 1 && (
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '14px' }}>
+                    {carouselImages.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        aria-label={`View protein jar image ${idx + 1}`}
+                        onClick={() => setActiveSlide(idx)}
+                        style={{
+                          width: activeSlide === idx ? '24px' : '8px',
+                          height: '8px',
+                          borderRadius: '999px',
+                          border: 'none',
+                          background: activeSlide === idx ? '#2456D3' : '#CBD5E1',
+                          cursor: 'pointer',
+                          padding: 0,
+                          transition: 'all 0.2s ease'
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
               <p className="op-showcase-desc">

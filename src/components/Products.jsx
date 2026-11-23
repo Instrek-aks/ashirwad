@@ -27,7 +27,8 @@ const productsList = [
     id: 'protein-jars',
     name: 'Protein Jars',
     desc: 'Wide-mouth HDPE, tamper-evident caps — Bulk powder packaging engineered for a secure, tamper-evident reseal.',
-    img: '/images/products/home/tablet-containers-closures.webp'
+    img: '/images/products/home/protein-jars.webp',
+    cover: true
   },
   {
     id: 'flipoff',

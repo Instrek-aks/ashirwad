@@ -36,6 +36,7 @@ import MeasuringProductPage from './pages/MeasuringProductPage'
 import PersonalCareProductPage from './pages/PersonalCareProductPage'
 import CapsClosuresProductPage from './pages/CapsClosuresProductPage'
 import AdminPage from './pages/AdminPage'
+import BrochurePage from './pages/BrochurePage'
 import BlogPage from './pages/BlogPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import { parseCurrentLocation, getPathForTarget, getDocumentTitle } from './utils/routes'
@@ -170,6 +171,9 @@ function App() {
       )}
       {page === 'event' && (
         <EventPage onNavigate={navigate} />
+      )}
+      {page === 'brochure' && (
+        <BrochurePage onNavigate={navigate} />
       )}
       {page === 'blogs' && (
         <BlogPage onNavigate={navigate} />

@@ -210,7 +210,7 @@ export default function HomeCarePage({ onNavigate }) {
                
               {[
                 { name: "Tablet Containers & Closures", desc: "30cc to 300cc HDPE containers with CRC and CT closures for vitamins, supplements, and solid-dose products.", img: "/images/products/home/tablet-containers-closures.webp", path: "product-tablet" },
-                { name: "Protein Jars", desc: "Wide-mouth HDPE jars with tamper-evident caps engineered for bulk powder packaging.", img: "/images/products/home/tablet-containers-closures.webp", path: "product-protein-jars" },
+                { name: "Protein Jars", desc: "Wide-mouth HDPE jars with tamper-evident caps engineered for bulk powder packaging.", img: "/images/products/home/protein-jars.webp", path: "product-protein-jars" },
                 { name: "Oral Droppers & Measuring Caps", desc: "2.5 ml, 5 ml & 10 ml dosing systems for liquid oral, paediatric, and nutraceutical formulations.", img: "/images/products/home/measuring-caps-oral-droppers.webp", path: "product-measuring" },
                 { name: "Caps & Closures", desc: "Screw, disc-top, flip-top, CRC, and CT closures ensuring complete safety and seal integrity.", img: "/images/products/home/caps-and-closures.webp", path: "product-caps-closures" }
               ].map((prod, idx) => (
