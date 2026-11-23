@@ -40,6 +40,8 @@ export default function Footer({ page, onNavigate }) {
           src="/images/hero/reachout-bg.webp"
           alt=""
           aria-hidden="true"
+          width="1794"
+          height="876"
           style={{
             width: '100%',
             height: 'auto',
@@ -115,7 +117,7 @@ export default function Footer({ page, onNavigate }) {
                 onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
               >
-                <img src="/images/brand/logo-white.webp" alt="Ashirwad Plastics Logo" style={{ height: "42px", width: "auto", objectFit: "contain", display: "block" }} />
+                <img src="/images/brand/logo-white.webp" alt="Ashirwad Plastics Logo" width="1024" height="203" style={{ height: "42px", width: "auto", objectFit: "contain", display: "block" }} />
               </a>
             </div>
             <p className="footer-about-text" style={{ fontSize: '13px', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '24px', maxWidth: '280px' }}>
@@ -163,7 +165,7 @@ export default function Footer({ page, onNavigate }) {
 
           {/* Column 2: Products */}
           <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Products</h4>
+            <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Products</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <li><a href="/products/ophthalmic" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-ophthalmic')}>Ophthalmic Delivery Systems</a></li>
               <li><a href="/products/nasal" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'product-nasal')}>Nasal Delivery Systems</a></li>
@@ -178,7 +180,7 @@ export default function Footer({ page, onNavigate }) {
 
           {/* Column 3: Market Sectors */}
           <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Our Segments</h4>
+            <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Our Segments</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <li><a href="/market/pharma" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-pharma')}>Pharmaceutical</a></li>
               <li><a href="/market/nutraceutical" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'market-nutraceutical')}>Nutraceutical</a></li>
@@ -188,7 +190,7 @@ export default function Footer({ page, onNavigate }) {
 
           {/* Column 4: Our Expertise */}
           <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Our Expertise</h4>
+            <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Our Expertise</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <li><a href="/expertise/manufacturing" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-manufacturing')}>Manufacturing</a></li>
               <li><a href="/expertise/sustainability" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'expertise-sustainability')}>Sustainability</a></li>
@@ -200,7 +202,7 @@ export default function Footer({ page, onNavigate }) {
 
           {/* Column 5: Quick Links */}
           <div className="footer-column-ref">
-            <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Quick Links</h4>
+            <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', marginBottom: '16px', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Quick Links</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <li><a href="/" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'home')}>Home</a></li>
               <li><a href="/about" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }} onClick={e => goTo(e, 'about')}>About Us</a></li>
@@ -218,7 +220,7 @@ export default function Footer({ page, onNavigate }) {
         {/* Footer Bottom Copyright & Social Links */}
         <div className="footer-bottom-ref" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', flexGrow: 1 }}>
-            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)' }}>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>
               © 2024 ashirwadplastics.com | Designed &amp; Managed by{' '}
               Instrek Technology.
             </span>
@@ -228,9 +230,9 @@ export default function Footer({ page, onNavigate }) {
                 e.preventDefault();
                 if (onNavigate) onNavigate('admin');
               }}
-              style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', transition: 'color 0.2s' }}
+              style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', transition: 'color 0.2s' }}
               onMouseEnter={(e) => e.currentTarget.style.color = '#93c5fd'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.75)'}
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
@@ -246,9 +248,10 @@ export default function Footer({ page, onNavigate }) {
               href="https://www.linkedin.com/company/ashirwadplastics/" 
               target="_blank" 
               rel="noopener noreferrer" 
+              aria-label="Ashirwad Plastics on LinkedIn"
               style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', color: '#1e293b' }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
@@ -258,9 +261,10 @@ export default function Footer({ page, onNavigate }) {
               href="https://www.instagram.com/ashirwadplastics?igsh=NmMzdWgzdDg4Nm80" 
               target="_blank" 
               rel="noopener noreferrer" 
+              aria-label="Ashirwad Plastics on Instagram"
               style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', color: '#1e293b' }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
               </svg>
             </a>

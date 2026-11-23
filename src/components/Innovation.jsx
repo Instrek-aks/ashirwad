@@ -43,9 +43,9 @@ export default function Innovation() {
                 <div className="innovation-item" key={i} style={{ display: 'flex', gap: '16px' }}>
                   <CheckIcon />
                   <div>
-                    <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                       {item.title}
-                    </h4>
+                    </h3>
                     <p style={{ fontSize: '13.5px', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', margin: 0 }}>
                       {item.desc}
                     </p>

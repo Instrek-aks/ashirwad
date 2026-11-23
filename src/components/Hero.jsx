@@ -23,14 +23,20 @@ export default function Hero({ onNavigate }) {
       {/* Background Slideshow Containers with Ken Burns effect */}
       <div className="hero-slideshow-container">
         {heroImages.map((img, index) => (
-          <div
+          <img
             key={index}
+            src={img}
+            alt=""
+            aria-hidden="true"
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            loading={index === 0 ? 'eager' : 'lazy'}
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundImage: `url(${img})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center top',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center top',
               opacity: index === activeIndex ? 1 : 0,
               transition: 'opacity 1.5s ease-in-out',
               transform: 'scale(1)',

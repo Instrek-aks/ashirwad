@@ -6,31 +6,41 @@ export default function BottomCertifications() {
       title: 'ISO 15378:2017',
       desc: 'Primary Packaging Materials for Medicinal Products',
       img: '/images/certifications/iso-cert-1.jpeg',
-      alt: 'ISO 15378 SGS Certification'
+      alt: 'ISO 15378 SGS Certification',
+      width: 226,
+      height: 193
     },
     {
       title: 'ISO 9001:2015',
       desc: 'Quality Management Systems Standard',
       img: '/images/certifications/iso-cert-2.jpeg',
-      alt: 'ISO 9001 SGS Certification'
+      alt: 'ISO 9001 SGS Certification',
+      width: 210,
+      height: 209
     },
     {
       title: 'US FDA DMF',
       desc: 'US Drug Master File (DMF) Registered Facility',
       img: '/images/certifications/cert-nl.webp',
-      alt: 'US FDA DMF Registration'
+      alt: 'US FDA DMF Registration',
+      width: 1280,
+      height: 529
     },
     {
       title: 'Health Canada DMF',
       desc: 'Health Canada Drug Master File (HC DMF) Documentation',
       img: '/images/certifications/cert-4.webp',
-      alt: 'Health Canada DMF Registered'
+      alt: 'Health Canada DMF Registered',
+      width: 869,
+      height: 242
     },
     {
       title: 'cGMP Compliant',
       desc: 'Current Good Manufacturing Practice Compliant Facility',
       img: '/images/certifications/cert-5.webp',
-      alt: 'cGMP Compliance'
+      alt: 'cGMP Compliance',
+      width: 1999,
+      height: 2000
     }
   ]
 
@@ -111,13 +121,15 @@ export default function BottomCertifications() {
                   <img 
                     src={item.img} 
                     alt={item.alt} 
-                    style={{ maxHeight: '78px', maxWidth: '140px', objectFit: 'contain' }} 
+                    width={item.width}
+                    height={item.height}
+                    style={{ maxHeight: '78px', maxWidth: '140px', width: 'auto', height: 'auto', objectFit: 'contain' }} 
                   />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#0F172A', margin: '0 0 6px' }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0F172A', margin: '0 0 6px' }}>
                     {item.title}
-                  </h4>
+                  </h3>
                   <p style={{ fontSize: '12.5px', color: '#64748B', lineHeight: '1.45', margin: 0 }}>
                     {item.desc}
                   </p>

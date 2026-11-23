@@ -14,7 +14,7 @@ export default function GlobalPresence({ onNavigate }) {
             At <span style={{ color: '#2456D3', fontWeight: 600 }}>Ashirwad Plastics</span>, we are not just manufacturers; we are architects of innovation and guardians of quality in the world of pharmaceutical packaging.
           </p>
           <a
-            href="#"
+            href="/product-development"
             onClick={e => { e.preventDefault(); if (onNavigate) onNavigate('expertise'); }}
             style={{ 
               display: 'inline-flex', 
@@ -41,6 +41,8 @@ export default function GlobalPresence({ onNavigate }) {
             <img 
               src="/images/global/world-map.webp" 
               alt="Global Presence Map" 
+              width="2976"
+              height="1436"
               style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }}
               onError={(e) => {
                 e.target.style.display = 'none';

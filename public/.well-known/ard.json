@@ -1,0 +1,41 @@
+{
+  "specVersion": "0.91",
+  "host": {
+    "displayName": "Ashirwad Plastics",
+    "identifier": "www.ashirwadplastics.com"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:www.ashirwadplastics.com:docs:llms-txt",
+      "displayName": "Ashirwad Plastics llms.txt",
+      "type": "text/markdown",
+      "url": "https://www.ashirwadplastics.com/llms.txt",
+      "description": "Structured Markdown overview of Ashirwad Plastics' pharmaceutical, nutraceutical, and cosmetic packaging products, market segments, and company resources.",
+      "representativeQueries": [
+        "what packaging products does Ashirwad Plastics manufacture",
+        "find Ashirwad Plastics product catalog and contact information"
+      ],
+      "trustManifest": {
+        "publisher": "Ashirwad Plastics",
+        "contact": "mailto:info@ashirwadplastics.com",
+        "lastUpdated": "2026-11-23"
+      }
+    },
+    {
+      "identifier": "urn:air:www.ashirwadplastics.com:docs:product-brochure",
+      "displayName": "Ashirwad Plastics Product Brochure",
+      "type": "application/pdf",
+      "url": "https://www.ashirwadplastics.com/docs/AP-Brochure.pdf",
+      "description": "Downloadable PDF brochure detailing Ashirwad Plastics' ophthalmic, nasal, tablet, protein jar, flip-off seal, measuring, and personal care packaging lines.",
+      "representativeQueries": [
+        "download Ashirwad Plastics product brochure",
+        "view specifications for Ashirwad Plastics pharma containers and closures"
+      ],
+      "trustManifest": {
+        "publisher": "Ashirwad Plastics",
+        "contact": "mailto:info@ashirwadplastics.com",
+        "lastUpdated": "2026-11-23"
+      }
+    }
+  ]
+}

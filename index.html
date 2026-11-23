@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/images/brand/logo-icon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="ard" href="/.well-known/ard.json" />
     <meta name="theme-color" content="#0057FF" />
 
     <!-- Open Graph / Facebook / WhatsApp (1:1 Logo) -->
@@ -34,7 +35,18 @@
     <meta name="twitter:image" content="/images/brand/logo-icon-512.png" />
     <meta name="twitter:image:alt" content="Ashirwad Plastics Logo" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/images/hero/cosmetic.gif" fetchpriority="high" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

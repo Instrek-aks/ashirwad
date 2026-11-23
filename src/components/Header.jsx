@@ -94,6 +94,8 @@ export default function Header({ page, onNavigate }) {
           <img
             src="/images/brand/logo.webp"
             alt="Ashirwad Plastics Logo"
+            width="1024"
+            height="203"
             style={{ height: '38px', width: 'auto', objectFit: 'contain', display: 'block' }}
           />
         </a>
@@ -116,6 +118,8 @@ export default function Header({ page, onNavigate }) {
             <img
               src="/images/brand/logo.webp"
               alt="Ashirwad Plastics Logo"
+              width="1024"
+              height="203"
               style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
             />
             <button

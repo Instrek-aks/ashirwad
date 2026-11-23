@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import GlobalPresence from './components/GlobalPresence'
@@ -12,34 +12,34 @@ import FuturePlan from './components/FuturePlan'
 import Innovation from './components/Innovation'
 import BottomCertifications from './components/BottomCertifications'
 import Footer from './components/Footer'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
-import QueryPage from './pages/QueryPage'
-import PharmaMarketPage from './pages/PharmaMarketPage'
-import CosmeticMarketPage from './pages/CosmeticMarketPage'
-import HomeCarePage from './pages/HomeCarePage'
-import ProductDevelopmentPage from './pages/ProductDevelopmentPage'
-import ManufacturingPage from './pages/ManufacturingPage'
-import SustainabilityPage from './pages/SustainabilityPage'
-import QualityPage from './pages/QualityPage'
-import InnovationPage from './pages/InnovationPage'
-import ResearchDevelopmentPage from './pages/ResearchDevelopmentPage'
-import GlobalPresencePage from './pages/GlobalPresencePage'
-import CareerPage from './pages/CareerPage'
-import EventPage from './pages/EventPage'
-import OphthalmicProductPage from './pages/OphthalmicProductPage'
-import NasalProductPage from './pages/NasalProductPage'
-import TabletProductPage from './pages/TabletProductPage'
-import ProteinJarsProductPage from './pages/ProteinJarsProductPage'
-import FlipOffProductPage from './pages/FlipOffProductPage'
-import MeasuringProductPage from './pages/MeasuringProductPage'
-import PersonalCareProductPage from './pages/PersonalCareProductPage'
-import CapsClosuresProductPage from './pages/CapsClosuresProductPage'
-import AdminPage from './pages/AdminPage'
-import BrochurePage from './pages/BrochurePage'
-import BlogPage from './pages/BlogPage'
-import BlogDetailPage from './pages/BlogDetailPage'
 import { parseCurrentLocation, getPathForTarget, getDocumentTitle } from './utils/routes'
+
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const QueryPage = lazy(() => import('./pages/QueryPage'))
+const PharmaMarketPage = lazy(() => import('./pages/PharmaMarketPage'))
+const CosmeticMarketPage = lazy(() => import('./pages/CosmeticMarketPage'))
+const HomeCarePage = lazy(() => import('./pages/HomeCarePage'))
+const ProductDevelopmentPage = lazy(() => import('./pages/ProductDevelopmentPage'))
+const ManufacturingPage = lazy(() => import('./pages/ManufacturingPage'))
+const SustainabilityPage = lazy(() => import('./pages/SustainabilityPage'))
+const QualityPage = lazy(() => import('./pages/QualityPage'))
+const InnovationPage = lazy(() => import('./pages/InnovationPage'))
+const GlobalPresencePage = lazy(() => import('./pages/GlobalPresencePage'))
+const CareerPage = lazy(() => import('./pages/CareerPage'))
+const EventPage = lazy(() => import('./pages/EventPage'))
+const OphthalmicProductPage = lazy(() => import('./pages/OphthalmicProductPage'))
+const NasalProductPage = lazy(() => import('./pages/NasalProductPage'))
+const TabletProductPage = lazy(() => import('./pages/TabletProductPage'))
+const ProteinJarsProductPage = lazy(() => import('./pages/ProteinJarsProductPage'))
+const FlipOffProductPage = lazy(() => import('./pages/FlipOffProductPage'))
+const MeasuringProductPage = lazy(() => import('./pages/MeasuringProductPage'))
+const PersonalCareProductPage = lazy(() => import('./pages/PersonalCareProductPage'))
+const CapsClosuresProductPage = lazy(() => import('./pages/CapsClosuresProductPage'))
+const AdminPage = lazy(() => import('./pages/AdminPage'))
+const BrochurePage = lazy(() => import('./pages/BrochurePage'))
+const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage'))
 
 function App() {
   // Disable automatic scroll restoration so user always lands at the top of the new page
@@ -108,13 +108,18 @@ function App() {
   };
 
   if (page === 'admin') {
-    return <AdminPage onNavigate={navigate} />
+    return (
+      <Suspense fallback={null}>
+        <AdminPage onNavigate={navigate} />
+      </Suspense>
+    )
   }
 
   return (
     <>
       <Header page={page} onNavigate={navigate} />
       <main className="page-view-content" style={{ minHeight: '60vh' }}>
+        <Suspense fallback={null}>
         {page === 'home' && (
         <>
           <Hero onNavigate={navigate} />
@@ -205,6 +210,7 @@ function App() {
       {page === 'product-caps-closures' && (
         <CapsClosuresProductPage onNavigate={navigate} />
       )}
+        </Suspense>
       </main>
       <Footer page={page} onNavigate={navigate} />
     </>

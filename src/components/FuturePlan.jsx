@@ -44,9 +44,9 @@ export default function FuturePlan() {
             <div className="future-point-item" style={{ display: 'flex', gap: '16px' }}>
               <CheckIcon />
               <div className="future-point-text">
-                <h4 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '4px' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '4px' }}>
                   Expanding Global Reach
-                </h4>
+                </h3>
                 <p style={{ fontSize: '13.5px', color: 'var(--text-gray)', lineHeight: '1.6', margin: 0 }}>
                   Our new plant meets global demand for high-quality packaging, adhering to international standards with a seamless supply chain.
                 </p>
@@ -57,9 +57,9 @@ export default function FuturePlan() {
             <div className="future-point-item" style={{ display: 'flex', gap: '16px' }}>
               <CheckIcon />
               <div className="future-point-text">
-                <h4 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '4px' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '4px' }}>
                   Investment in Research &amp; Development
-                </h4>
+                </h3>
                 <p style={{ fontSize: '13.5px', color: 'var(--text-gray)', lineHeight: '1.6', margin: 0 }}>
                   Innovation drives our growth as we invest in R&D to deliver advanced, tailored solutions that enhance client value.
                 </p>

@@ -77,7 +77,7 @@ export default function Clients() {
           <h2 className="section-title" style={{ fontSize: '32px', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '16px' }}>
             Our Valuable Clients
           </h2>
-          <p className="section-desc" style={{ fontSize: '15px', color: 'var(--text-gray)', opacity: 0.85, lineHeight: '1.7', margin: 0 }}>
+          <p className="section-desc" style={{ fontSize: '15px', color: '#475569', lineHeight: '1.7', margin: 0 }}>
             We are proud to partner with leading pharmaceutical names, delivering customized, regulatory-compliant packaging solutions trusted by healthcare brands worldwide.
           </p>
         </div>
