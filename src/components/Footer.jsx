@@ -32,26 +32,53 @@ export default function Footer({ page, onNavigate }) {
         style={{
           position: 'relative',
           width: '100%',
-          minHeight: '480px',
-          height: 'clamp(460px, 48vw, 680px)',
-          backgroundImage: 'linear-gradient(180deg, rgba(13, 28, 61, 0) 0%, rgba(13, 28, 61, 0) 35%, rgba(13, 28, 61, 0.45) 60%, rgba(13, 28, 61, 0.82) 82%, #0D1C3D 100%), url(/images/hero/reachout-bg.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          backgroundRepeat: 'no-repeat',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          paddingBottom: '32px'
+          overflow: 'hidden',
+          backgroundColor: '#0D1C3D'
         }}
       >
-        <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+        <img
+          src="/images/hero/reachout-bg.webp"
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxHeight: '680px',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+            display: 'block'
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(13, 28, 61, 0) 0%, rgba(13, 28, 61, 0) 35%, rgba(13, 28, 61, 0.45) 60%, rgba(13, 28, 61, 0.82) 82%, #0D1C3D 100%)',
+            pointerEvents: 'none'
+          }}
+        />
+        <div
+          className="container"
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            maxWidth: '1240px',
+            margin: '0 auto',
+            padding: '0 24px clamp(16px, 3vw, 32px)',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
           <div style={{ maxWidth: '640px' }}>
             <h2
               style={{
-                fontSize: 'clamp(30px, 4.2vw, 42px)',
+                fontSize: 'clamp(22px, 4.2vw, 42px)',
                 fontWeight: '700',
                 color: '#FFFFFF',
-                margin: '0 0 10px 0',
+                margin: '0 0 clamp(4px, 1vw, 10px) 0',
                 letterSpacing: '-0.3px',
                 lineHeight: '1.2'
               }}
@@ -60,8 +87,8 @@ export default function Footer({ page, onNavigate }) {
             </h2>
             <p
               style={{
-                fontSize: 'clamp(14px, 1.5vw, 16px)',
-                lineHeight: '1.6',
+                fontSize: 'clamp(12px, 1.5vw, 16px)',
+                lineHeight: '1.5',
                 color: 'rgba(255, 255, 255, 0.85)',
                 margin: 0
               }}
@@ -92,7 +119,7 @@ export default function Footer({ page, onNavigate }) {
               </a>
             </div>
             <p className="footer-about-text" style={{ fontSize: '13px', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '24px', maxWidth: '280px' }}>
-              Ashirwad Plastics stands at the forefront of Innovation, offering nasal dispensing solutions and injection seals that uphold the integrity of life-saving medicines.
+              Ashirwad Plastics stands at the forefront of Innovation, offering primary packaging and drug delivery systems.
             </p>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '20px' }}>

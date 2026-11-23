@@ -154,7 +154,7 @@ export default function FlipOffProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our flip-off seals are engineered to meet the strict safety and quality demands of the pharmaceutical industry, providing a secure and clean closure for standard injection vials.
+                Our tamper-evident flip-off seals are engineered to meet the strict safety and quality demands of the pharmaceutical industry, providing a secure and clean closure for injectable vials and sterile presentations. Available in blue, red, green, white, yellow, and custom colours.
               </p>
 </div>
 
@@ -176,10 +176,10 @@ export default function FlipOffProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Tamper-evident protection",
+                    "Tamper-evident protection for injectable vials and sterile presentations",
                     "Secure and reliable sealing performance",
                     "Pharmaceutical-grade quality materials",
-                    "Available in multiple color options",
+                    "Available in blue, red, green, white, yellow, and custom colours",
                     "Compatible with standard pharmaceutical vials"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
@@ -222,7 +222,7 @@ export default function FlipOffProductPage({ onNavigate }) {
               <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
               <div className="op-mfg-desc">
                 Manufactured in controlled environments using pharmaceutical-grade materials with stringent quality checks to ensure consistent sealing integrity, sterility, and compliance with international pharmaceutical packaging standards.
-                Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
+                Manufactured in a Class 7 &amp; Class 8 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
               </div>
             </div>
 

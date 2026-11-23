@@ -144,27 +144,10 @@ export default function OphthalmicProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="op-carousel-wrapper">
-                <div 
-                  className="op-carousel-slide" 
-                  style={{ 
-                    backgroundColor: '#ffffff', 
-                    borderRadius: '20px', 
-                    border: '1px solid #E5E7EB',
-                    height: 'auto',
-                    aspectRatio: 'unset',
-                    overflow: 'hidden'
-                  }}
-                >
+                <div className="op-carousel-slide">
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Ophthalmic Product Render ${activeSlide + 1}`}
-                    style={{ 
-                      width: '100%', 
-                      height: 'auto', 
-                      display: 'block', 
-                      objectFit: 'contain',
-                      borderRadius: '20px'
-                    }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
@@ -172,7 +155,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our ophthalmic delivery systems are designed to support precise dispensing, product integrity and reliable performance. Manufactured in a GMP-compliant facility, our eye dropper bottles offer quality-driven packaging solutions for pharmaceutical applications, supported by US DMF and Health Canada DMF documentation.
+                Our ophthalmic delivery systems are available in <strong>5 ml, 6 ml, 10 ml, and 15 ml</strong> capacities across the <strong>AP Series</strong> (proprietary bottle geometry for consistent wall thickness and predictable squeeze force) and <strong>R Series</strong> (industry-standard design for established filling and labelling lines). Manufactured from pharmaceutical-grade LDPE in a GMP-compliant cleanroom facility, our bottles feature a 14 mm narrow, ringed-neck finish with USP-aligned tamper-evident ring retention and are supported by US Type III DMF and Health Canada DMF documentation.
               </p>
 </div>
 
@@ -229,13 +212,13 @@ export default function OphthalmicProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Cleanroom Manufacturing: Class 100,000 cleanroom production with automated processes.",
-                    "Formulation Compatibility: Suitable for ophthalmic solutions and suspensions.",
-                    "Closure Options: CRC, tamper-evident and tear-off tamper-evident systems.",
-                    "Preservative-Free Options: Configurations available for compatible applications.",
-                    "Flexible Packaging: Polybags, Tyvek bags and beta bags.",
-                    "Sterilisation Options: ETO and gamma sterilisation, subject to validation.",
-                    "Regulatory Support: US DMF and Health Canada DMF documentation."
+                    "Multiple Capacities & Series: 5 ml, 6 ml, 10 ml, and 15 ml options across AP Series and R Series.",
+                    "Nozzle Options: Closed-tip, pre-pricked, and flow-control nozzles for controlled drop delivery.",
+                    "Neck & Closure Options: 14 mm narrow, ringed-neck finish with USP-aligned tamper-evident ring retention, tear-off TE, and senior-friendly push-and-turn CRC caps.",
+                    "Preservative-Free & Antimicrobial: Integrated antimicrobial technology supporting preservative-free formulations for chronic everyday use.",
+                    "Cleanroom Manufacturing: Class 7 & Class 8 cleanroom production under ISO 9001:2015 and ISO 15378:2017.",
+                    "Sterilisation & Packaging: Suitable for EtO and Gamma sterilisation; supplied in polybags, Tyvek bags, and beta bags.",
+                    "Regulatory & Flexible Supply: US Type III DMF reference, Health Canada DMF documentation, and flexible order quantities."
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item" style={{ alignItems: 'flex-start' }}>
                       <span className="op-check-icon" style={{ marginTop: '2px' }}>
@@ -260,7 +243,7 @@ export default function OphthalmicProductPage({ onNavigate }) {
                     Regulatory &amp; Cleanroom Quality
                   </div>
                   <div style={{ fontSize: '13.5px', color: 'rgba(255, 255, 255, 0.88)', lineHeight: '1.6' }}>
-                    Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
+                    Manufactured in a Class 7 &amp; Class 8 cleanroom GMP facility under ISO 9001:2015 and ISO 15378:2017, supported by US Type III DMF &amp; Health Canada DMF documentation.
                   </div>
                 </div>
               </div>

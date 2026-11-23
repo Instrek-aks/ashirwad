@@ -143,11 +143,10 @@ export default function TabletProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="op-carousel-wrapper">
-                <div className="op-carousel-slide" style={{ backgroundColor: 'transparent', height: 'auto', aspectRatio: 'unset', borderRadius: '20px' }}>
+                <div className="op-carousel-slide">
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Tablet Container Render ${activeSlide + 1}`}
-                    style={{ width: '100%', height: 'auto', objectFit: 'contain', borderRadius: '20px' }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
@@ -155,7 +154,7 @@ export default function TabletProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Our tablet packaging solutions are engineered for moisture protection, durability, and secure storage. Available in multiple sizes and closure configurations, these containers are ideal for a wide range of solid-dose applications.
+                Our HDPE tablet containers range from <strong>30 cc to 300 cc</strong> and are engineered for moisture protection, durability, and secure storage. Featuring a wide-mouth design, precision-moulded necks, smooth labelling surfaces, and customisable bottle and closure colours, they pair with Child-Resistant Closures (CRC: 28 mm &amp; 33 mm; 38 mm under development) and Continuous-Thread Closures (CT: 33 mm, 38 mm &amp; 53 mm).
               </p>
 </div>
 
@@ -200,13 +199,13 @@ export default function TabletProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
-                    "Superior moisture protection",
-                    "Child-resistant closure options",
-                    "Tamper-evident safety features",
-                    "Durable and lightweight construction",
-                    "Excellent sealing performance",
-                    "Pharmaceutical-grade materials",
-                    "Designed for high-volume applications"
+                    "Versatile Capacities: 30 cc to 300 cc HDPE containers for varied tablet counts and pack requirements",
+                    "Wide-Mouth & Precision Necks: Convenient filling/dispensing with controlled neck dimensions for consistent closure fit",
+                    "Child-Resistant Closures (CRC): Push-and-turn design in 28 mm and 33 mm (38 mm under development)",
+                    "Continuous-Thread Closures (CT): Conventional screw-cap design in 33 mm, 38 mm, and 53 mm",
+                    "Tested & Senior-Friendly: Comfortable grip designed for elderly patients, with child-resistance and adult-use testing reports available",
+                    "Brand Customisation: Smooth labelling surfaces and custom bottle and closure colours",
+                    "Superior Moisture Protection: Durable, pharmaceutical-grade HDPE with secure sealing"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
                       <span className="op-check-icon">
@@ -249,7 +248,7 @@ export default function TabletProductPage({ onNavigate }) {
               <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
               <div className="op-mfg-desc">
                 Manufactured using advanced automated systems and strict quality assurance processes to deliver consistency, reliability, and regulatory-ready packaging solutions.
-                Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
+                Manufactured in a Class 7 &amp; Class 8 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
               </div>
             </div>
 

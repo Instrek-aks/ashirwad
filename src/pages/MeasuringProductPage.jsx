@@ -155,10 +155,10 @@ export default function MeasuringProductPage({ onNavigate }) {
               {/* Product Description */}
               <div style={{ padding: '24px 0', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <p style={{ margin: 0, fontSize: '15px', color: '#475569', lineHeight: '1.6' }}>
-                  <strong>Measuring Caps:</strong> Graduated measuring caps designed for precise dosage delivery of syrups and liquid medicines. Easy to read, easy to use, and built for pharmaceutical-grade accuracy.
+                  <strong>Measuring Caps:</strong> Graduated measuring caps available in <strong>2.5 ml, 5 ml, and 10 ml</strong> capacities for precise dosage delivery of syrups and liquid medicines. Easy to read, user-friendly, and built for pharmaceutical-grade accuracy.
                 </p>
                 <p style={{ margin: 0, fontSize: '15px', color: '#475569', lineHeight: '1.6' }}>
-                  <strong>Oral Droppers:</strong> Precision-engineered oral droppers for controlled liquid dispensing. Suitable for pediatric medicines, herbal liquids, and a wide range of oral healthcare formulations.
+                  <strong>Oral Droppers:</strong> Precision-engineered oral droppers (<strong>2.5 ml, 5 ml, and 10 ml</strong>) for accurate, user-friendly dosing of liquid oral and paediatric formulations, herbal liquids, and oral healthcare products.
                 </p>
               </div>
 </div>
@@ -181,11 +181,11 @@ export default function MeasuringProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
+                    "Available Capacities: 2.5 ml, 5 ml, and 10 ml options",
                     "Precise liquid measurement and dosage control",
-                    "User-friendly and easy-to-read design",
+                    "User-friendly and easy-to-read design for oral and paediatric formulations",
                     "Leak-resistant construction",
                     "Durable pharmaceutical-grade materials",
-                    "Suitable for multiple liquid formulations",
                     "Hygienic and safe for oral use"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
@@ -229,7 +229,7 @@ export default function MeasuringProductPage({ onNavigate }) {
               <div className="op-mfg-title">Manufacturing &amp; Quality Standards</div>
               <div className="op-mfg-desc">
                 Produced in advanced manufacturing facilities with strict quality control systems to ensure dimensional accuracy, hygienic safety, and consistent performance across all liquid dispensing applications.
-                Manufactured in a Class 100,000 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
+                Manufactured in a Class 7 &amp; Class 8 cleanroom GMP facility, supported by US DMF &amp; Health Canada DMF documentation.
               </div>
             </div>
 

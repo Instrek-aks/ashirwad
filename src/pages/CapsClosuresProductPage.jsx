@@ -158,7 +158,7 @@ export default function CapsClosuresProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="op-showcase-desc">
-                Available in multiple sizes and closure types, our solutions are built to protect products at every stage from production to end-use.
+                Our dispensing and screw closures—including <strong>screw, disc-top, and flip-top caps</strong>—are engineered for pharmaceutical and personal care bottles. We also offer precision <strong>Child-Resistant Closures (CRC: 28 mm &amp; 33 mm; 38 mm under development)</strong> and <strong>Continuous-Thread Closures (CT: 33 mm, 38 mm &amp; 53 mm)</strong> to protect products at every stage from production to end-use.
               </p>
 </div>
 
@@ -180,12 +180,12 @@ export default function CapsClosuresProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="op-feature-list">
                   {[
+                    "Closure Types: Screw, disc-top, and flip-top caps for pharmaceutical and personal care bottles",
+                    "Child-Resistant Closures (CRC): Push-and-turn design in 28 mm and 33 mm (38 mm under development)",
+                    "Continuous-Thread Closures (CT): Conventional screw-cap design in 33 mm, 38 mm, and 53 mm",
                     "Tamper-evident options for product safety",
-                    "Child-resistant closures available",
-                    "Secure and leak-proof sealing performance",
-                    "Multiple size configurations",
-                    "High durability and material compatibility",
-                    "Suitable for pharmaceutical and cosmetic use"
+                    "Secure and leak-proof sealing performance with comfortable grip for elderly patients",
+                    "Custom colours to complement container branding"
                   ].map((feat, idx) => (
                     <div key={idx} className="op-feature-item">
                       <span className="op-check-icon">

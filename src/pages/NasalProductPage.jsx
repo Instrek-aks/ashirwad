@@ -148,11 +148,10 @@ export default function NasalProductPage({ onNavigate }) {
               
               {/* Image Carousel */}
               <div className="np-carousel-wrapper">
-                <div className="np-carousel-slide" style={{ backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #E5E7EB' }}>
+                <div className="np-carousel-slide">
                   <img 
                     src={carouselImages[activeSlide]} 
                     alt={`Nasal Product Render ${activeSlide + 1}`}
-                    style={{ objectFit: 'contain' }}
                     onError={(e) => handleImageError(e, `Showcase Slide ${activeSlide + 1}`)}
                   />
                 </div>
@@ -160,7 +159,7 @@ export default function NasalProductPage({ onNavigate }) {
 
               {/* Product Description */}
               <p className="np-showcase-desc">
-                Manufactured under controlled cleanroom conditions using pharmaceutical-grade raw materials, our nasal delivery solutions are designed to minimize contamination risks and help maintain product integrity throughout shelf life. We also offer customized development solutions with tailored spray characteristics to meet specific formulation requirements, enhance patient experience, and support faster market readiness with short development lead times.
+                Available as bottle and actuator assemblies and nasal squeeze systems, our nasal delivery solutions are manufactured in GMP-compliant Class 7 &amp; Class 8 cleanrooms under ISO 9001:2015 and ISO 15378:2017 using pharmaceutical-grade raw materials. Designed for consistent spray patterns, everyday convenience, and product integrity throughout shelf life, we also offer customized development solutions with tailored spray characteristics and short lead times.
               </p>
 </div>
 
@@ -205,13 +204,13 @@ export default function NasalProductPage({ onNavigate }) {
                 <h3>Key Features</h3>
                 <div className="np-feature-list">
                   {[
-                    "Controlled Cleanroom Manufacturing: Class 100,000 cleanroom production with automated processes to help minimize contamination risks.",
-                    "Consistent Spray Performance: Designed to deliver uniform spray patterns and reliable dose delivery.",
-                    "Smooth Actuation: Engineered for comfortable, easy, and consistent operation.",
+                    "One Certified Source: GMP-compliant Class 7 & Class 8 cleanroom manufacturing under ISO 9001:2015 and ISO 15378:2017.",
+                    "Consistent Spray Pattern: Nasal dispensing engineered for repeatable, dependable dosing.",
+                    "Convenience & Smooth Actuation: Simple, comfortable dispensing for everyday use.",
+                    "Product Integrity: Packaging that helps protect the formulation throughout shelf life.",
+                    "Bottle & Actuator Assembly: Available in metered-dose nasal spray devices and nasal squeeze systems.",
                     "Customized Spray Characteristics: Development options tailored to formulation and application requirements.",
-                    "Enhanced Drug Delivery: Designed to support effective intranasal drug delivery and absorption.",
-                    "Secure Packaging: Multiple pump and closure configurations to support product integrity and safe containment.",
-                    "Pharmaceutical-Grade Materials: Manufactured using materials selected for pharmaceutical packaging applications."
+                    "Pharmaceutical-Grade Materials: Automated processes using materials selected for pharmaceutical packaging."
                   ].map((feat, idx) => (
                     <div key={idx} className="np-feature-item" style={{ alignItems: 'flex-start' }}>
                       <span className="np-check-icon" style={{ marginTop: '2px' }}>
@@ -259,7 +258,7 @@ export default function NasalProductPage({ onNavigate }) {
             <div className="np-manufacturing-standards">
               <div className="np-mfg-title">Controlled Cleanroom Manufacturing &amp; Quality</div>
               <div className="np-mfg-desc">
-                Our nasal delivery systems are developed with a focus on quality, product integrity, and applicable pharmaceutical packaging requirements in Class 100,000 cleanrooms under ISO 15378 and ISO 9001 certified operations.
+                Our nasal delivery systems are developed with a focus on quality, product integrity, and applicable pharmaceutical packaging requirements in Class 7 &amp; Class 8 cleanrooms under ISO 15378:2017 and ISO 9001:2015 certified operations.
               </div>
             </div>
 
